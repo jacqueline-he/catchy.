@@ -85,15 +85,52 @@ HackMD link here: https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ
 ## Wireframes
 <img src="wireframe.jpg" width=600>
 
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+#### Song
+
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the song (default field) |
+   | artist        | String | song artist |
+   | image         | File     | album art of track |
+   | uri       | String   | unique relative link needed for Spotify to play track |
+   | liked    | Boolean   | whether track has been "liked" by specific user |
+   | seen    | Boolean   | whether track has been displayed to specific user |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | updatedAt     | DateTime | date when post is last updated (default field) |
+   
+   
+
+#### User
+   | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | objectId      | String   | unique id for the user (default field) |
+   | username        | String| unique username |
+   | password       | String| user password |
+   | profilePic         | File     | user profile pic |
+   | bio       | String   | user description |
+   | likedSongs       | Array   | list of track URI strings |
+   | followers       | Array   | list of User followers |
+   | following      | Array   | list of User following |
+   | likesCount    | Number   | number of total likes made by user in this app |
+   | createdAt     | DateTime | date when post is created (default field) |
+   | updatedAt     | DateTime | date when post is last updated (default field) |
+
+
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+#### List of network requests by screen
+   - Home feed screen
+      - (Read/GET) Get Track from Spotify SDK and generate song profile
+      - (Create/POST) Create a new like on a song [Parse]
+      - (Delete) Delete existing like [Parse]
+   - User profile screen
+      - (Read/GET) Query logged in user object [Parse]
+      - (Update/PUT) Update user profile image [Parse]
+      - (Read/GET) Get list of following users [Parse]
+      - (Read/GET) Get list of followed users [Parse]
+   - Song detail screen
+   - Search screen
+      - (Read/GET) Get Track from Spotify SDK and display song title, artist
+   - Settings screen
