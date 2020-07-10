@@ -98,6 +98,7 @@ HackMD link here: https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ
    | uri       | String   | unique relative link needed for Spotify to play track |
    | liked    | Boolean   | whether track has been "liked" by specific user |
    | seen    | Boolean   | whether track has been displayed to specific user |
+   | fans       | Array<User>  | list of users who liked the track |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
    
@@ -111,9 +112,9 @@ HackMD link here: https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ
    | password       | String| user password |
    | profilePic         | File     | user profile pic |
    | bio       | String   | user description |
-   | likedSongs       | Array   | list of track URI strings |
-   | followers       | Array   | list of User followers |
-   | following      | Array   | list of User following |
+   | likedSongs       | Array<Song>   | list of track URI strings |
+   | followers       | Array<User>   | list of User followers |
+   | following      | Array<User>   | list of User following |
    | likesCount    | Number   | number of total likes made by user in this app |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
