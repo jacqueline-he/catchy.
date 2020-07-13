@@ -2,7 +2,11 @@ package com.example.catchy;
 
 import android.app.Application;
 
+import com.example.catchy.models.Settings;
+import com.example.catchy.models.Song;
+import com.example.catchy.models.User;
 import com.parse.Parse;
+import com.parse.ParseObject;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -13,6 +17,11 @@ public class ParseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // Register your parse models
+        ParseObject.registerSubclass(Song.class);
+        ParseObject.registerSubclass(User.class);
+        ParseObject.registerSubclass(Settings.class);
 
         // Use for troubleshooting -- remove this line for production
         Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
