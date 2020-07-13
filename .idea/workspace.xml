@@ -10,41 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7c4192d-5a59-4e86-82bd-3ec9a9cd848b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/HomeFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SearchFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/UserFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_bottom_navigation.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/DetailsFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_details.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,22 +137,26 @@
     </state>
     <state x="453" y="427" key="AndroidCreateResourceFileDialog/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594670248659" />
     <state x="453" y="429" key="AndroidCreateResourceFileDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1594678697623" />
-    <state width="1557" height="325" key="GridCell.Tab.0.bottom" timestamp="1594663888773">
-      <screen x="0" y="23" width="1792" height="1017" />
+    <state width="1557" height="144" key="GridCell.Tab.0.bottom" timestamp="1594680130711">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.0.bottom/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888773" />
-    <state width="1557" height="325" key="GridCell.Tab.0.center" timestamp="1594663888772">
-      <screen x="0" y="23" width="1792" height="1017" />
+    <state width="1557" height="144" key="GridCell.Tab.0.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1594680130711" />
+    <state width="1557" height="144" key="GridCell.Tab.0.center" timestamp="1594680130711">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.0.center/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888772" />
-    <state width="1557" height="325" key="GridCell.Tab.0.left" timestamp="1594663888772">
-      <screen x="0" y="23" width="1792" height="1017" />
+    <state width="1557" height="144" key="GridCell.Tab.0.center/0.23.1792.1020@0.23.1792.1020" timestamp="1594680130711" />
+    <state width="1557" height="144" key="GridCell.Tab.0.left" timestamp="1594680130710">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.0.left/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888772" />
-    <state width="1557" height="325" key="GridCell.Tab.0.right" timestamp="1594663888772">
-      <screen x="0" y="23" width="1792" height="1017" />
+    <state width="1557" height="144" key="GridCell.Tab.0.left/0.23.1792.1020@0.23.1792.1020" timestamp="1594680130710" />
+    <state width="1557" height="144" key="GridCell.Tab.0.right" timestamp="1594680130711">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.0.right/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888772" />
+    <state width="1557" height="144" key="GridCell.Tab.0.right/0.23.1792.1020@0.23.1792.1020" timestamp="1594680130711" />
     <state width="1557" height="325" key="GridCell.Tab.1.bottom" timestamp="1594663888773">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
