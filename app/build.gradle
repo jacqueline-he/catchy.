@@ -46,4 +46,6 @@ dependencies {
 
     implementation project(':spotify-app-remote-release-0.7.0')
     implementation "com.google.code.gson:gson:2.8.5"
+
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }

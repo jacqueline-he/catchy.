@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("MainActivity", "Connected! Yay!");
 
                         // Now you can start interacting with App Remote
-                        connected();
+                        // connected();
                     }
 
                     @Override

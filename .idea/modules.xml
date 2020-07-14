@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Catchy.iml" filepath="$PROJECT_DIR$/.idea/modules/Catchy.iml" group="Catchy" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Catchy/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spotify-app-remote-release-0.7.0/spotify-app-remote-release-0.7.0.iml" filepath="$PROJECT_DIR$/.idea/modules/spotify-app-remote-release-0.7.0/spotify-app-remote-release-0.7.0.iml" group="Catchy/spotify-app-remote-release-0.7.0" />
     </modules>
   </component>
 </project>
