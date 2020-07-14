@@ -20,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        targetCompatibility = "8"
+        sourceCompatibility = "8"
+    }
 }
 
 dependencies {
@@ -38,4 +43,7 @@ dependencies {
     annotationProcessor 'org.parceler:parceler:1.1.12'
     implementation "androidx.appcompat:appcompat:${appCompatVersion}"
     implementation "com.google.android.material:material:${designSupportVersion}"
+
+    implementation project(':spotify-app-remote-release-0.7.0')
+    implementation "com.google.code.gson:gson:2.8.5"
 }

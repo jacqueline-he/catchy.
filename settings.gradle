@@ -1,2 +1,3 @@
+include ':spotify-app-remote-release-0.7.0'
 include ':app'
 rootProject.name = "Catchy"

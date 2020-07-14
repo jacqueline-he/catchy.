@@ -39,7 +39,7 @@ public class ParseApplication extends Application {
         // any network interceptors must be added with the Configuration Builder given this syntax
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("fbu-catchy") // should correspond to APP_ID env variable
-                .clientKey("thisisnotadrill")  // set explicitly unless clientKey is explicitly configured on Parse server
+                .clientKey(getString(R.string.parse_client_key))  // set explicitly unless clientKey is explicitly configured on Parse server
                 .clientBuilder(builder)
                 .server("https://fbu-catchy.herokuapp.com/parse/").build());
     }
