@@ -12,20 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.catchy.HomeFragmentAdapter;
+import com.example.catchy.HomeAdapter;
 import com.example.catchy.R;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
-import com.spotify.protocol.types.Track;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class HomeFragment extends Fragment {
 
-    HomeFragmentAdapter homeFragmentAdapter;
+    HomeAdapter homeAdapter;
     ViewPager2 mViewPager;
     ArrayList<String> arr;
 
@@ -38,16 +36,6 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-/*    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }*/
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +43,10 @@ public class HomeFragment extends Fragment {
         CLIENT_ID = getString(R.string.spotify_client_id);
 
         arr = new ArrayList<String>();
-        arr.add("a");
-        arr.add("b");
-        arr.add("c");
-        homeFragmentAdapter = new HomeFragmentAdapter(this, arr);
+        arr.add("spotify:track:7AEAGTc8cReDqcbPoY9gwo"); // we are never ever
+        arr.add("spotify:track:2X2J0BhxaLTmnxO4pPUhSd"); // the lucky ones
+        arr.add("spotify:track:786NsUYn4GGUf8AOt0SQhP"); // state of grace
+
 
     }
 
@@ -66,21 +54,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mViewPager = view.findViewById(R.id.viewpager);
-        mViewPager.setAdapter(homeFragmentAdapter);
-        mViewPager.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         // Set the connection parameters
         ConnectionParams connectionParams =
                 new ConnectionParams.Builder(CLIENT_ID)
@@ -95,8 +69,14 @@ public class HomeFragment extends Fragment {
                         mSpotifyAppRemote = spotifyAppRemote;
                         Log.d("HomeFragment", "Connected! Yay!");
 
-                        // Now you can start interacting with App Remote
-                        connected();
+                        if (mSpotifyAppRemote != null) {
+                            homeAdapter = new HomeAdapter(getContext(), mSpotifyAppRemote);
+                            homeAdapter.addAll(arr);
+                            mViewPager = view.findViewById(R.id.viewpager);
+                            mViewPager.setAdapter(homeAdapter);
+                            mViewPager.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+                        }
+
                     }
 
                     @Override
@@ -106,23 +86,17 @@ public class HomeFragment extends Fragment {
                         // Something went wrong when attempting to connect! Handle errors here
                     }
                 });
+
+
     }
 
-
-    private void connected() {
-        // Play a playlist
-        mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
-
-        // Subscribe to PlayerState
-        mSpotifyAppRemote.getPlayerApi()
-                .subscribeToPlayerState()
-                .setEventCallback(playerState -> {
-                    final Track track = playerState.track;
-                    if (track != null) {
-                        Log.d("HomeFragment", track.name + " by " + track.artist.name);
-                    }
-                });
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
 
 
     @Override
