@@ -14,6 +14,7 @@ public class Song extends ParseObject {
     public static final String KEY_TITLE = "title";
     public static final String KEY_ARTIST = "artist";
     public static final String KEY_IMAGE_URL = "imageUrl";
+    public static final String KEY_ARTIST_IMAGE_URL = "artistImageUrl";
     public static final String KEY_URI = "uri";
     public static final String KEY_LIKED = "liked";
     public static final String KEY_SEEN = "seen";
@@ -43,6 +44,10 @@ public class Song extends ParseObject {
     public String getImageUrl() {return getString(KEY_IMAGE_URL);}
 
     public void setImageUrl(String imageUrl) {put(KEY_IMAGE_URL, imageUrl);}
+
+    public String getArtistImageUrl() {return getString(KEY_ARTIST_IMAGE_URL);}
+
+    public void setArtistImageUrl(String artistImageUrl) {put(KEY_ARTIST_IMAGE_URL, artistImageUrl);}
 
     public String getURI() {return getString(KEY_URI);}
 

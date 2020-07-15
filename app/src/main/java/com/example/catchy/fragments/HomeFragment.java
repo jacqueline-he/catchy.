@@ -43,9 +43,13 @@ public class HomeFragment extends Fragment {
         CLIENT_ID = getString(R.string.spotify_client_id);
 
         arr = new ArrayList<String>();
+
         arr.add("spotify:track:7AEAGTc8cReDqcbPoY9gwo"); // we are never ever
         arr.add("spotify:track:2X2J0BhxaLTmnxO4pPUhSd"); // the lucky ones
         arr.add("spotify:track:786NsUYn4GGUf8AOt0SQhP"); // state of grace
+        arr.add("spotify:track:7AEAGTc8cReDqcbPoY9gwo"); // we are never ever - t. swift
+        arr.add("spotify:track:2X2J0BhxaLTmnxO4pPUhSd"); // the lucky ones - t. swift
+        arr.add("spotify:track:786NsUYn4GGUf8AOt0SQhP"); // state of grace - t. swift
 
 
     }

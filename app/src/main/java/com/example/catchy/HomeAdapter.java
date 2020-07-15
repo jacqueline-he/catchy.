@@ -73,8 +73,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         }
 
         public void bind(String entry) {
-
-
             mSpotifyAppRemote.getPlayerApi()
                     .subscribeToPlayerState()
                     .setEventCallback(playerState -> {
