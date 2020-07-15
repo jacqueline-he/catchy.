@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.catchy.HomeAdapter;
 import com.example.catchy.HomeFragmentAdapter;
 import com.example.catchy.R;
 import com.example.catchy.SpotifyAppRemoteSingleton;
@@ -24,8 +23,6 @@ import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
-
-    // HomeAdapter homeAdapter;
     HomeFragmentAdapter homeFragmentAdapter;
     ViewPager2 mViewPager;
     ArrayList<String> arr;
