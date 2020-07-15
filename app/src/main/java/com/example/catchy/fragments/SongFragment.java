@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.catchy.R;
 import com.example.catchy.SpotifyAppRemoteSingleton;
+import com.example.catchy.models.Song;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.spotify.protocol.types.ImageUri;
 import com.spotify.protocol.types.Track;
@@ -20,7 +21,7 @@ import com.squareup.picasso.Picasso;
 
 
 public class SongFragment extends Fragment {
-    String song;
+    Song song;
     private TextView tvTitle;
     private TextView tvArtist;
     private ImageView ivAlbumImage;
@@ -32,10 +33,10 @@ public class SongFragment extends Fragment {
     }
 
 
-    public static SongFragment newInstance(String str) {
+    public static SongFragment newInstance(Song song) {
         SongFragment fragment = new SongFragment();
         Bundle args = new Bundle();
-        args.putString("song", str);
+        args.putParcelable("song", song);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,7 +45,7 @@ public class SongFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            song = getArguments().getString("song");
+            song = getArguments().getParcelable("song");
             singleton = SpotifyAppRemoteSingleton.getInstance();
         }
     }
@@ -67,21 +68,25 @@ public class SongFragment extends Fragment {
             }
         });
 
-        singleton.getSpotifyAppRemote().getPlayerApi()
-                .subscribeToPlayerState()
-                .setEventCallback(playerState -> {
-                    final Track track = playerState.track;
-                    if (track != null) {
-                        Log.d("SongFragment", track.name + " by " + track.artist.name);
-                        tvTitle.setText(track.name);
-                        tvArtist.setText(track.artist.name);
+        tvTitle.setText(song.getTitle());
+        tvArtist.setText(song.getArtist());
+        Picasso.with(getContext()).load(song.getImageUrl()).into(ivAlbumImage);
 
-                        String img = track.imageUri.raw.substring(14);
-                        Log.d("SongFragment", "raw: " + img);
-                        Picasso.with(getContext()).load("https://i.scdn.co/image/"+ img).into(ivAlbumImage);
-                    }
-                });
-        singleton.getSpotifyAppRemote().getPlayerApi().play(song);
+//        singleton.getSpotifyAppRemote().getPlayerApi()
+//                .subscribeToPlayerState()
+//                .setEventCallback(playerState -> {
+//                    final Track track = playerState.track;
+//                    if (track != null) {
+//                        Log.d("SongFragment", track.name + " by " + track.artist.name);
+//                        tvTitle.setText(track.name);
+//                        tvArtist.setText(track.artist.name);
+//
+//                        String img = track.imageUri.raw.substring(14);
+//                        Log.d("SongFragment", "raw: " + img);
+//                        Picasso.with(getContext()).load("https://i.scdn.co/image/"+ img).into(ivAlbumImage);
+//                    }
+//                });
+        singleton.getSpotifyAppRemote().getPlayerApi().play(song.getURI());
         return view;
     }
 }

@@ -13,19 +13,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.catchy.HomeFragmentAdapter;
+import com.example.catchy.MainActivity;
 import com.example.catchy.R;
 import com.example.catchy.SpotifyAppRemoteSingleton;
+import com.example.catchy.models.Song;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
     HomeFragmentAdapter homeFragmentAdapter;
     ViewPager2 mViewPager;
-    ArrayList<String> arr;
+    List<Song> arr;
 
 
     private String CLIENT_ID;
@@ -43,16 +49,16 @@ public class HomeFragment extends Fragment {
         CLIENT_ID = getString(R.string.spotify_client_id);
         singleton = SpotifyAppRemoteSingleton.getInstance();
 
-        arr = new ArrayList<String>();
-
-        arr.add("spotify:track:7AEAGTc8cReDqcbPoY9gwo"); // we are never ever
-        arr.add("spotify:track:2X2J0BhxaLTmnxO4pPUhSd"); // the lucky ones
-        arr.add("spotify:track:786NsUYn4GGUf8AOt0SQhP"); // state of grace
-        arr.add("spotify:track:12M5uqx0ZuwkpLp5rJim1a"); // cornelia street
-        arr.add("spotify:track:1fzAuUVbzlhZ1lJAx9PtY6"); // daylight
+        arr = ((MainActivity)getActivity()).arr;
+//        arr.add("spotify:track:7AEAGTc8cReDqcbPoY9gwo"); // we are never ever
+//        arr.add("spotify:track:2X2J0BhxaLTmnxO4pPUhSd"); // the lucky ones
+//        arr.add("spotify:track:786NsUYn4GGUf8AOt0SQhP"); // state of grace
+//        arr.add("spotify:track:12M5uqx0ZuwkpLp5rJim1a"); // cornelia street
+//        arr.add("spotify:track:1fzAuUVbzlhZ1lJAx9PtY6"); // daylight
         homeFragmentAdapter = new HomeFragmentAdapter(this, arr);
 
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

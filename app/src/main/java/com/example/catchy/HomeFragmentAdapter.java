@@ -5,17 +5,15 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.catchy.fragments.SongFragment;
+import com.example.catchy.models.Song;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragmentAdapter extends FragmentStateAdapter {
-    ArrayList<String> list;
+    List<Song> list;
 
-    public HomeFragmentAdapter(@NonNull Fragment fragment) {
-        super(fragment);
-    }
-
-    public HomeFragmentAdapter(@NonNull Fragment fragment, ArrayList<String> list) {
+    public HomeFragmentAdapter(@NonNull Fragment fragment, List<Song> list) {
         super(fragment);
         this.list = list;
 

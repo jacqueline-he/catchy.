@@ -14,28 +14,42 @@ import android.view.View;
 import com.example.catchy.fragments.HomeFragment;
 import com.example.catchy.fragments.SearchFragment;
 import com.example.catchy.fragments.UserFragment;
+import com.example.catchy.models.Song;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import com.spotify.android.appremote.api.ConnectionParams;
-import com.spotify.android.appremote.api.Connector;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
-import com.spotify.protocol.client.Subscription;
-import com.spotify.protocol.types.PlayerState;
-import com.spotify.protocol.types.Track;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
     Fragment fragment;
+    public List<Song> arr;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        View decorView = getWindow().getDecorView();
+// Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        arr = new ArrayList<Song>();
+
+        try {
+            populatePlaylist();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -64,5 +78,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+    }
+
+    private void populatePlaylist() throws ParseException {
+        ParseQuery<Song> query = new ParseQuery<>(Song.class);
+        query.addDescendingOrder("createdAt");
+        query.setLimit(20);
+        query.findInBackground(new FindCallback<Song>() {
+            @Override
+            public void done(List<Song> objects, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting songs", e);
+                    return;
+                }
+                for (Song song : objects) {
+                    Log.i(TAG, "Song: " + song.getTitle());
+                    arr.add(song);
+                }
+
+            }
+        });
     }
 }
