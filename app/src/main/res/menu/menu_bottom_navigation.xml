@@ -4,19 +4,19 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@android:drawable/ic_menu_compass"
-        android:title="Home"
+        android:icon="@drawable/home"
+        android:title=""
         android:visible="true"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_search"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="Search"
+        android:icon="@drawable/search"
+        android:title=""
         app:showAsAction="always" />
     <item
         android:id="@+id/action_user"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:title="User"
+        android:icon="@drawable/profile"
+        android:title=""
         app:showAsAction="always" />
 
 </menu>

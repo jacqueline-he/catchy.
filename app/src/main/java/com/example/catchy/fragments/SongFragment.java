@@ -63,7 +63,7 @@ public class SongFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 btnLike.setImageResource(R.drawable.ic_likes_filled);
-                btnLike.setColorFilter(getResources().getColor(R.color.neon_blue));
+                btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
             }
         });
 
