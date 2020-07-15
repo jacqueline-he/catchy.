@@ -73,7 +73,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         }
 
         public void bind(String entry) {
-            mSpotifyAppRemote.getPlayerApi()
+            /*mSpotifyAppRemote.getPlayerApi()
                     .subscribeToPlayerState()
                     .setEventCallback(playerState -> {
                         final Track track = playerState.track;
@@ -82,7 +82,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                             tvTitle.setText(track.name);
                             tvArtist.setText(track.artist.name);
                         }
-                    });
+                    });*/
 
             player.play(entry);
         }

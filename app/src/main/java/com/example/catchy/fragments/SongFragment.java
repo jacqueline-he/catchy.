@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.catchy.R;
+import com.example.catchy.SpotifyAppRemoteSingleton;
 
 
 public class SongFragment extends Fragment {
     String song;
     private TextView tvTitle;
+    SpotifyAppRemoteSingleton singleton;
 
     public SongFragment() {
         // Required empty public constructor
@@ -34,7 +36,7 @@ public class SongFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             song = getArguments().getString("song");
-
+            singleton = SpotifyAppRemoteSingleton.getInstance();
         }
     }
 
@@ -45,6 +47,7 @@ public class SongFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_song, container, false);
         tvTitle = view.findViewById(R.id.songTitle);
         tvTitle.setText(song);
+        singleton.getSpotifyAppRemote().getPlayerApi().play(song);
         return view;
     }
 }
