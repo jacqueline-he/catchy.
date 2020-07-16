@@ -118,20 +118,6 @@ public class SongFragment extends Fragment {
         tvArtist.setText(song.getArtist());
         Picasso.with(getContext()).load(song.getImageUrl()).into(ivAlbumImage);
 
-//        singleton.getSpotifyAppRemote().getPlayerApi()
-//                .subscribeToPlayerState()
-//                .setEventCallback(playerState -> {
-//                    final Track track = playerState.track;
-//                    if (track != null) {
-//                        Log.d("SongFragment", track.name + " by " + track.artist.name);
-//                        tvTitle.setText(track.name);
-//                        tvArtist.setText(track.artist.name);
-//
-//                        String img = track.imageUri.raw.substring(14);
-//                        Log.d("SongFragment", "raw: " + img);
-//                        Picasso.with(getContext()).load("https://i.scdn.co/image/"+ img).into(ivAlbumImage);
-//                    }
-//                });
         singleton.getSpotifyAppRemote().getPlayerApi().play(song.getURI());
         return view;
     }
