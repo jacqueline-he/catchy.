@@ -17,6 +17,11 @@ import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.PlayerApi;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
 
+import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_DISCONNECT;
+import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_INIT;
+import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY;
+import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE;
+
 public class SpotifyService extends JobIntentService {
     private static final String REDIRECT_URI = "http://com.example.catchy./callback";
     public static final String TAG = "SpotifyService";
@@ -46,9 +51,8 @@ public class SpotifyService extends JobIntentService {
                         public void onConnected(SpotifyAppRemote spotifyAppRemote) {
                             mSpotifyAppRemote = spotifyAppRemote;
                             Log.d(TAG, "Connected! Yay!");
-
-                            // Now you can start interacting with App Remote
-                            mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
+                            mSpotifyAppRemote = spotifyAppRemote;
+                            mPlayerApi = mSpotifyAppRemote.getPlayerApi();
 
                         }
 
@@ -72,17 +76,51 @@ public class SpotifyService extends JobIntentService {
 
     @Override
     protected void onHandleWork(@NonNull Intent intent) {
-        Log.d(TAG, "Inside onHandleWork");
-        String val = intent.getStringExtra("foo");
-        Intent in = new Intent(ACTION);
-        in.putExtra("resultCode", Activity.RESULT_OK);
-        in.putExtra("resultValue", "My Result Value. Passed in: " + val);
+        Log.d(TAG, "Handling work with intent: [" + intent + "]");
+        if (intent.getAction() != null) {
+            switch(intent.getAction()) {
+                case ACTION_INIT:
+                    initialize();
+                    break;
+                case ACTION_PLAY:
+                    String newSongId = intent.getStringExtra("songuri");
+                    playNewSong(newSongId);
+                    break;
+                case ACTION_PLAY_PAUSE:
+                    playPause();
+                    break;
+                case ACTION_DISCONNECT:
+                    disconnect();
+                    break;
+            }
+        }
+    }
+
+    private void playPause() {
+        Log.d(TAG,"playPause");
+    }
+
+    private void playNewSong(String newSongId) {
+        Log.d(TAG,"playNewSong");
+    }
+
+    /**
+     * Initialize the service and notify the receiver of the current connection and playback states
+     */
+    private void initialize() {
+        Log.d(TAG,"initialize");
+        Intent in = new Intent(ACTION_INIT);
+        if (mIsSpotifyConnected) {
+            in.putExtra("RESULT", "RESULT_CONNECTED");
+            // getCurrentTrack();
+        } else {
+            in.putExtra("RESULT", "RESULT_DISCONNECTED");
+        }
         LocalBroadcastManager.getInstance(this).sendBroadcast(in);
-
     }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    private void disconnect() {
+        Log.d(TAG,"disconnect");
     }
+
 }

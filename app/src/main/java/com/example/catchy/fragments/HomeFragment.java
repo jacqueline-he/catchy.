@@ -32,17 +32,12 @@ import java.util.List;
 import static com.parse.Parse.getApplicationContext;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment{
     HomeFragmentAdapter homeFragmentAdapter;
     ViewPager2 mViewPager;
     List<Song> arr;
-    private SpotifyBroadcastReceiver SpotifyBroadcastReceiver;
+    private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
     Context context;
-
-
-    // private String CLIENT_ID;
-    // private static final String REDIRECT_URI = "http://com.example.catchy./callback";
-    // SpotifyAppRemoteSingleton singleton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -54,12 +49,8 @@ public class HomeFragment extends Fragment {
         arr = ((MainActivity)getActivity()).arr;
         homeFragmentAdapter = new HomeFragmentAdapter(this, arr);
 
-        SpotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
+        spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
         context = getContext();
-
-
-        // CLIENT_ID = getString(R.string.spotify_client_id);
-        // singleton = SpotifyAppRemoteSingleton.getInstance();
 
     }
 
@@ -71,36 +62,7 @@ public class HomeFragment extends Fragment {
         mViewPager.setAdapter(homeFragmentAdapter);
         mViewPager.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
 
-        getActivity().startService(new Intent(getActivity(),SpotifyService.class));
-
-        /*        // Set the connection parameters
-        ConnectionParams connectionParams =
-                new ConnectionParams.Builder(CLIENT_ID)
-                        .setRedirectUri(REDIRECT_URI)
-                        .showAuthView(true)
-                        .build();
-        SpotifyAppRemote.connect(getContext(), connectionParams,
-                new Connector.ConnectionListener() {
-
-                    @Override
-                    public void onConnected(SpotifyAppRemote spotifyAppRemote) {
-                        singleton.setSpotifyAppRemote(spotifyAppRemote);
-                        Log.d("HomeFragment", "Connected! Yay!");
-
-                        if (singleton.getSpotifyAppRemote() != null) {
-
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Throwable throwable) {
-                        Log.e("HomeFragment", throwable.getMessage(), throwable);
-
-                        // Something went wrong when attempting to connect! Handle errors here
-                    }
-                });
-        */
+        spotifyBroadcastReceiver.initService(getContext());
 
     }
 
@@ -117,14 +79,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        // SpotifyAppRemote.disconnect(singleton.getSpotifyAppRemote());
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        // singleton.getSpotifyAppRemote().getPlayerApi().pause();
-        LocalBroadcastManager.getInstance(context).unregisterReceiver(SpotifyBroadcastReceiver);
+        LocalBroadcastManager.getInstance(context).unregisterReceiver(spotifyBroadcastReceiver);
         Log.d("HomeFragment", "Paused");
     }
 
@@ -133,7 +93,7 @@ public class HomeFragment extends Fragment {
         super.onResume();
         // Register for the particular broadcast based on ACTION string
         IntentFilter filter = new IntentFilter(SpotifyService.ACTION);
-        LocalBroadcastManager.getInstance(context).registerReceiver(SpotifyBroadcastReceiver, filter);
+        LocalBroadcastManager.getInstance(context).registerReceiver(spotifyBroadcastReceiver, filter);
         // or `registerReceiver(testReceiver, filter)` for a normal broadcast
     }
 }
