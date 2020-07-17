@@ -29,7 +29,6 @@ public class SongFragment extends Fragment {
     private TextView tvArtist;
     private ImageView ivAlbumImage;
     private FloatingActionButton btnLike;
-    boolean paused = false;
     private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
 
     public SongFragment() {
@@ -65,40 +64,19 @@ public class SongFragment extends Fragment {
         ivAlbumImage = view.findViewById(R.id.ivAlbumImage);
         btnLike = view.findViewById(R.id.btnLike);
 
-        /*// Pause / Resume
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (paused) {
-                    singleton.getSpotifyAppRemote().getPlayerApi().resume();
-                }
-                else {
-                    singleton.getSpotifyAppRemote().getPlayerApi().pause();
-                }
-
-                paused = !paused;
-            }
-        });
 
         // Double tap
         view.setOnTouchListener(new View.OnTouchListener() {
             private GestureDetector gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener() {
-                @Override
+                @Override // Like
                 public boolean onDoubleTap(MotionEvent e) {
                     like();
                     return super.onDoubleTap(e);
                 }
 
-                @Override
+                @Override // Pause / resume
                 public boolean onSingleTapConfirmed(MotionEvent e) {
-                    if (paused) {
-                        singleton.getSpotifyAppRemote().getPlayerApi().resume();
-                    }
-                    else {
-                        singleton.getSpotifyAppRemote().getPlayerApi().pause();
-                    }
-
-                    paused = !paused;
+                    spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
                     return super.onSingleTapConfirmed(e);
                 }
             });
@@ -109,7 +87,7 @@ public class SongFragment extends Fragment {
                 gestureDetector.onTouchEvent(event);
                 return true;
             }
-        }); */
+        });
 
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override

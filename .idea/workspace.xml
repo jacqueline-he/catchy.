@@ -18,14 +18,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/HomeFragmentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/HomeFragmentAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/HomeFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyBroadcastReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyBroadcastReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +204,7 @@
     </state>
     <state x="59" y="295" width="644" height="476" key="Downloadable.Font.Dialog.Size/0.23.1792.1017@0.23.1792.1017" timestamp="1594839244409" />
     <state x="59" y="296" key="Downloadable.Font.Dialog.Size/0.23.1792.1020@0.23.1792.1020" timestamp="1594839351584" />
-    <state width="1552" height="278" key="GridCell.Tab.0.bottom" timestamp="1595005380264">
+    <state width="1552" height="278" key="GridCell.Tab.0.bottom" timestamp="1595005521049">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.0.bottom/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888773" />
@@ -219,9 +213,9 @@
     <state width="1750" height="339" key="GridCell.Tab.0.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1594967247000" />
     <state width="1552" height="342" key="GridCell.Tab.0.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1595004634806" />
     <state width="1525" height="515" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.0.1792.1120" timestamp="1594920238534" />
-    <state width="1552" height="278" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1595005380264" />
+    <state width="1552" height="278" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1595005521049" />
     <state width="1750" height="339" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1594920804908" />
-    <state width="1552" height="278" key="GridCell.Tab.0.center" timestamp="1595005380264">
+    <state width="1552" height="278" key="GridCell.Tab.0.center" timestamp="1595005521049">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.0.center/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888772" />
@@ -230,9 +224,9 @@
     <state width="1750" height="339" key="GridCell.Tab.0.center/0.23.1792.1022@0.23.1792.1022" timestamp="1594967246999" />
     <state width="1525" height="515" key="GridCell.Tab.0.center/0.23.1792.1024@0.0.1792.1120" timestamp="1594920238481" />
     <state width="1552" height="342" key="GridCell.Tab.0.center/0.23.1792.1024@0.23.1792.1024" timestamp="1595004634806" />
-    <state width="1552" height="278" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1595005380264" />
+    <state width="1552" height="278" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1595005521049" />
     <state width="1750" height="339" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1594920804907" />
-    <state width="1552" height="278" key="GridCell.Tab.0.left" timestamp="1595005380263">
+    <state width="1552" height="278" key="GridCell.Tab.0.left" timestamp="1595005521048">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.0.left/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888772" />
@@ -241,9 +235,9 @@
     <state width="1750" height="339" key="GridCell.Tab.0.left/0.23.1792.1020@0.23.1792.1020" timestamp="1594965947866" />
     <state width="1750" height="339" key="GridCell.Tab.0.left/0.23.1792.1022@0.23.1792.1022" timestamp="1594967246999" />
     <state width="1552" height="342" key="GridCell.Tab.0.left/0.23.1792.1024@0.23.1792.1024" timestamp="1595004634806" />
-    <state width="1552" height="278" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1595005380263" />
+    <state width="1552" height="278" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1595005521048" />
     <state width="1750" height="339" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1594920804906" />
-    <state width="1552" height="278" key="GridCell.Tab.0.right" timestamp="1595005380264">
+    <state width="1552" height="278" key="GridCell.Tab.0.right" timestamp="1595005521049">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.0.right/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888772" />
@@ -252,9 +246,9 @@
     <state width="1750" height="339" key="GridCell.Tab.0.right/0.23.1792.1022@0.23.1792.1022" timestamp="1594967247000" />
     <state width="1552" height="342" key="GridCell.Tab.0.right/0.23.1792.1024@0.23.1792.1024" timestamp="1595004634806" />
     <state width="1525" height="515" key="GridCell.Tab.0.right/0.23.1792.1026@0.0.1792.1120" timestamp="1594920238533" />
-    <state width="1552" height="278" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1595005380264" />
+    <state width="1552" height="278" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1595005521049" />
     <state width="1750" height="339" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1594920804907" />
-    <state width="1552" height="278" key="GridCell.Tab.1.bottom" timestamp="1595005380265">
+    <state width="1552" height="278" key="GridCell.Tab.1.bottom" timestamp="1595005521051">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.1.bottom/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888773" />
@@ -262,9 +256,9 @@
     <state width="1750" height="339" key="GridCell.Tab.1.bottom/0.23.1792.1020@0.23.1792.1020" timestamp="1594965947868" />
     <state width="1750" height="339" key="GridCell.Tab.1.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1594967247001" />
     <state width="1552" height="339" key="GridCell.Tab.1.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1595004626124" />
-    <state width="1552" height="278" key="GridCell.Tab.1.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1595005380265" />
+    <state width="1552" height="278" key="GridCell.Tab.1.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1595005521051" />
     <state width="1750" height="339" key="GridCell.Tab.1.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1594920804910" />
-    <state width="1552" height="278" key="GridCell.Tab.1.center" timestamp="1595005380264">
+    <state width="1552" height="278" key="GridCell.Tab.1.center" timestamp="1595005521050">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.1.center/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888773" />
@@ -272,9 +266,9 @@
     <state width="1750" height="339" key="GridCell.Tab.1.center/0.23.1792.1020@0.23.1792.1020" timestamp="1594965947868" />
     <state width="1750" height="339" key="GridCell.Tab.1.center/0.23.1792.1022@0.23.1792.1022" timestamp="1594967247000" />
     <state width="1552" height="339" key="GridCell.Tab.1.center/0.23.1792.1024@0.23.1792.1024" timestamp="1595004626123" />
-    <state width="1552" height="278" key="GridCell.Tab.1.center/0.23.1792.1026@0.23.1792.1026" timestamp="1595005380264" />
+    <state width="1552" height="278" key="GridCell.Tab.1.center/0.23.1792.1026@0.23.1792.1026" timestamp="1595005521050" />
     <state width="1750" height="339" key="GridCell.Tab.1.center/0.23.1792.1028@0.23.1792.1028" timestamp="1594920804909" />
-    <state width="1552" height="278" key="GridCell.Tab.1.left" timestamp="1595005380264">
+    <state width="1552" height="278" key="GridCell.Tab.1.left" timestamp="1595005521050">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.1.left/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888773" />
@@ -282,9 +276,9 @@
     <state width="1750" height="339" key="GridCell.Tab.1.left/0.23.1792.1020@0.23.1792.1020" timestamp="1594965947867" />
     <state width="1750" height="339" key="GridCell.Tab.1.left/0.23.1792.1022@0.23.1792.1022" timestamp="1594967247000" />
     <state width="1552" height="339" key="GridCell.Tab.1.left/0.23.1792.1024@0.23.1792.1024" timestamp="1595004626122" />
-    <state width="1552" height="278" key="GridCell.Tab.1.left/0.23.1792.1026@0.23.1792.1026" timestamp="1595005380264" />
+    <state width="1552" height="278" key="GridCell.Tab.1.left/0.23.1792.1026@0.23.1792.1026" timestamp="1595005521050" />
     <state width="1750" height="339" key="GridCell.Tab.1.left/0.23.1792.1028@0.23.1792.1028" timestamp="1594920804908" />
-    <state width="1552" height="278" key="GridCell.Tab.1.right" timestamp="1595005380265">
+    <state width="1552" height="278" key="GridCell.Tab.1.right" timestamp="1595005521050">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state width="1557" height="325" key="GridCell.Tab.1.right/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594663888773" />
@@ -292,7 +286,7 @@
     <state width="1750" height="339" key="GridCell.Tab.1.right/0.23.1792.1020@0.23.1792.1020" timestamp="1594965947868" />
     <state width="1750" height="339" key="GridCell.Tab.1.right/0.23.1792.1022@0.23.1792.1022" timestamp="1594967247000" />
     <state width="1552" height="339" key="GridCell.Tab.1.right/0.23.1792.1024@0.23.1792.1024" timestamp="1595004626123" />
-    <state width="1552" height="278" key="GridCell.Tab.1.right/0.23.1792.1026@0.23.1792.1026" timestamp="1595005380265" />
+    <state width="1552" height="278" key="GridCell.Tab.1.right/0.23.1792.1026@0.23.1792.1026" timestamp="1595005521050" />
     <state width="1750" height="339" key="GridCell.Tab.1.right/0.23.1792.1028@0.23.1792.1028" timestamp="1594920804909" />
     <state x="0" y="197" width="1592" height="817" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1594965932375">
       <screen x="0" y="23" width="1792" height="1022" />
@@ -340,13 +334,8 @@
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/catchy/MainActivity.java</url>
-          <line>113</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyService.java</url>
-          <line>140</line>
+          <line>141</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
