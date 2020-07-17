@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     private void populatePlaylist() throws ParseException {
         ParseQuery<Song> query = new ParseQuery<>(Song.class);
         query.addDescendingOrder("createdAt");
-        query.setLimit(20);
+        query.setLimit(10);
         query.findInBackground(new FindCallback<Song>() {
             @Override
             public void done(List<Song> objects, ParseException e) {

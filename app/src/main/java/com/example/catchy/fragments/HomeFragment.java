@@ -49,9 +49,7 @@ public class HomeFragment extends Fragment{
         arr = ((MainActivity)getActivity()).arr;
         spotifyBroadcastReceiver = ((MainActivity)getContext()).getReceiver();
         // spotifyBroadcastReceiver.playNew(getContext(), "spotify:track:6KfoDhO4XUWSbnyKjNp9c4");
-        homeFragmentAdapter = new HomeFragmentAdapter(this, arr, spotifyBroadcastReceiver);
-
-
+        homeFragmentAdapter = new HomeFragmentAdapter(this, arr, getContext(), spotifyBroadcastReceiver);
         context = getContext();
     }
 
@@ -81,6 +79,7 @@ public class HomeFragment extends Fragment{
         LocalBroadcastManager.getInstance(context).unregisterReceiver(spotifyBroadcastReceiver);
         Log.d("HomeFragment", "Paused");
     }
+
 
     @Override
     public void onResume() {

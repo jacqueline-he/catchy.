@@ -112,13 +112,13 @@ public class SongFragment extends Fragment {
             btnLike.setImageResource(R.drawable.ic_likes_filled);
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
 
-            // Set like on Parse side - FAUlTY
+            // Set like on Parse side - TODO FAUlTY
             song.setLike(true);
         }
         else {
+            // Set like on Parse side - TODO FAUlTY
             btnLike.setImageResource(R.drawable.ic_likes);
             btnLike.clearColorFilter();
-
             song.setLike(false);
         }
     }
