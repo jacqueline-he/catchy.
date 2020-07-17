@@ -47,8 +47,7 @@ public class HomeFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         arr = ((MainActivity)getActivity()).arr;
-        spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
-        spotifyBroadcastReceiver.initService(getContext());
+        spotifyBroadcastReceiver = ((MainActivity)getContext()).getReceiver();
         // spotifyBroadcastReceiver.playNew(getContext(), "spotify:track:6KfoDhO4XUWSbnyKjNp9c4");
         homeFragmentAdapter = new HomeFragmentAdapter(this, arr, spotifyBroadcastReceiver);
 

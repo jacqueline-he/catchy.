@@ -36,9 +36,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
+    SpotifyBroadcastReceiver spotifyBroadcastReceiver;
     Fragment fragment;
     public List<Song> arr;
 
+    public SpotifyBroadcastReceiver getReceiver() {
+        return spotifyBroadcastReceiver;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         arr = new ArrayList<Song>();
+        spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
+        spotifyBroadcastReceiver.initService(this);
 
         try {
             populatePlaylist();
