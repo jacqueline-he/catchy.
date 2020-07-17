@@ -6,13 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
+import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.catchy.R;
 import com.example.catchy.models.Song;
+import com.parse.ParseException;
+import com.parse.SaveCallback;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.ContentApi;
@@ -112,7 +117,6 @@ public class SpotifyService extends JobIntentService {
 
     private void getRecommendations() {
         Intent in = new Intent(ACTION_GET_RECS);
-        List<String> recURIs = new ArrayList<String>();
         mSpotifyAppRemote.getContentApi().getRecommendedContentItems(ContentApi.ContentType.DEFAULT).setResultCallback(new CallResult.ResultCallback<ListItems>() {
            @Override
            public void onResult(ListItems recItems) {
@@ -127,8 +131,21 @@ public class SpotifyService extends JobIntentService {
                        ListItem[] childrenItemsArr = listItems.items;
                        for (int i = 0; i < childrenItemsArr.length; i++) {
                            ListItem track = childrenItemsArr[i];
-                           String uri = track.uri;
-                           recURIs.add(uri);
+                           Song song = new Song();
+                           song.setURI(track.uri);
+                           song.setImageUrl(track.imageUri.raw);
+                           song.setTitle(track.title);
+                           song.setArtist(track.subtitle);
+                           song.saveInBackground(new SaveCallback() {
+                               @Override
+                               public void done(ParseException e) {
+                                   if (e != null) {
+                                       Log.e(TAG, "Error while saving rec", e);
+                                       e.printStackTrace();
+                                   }
+                                   Log.i(TAG, "Rec save was successful!");
+                               }
+                           });
                        }
                    }
                });
