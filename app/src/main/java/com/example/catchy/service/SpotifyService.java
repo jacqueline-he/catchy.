@@ -12,15 +12,26 @@ import androidx.core.app.JobIntentService;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.catchy.R;
+import com.example.catchy.models.Song;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
+import com.spotify.android.appremote.api.ContentApi;
 import com.spotify.android.appremote.api.PlayerApi;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
+import com.spotify.protocol.client.CallResult;
+import com.spotify.protocol.types.ListItem;
+import com.spotify.protocol.types.ListItems;
+
+import java.security.KeyStore;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_DISCONNECT;
+import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_GET_RECS;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_INIT;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE;
+import static com.spotify.protocol.types.Repeat.ONE;
 
 public class SpotifyService extends JobIntentService {
     private static final String REDIRECT_URI = "http://com.example.catchy./callback";
@@ -89,11 +100,43 @@ public class SpotifyService extends JobIntentService {
                 case ACTION_PLAY_PAUSE:
                     playPause();
                     break;
+                case ACTION_GET_RECS:
+                    getRecommendations();
+                    break;
                 case ACTION_DISCONNECT:
                     disconnect();
                     break;
             }
         }
+    }
+
+    private void getRecommendations() {
+        Intent in = new Intent(ACTION_GET_RECS);
+        List<String> recURIs = new ArrayList<String>();
+        mSpotifyAppRemote.getContentApi().getRecommendedContentItems(ContentApi.ContentType.DEFAULT).setResultCallback(new CallResult.ResultCallback<ListItems>() {
+           @Override
+           public void onResult(ListItems recItems) {
+               Log.d("SpotifyService", "getRecommendedContentItems");
+               ListItem[] recItemsArr = recItems.items;
+               ListItem homeTrendingItem = recItemsArr[7]; // home trending now
+
+               mSpotifyAppRemote.getContentApi().getChildrenOfItem(homeTrendingItem, 10, 0).setResultCallback(new CallResult.ResultCallback<ListItems>() {
+                   @Override
+                   public void onResult(ListItems listItems) {
+                       Log.d("SpotifyService", "Inside children of item");
+                       ListItem[] childrenItemsArr = listItems.items;
+                       for (int i = 0; i < childrenItemsArr.length; i++) {
+                           ListItem track = childrenItemsArr[i];
+                           String uri = track.uri;
+                           recURIs.add(uri);
+                       }
+                   }
+               });
+
+
+           }
+       });
+        LocalBroadcastManager.getInstance(this).sendBroadcast(in);
     }
 
     private void playPause() {
@@ -116,6 +159,7 @@ public class SpotifyService extends JobIntentService {
         Intent in = new Intent(ACTION_PLAY);
         if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
             mPlayerApi.play(newSongId);
+            mPlayerApi.setRepeat(ONE);
             LocalBroadcastManager.getInstance(this).sendBroadcast(in);
         }
     }

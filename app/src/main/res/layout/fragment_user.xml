@@ -26,7 +26,7 @@
             android:clickable="true"
             android:focusable="true"
             android:tint="@color/white"
-            app:srcCompat="@drawable/ic_profile" />
+            app:srcCompat="@drawable/ic_menu" />
 
     </androidx.appcompat.widget.Toolbar>
 

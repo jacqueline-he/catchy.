@@ -18,6 +18,7 @@ public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Seria
     // Action keys
     public static final String ACTION_PLAY = "action.PLAY";
     public static final String ACTION_INIT = "action.INIT";
+    public static final String ACTION_GET_RECS = "action.GET_RECS";
     public static final String ACTION_PLAY_PAUSE = "action.PLAY_PAUSE";
     public static final String ACTION_DISCONNECT = "action.DISCONNECT";
 

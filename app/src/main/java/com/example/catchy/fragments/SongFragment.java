@@ -101,8 +101,8 @@ public class SongFragment extends Fragment {
         Picasso.with(getContext()).load(song.getImageUrl()).into(ivAlbumImage);
 
 
-        spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
-
+        // spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
+        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_GET_RECS);
 
         return view;
     }
