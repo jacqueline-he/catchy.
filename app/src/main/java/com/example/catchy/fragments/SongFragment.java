@@ -16,8 +16,11 @@ import android.widget.TextView;
 import com.example.catchy.R;
 import com.example.catchy.SpotifyAppRemoteSingleton;
 import com.example.catchy.models.Song;
+import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
+
+import java.io.Serializable;
 
 
 public class SongFragment extends Fragment {
@@ -27,17 +30,18 @@ public class SongFragment extends Fragment {
     private ImageView ivAlbumImage;
     private FloatingActionButton btnLike;
     boolean paused = false;
-    // SpotifyAppRemoteSingleton singleton;
+    private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
 
     public SongFragment() {
         // Required empty public constructor
     }
 
 
-    public static SongFragment newInstance(Song song) {
+    public static SongFragment newInstance(Song song, SpotifyBroadcastReceiver receiver) {
         SongFragment fragment = new SongFragment();
         Bundle args = new Bundle();
         args.putParcelable("song", song);
+        args.putSerializable("receiver", (Serializable) receiver);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,7 +51,7 @@ public class SongFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             song = getArguments().getParcelable("song");
-            // singleton = SpotifyAppRemoteSingleton.getInstance();
+            spotifyBroadcastReceiver = (SpotifyBroadcastReceiver) getArguments().getSerializable("receiver");
         }
     }
 
@@ -118,7 +122,10 @@ public class SongFragment extends Fragment {
         tvArtist.setText(song.getArtist());
         Picasso.with(getContext()).load(song.getImageUrl()).into(ivAlbumImage);
 
-        // singleton.getSpotifyAppRemote().getPlayerApi().play(song.getURI());
+
+        spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
+
+
         return view;
     }
 

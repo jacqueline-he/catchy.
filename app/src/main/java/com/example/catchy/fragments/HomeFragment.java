@@ -47,11 +47,13 @@ public class HomeFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         arr = ((MainActivity)getActivity()).arr;
-        homeFragmentAdapter = new HomeFragmentAdapter(this, arr);
-
         spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
-        context = getContext();
+        spotifyBroadcastReceiver.initService(getContext());
+        // spotifyBroadcastReceiver.playNew(getContext(), "spotify:track:6KfoDhO4XUWSbnyKjNp9c4");
+        homeFragmentAdapter = new HomeFragmentAdapter(this, arr, spotifyBroadcastReceiver);
 
+
+        context = getContext();
     }
 
 
@@ -62,7 +64,6 @@ public class HomeFragment extends Fragment{
         mViewPager.setAdapter(homeFragmentAdapter);
         mViewPager.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
 
-        spotifyBroadcastReceiver.initService(getContext());
 
     }
 
@@ -74,16 +75,10 @@ public class HomeFragment extends Fragment{
     }
 
 
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
     @Override
     public void onPause() {
         super.onPause();
+        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
         LocalBroadcastManager.getInstance(context).unregisterReceiver(spotifyBroadcastReceiver);
         Log.d("HomeFragment", "Paused");
     }
@@ -93,6 +88,7 @@ public class HomeFragment extends Fragment{
         super.onResume();
         // Register for the particular broadcast based on ACTION string
         IntentFilter filter = new IntentFilter(SpotifyService.ACTION);
+        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
         LocalBroadcastManager.getInstance(context).registerReceiver(spotifyBroadcastReceiver, filter);
         // or `registerReceiver(testReceiver, filter)` for a normal broadcast
     }

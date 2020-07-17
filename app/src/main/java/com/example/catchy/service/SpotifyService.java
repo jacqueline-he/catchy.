@@ -53,7 +53,7 @@ public class SpotifyService extends JobIntentService {
                             Log.d(TAG, "Connected! Yay!");
                             mSpotifyAppRemote = spotifyAppRemote;
                             mPlayerApi = mSpotifyAppRemote.getPlayerApi();
-
+                            mIsSpotifyConnected = true;
                         }
 
                         public void onFailure(Throwable throwable) {
@@ -98,10 +98,26 @@ public class SpotifyService extends JobIntentService {
 
     private void playPause() {
         Log.d(TAG,"playPause");
+        Intent in = new Intent(ACTION_PLAY_PAUSE);
+        if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
+            mPlayerApi.getPlayerState().setResultCallback(playerState -> {
+                if (playerState.isPaused) {
+                    mPlayerApi.resume();
+                } else {
+                    mPlayerApi.pause();
+                }
+                LocalBroadcastManager.getInstance(this).sendBroadcast(in);
+            });
+        }
     }
 
     private void playNewSong(String newSongId) {
         Log.d(TAG,"playNewSong");
+        Intent in = new Intent(ACTION_PLAY);
+        if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
+            mPlayerApi.play(newSongId);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(in);
+        }
     }
 
     /**
@@ -112,7 +128,6 @@ public class SpotifyService extends JobIntentService {
         Intent in = new Intent(ACTION_INIT);
         if (mIsSpotifyConnected) {
             in.putExtra("RESULT", "RESULT_CONNECTED");
-            // getCurrentTrack();
         } else {
             in.putExtra("RESULT", "RESULT_DISCONNECTED");
         }
@@ -121,6 +136,13 @@ public class SpotifyService extends JobIntentService {
 
     private void disconnect() {
         Log.d(TAG,"disconnect");
+        Intent in = new Intent(ACTION_DISCONNECT);
+        if (mIsSpotifyConnected) {
+            mPlayerApi.pause();
+            SpotifyAppRemote.disconnect(mSpotifyAppRemote);
+            mIsSpotifyConnected = false;
+        }
+        LocalBroadcastManager.getInstance(this).sendBroadcast(in);
     }
 
 }
