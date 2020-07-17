@@ -27,7 +27,7 @@ public class SongFragment extends Fragment {
     private ImageView ivAlbumImage;
     private FloatingActionButton btnLike;
     boolean paused = false;
-    SpotifyAppRemoteSingleton singleton;
+    // SpotifyAppRemoteSingleton singleton;
 
     public SongFragment() {
         // Required empty public constructor
@@ -47,7 +47,7 @@ public class SongFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             song = getArguments().getParcelable("song");
-            singleton = SpotifyAppRemoteSingleton.getInstance();
+            // singleton = SpotifyAppRemoteSingleton.getInstance();
         }
     }
 
@@ -61,7 +61,7 @@ public class SongFragment extends Fragment {
         ivAlbumImage = view.findViewById(R.id.ivAlbumImage);
         btnLike = view.findViewById(R.id.btnLike);
 
-        // Pause / Resume
+        /*// Pause / Resume
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +105,7 @@ public class SongFragment extends Fragment {
                 gestureDetector.onTouchEvent(event);
                 return true;
             }
-        });
+        }); */
 
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +118,7 @@ public class SongFragment extends Fragment {
         tvArtist.setText(song.getArtist());
         Picasso.with(getContext()).load(song.getImageUrl()).into(ivAlbumImage);
 
-        singleton.getSpotifyAppRemote().getPlayerApi().play(song.getURI());
+        // singleton.getSpotifyAppRemote().getPlayerApi().play(song.getURI());
         return view;
     }
 

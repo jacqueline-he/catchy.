@@ -2,19 +2,27 @@ package com.example.catchy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.JobIntentService;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.catchy.fragments.HomeFragment;
 import com.example.catchy.fragments.SearchFragment;
 import com.example.catchy.fragments.UserFragment;
 import com.example.catchy.models.Song;
+import com.example.catchy.service.SpotifyBroadcastReceiver;
+import com.example.catchy.service.SpotifyService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.parse.FindCallback;
