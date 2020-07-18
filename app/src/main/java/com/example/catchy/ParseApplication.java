@@ -2,6 +2,7 @@ package com.example.catchy;
 
 import android.app.Application;
 
+import com.example.catchy.models.Like;
 import com.example.catchy.models.Settings;
 import com.example.catchy.models.Song;
 import com.example.catchy.models.User;
@@ -21,6 +22,7 @@ public class ParseApplication extends Application {
         // Register your parse models
         ParseObject.registerSubclass(Song.class);
         ParseObject.registerSubclass(User.class);
+        ParseObject.registerSubclass(Like.class);
         ParseObject.registerSubclass(Settings.class);
 
         // Use for troubleshooting -- remove this line for production

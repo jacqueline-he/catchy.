@@ -1,30 +1,18 @@
 package com.example.catchy.models;
 
-import android.os.Parcelable;
-
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-@ParseClassName("Song")
-public class Song extends ParseObject {
+@ParseClassName("Like")
+public class Like extends ParseObject {
     public static final String KEY_TITLE = "title";
     public static final String KEY_ARTIST = "artist";
     public static final String KEY_IMAGE_URL = "imageUrl";
+    public static final String KEY_LIKED_BY = "likedBy";
     public static final String KEY_URI = "uri";
 
-    public Song() {super();}
-
-    public Song (JSONObject json) throws JSONException {
-        setObjectId(json.getString("objectId"));
-        put(KEY_URI, json.getString(KEY_URI));
-        put(KEY_TITLE, json.getString(KEY_TITLE));
-        put(KEY_ARTIST, json.getString(KEY_ARTIST));
-        put(KEY_IMAGE_URL, json.getString(KEY_IMAGE_URL));
-    }
+    public Like() {super();}
 
     public String getTitle() {return getString(KEY_TITLE);}
 
@@ -42,5 +30,11 @@ public class Song extends ParseObject {
 
     public void setURI(String uri) {put(KEY_URI, uri);}
 
+    public ParseUser getLikedBy() {
+        return getParseUser(KEY_LIKED_BY);
+    }
 
+    public void setLikedBy(ParseUser user) {
+        put(KEY_LIKED_BY, user);
+    }
 }

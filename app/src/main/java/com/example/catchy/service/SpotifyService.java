@@ -122,8 +122,9 @@ public class SpotifyService extends JobIntentService {
            public void onResult(ListItems recItems) {
                Log.d("SpotifyService", "getRecommendedContentItems");
                ListItem[] recItemsArr = recItems.items;
-               int i = (int) (Math.random()*19);
-               ListItem homeTrendingItem = recItemsArr[7];
+               int i = (int) (Math.random()*19); // 8 is a good choice
+               ListItem homeTrendingItem = recItemsArr[8];
+
                mSpotifyAppRemote.getContentApi().getChildrenOfItem(homeTrendingItem, 20, 0).setResultCallback(new CallResult.ResultCallback<ListItems>() {
                    @Override
                    public void onResult(ListItems listItems) {

@@ -3,6 +3,7 @@ package com.example.catchy.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.GestureDetector;
@@ -11,13 +12,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.catchy.R;
 import com.example.catchy.SpotifyAppRemoteSingleton;
+import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
@@ -30,6 +37,7 @@ public class SongFragment extends Fragment {
     private ImageView ivAlbumImage;
     private FloatingActionButton btnLike;
     private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
+    boolean liked = false;
 
     public SongFragment() {
         // Required empty public constructor
@@ -108,18 +116,44 @@ public class SongFragment extends Fragment {
     }
 
     private void like() {
-        if (!song.isLiked()) {
+        if (!liked) {
             btnLike.setImageResource(R.drawable.ic_likes_filled);
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
 
             // Set like on Parse side - TODO FAUlTY
-            song.setLike(true);
+            liked = true;
         }
         else {
             // Set like on Parse side - TODO FAUlTY
             btnLike.setImageResource(R.drawable.ic_likes);
             btnLike.clearColorFilter();
-            song.setLike(false);
+            liked = false;
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("SongFragment", "paused " + song.getTitle() + ", like is " + liked);
+        // update like
+        if (liked) {
+            Like like = new Like();
+            like.setTitle(song.getTitle());
+            like.setArtist(song.getArtist());
+            like.setImageUrl(song.getImageUrl());
+            like.setURI(song.getURI());
+            like.setLikedBy(ParseUser.getCurrentUser());
+
+            like.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Log.e("SongFragment", "Error while saving", e);
+                        e.printStackTrace();
+                    }
+                    Log.i("SongFragment", "Post save was successful!");
+                }
+            });
         }
     }
 }

@@ -22,13 +22,17 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
 import com.example.catchy.R;
 import com.example.catchy.UserAdapter;
+import com.example.catchy.models.Like;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -46,6 +50,7 @@ public class UserFragment extends Fragment {
     private Button btnUpdate;
     private ImageView ivProfileImage;
     private EndlessRecyclerViewScrollListener scrollListener;
+    protected List<Like> userLikes;
     boolean infScroll = false;
 
     public UserFragment() {
@@ -124,23 +129,64 @@ public class UserFragment extends Fragment {
             Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
         }
 
-        /*rvPosts = view.findViewById(R.id.rvPosts);
-        userPosts = new ArrayList<>();
-        adapter = new UserAdapter(getContext(), userPosts);
-
+        rvLikes = view.findViewById(R.id.rvLikes);
+        userLikes = new ArrayList<>();
+        queryUserLikes();
+        adapter = new UserAdapter(getContext(), userLikes);
         gridLayoutManager = new GridLayoutManager(getContext(), 3);
-        rvPosts.setAdapter(adapter);
-        rvPosts.setLayoutManager(gridLayoutManager);
-        queryUserPosts();
+        rvLikes.setAdapter(adapter);
+        rvLikes.setLayoutManager(gridLayoutManager);
+
+
 
         scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 infScroll = true;
                 Log.i(TAG, "Asking for inf scroll posts");
-                queryUserPosts();
+                queryUserLikes();
             }
         };
-        rvPosts.addOnScrollListener(scrollListener);*/
+        rvLikes.addOnScrollListener(scrollListener);
+
+
+
+
+
+
+
+
+
+    }
+
+    private void queryUserLikes() {
+        ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
+        query.include(Like.KEY_LIKED_BY);
+
+        if (infScroll && userLikes.size() > 0) {
+            Date oldest = userLikes.get(userLikes.size() - 1).getCreatedAt();
+            Log.i(TAG, "Getting inf scroll posts");
+            query.whereLessThan("createdAt", oldest);
+            infScroll = false;
+        }
+
+        query.setLimit(24);
+        query.addDescendingOrder("createdAt");
+        Log.e(TAG, "Id: " + currentUser.getObjectId());
+        query.whereEqualTo("likedBy", currentUser);
+        query.findInBackground(new FindCallback<Like>() {
+            @Override
+            public void done(List<Like> likes, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting posts", e);
+                    return;
+                }
+                for (Like like : likes) {
+                    Log.i(TAG, "Liked: " + like.getTitle());
+                }
+                userLikes.addAll(likes);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }
