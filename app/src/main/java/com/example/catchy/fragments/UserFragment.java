@@ -1,5 +1,6 @@
 package com.example.catchy.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
 import com.example.catchy.R;
+import com.example.catchy.SettingsActivity;
 import com.example.catchy.UserAdapter;
 import com.example.catchy.models.Like;
 import com.parse.FindCallback;
@@ -39,7 +41,6 @@ import java.util.List;
 public class UserFragment extends Fragment {
 
     public static final String TAG="ProfileFragment";
-    private ImageView ivMore;
     private RecyclerView rvLikes;
     protected UserAdapter adapter;
     private GridLayoutManager gridLayoutManager;
@@ -49,6 +50,9 @@ public class UserFragment extends Fragment {
     private EditText etBio;
     private Button btnUpdate;
     private ImageView ivProfileImage;
+    private ImageView ivMore;
+
+
     private EndlessRecyclerViewScrollListener scrollListener;
     protected List<Like> userLikes;
     boolean infScroll = false;
@@ -75,6 +79,7 @@ public class UserFragment extends Fragment {
         tvBio = view.findViewById(R.id.tvBio);
         etBio = view.findViewById(R.id.etBio);
         btnUpdate = view.findViewById(R.id.btnUpdate);
+        ivMore = view.findViewById(R.id.ivMore);
 
 
         return view;
@@ -91,6 +96,15 @@ public class UserFragment extends Fragment {
             tvBio.setText(bio);
         else
             tvBio.setText("[update bio here]");
+
+
+        ivMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         tvBio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,5 +202,17 @@ public class UserFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // reset profile pic
+        ParseFile profileImage = currentUser.getParseFile("profilePic");
+        if (profileImage != null) {
+             Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
+            // Glide.with(this).load("/storage/emulated/0/Android/data/com.example.catchy/files/Pictures/SettingsActivity/photo.jpg").transform(new CircleCrop()).into(ivProfileImage);
+        }
+
     }
 }
