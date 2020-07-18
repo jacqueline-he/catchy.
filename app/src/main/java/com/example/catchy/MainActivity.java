@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     SpotifyBroadcastReceiver spotifyBroadcastReceiver;
     Fragment fragment;
-    public List<Song> arr;
+
 
     public SpotifyBroadcastReceiver getReceiver() {
         return spotifyBroadcastReceiver;
@@ -55,15 +55,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        arr = new ArrayList<Song>();
+
         spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
         spotifyBroadcastReceiver.initService(this);
-
-        try {
-            populatePlaylist();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -92,26 +86,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
-    }
-
-    private void populatePlaylist() throws ParseException {
-        ParseQuery<Song> query = new ParseQuery<>(Song.class);
-        query.addDescendingOrder("createdAt");
-        query.setLimit(10);
-        query.findInBackground(new FindCallback<Song>() {
-            @Override
-            public void done(List<Song> objects, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Issue with getting songs", e);
-                    return;
-                }
-                for (Song song : objects) {
-                    Log.i(TAG, "Song: " + song.getTitle());
-                    arr.add(song);
-                }
-
-            }
-        });
     }
 
     @Override
