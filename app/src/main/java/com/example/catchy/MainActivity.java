@@ -25,12 +25,6 @@ import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.example.catchy.service.SpotifyService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";

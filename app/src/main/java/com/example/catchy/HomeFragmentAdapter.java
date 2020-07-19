@@ -36,7 +36,8 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
     public SongFragment createFragment(int position) {
         if (position == list.size() - 2) {
             Log.d("HomeFragmentAdapter", "get more");
-            receiver.enqueueService(context, SpotifyBroadcastReceiver.ACTION_GET_RECS);
+            // receiver.enqueueService(context, SpotifyBroadcastReceiver.ACTION_GET_RECS);
+            addRecommendedSongs();
 
         }
 
@@ -44,6 +45,12 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
             queueSongs(); // Retrieve 10 more songs
         }
         return SongFragment.newInstance(list.get(position), receiver);
+    }
+
+    // HTTP Request for new songs, add to Parse database
+    private void addRecommendedSongs() {
+
+
     }
 
     private void queueSongs() {

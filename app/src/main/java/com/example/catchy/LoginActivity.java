@@ -14,6 +14,9 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+import com.spotify.sdk.android.authentication.AuthenticationClient;
+import com.spotify.sdk.android.authentication.AuthenticationRequest;
+import com.spotify.sdk.android.authentication.AuthenticationResponse;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         if (ParseUser.getCurrentUser() != null) {
-            goMainActivity();
+            goSpotifyAuth(true);
         }
 
 
@@ -60,6 +63,14 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void goSpotifyAuth(boolean returning) {
+        Intent i = new Intent(this, AuthActivity.class);
+        i.putExtra("returning", returning);
+        Log.d(TAG, "spotifyauth");
+        startActivity(i);
+        finish();
+    }
+
     private void signUpUser(String username, String password) {
         Log.i(TAG, "Attempting to sign up user " + username);
         ParseUser newUser = new ParseUser();
@@ -76,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Issue with sign up", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
+                goSpotifyAuth(false);
             }
         });
     }
@@ -91,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                     //TODO: Better error handling
                     return;
                 }
-                goMainActivity();
+                goSpotifyAuth(false);
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             }
         });
