@@ -40,7 +40,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
 
         }
 
-        if (position == list.size() - 1) {
+        if (position > list.size() - 1) {
             queueSongs(); // Retrieve 10 more songs
         }
         return SongFragment.newInstance(list.get(position), receiver);
@@ -51,7 +51,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
 
         if (list.size() > 0) { // get the oldest songs that are still newer than the newest song in the list
-            Date newest = list.get(0).getCreatedAt();
+            Date newest = list.get(list.size() - 1).getCreatedAt();
             query.whereGreaterThan("createdAt", newest);
             // Date oldest = list.get(list.size() - 1).getCreatedAt();
             Log.i("HomeFragmentAdapter", "Getting inf scroll posts");
