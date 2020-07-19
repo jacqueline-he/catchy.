@@ -13,13 +13,27 @@ import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import kaaes.spotify.webapi.android.SpotifyApi;
+import kaaes.spotify.webapi.android.SpotifyCallback;
+import kaaes.spotify.webapi.android.SpotifyError;
+import kaaes.spotify.webapi.android.SpotifyService;
+import kaaes.spotify.webapi.android.models.Recommendations;
+import kaaes.spotify.webapi.android.models.Track;
+import retrofit.client.Response;
 
 public class HomeFragmentAdapter extends FragmentStateAdapter {
+    public static final String TAG = "HomeFragmentAdapter";
     List<Song> list;
+    SpotifyService spotify;
     SpotifyBroadcastReceiver receiver;
     Context context;
 
@@ -49,6 +63,50 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
 
     // HTTP Request for new songs, add to Parse database
     private void addRecommendedSongs() {
+        SpotifyApi spotifyApi = new SpotifyApi();
+        spotifyApi.setAccessToken(ParseUser.getCurrentUser().getString("token"));
+        Map<String, Object> options = new HashMap<>();
+        options.put("limit", 20);
+        // options.put("min_popularity", 50);
+        options.put("seed_artists", "4NHQUGzhtTLFvgF5SZesLK");
+        options.put("seed_genres", "pop,k-pop");
+        options.put("seed_tracks", "0c6xIDDpzE81m2q797ordA");
+
+        spotify = spotifyApi.getService();
+        spotify.getRecommendations(options, new SpotifyCallback<Recommendations>() {
+            @Override
+            public void failure(SpotifyError spotifyError) {
+                Log.e(TAG, "getting recommended tracks failed!", spotifyError);
+            }
+
+            @Override
+            public void success(Recommendations recommendations, Response response) {
+                List<Track> tracks = recommendations.tracks;
+                for (int i = 0; i < tracks.size(); i++) {
+                    Track track = tracks.get(i);
+                    Song song = new Song();
+                    song.setURI(track.uri);
+                    song.setImageUrl(track.album.images.get(0).url);
+                    song.setTitle(track.name);
+                    song.setArtist(track.artists.toString());
+                    song.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                Log.e(TAG, "Error while saving rec", e);
+                                e.printStackTrace();
+                            }
+                            Log.i(TAG, "Rec save was successful!");
+                        }
+                    });
+
+                }
+            }
+        });
+
+        /*
+        Song song = new Song();
+        */
 
 
     }
