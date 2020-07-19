@@ -163,14 +163,6 @@ public class UserFragment extends Fragment {
         };
         rvLikes.addOnScrollListener(scrollListener);
 
-
-
-
-
-
-
-
-
     }
 
     private void queryUserLikes() {

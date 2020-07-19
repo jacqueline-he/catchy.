@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment{
 
     private void populatePlaylist() throws ParseException {
         ParseQuery<Song> query = new ParseQuery<>(Song.class);
-        query.addDescendingOrder("createdAt");
+        query.addAscendingOrder("createdAt"); // oldest songs first
         query.setLimit(10);
         query.findInBackground(new FindCallback<Song>() {
             @Override

@@ -34,7 +34,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public SongFragment createFragment(int position) {
-        if (position == list.size() - 3) {
+        if (position == list.size() - 2) {
             Log.d("HomeFragmentAdapter", "get more");
             receiver.enqueueService(context, SpotifyBroadcastReceiver.ACTION_GET_RECS);
 
@@ -50,7 +50,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
 
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
 
-        if (list.size() > 0) {
+        if (list.size() > 0) { // get the oldest songs that are still newer than the newest song in the list
             Date newest = list.get(0).getCreatedAt();
             query.whereGreaterThan("createdAt", newest);
             // Date oldest = list.get(list.size() - 1).getCreatedAt();
@@ -59,7 +59,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
         }
 
         query.setLimit(20);
-        query.addDescendingOrder("createdAt");
+        query.addAscendingOrder("createdAt"); // next oldest songs
         query.findInBackground(new FindCallback<Song>() {
             @Override
             public void done(List<Song> posts, ParseException e) {
