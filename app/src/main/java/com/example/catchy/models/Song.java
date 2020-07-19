@@ -15,6 +15,7 @@ public class Song extends ParseObject {
     public static final String KEY_ARTIST = "artist";
     public static final String KEY_IMAGE_URL = "imageUrl";
     public static final String KEY_URI = "uri";
+    public static final String KEY_SEEN = "seen";
 
     public Song() {super();}
 
@@ -41,6 +42,10 @@ public class Song extends ParseObject {
     public String getURI() {return getString(KEY_URI);}
 
     public void setURI(String uri) {put(KEY_URI, uri);}
+
+    public boolean getSeen() {return getBoolean(KEY_SEEN);};
+
+    public void setSeen(boolean seen) {put(KEY_SEEN, seen);}
 
 
 }

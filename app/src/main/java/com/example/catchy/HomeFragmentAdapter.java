@@ -26,6 +26,7 @@ import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyCallback;
 import kaaes.spotify.webapi.android.SpotifyError;
 import kaaes.spotify.webapi.android.SpotifyService;
+import kaaes.spotify.webapi.android.models.ArtistSimple;
 import kaaes.spotify.webapi.android.models.Recommendations;
 import kaaes.spotify.webapi.android.models.Track;
 import retrofit.client.Response;
@@ -56,7 +57,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
         }
 
         if (position > list.size() - 1) {
-            queueSongs(); // Retrieve 10 more songs
+            // queueSongs(); // Retrieve 10 more songs
         }
         return SongFragment.newInstance(list.get(position), receiver);
     }
@@ -88,7 +89,12 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
                     song.setURI(track.uri);
                     song.setImageUrl(track.album.images.get(0).url);
                     song.setTitle(track.name);
-                    song.setArtist(track.artists.toString());
+                    String artists = "";
+                    List<ArtistSimple> artistList = track.artists;
+                    for (int j = 0; j < artistList.size(); j++) {
+                        artists += artistList.get(j).name + ", ";
+                    }
+                    song.setArtist(artists.substring(0, artists.length() - 2));
                     song.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
@@ -99,16 +105,10 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
                             Log.i(TAG, "Rec save was successful!");
                         }
                     });
-
                 }
+                queueSongs();
             }
         });
-
-        /*
-        Song song = new Song();
-        */
-
-
     }
 
     private void queueSongs() {
@@ -118,9 +118,9 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
         if (list.size() > 0) { // get the oldest songs that are still newer than the newest song in the list
             Date newest = list.get(list.size() - 1).getCreatedAt();
             query.whereGreaterThan("createdAt", newest);
+            // query.whereEqualTo("seen", false);
             // Date oldest = list.get(list.size() - 1).getCreatedAt();
             Log.i("HomeFragmentAdapter", "Getting inf scroll posts");
-            // query.whereLessThan("createdAt", oldest);
         }
 
         query.setLimit(20);

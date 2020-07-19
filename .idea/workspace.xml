@@ -15,19 +15,104 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/AccountsQueryParameters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/AuthorizationClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/AuthorizationHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/AuthorizationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/AuthorizationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/IntentExtras.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/LoginActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/app/SpotifyAuthHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/app/SpotifyNativeAuthUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/webview/LoginDialog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/webview/WebViewAuthHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/java/com/spotify/sdk/android/auth/webview/WebViewUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/res/layout/com_spotify_sdk_login_activity.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/res/layout/com_spotify_sdk_login_dialog.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/test/java/android/net/http/AndroidHttpClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/test/java/com/spotify/sdk/android/auth/AuthorizationClientTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/test/java/com/spotify/sdk/android/auth/AuthorizationRequestTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/test/java/com/spotify/sdk/android/auth/AuthorizationResponseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/test/java/com/spotify/sdk/android/auth/LoginActivityTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-lib/src/test/resources/robolectric.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/keystore/example.keystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/java/com/spotify/sdk/android/auth/sample/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/values/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/auth-sample/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/config/checkstyle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/config/findbugs-filter.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/config/lint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/allclasses-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/allclasses-noframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AccountsQueryParameters.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AuthorizationClient.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AuthorizationHandler.OnCompleteListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AuthorizationHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AuthorizationRequest.Builder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AuthorizationRequest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AuthorizationResponse.Builder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AuthorizationResponse.Type.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/AuthorizationResponse.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/IntentExtras.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/LoginActivity.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/app/SpotifyAuthHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/app/SpotifyNativeAuthUtil.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/app/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/app/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/app/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/webview/LoginDialog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/webview/WebViewAuthHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/webview/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/webview/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/com/spotify/sdk/android/auth/webview/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/index-all.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/overview-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/package-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/docs/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/android-auth-1.2.3/settings.gradle" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/HomeFragmentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/HomeFragmentAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SearchFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/models/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/models/Song.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,10 +416,10 @@
     </state>
     <state x="493" y="275" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1792.1020@0.23.1792.1020" timestamp="1594941398096" />
     <state x="493" y="276" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1792.1024@0.23.1792.1024" timestamp="1594765158808" />
-    <state x="683" y="146" width="1109" height="731" key="find.popup" timestamp="1595191533764">
-      <screen x="0" y="23" width="1792" height="1024" />
+    <state x="683" y="146" width="1109" height="728" key="find.popup" timestamp="1595196212526">
+      <screen x="0" y="23" width="1792" height="1020" />
     </state>
-    <state x="683" y="146" width="1109" height="728" key="find.popup/0.-1057.1920.1057/0.23.1792.1020@0.23.1792.1020" timestamp="1595185893837" />
+    <state x="683" y="146" width="1109" height="728" key="find.popup/0.-1057.1920.1057/0.23.1792.1020@0.23.1792.1020" timestamp="1595196212526" />
     <state x="683" y="146" width="1109" height="731" key="find.popup/0.-1057.1920.1057/0.23.1792.1024@0.23.1792.1024" timestamp="1595191533764" />
     <state x="683" y="146" width="1109" height="725" key="find.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1595113727961" />
     <state x="440" y="543" width="695" height="486" key="find.popup/0.23.1792.1020@0.23.1792.1020" timestamp="1595055563556" />
@@ -342,12 +427,12 @@
     <state x="1097" y="387" width="695" height="490" key="find.popup/0.23.1792.1024@0.23.1792.1024" timestamp="1595050617695" />
     <state x="1097" y="388" width="695" height="491" key="find.popup/0.23.1792.1026@0.23.1792.1026" timestamp="1595021451220" />
     <state x="1097" y="389" width="695" height="492" key="find.popup/0.23.1792.1028@0.23.1792.1028" timestamp="1595021791949" />
-    <state x="530" y="364" width="670" height="679" key="search.everywhere.popup" timestamp="1595193605155">
+    <state x="530" y="364" width="670" height="679" key="search.everywhere.popup" timestamp="1595196015181">
       <screen x="0" y="23" width="1792" height="1020" />
     </state>
     <state x="568" y="-704" width="718" height="704" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1792.1017@0.-1057.1920.1057" timestamp="1595142322924" />
     <state x="530" y="364" width="670" height="676" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1594745543481" />
-    <state x="530" y="364" width="670" height="679" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1792.1020@0.23.1792.1020" timestamp="1595193605155" />
+    <state x="530" y="364" width="670" height="679" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1792.1020@0.23.1792.1020" timestamp="1595196015181" />
     <state x="530" y="365" width="670" height="682" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1792.1024@0.23.1792.1024" timestamp="1595191521881" />
     <state x="530" y="364" width="670" height="676" key="search.everywhere.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1595114384772" />
     <state x="530" y="365" width="670" height="678" key="search.everywhere.popup/0.23.1792.1020@0.23.1792.1020" timestamp="1595133657861" />
@@ -367,8 +452,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/catchy/HomeFragmentAdapter.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="45" />
+          <line>123</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
