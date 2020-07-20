@@ -37,6 +37,7 @@ public class SongFragment extends Fragment {
     private ImageView ivAlbumImage;
     private FloatingActionButton btnLike;
     private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
+    public static final String TAG = "SongFragment";
     boolean liked = false;
 
     public SongFragment() {
@@ -109,6 +110,16 @@ public class SongFragment extends Fragment {
         Picasso.with(getContext()).load(song.getImageUrl()).into(ivAlbumImage);
 
         song.setSeen(true);
+        song.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Error while saving rec", e);
+                    e.printStackTrace();
+                }
+                Log.i(TAG, "Rec save was successful!");
+            }
+        });
 
 
         spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
@@ -121,12 +132,9 @@ public class SongFragment extends Fragment {
         if (!liked) {
             btnLike.setImageResource(R.drawable.ic_likes_filled);
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
-
-            // Set like on Parse side - TODO FAUlTY
             liked = true;
         }
         else {
-            // Set like on Parse side - TODO FAUlTY
             btnLike.setImageResource(R.drawable.ic_likes);
             btnLike.clearColorFilter();
             liked = false;

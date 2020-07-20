@@ -118,7 +118,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
         if (list.size() > 0) { // get the oldest songs that are still newer than the newest song in the list
             Date newest = list.get(list.size() - 1).getCreatedAt();
             query.whereGreaterThan("createdAt", newest);
-            // query.whereEqualTo("seen", false);
+            query.whereEqualTo("seen", false);
             // Date oldest = list.get(list.size() - 1).getCreatedAt();
             Log.i("HomeFragmentAdapter", "Getting inf scroll posts");
         }
@@ -137,6 +137,29 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
                 Log.i("HomeFragmentAdapter", "Adapter changed");
             }
         });
+
+        deleteSongs();
+
+
+    }
+
+    private void deleteSongs() {
+        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+        query.setLimit(20);
+        query.whereEqualTo("seen", true);
+        query.findInBackground(new FindCallback<Song>() {
+            @Override
+            public void done(List<Song> posts, ParseException e) {
+                if (e != null) {
+                    Log.e("HomeFragmentAdapter", "Issue with getting posts", e);
+                    return;
+                }
+                for (int i = 0; i < posts.size(); i++) {
+                    posts.get(i).deleteInBackground();
+                }
+            }
+        });
+
     }
 
     @Override
