@@ -8,12 +8,66 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivAlbumImage"
         android:layout_width="match_parent"
-        android:layout_height="367dp"
+        android:layout_height="400dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvArtist"
+        android:layout_below="@+id/ivAlbumImage"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/lato"
+        android:text="title"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvArtist"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="220dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/lato"
+        android:text="artist"
+        android:textColor="@color/light_gray"
+        android:textSize="20dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivAlbumImage"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+
+        android:backgroundTint="@color/transparent"
+        android:clickable="true"
+        android:focusable="true"
+        android:outlineProvider="none"
+        android:src="@drawable/ic_likes"
+        android:tint="@color/white"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:rippleColor="@null" />
 </RelativeLayout>

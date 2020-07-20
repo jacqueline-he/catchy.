@@ -1,6 +1,7 @@
 package com.example.catchy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.catchy.models.Like;
+import com.example.catchy.models.Song;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -57,6 +59,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             if (imgUrl != null)
                 Glide.with(context).load(imgUrl).apply(new RequestOptions().override(100, 100)).into(ivLikedImage);
             Log.d("UserAdapter", "bound image");
+
+            ivLikedImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, SongDetailsActivity.class);
+                    Song song = new Song();
+                    song.setTitle(like.getTitle());
+                    song.setURI(like.getURI());
+                    song.setArtist(like.getArtist());
+                    song.setImageUrl(like.getImageUrl());
+                    // pack something
+                    intent.putExtra("song", song);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

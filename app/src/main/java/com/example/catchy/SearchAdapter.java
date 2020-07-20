@@ -1,6 +1,7 @@
 package com.example.catchy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(@NonNull SearchAdapter.ViewHolder holder, int position) {
         Song song = results.get(position);
         holder.bind(song);
+
+
     }
 
     @Override
@@ -67,12 +70,24 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             ivAlbumImage = itemView.findViewById(R.id.ivAlbumImage);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvArtist = itemView.findViewById(R.id.tvArtist);
+
+
         }
 
         public void bind(Song song) {
             tvTitle.setText(song.getTitle());
             tvArtist.setText(song.getArtist());
             Glide.with(context).load(song.getImageUrl()).into(ivAlbumImage);
+
+            tvTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, SongDetailsActivity.class);
+                    // pack something
+                    intent.putExtra("song", song);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }
