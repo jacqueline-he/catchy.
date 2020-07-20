@@ -17,7 +17,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.catchy.MainActivity;
 import com.example.catchy.R;
+import com.example.catchy.SongDetailsActivity;
 import com.example.catchy.SpotifyAppRemoteSingleton;
 import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
@@ -114,6 +116,10 @@ public class SongFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO add detail implementation
+                Intent intent = new Intent(getContext(), SongDetailsActivity.class);
+                // pack something
+                intent.putExtra("song", song);
+                startActivity(intent);
             }
         });
 

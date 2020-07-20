@@ -19,6 +19,7 @@ public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Seria
     public static final String ACTION_PLAY = "action.PLAY";
     public static final String ACTION_INIT = "action.INIT";
     public static final String ACTION_PLAY_PAUSE = "action.PLAY_PAUSE";
+    public static final String ACTION_PAUSE = "action.PAUSE";
     public static final String ACTION_DISCONNECT = "action.DISCONNECT";
 
     // Result keys
@@ -55,7 +56,7 @@ public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Seria
 
     /**
      * Convenience method for enqueuing work into this service.
-     * Actions: PLAY/PAUSE, DISCONNECT
+     * Actions: PLAY/PAUSE, PAUSE, DISCONNECT
      */
     public static void enqueueService(Context context, String ACTION) {
         Intent intent = new Intent(context, SpotifyService.class);

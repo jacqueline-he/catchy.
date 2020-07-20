@@ -11,9 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7c4192d-5a59-4e86-82bd-3ec9a9cd848b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/SongRecommendation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongDetailsActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_song_details.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/SongDetailsActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -27,19 +25,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/HomeFragmentAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/HomeFragmentAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/DetailsFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SearchFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_details.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/UserFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/UserFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyBroadcastReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyBroadcastReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/service/SpotifyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_song_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_song_details.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="RF8N31F6T2R" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_29" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -96,7 +94,7 @@
     <property name="DEBUGGABLE_PROCESS" value="com.example.catchy" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_API_29" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-07-18T23:24:40.426Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-07-20T20:10:29.109Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
@@ -112,8 +110,8 @@
       <recent name="com.example.catchy" />
     </key>
     <key name="android.template.-893079859">
-      <recent name="com.example.catchy.fragments" />
       <recent name="com.example.catchy" />
+      <recent name="com.example.catchy.fragments" />
     </key>
     <key name="android.template.-346913269">
       <recent name="com.example.catchy" />
@@ -211,12 +209,12 @@
       <screen x="0" y="23" width="1792" height="1020" />
     </state>
     <state x="750" y="399" width="473" height="276" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1792.1020@0.23.1792.1020" timestamp="1594766434484" />
-    <state x="794" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595268446692">
-      <screen x="0" y="23" width="1792" height="1022" />
+    <state x="794" y="285" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595274320429">
+      <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="794" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.-1057.1920.1057/0.23.1792.1022@0.23.1792.1022" timestamp="1595268446692" />
     <state x="794" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.-1080.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1595224933534" />
-    <state x="794" y="285" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1594960717853" />
+    <state x="794" y="285" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1017@0.23.1792.1017" timestamp="1595274320429" />
     <state x="453" y="427" key="AndroidCreateResourceFileDialog" timestamp="1595055340897">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
@@ -356,8 +354,8 @@
     </state>
     <state x="493" y="275" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1792.1020@0.23.1792.1020" timestamp="1594941398096" />
     <state x="493" y="276" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1792.1024@0.23.1792.1024" timestamp="1594765158808" />
-    <state x="683" y="146" width="1109" height="728" key="find.popup" timestamp="1595268672004">
-      <screen x="0" y="23" width="1792" height="1020" />
+    <state x="440" y="544" width="695" height="486" key="find.popup" timestamp="1595276124419">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state x="683" y="198" width="1109" height="743" key="find.popup/0.-1057.1920.1057/0.0.1792.1040@0.0.1792.1040" timestamp="1595221471904" />
     <state x="731" y="-855" width="1189" height="755" key="find.popup/0.-1057.1920.1057/0.23.1792.1017@0.-1057.1920.1057" timestamp="1595259448005" />
@@ -365,14 +363,14 @@
     <state x="683" y="146" width="1109" height="728" key="find.popup/0.-1057.1920.1057/0.23.1792.1020@0.23.1792.1020" timestamp="1595268672004" />
     <state x="683" y="146" width="1109" height="731" key="find.popup/0.-1057.1920.1057/0.23.1792.1024@0.23.1792.1024" timestamp="1595191533764" />
     <state x="683" y="214" width="1109" height="800" key="find.popup/0.-1080.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1595226634048" />
-    <state x="683" y="146" width="1109" height="725" key="find.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1595113727961" />
+    <state x="683" y="146" width="1109" height="725" key="find.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1595274547070" />
     <state x="440" y="543" width="695" height="486" key="find.popup/0.23.1792.1020@0.23.1792.1020" timestamp="1595055563556" />
-    <state x="440" y="544" width="695" height="486" key="find.popup/0.23.1792.1022@0.23.1792.1022" timestamp="1595002477301" />
+    <state x="440" y="544" width="695" height="486" key="find.popup/0.23.1792.1022@0.23.1792.1022" timestamp="1595276124419" />
     <state x="1097" y="387" width="695" height="490" key="find.popup/0.23.1792.1024@0.23.1792.1024" timestamp="1595050617695" />
     <state x="1097" y="388" width="695" height="491" key="find.popup/0.23.1792.1026@0.23.1792.1026" timestamp="1595021451220" />
     <state x="1097" y="389" width="695" height="492" key="find.popup/0.23.1792.1028@0.23.1792.1028" timestamp="1595021791949" />
-    <state x="530" y="364" width="670" height="676" key="search.everywhere.popup" timestamp="1595269128192">
-      <screen x="0" y="23" width="1792" height="1017" />
+    <state x="530" y="365" width="670" height="680" key="search.everywhere.popup" timestamp="1595276031479">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state x="530" y="349" width="670" height="692" key="search.everywhere.popup/0.-1057.1920.1057/0.0.1792.1040@0.0.1792.1040" timestamp="1595222247738" />
     <state x="568" y="-704" width="718" height="704" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1792.1017@0.-1057.1920.1057" timestamp="1595259442447" />
@@ -382,9 +380,9 @@
     <state x="530" y="365" width="670" height="681" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1792.1022@0.23.1792.1022" timestamp="1595198427894" />
     <state x="530" y="365" width="670" height="682" key="search.everywhere.popup/0.-1057.1920.1057/0.23.1792.1024@0.23.1792.1024" timestamp="1595191521881" />
     <state x="530" y="376" width="670" height="745" key="search.everywhere.popup/0.-1080.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1595226632901" />
-    <state x="530" y="364" width="670" height="676" key="search.everywhere.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1595114384772" />
+    <state x="530" y="364" width="670" height="676" key="search.everywhere.popup/0.23.1792.1017@0.23.1792.1017" timestamp="1595274685759" />
     <state x="530" y="365" width="670" height="678" key="search.everywhere.popup/0.23.1792.1020@0.23.1792.1020" timestamp="1595133657861" />
-    <state x="530" y="365" width="670" height="680" key="search.everywhere.popup/0.23.1792.1022@0.23.1792.1022" timestamp="1595134215461" />
+    <state x="530" y="365" width="670" height="680" key="search.everywhere.popup/0.23.1792.1022@0.23.1792.1022" timestamp="1595276031479" />
     <state x="530" y="366" width="670" height="681" key="search.everywhere.popup/0.23.1792.1024@0.23.1792.1024" timestamp="1595050630760" />
     <state x="530" y="367" width="670" height="682" key="search.everywhere.popup/0.23.1792.1026@0.23.1792.1026" timestamp="1595021454837" />
     <state x="530" y="368" width="670" height="684" key="search.everywhere.popup/0.23.1792.1028@0.23.1792.1028" timestamp="1595021631072" />

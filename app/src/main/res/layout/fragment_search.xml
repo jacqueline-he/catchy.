@@ -17,7 +17,7 @@
         android:width="4dp"
         android:maxLines="1"
         android:ems="1"
-        android:hint="Search a song..."
+        android:hint="Search"
         android:textColorHint="@color/white"
         android:theme="@style/EditTextTheme" />
 

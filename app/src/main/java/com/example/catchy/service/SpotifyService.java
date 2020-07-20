@@ -33,6 +33,7 @@ import java.util.List;
 
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_DISCONNECT;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_INIT;
+import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PAUSE;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE;
 import static com.spotify.protocol.types.Repeat.ONE;
@@ -104,10 +105,24 @@ public class SpotifyService extends JobIntentService {
                 case ACTION_PLAY_PAUSE:
                     playPause();
                     break;
+                case ACTION_PAUSE:
+                    pause();
+                    break;
                 case ACTION_DISCONNECT:
                     disconnect();
                     break;
             }
+        }
+    }
+
+    private void pause() {
+        Log.d(TAG,"pause");
+        Intent in = new Intent(ACTION_PAUSE);
+        if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
+            mPlayerApi.getPlayerState().setResultCallback(playerState -> {
+                mPlayerApi.pause();
+                LocalBroadcastManager.getInstance(this).sendBroadcast(in);
+            });
         }
     }
 
