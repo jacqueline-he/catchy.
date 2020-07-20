@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.catchy.MainActivity;
 import com.example.catchy.R;
@@ -44,9 +47,11 @@ public class SearchFragment extends Fragment {
     public static final String TAG = "SearchFragment";
     SpotifyService spotify;
     SearchAdapter searchAdapter;
-    Toolbar searchbar;
     RecyclerView rvResults;
+    EditText etSearch;
+    ImageButton ibSearch;
     List<Song> results;
+    String query;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -67,14 +72,12 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_search, container, false);
-        searchbar = view.findViewById(R.id.searchbar);
-        ((MainActivity)getActivity()).setSupportActionBar(searchbar);
         rvResults = view.findViewById(R.id.rvResults);
+        etSearch = view.findViewById(R.id.etSearch);
+        ibSearch = view.findViewById(R.id.ibSearch);
 
-        searchbar.setTitle("find song");
 
         // Get Spotify service
         SpotifyApi spotifyApi = new SpotifyApi();
@@ -92,43 +95,27 @@ public class SearchFragment extends Fragment {
         results = new ArrayList<>();
         searchAdapter = new SearchAdapter(results, getContext());
 
-
         rvResults.setAdapter(searchAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvResults.setLayoutManager(linearLayoutManager);
 
-
-    }
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_search, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setIconifiedByDefault(false);
-        EditText searchEditText = (EditText) searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-        searchEditText.setTextColor(getResources().getColor(R.color.white));
-        searchEditText.setHintTextColor(getResources().getColor(R.color.white));
-        searchView.setQueryHint("Search songs...");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        ibSearch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public void onClick(View view) {
+                query = etSearch.getText().toString();
+                if (query.isEmpty()) {
+                    Toast.makeText(getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // clear search list
+
                 results.clear();
                 fetchSongs(query, 0);
-
-                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
-                // see https://code.google.com/p/android/issues/detail?id=24599
-                searchView.clearFocus();
-
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
             }
         });
-        super.onCreateOptionsMenu(menu, inflater);
+
+
     }
 
     private void fetchSongs(String query, int offset) {

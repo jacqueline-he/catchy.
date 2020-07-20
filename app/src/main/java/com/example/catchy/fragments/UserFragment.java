@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
+import com.example.catchy.MainActivity;
 import com.example.catchy.R;
 import com.example.catchy.SettingsActivity;
 import com.example.catchy.UserAdapter;
@@ -205,6 +206,11 @@ public class UserFragment extends Fragment {
              Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
             // Glide.with(this).load("/storage/emulated/0/Android/data/com.example.catchy/files/Pictures/SettingsActivity/photo.jpg").transform(new CircleCrop()).into(ivProfileImage);
         }
+
+        View decorView = ((MainActivity)getActivity()).getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
     }
 }

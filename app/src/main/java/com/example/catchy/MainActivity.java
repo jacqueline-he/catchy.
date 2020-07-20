@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_search:
                         fragment = new SearchFragment();
-                        fragment.setHasOptionsMenu(true);
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                         break;
                     case R.id.action_user:

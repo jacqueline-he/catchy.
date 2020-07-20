@@ -6,21 +6,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.SearchFragment">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/searchbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            app:subtitleTextColor="@color/white"
-            app:titleTextColor="@android:color/white" />
+
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="336dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:width="4dp"
+        android:maxLines="1"
+        android:ems="1"
+        android:hint="Search a song..."
+        android:textColorHint="@color/white"
+        android:theme="@style/EditTextTheme" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvResults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/searchbar"
+        android:layout_below="@+id/etSearch"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="8dp" />
+
+    <ImageButton
+        android:id="@+id/ibSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:layout_toEndOf="@+id/etSearch"
+        android:backgroundTint="@color/black"
+        android:src="@drawable/ic_search"
+        android:tint="@color/white"
+        android:focusable="true" />
 </RelativeLayout>
