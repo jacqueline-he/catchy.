@@ -20,6 +20,11 @@ import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.example.catchy.service.SpotifyService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -82,5 +87,24 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         SpotifyBroadcastReceiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_DISCONNECT);
+        deleteSongs();
+
+    }
+
+    private void deleteSongs() {
+        ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
+        query.setLimit(100);
+        query.findInBackground(new FindCallback<Song>() {
+            @Override
+            public void done(List<Song> posts, ParseException e) {
+                if (e != null) {
+                    Log.e("MainActivity", "Issue with getting posts", e);
+                    return;
+                }
+                for (int i = 0; i < posts.size(); i++) {
+                    posts.get(i).deleteInBackground();
+                }
+            }
+        });
     }
 }
