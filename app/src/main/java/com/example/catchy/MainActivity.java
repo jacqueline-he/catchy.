@@ -6,13 +6,9 @@ import androidx.core.app.JobIntentService;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -66,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_search:
                         fragment = new SearchFragment();
+                        fragment.setHasOptionsMenu(true);
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                         break;
                     case R.id.action_user:

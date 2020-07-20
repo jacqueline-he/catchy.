@@ -2,51 +2,168 @@ package com.example.catchy.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import com.example.catchy.MainActivity;
 import com.example.catchy.R;
+import com.example.catchy.SearchAdapter;
+import com.example.catchy.models.Song;
+import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import kaaes.spotify.webapi.android.SpotifyApi;
+import kaaes.spotify.webapi.android.SpotifyCallback;
+import kaaes.spotify.webapi.android.SpotifyError;
+import kaaes.spotify.webapi.android.SpotifyService;
+import kaaes.spotify.webapi.android.models.ArtistSimple;
+import kaaes.spotify.webapi.android.models.Track;
+import kaaes.spotify.webapi.android.models.TracksPager;
+import retrofit.client.Response;
 
 public class SearchFragment extends Fragment {
-
+    public static final String TAG = "SearchFragment";
+    SpotifyService spotify;
+    SearchAdapter searchAdapter;
+    Toolbar searchbar;
+    RecyclerView rvResults;
+    List<Song> results;
 
     public SearchFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SearchFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SearchFragment newInstance(String param1, String param2) {
-        SearchFragment fragment = new SearchFragment();
-        Bundle args = new Bundle();
-        // args.putString(ARG_PARAM1, param1);
 
-        fragment.setArguments(args);
+    public static SearchFragment newInstance() {
+        SearchFragment fragment = new SearchFragment();
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            // mParam1 = getArguments().getString(ARG_PARAM1);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        View view =  inflater.inflate(R.layout.fragment_search, container, false);
+        searchbar = view.findViewById(R.id.searchbar);
+        ((MainActivity)getActivity()).setSupportActionBar(searchbar);
+        rvResults = view.findViewById(R.id.rvResults);
+
+        searchbar.setTitle("find song");
+
+        // Get Spotify service
+        SpotifyApi spotifyApi = new SpotifyApi();
+        spotifyApi.setAccessToken(ParseUser.getCurrentUser().getString("token"));
+        spotify = spotifyApi.getService();
+
+        return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        rvResults = view.findViewById(R.id.rvResults);
+        results = new ArrayList<>();
+        searchAdapter = new SearchAdapter(results, getContext());
+
+
+        rvResults.setAdapter(searchAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvResults.setLayoutManager(linearLayoutManager);
+
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setIconifiedByDefault(false);
+        EditText searchEditText = (EditText) searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(getResources().getColor(R.color.white));
+        searchEditText.setHintTextColor(getResources().getColor(R.color.white));
+        searchView.setQueryHint("Search songs...");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                results.clear();
+                fetchSongs(query, 0);
+
+                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
+                // see https://code.google.com/p/android/issues/detail?id=24599
+                searchView.clearFocus();
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    private void fetchSongs(String query, int offset) {
+        Map<String, Object> options = new HashMap<>();
+        options.put(SpotifyService.OFFSET, 20 * offset);
+        options.put(SpotifyService.LIMIT, 20);
+
+        spotify.searchTracks(query, options, new SpotifyCallback<TracksPager>() {
+            @Override
+            public void failure(SpotifyError spotifyError) {
+                Log.e(TAG, "Search tracks failed!", spotifyError);
+            }
+
+            @Override
+            public void success(TracksPager tracksPager, Response response) {
+                Log.d(TAG, "Search tracks success!");
+                List<Track> tracks = tracksPager.tracks.items;
+                for (int i = 0; i < tracks.size(); i++) {
+                    Track track = tracks.get(i);
+                    Song song = new Song();
+                    song.setURI(track.uri);
+                    song.setImageUrl(track.album.images.get(0).url);
+                    song.setTitle(track.name);
+                    String artists = "";
+                    List<ArtistSimple> artistList = track.artists;
+                    for (int j = 0; j < artistList.size(); j++) {
+                        artists += artistList.get(j).name + ", ";
+                    }
+                    song.setArtist(artists.substring(0, artists.length() - 2));
+                    results.add(song);
+                }
+                searchAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+
 }

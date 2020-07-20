@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_DISCONNECT;
-import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_GET_RECS;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_INIT;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE;
@@ -105,56 +104,11 @@ public class SpotifyService extends JobIntentService {
                 case ACTION_PLAY_PAUSE:
                     playPause();
                     break;
-                case ACTION_GET_RECS:
-                    getRecommendations();
-                    break;
                 case ACTION_DISCONNECT:
                     disconnect();
                     break;
             }
         }
-    }
-
-    private void getRecommendations() {
-        Intent in = new Intent(ACTION_GET_RECS);
-        mSpotifyAppRemote.getContentApi().getRecommendedContentItems(ContentApi.ContentType.DEFAULT).setResultCallback(new CallResult.ResultCallback<ListItems>() {
-           @Override
-           public void onResult(ListItems recItems) {
-               Log.d("SpotifyService", "getRecommendedContentItems");
-               ListItem[] recItemsArr = recItems.items;
-               int i = (int) (Math.random()*19); // 8 is a good choice
-               ListItem homeTrendingItem = recItemsArr[8];
-
-               mSpotifyAppRemote.getContentApi().getChildrenOfItem(homeTrendingItem, 20, 0).setResultCallback(new CallResult.ResultCallback<ListItems>() {
-                   @Override
-                   public void onResult(ListItems listItems) {
-                       Log.d("SpotifyService", "Inside children of item");
-                       ListItem[] childrenItemsArr = listItems.items;
-                       for (int i = 0; i < childrenItemsArr.length; i++) {
-                           ListItem track = childrenItemsArr[i];
-                           Song song = new Song();
-                           song.setURI(track.uri);
-                           song.setImageUrl(track.imageUri.raw);
-                           song.setTitle(track.title);
-                           song.setArtist(track.subtitle);
-                           song.saveInBackground(new SaveCallback() {
-                               @Override
-                               public void done(ParseException e) {
-                                   if (e != null) {
-                                       Log.e(TAG, "Error while saving rec", e);
-                                       e.printStackTrace();
-                                   }
-                                   Log.i(TAG, "Rec save was successful!");
-                               }
-                           });
-                       }
-                   }
-               });
-
-
-           }
-       });
-        LocalBroadcastManager.getInstance(this).sendBroadcast(in);
     }
 
     private void playPause() {
