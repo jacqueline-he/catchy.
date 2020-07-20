@@ -37,12 +37,14 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
     SpotifyService spotify;
     SpotifyBroadcastReceiver receiver;
     Context context;
+    SongRecommendation songRecommendation;
 
     public HomeFragmentAdapter(@NonNull Fragment fragment, List<Song> list, Context context, SpotifyBroadcastReceiver receiver) {
         super(fragment);
         this.list = list;
         this.context = context;
         this.receiver = receiver;
+        songRecommendation = new SongRecommendation();
 
     }
 
@@ -51,13 +53,8 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
     public SongFragment createFragment(int position) {
         if (position == list.size() - 2) {
             Log.d("HomeFragmentAdapter", "get more");
-            // receiver.enqueueService(context, SpotifyBroadcastReceiver.ACTION_GET_RECS);
             addRecommendedSongs();
 
-        }
-
-        if (position > list.size() - 1) {
-            // queueSongs(); // Retrieve 10 more songs
         }
         return SongFragment.newInstance(list.get(position), receiver);
     }
@@ -66,12 +63,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
     private void addRecommendedSongs() {
         SpotifyApi spotifyApi = new SpotifyApi();
         spotifyApi.setAccessToken(ParseUser.getCurrentUser().getString("token"));
-        Map<String, Object> options = new HashMap<>();
-        options.put("limit", 20);
-        // options.put("min_popularity", 50);
-        options.put("seed_artists", "4NHQUGzhtTLFvgF5SZesLK");
-        options.put("seed_genres", "pop,k-pop");
-        options.put("seed_tracks", "0c6xIDDpzE81m2q797ordA");
+        Map<String, Object> options = songRecommendation.getOptions();
 
         spotify = spotifyApi.getService();
         spotify.getRecommendations(options, new SpotifyCallback<Recommendations>() {

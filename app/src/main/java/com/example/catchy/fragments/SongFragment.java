@@ -1,5 +1,6 @@
 package com.example.catchy.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -109,6 +110,13 @@ public class SongFragment extends Fragment {
         tvArtist.setText(song.getArtist());
         Picasso.with(getContext()).load(song.getImageUrl()).into(ivAlbumImage);
 
+        tvTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO add detail implementation
+            }
+        });
+
         song.setSeen(true);
         song.saveInBackground(new SaveCallback() {
             @Override
@@ -123,7 +131,6 @@ public class SongFragment extends Fragment {
 
 
         spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
-        // spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_GET_RECS);
 
         return view;
     }

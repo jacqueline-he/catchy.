@@ -8,6 +8,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +28,7 @@ import com.example.catchy.MainActivity;
 import com.example.catchy.R;
 import com.example.catchy.SearchAdapter;
 import com.example.catchy.models.Song;
+import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -52,6 +54,7 @@ public class SearchFragment extends Fragment {
     ImageButton ibSearch;
     List<Song> results;
     String query;
+    SpotifyBroadcastReceiver spotifyBroadcastReceiver;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -66,6 +69,10 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
+        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(spotifyBroadcastReceiver);
+        Log.d("SearchFragment", "Paused");
 
     }
 

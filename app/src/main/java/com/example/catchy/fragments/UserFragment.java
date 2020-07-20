@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ import com.example.catchy.R;
 import com.example.catchy.SettingsActivity;
 import com.example.catchy.UserAdapter;
 import com.example.catchy.models.Like;
+import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -57,6 +59,7 @@ public class UserFragment extends Fragment {
     private EndlessRecyclerViewScrollListener scrollListener;
     protected List<Like> userLikes;
     boolean infScroll = false;
+    SpotifyBroadcastReceiver spotifyBroadcastReceiver;
 
     public UserFragment() {
         // Required empty public constructor
@@ -66,6 +69,9 @@ public class UserFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
+        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(spotifyBroadcastReceiver);
     }
 
     @Override
