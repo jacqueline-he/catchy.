@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyCallback;
@@ -47,6 +48,9 @@ public class HomeFragment extends Fragment{
     List<Song> arr;
     private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
     Context context;
+    private List<String> tracks;
+    private List<String> artists;
+    private List<String> genres;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -57,13 +61,21 @@ public class HomeFragment extends Fragment{
         super.onCreate(savedInstanceState);
         arr = new ArrayList<Song>();
         spotifyBroadcastReceiver = ((MainActivity)getContext()).getReceiver();
-        // spotifyBroadcastReceiver.playNew(getContext(), "spotify:track:6KfoDhO4XUWSbnyKjNp9c4");
         homeFragmentAdapter = new HomeFragmentAdapter(this, arr, getContext(), spotifyBroadcastReceiver);
         context = getContext();
+
+
+        artists = new ArrayList<>();
+        tracks = new ArrayList<>();
+        genres = new ArrayList<>();
+        // starter seeds
+        artists.add("6qqNVTkY8uBg9cP3Jd7DAH");
+        tracks.add("2X2J0BhxaLTmnxO4pPUhSd");
+        genres.add("pop");
+        genres.add("kpop");
+
         addRecommendedSongs();
         // queueSongs();
-
-
     }
 
     // HTTP Request for new songs, add to Parse database
@@ -72,9 +84,11 @@ public class HomeFragment extends Fragment{
         spotifyApi.setAccessToken(ParseUser.getCurrentUser().getString("token"));
         // Map<String, Object> options = songRecommendation.getOptions();
 
-        String seedArtists = "4NHQUGzhtTLFvgF5SZesLK";
-        String seedGenres = "pop,k-pop";
-        String seedTracks = "0c6xIDDpzE81m2q797ordA";
+        Random rand = new Random();
+        // starter
+        String seedArtists = artists.get( rand.nextInt(artists.size()));
+        String seedGenres = genres.get( rand.nextInt(genres.size()));;
+        String seedTracks = tracks.get( rand.nextInt(tracks.size()));
 
         Map<String, Object> options = new HashMap<>();
         options.put("limit", 20);
