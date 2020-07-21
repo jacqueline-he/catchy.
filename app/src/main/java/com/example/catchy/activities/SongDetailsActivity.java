@@ -24,6 +24,7 @@ public class SongDetailsActivity extends AppCompatActivity {
     private boolean liked;
     private Song song;
     SpotifyBroadcastReceiver receiver;
+    boolean playing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,10 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         song = (Song) intent.getExtras().get("song");
+        playing = (boolean) intent.getExtras().get("playing");
+        if (!playing) {
+            receiver.playNew(this, song.getURI());
+        }
 
         tvTitle.setText(song.getTitle());
         tvArtist.setText(song.getArtist());
@@ -64,6 +69,14 @@ public class SongDetailsActivity extends AppCompatActivity {
             btnLike.setImageResource(R.drawable.ic_likes);
             btnLike.clearColorFilter();
             liked = false;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (!playing) {
+            receiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_PAUSE);
         }
     }
 }

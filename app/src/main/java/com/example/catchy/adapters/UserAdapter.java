@@ -72,6 +72,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     song.setImageUrl(like.getImageUrl());
                     // pack something
                     intent.putExtra("song", song);
+                    intent.putExtra("playing", false);
                     context.startActivity(intent);
                 }
             });
