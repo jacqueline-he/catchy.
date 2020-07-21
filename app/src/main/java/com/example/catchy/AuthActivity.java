@@ -17,7 +17,7 @@ public class AuthActivity extends AppCompatActivity {
 
     // API stuff
     private static final int REQUEST_CODE = 1337;
-    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private";
+    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private,user-top-read";
     public static final String TAG = "AuthActivity";
 
 
