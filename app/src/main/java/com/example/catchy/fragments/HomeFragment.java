@@ -1,31 +1,24 @@
 package com.example.catchy.fragments;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.catchy.HomeFragmentAdapter;
 import com.example.catchy.MainActivity;
 import com.example.catchy.R;
 import com.example.catchy.SongRecommendation;
-import com.example.catchy.SpotifyAppRemoteSingleton;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
-import com.example.catchy.service.SpotifyService;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -44,8 +37,6 @@ import kaaes.spotify.webapi.android.models.ArtistSimple;
 import kaaes.spotify.webapi.android.models.Recommendations;
 import kaaes.spotify.webapi.android.models.Track;
 import retrofit.client.Response;
-
-import static com.parse.Parse.getApplicationContext;
 
 
 public class HomeFragment extends Fragment{
@@ -206,7 +197,7 @@ public class HomeFragment extends Fragment{
     public void onResume() {
         super.onResume();
         // Register for the particular broadcast based on ACTION string
-        IntentFilter filter = new IntentFilter(SpotifyService.ACTION);
+        IntentFilter filter = new IntentFilter(SpotifyIntentService.ACTION);
         spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
         LocalBroadcastManager.getInstance(context).registerReceiver(spotifyBroadcastReceiver, filter);
         // or `registerReceiver(testReceiver, filter)` for a normal broadcast

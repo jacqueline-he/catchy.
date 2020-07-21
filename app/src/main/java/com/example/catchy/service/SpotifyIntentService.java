@@ -38,13 +38,13 @@ import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE;
 import static com.spotify.protocol.types.Repeat.ONE;
 
-public class SpotifyService extends JobIntentService {
+public class SpotifyIntentService extends JobIntentService {
     private static final String REDIRECT_URI = "http://com.example.catchy./callback";
-    public static final String TAG = "SpotifyService";
+    public static final String TAG = "SpotifyIntentService";
     private static SpotifyAppRemote mSpotifyAppRemote;
     private static PlayerApi mPlayerApi;
     private static boolean mIsSpotifyConnected;
-    public static final String ACTION = "com.example.catchy.service.SpotifyService";
+    public static final String ACTION = "com.example.catchy.service.SpotifyIntentService";
 
 
     @Override
