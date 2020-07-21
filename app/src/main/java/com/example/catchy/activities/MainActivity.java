@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void deleteSongs() {
         ParseQuery<Song> query = ParseQuery.getQuery(Song.class);
-        query.setLimit(100);
+        query.whereEqualTo("seen", true);
         query.findInBackground(new FindCallback<Song>() {
             @Override
             public void done(List<Song> posts, ParseException e) {

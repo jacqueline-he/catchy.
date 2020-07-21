@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.example.catchy.adapters.HomeFragmentAdapter;
 import com.example.catchy.activities.MainActivity;
 import com.example.catchy.R;
-import com.example.catchy.SongRecommendation;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.FindCallback;
@@ -27,6 +26,7 @@ import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +44,6 @@ public class HomeFragment extends Fragment{
     HomeFragmentAdapter homeFragmentAdapter;
     ViewPager2 mViewPager;
     kaaes.spotify.webapi.android.SpotifyService spotify;
-    SongRecommendation songRecommendation;
     List<Song> arr;
     private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
     Context context;
@@ -59,10 +58,10 @@ public class HomeFragment extends Fragment{
         arr = new ArrayList<Song>();
         spotifyBroadcastReceiver = ((MainActivity)getContext()).getReceiver();
         // spotifyBroadcastReceiver.playNew(getContext(), "spotify:track:6KfoDhO4XUWSbnyKjNp9c4");
-        songRecommendation = new SongRecommendation();
         homeFragmentAdapter = new HomeFragmentAdapter(this, arr, getContext(), spotifyBroadcastReceiver);
         context = getContext();
         addRecommendedSongs();
+        // queueSongs();
 
 
     }
@@ -71,8 +70,18 @@ public class HomeFragment extends Fragment{
     private void addRecommendedSongs() {
         SpotifyApi spotifyApi = new SpotifyApi();
         spotifyApi.setAccessToken(ParseUser.getCurrentUser().getString("token"));
-        Map<String, Object> options = songRecommendation.getOptions();
+        // Map<String, Object> options = songRecommendation.getOptions();
 
+        String seedArtists = "4NHQUGzhtTLFvgF5SZesLK";
+        String seedGenres = "pop,k-pop";
+        String seedTracks = "0c6xIDDpzE81m2q797ordA";
+
+        Map<String, Object> options = new HashMap<>();
+        options.put("limit", 20);
+        options.put("min_popularity", 50);
+        options.put("seed_tracks", seedTracks);
+        options.put("seed_artists", seedArtists);
+        options.put("seed_genres", seedGenres);
         spotify = spotifyApi.getService();
         spotify.getRecommendations(options, new SpotifyCallback<Recommendations>() {
             @Override

@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.catchy.SongRecommendation;
 import com.example.catchy.fragments.SongFragment;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
@@ -17,7 +16,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +25,9 @@ import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyCallback;
 import kaaes.spotify.webapi.android.SpotifyError;
 import kaaes.spotify.webapi.android.SpotifyService;
+import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.ArtistSimple;
+import kaaes.spotify.webapi.android.models.Pager;
 import kaaes.spotify.webapi.android.models.Recommendations;
 import kaaes.spotify.webapi.android.models.Track;
 import retrofit.client.Response;
@@ -38,24 +38,30 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
     SpotifyService spotify;
     SpotifyBroadcastReceiver receiver;
     Context context;
-    SongRecommendation songRecommendation;
+
+    String seedArtists = "4NHQUGzhtTLFvgF5SZesLK";
+    String seedGenres = "pop,k-pop";
+    String seedTracks = "0c6xIDDpzE81m2q797ordA";
+    boolean adding = false;
 
     public HomeFragmentAdapter(@NonNull Fragment fragment, List<Song> list, Context context, SpotifyBroadcastReceiver receiver) {
         super(fragment);
         this.list = list;
         this.context = context;
         this.receiver = receiver;
-        songRecommendation = new SongRecommendation();
-
     }
 
     @NonNull
     @Override
     public SongFragment createFragment(int position) {
-        if (position == list.size() - 2) {
+        if (position > list.size() - 3 && !adding) {
             Log.d("HomeFragmentAdapter", "get more");
+            adding = true;
             addRecommendedSongs();
+        }
 
+        if (position == list.size() - 2) {
+            queueSongs();
         }
         return SongFragment.newInstance(list.get(position), receiver);
     }
@@ -64,9 +70,26 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
     private void addRecommendedSongs() {
         SpotifyApi spotifyApi = new SpotifyApi();
         spotifyApi.setAccessToken(ParseUser.getCurrentUser().getString("token"));
-        Map<String, Object> options = songRecommendation.getOptions();
-
         spotify = spotifyApi.getService();
+        // Map<String, Object> options = songRecommendation.getOptions();
+        Map<String, Object> options = new HashMap<>();
+        options.put("limit", 20);
+        options.put("min_popularity", 50);
+
+        if (seedArtists == null)
+            seedArtists = "4NHQUGzhtTLFvgF5SZesLK";
+
+        if (seedGenres == null)
+            seedGenres = "pop,k-pop";
+
+        if (seedTracks == null)
+            seedTracks = "0c6xIDDpzE81m2q797ordA";
+
+        options.put("seed_artists", seedArtists);
+        options.put("seed_tracks", seedTracks);
+        options.put("seed_genres", seedGenres);
+
+
         spotify.getRecommendations(options, new SpotifyCallback<Recommendations>() {
             @Override
             public void failure(SpotifyError spotifyError) {
@@ -99,10 +122,62 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
                         }
                     });
                 }
-                queueSongs();
+            }
+        });
+
+        getSeedTracks();
+        getSeedArtists(); // artists and genres
+        adding = false;
+    }
+
+    public void getSeedTracks() {
+        spotify.getTopTracks(new SpotifyCallback<Pager<Track>>() {
+            @Override
+            public void failure(SpotifyError spotifyError) {
+                Log.e("HomeFragmentAdapter", "error getting preferences", spotifyError);
+            }
+
+            @Override
+            public void success(Pager<Track> trackPager, Response response) {
+                List<Track> list = trackPager.items;
+                int i = (int) (Math.random() * list.size());
+                int j = (int) (Math.random() * list.size());;
+                while (i == j)  {
+                    j = (int) (Math.random() * list.size());
+                }
+                seedTracks = list.get(i).id + "," + list.get(j).id;
+                Log.d("HomeFragmentAdapter", "Loaded: tracks = " + seedTracks);
+
             }
         });
     }
+
+    public void getSeedArtists() {
+        spotify.getTopArtists(new SpotifyCallback<Pager<Artist>>() {
+            @Override
+            public void failure(SpotifyError spotifyError) {
+                Log.e("HomeFragmentAdapter", "error getting preferences", spotifyError);
+            }
+
+            @Override
+            public void success(Pager<Artist> artistPager, Response response) {
+                List<Artist> list = artistPager.items;
+                int i = (int) (Math.random() * list.size());
+                int j = (int) (Math.random() * list.size());;
+                while (i == j)  {
+                    j = (int) (Math.random() * list.size());
+                }
+
+                seedArtists = list.get(i).id + "," + list.get(j).id;
+                Log.d("HomeFragmentAdapter", "Loaded: artists = " + seedArtists);
+
+                seedGenres = list.get(i).genres.get(0) + "," + list.get(j).genres.get(0);
+                Log.d("HomeFragmentAdapter", "Loaded: genres = " + seedGenres);
+
+            }
+        });
+    }
+
 
     private void queueSongs() {
 
