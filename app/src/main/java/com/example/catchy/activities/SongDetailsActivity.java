@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.catchy.R;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
+import com.example.catchy.R;
 import com.parse.ParseUser;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;

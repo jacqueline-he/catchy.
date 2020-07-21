@@ -13,8 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.catchy.HomeFragmentAdapter;
-import com.example.catchy.MainActivity;
+import com.example.catchy.adapters.HomeFragmentAdapter;
+import com.example.catchy.activities.MainActivity;
 import com.example.catchy.R;
 import com.example.catchy.SongRecommendation;
 import com.example.catchy.models.Song;

@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.catchy.SongRecommendation;
 import com.example.catchy.fragments.SongFragment;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;

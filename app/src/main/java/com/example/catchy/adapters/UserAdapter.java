@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.catchy.R;
+import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

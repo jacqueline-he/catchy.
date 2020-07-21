@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.catchy.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
-import com.spotify.sdk.android.authentication.AuthenticationClient;
-import com.spotify.sdk.android.authentication.AuthenticationRequest;
-import com.spotify.sdk.android.authentication.AuthenticationResponse;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.GestureDetector;
@@ -13,14 +12,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.catchy.MainActivity;
 import com.example.catchy.R;
-import com.example.catchy.SongDetailsActivity;
-import com.example.catchy.SpotifyAppRemoteSingleton;
+import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;

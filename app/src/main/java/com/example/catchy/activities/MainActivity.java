@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.catchy.R;
 import com.example.catchy.fragments.HomeFragment;
 import com.example.catchy.fragments.SearchFragment;
 import com.example.catchy.fragments.UserFragment;
