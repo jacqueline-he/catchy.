@@ -74,8 +74,7 @@ public class HomeFragment extends Fragment{
         genres.add("pop");
         genres.add("kpop");
 
-        addRecommendedSongs();
-        // queueSongs();
+        queueSongs();
     }
 
     // HTTP Request for new songs, add to Parse database
@@ -155,9 +154,14 @@ public class HomeFragment extends Fragment{
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
-                arr.addAll(posts);
-                homeFragmentAdapter.notifyDataSetChanged();
-                Log.i(TAG, "Adapter changed");
+                if (posts.size() < 10) {
+                    addRecommendedSongs();
+                }
+                else {
+                    arr.addAll(posts);
+                    homeFragmentAdapter.notifyDataSetChanged();
+                    Log.i(TAG, "Adapter changed");
+                }
             }
         });
 

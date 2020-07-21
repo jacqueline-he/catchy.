@@ -21,10 +21,10 @@ public class SongDetailsActivity extends AppCompatActivity {
     private TextView tvTitle;
     private TextView tvArtist;
     private FloatingActionButton btnLike;
-    private boolean liked;
     private Song song;
     SpotifyBroadcastReceiver receiver;
     boolean playing;
+    boolean liked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,12 @@ public class SongDetailsActivity extends AppCompatActivity {
             receiver.playNew(this, song.getURI());
         }
 
+        liked = (boolean) intent.getExtras().get("liked");
+        if (liked) {
+            btnLike.setImageResource(R.drawable.ic_likes_filled);
+            btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
+        }
+
         tvTitle.setText(song.getTitle());
         tvArtist.setText(song.getArtist());
 
@@ -54,8 +60,6 @@ public class SongDetailsActivity extends AppCompatActivity {
                 like();
             }
         });
-
-
 
     }
 

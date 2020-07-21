@@ -3,6 +3,7 @@ package com.example.catchy.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -37,6 +38,7 @@ public class SongFragment extends Fragment {
     private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
     public static final String TAG = "SongFragment";
     boolean liked = false;
+    boolean enteringSongDetails = false;
 
     public SongFragment() {
         // Required empty public constructor
@@ -111,10 +113,12 @@ public class SongFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO add detail implementation
+                enteringSongDetails = true;
                 Intent intent = new Intent(getContext(), SongDetailsActivity.class);
                 // pack something
                 intent.putExtra("song", song);
                 intent.putExtra("playing", true);
+                intent.putExtra("liked", liked);
                 startActivity(intent);
             }
         });
@@ -153,9 +157,9 @@ public class SongFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("SongFragment", "paused " + song.getTitle() + ", like is " + liked);
+        Log.d("SongFragment", "stopped " + song.getTitle() + ", like is " + liked);
         // update like
-        if (liked) {
+        if (liked && ! enteringSongDetails) {
             Like like = new Like();
             like.setTitle(song.getTitle());
             like.setArtist(song.getArtist());
