@@ -4,21 +4,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:id="@+id/layout"
     tools:context=".activities.SongDetailsActivity">
 
 
+
+
+
+
+
     <ImageView
         android:id="@+id/ivAlbumImage"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="26dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -28,14 +36,14 @@
         android:layout_below="@+id/ivAlbumImage"
         android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="6dp"
         android:fontFamily="@font/lato"
         android:text="title"
         android:textColor="@color/white"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textStyle="bold" />
 
 
@@ -46,7 +54,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivAlbumImage"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd = "12dp"
         android:backgroundTint="@color/transparent"
         android:clickable="true"
         android:focusable="true"
@@ -64,8 +73,8 @@
         android:layout_below="@+id/tvTitle"
         android:layout_alignEnd="@+id/btnLike"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/lato"
         android:layout_weight="1"
@@ -81,7 +90,7 @@
         android:layout_below="@+id/tvArtist"
         android:layout_alignParentStart="true"
         android:layout_marginStart="67dp"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="58dp"
         android:layout_toStartOf="@+id/btnPlayPause"
         android:backgroundTint="@color/transparent"
@@ -102,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvArtist"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="12dp"
         android:scaleType="center"
         app:backgroundTint="@color/white"
         app:fabSize="normal"
@@ -115,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvArtist"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="67dp"
         android:backgroundTint="@color/transparent"
         android:clickable="true"
@@ -127,5 +136,6 @@
         app:elevation="0dp"
         app:maxImageSize="44dp"
         app:rippleColor="@null" />
+
 
 </RelativeLayout>
