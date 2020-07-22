@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.catchy.DetailTransition;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
 import com.example.catchy.activities.MainActivity;
 import com.example.catchy.R;
@@ -210,6 +211,10 @@ public class UserFragment extends Fragment {
         if (profileImage != null) {
              Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
             // Glide.with(this).load("/storage/emulated/0/Android/data/com.example.catchy/files/Pictures/SettingsActivity/photo.jpg").transform(new CircleCrop()).into(ivProfileImage);
+        }
+
+        if (!DetailTransition.liked) {
+            adapter.notifyItemRemoved(DetailTransition.pos);
         }
 
         View decorView = ((MainActivity)getActivity()).getWindow().getDecorView();

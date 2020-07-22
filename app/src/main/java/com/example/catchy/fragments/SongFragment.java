@@ -120,6 +120,7 @@ public class SongFragment extends Fragment {
                 intent.putExtra("song", song);
                 intent.putExtra("playing", true);
                 intent.putExtra("liked", liked);
+                intent.putExtra("from", "home");
                 startActivity(intent);
             }
         });
@@ -158,7 +159,6 @@ public class SongFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "HEREEEEEEEEEEEEE");
         // if (fromDetails) {
             enteringSongDetails = DetailTransition.enteringSongDetails; // should be false
             liked = DetailTransition.liked; // should be true

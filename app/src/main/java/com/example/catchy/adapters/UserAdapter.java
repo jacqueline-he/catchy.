@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.catchy.DetailTransition;
 import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Like;
@@ -74,6 +75,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     intent.putExtra("song", song);
                     intent.putExtra("liked", true);
                     intent.putExtra("playing", false);
+                    intent.putExtra("from", "user");
+
+                    DetailTransition.pos = getAdapterPosition();
                     context.startActivity(intent);
                 }
             });

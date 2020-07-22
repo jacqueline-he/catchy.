@@ -88,6 +88,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     intent.putExtra("song", song);
                     intent.putExtra("liked", false); // TODO fix
                     intent.putExtra("playing", false);
+                    intent.putExtra("from", "search");
                     context.startActivity(intent);
                 }
             });

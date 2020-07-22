@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,9 +14,17 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.catchy.DetailTransition;
 import com.example.catchy.R;
+import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.util.List;
 
 public class SongDetailsActivity extends AppCompatActivity {
     private ImageView ivAlbumImage;
@@ -26,6 +35,7 @@ public class SongDetailsActivity extends AppCompatActivity {
     SpotifyBroadcastReceiver receiver;
     boolean playing;
     boolean liked;
+    String from;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,8 @@ public class SongDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         song = (Song) intent.getExtras().get("song");
         playing = (boolean) intent.getExtras().get("playing");
+        from = intent.getStringExtra("from");
+
         if (!playing) {
             receiver.playNew(this, song.getURI());
         }
@@ -82,8 +94,48 @@ public class SongDetailsActivity extends AppCompatActivity {
         super.onBackPressed();
         DetailTransition.liked = liked;
         DetailTransition.enteringSongDetails = false;
+        DetailTransition.song = song;
         if (!playing) {
             receiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_PAUSE);
+        }
+
+        if (from.equals("search") && liked) {
+            // Add song to likes
+            Like like = new Like();
+            like.setTitle(song.getTitle());
+            like.setArtist(song.getArtist());
+            like.setImageUrl(song.getImageUrl());
+            like.setURI(song.getURI());
+            like.setLikedBy(ParseUser.getCurrentUser());
+
+            like.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Log.e("SongDetailsActivity", "Error while saving", e);
+                        e.printStackTrace();
+                    }
+                    Log.i("SongDetailsActivity", "Post save was successful!");
+                }
+            });
+        }
+        else if (from.equals("user") && ! liked) {
+            // Remove this song from likes
+            ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
+            query.include(Like.KEY_LIKED_BY);
+            query.whereEqualTo("title", song.getTitle());
+            query.findInBackground(new FindCallback<Like>() {
+                @Override
+                public void done(List<Like> objects, ParseException e) {
+                    if (e != null) {
+                        Log.e("SongDetailsActivity", "Issue with getting post to remove", e);
+                        return;
+                    }
+                    objects.get(0).deleteInBackground();
+                }
+            });
+            // Visually show
+
         }
     }
 }
