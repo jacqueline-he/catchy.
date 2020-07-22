@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.catchy.DetailTransition;
 import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Like;
@@ -152,6 +153,20 @@ public class SongFragment extends Fragment {
             btnLike.clearColorFilter();
             liked = false;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "HEREEEEEEEEEEEEE");
+        // if (fromDetails) {
+            enteringSongDetails = DetailTransition.enteringSongDetails; // should be false
+            liked = DetailTransition.liked; // should be true
+            if (liked) {
+                btnLike.setImageResource(R.drawable.ic_likes_filled);
+                btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
+            }
+        // }
     }
 
     @Override

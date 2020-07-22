@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.catchy.DetailTransition;
 import com.example.catchy.R;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
@@ -79,6 +80,8 @@ public class SongDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        DetailTransition.liked = liked;
+        DetailTransition.enteringSongDetails = false;
         if (!playing) {
             receiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_PAUSE);
         }
