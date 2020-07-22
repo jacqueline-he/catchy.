@@ -35,6 +35,7 @@ public class SongDetailsActivity extends AppCompatActivity {
     SpotifyBroadcastReceiver receiver;
     boolean playing;
     boolean liked;
+    FloatingActionButton btnPlayPause;
     String from;
 
     @Override
@@ -46,6 +47,8 @@ public class SongDetailsActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvArtist = findViewById(R.id.tvArtist);
         btnLike = findViewById(R.id.btnLike);
+        btnPlayPause = findViewById(R.id.btnPlayPause);
+        btnPlayPause.setTag(R.drawable.ic_pause128128);
 
         Intent intent = getIntent();
         song = (Song) intent.getExtras().get("song");
@@ -71,6 +74,21 @@ public class SongDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 like();
+            }
+        });
+
+        btnPlayPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                receiver.enqueueService(SongDetailsActivity.this, SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
+                if ((Integer)btnPlayPause.getTag() == R.drawable.ic_play128128) {
+                    btnPlayPause.setImageResource(R.drawable.ic_pause128128);
+                    btnPlayPause.setTag(R.drawable.ic_pause128128);
+                }
+                else {
+                    btnPlayPause.setImageResource(R.drawable.ic_play128128);
+                    btnPlayPause.setTag(R.drawable.ic_play128128);
+                }
             }
         });
 
@@ -134,7 +152,6 @@ public class SongDetailsActivity extends AppCompatActivity {
                     objects.get(0).deleteInBackground();
                 }
             });
-            // Visually show
 
         }
     }

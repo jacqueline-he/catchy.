@@ -73,4 +73,17 @@
         android:text="artist"
         android:textColor="@color/light_gray"
         android:textSize="20dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnPlayPause"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="86dp"
+        app:backgroundTint="@color/white"
+        android:scaleType="center"
+        app:maxImageSize="44dp"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_pause128128" />
 </RelativeLayout>
