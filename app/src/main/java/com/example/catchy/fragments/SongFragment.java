@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.catchy.DetailTransition;
 import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
@@ -73,6 +74,16 @@ public class SongFragment extends Fragment {
         tvArtist = view.findViewById(R.id.tvArtist);
         ivAlbumImage = view.findViewById(R.id.ivAlbumImage);
         btnLike = view.findViewById(R.id.btnLike);
+        DetailTransition.liked = false;
+
+        new Thread(() -> {
+            try {
+                DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
+            } catch (Exception e) {
+                Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
+            }
+        }).start();
+
 
 
         // Double tap
@@ -108,7 +119,7 @@ public class SongFragment extends Fragment {
 
         tvTitle.setText(song.getTitle());
         tvArtist.setText(song.getArtist());
-        Picasso.with(getContext()).load(song.getImageUrl()).into(ivAlbumImage);
+        Glide.with(this).load(song.getImageUrl()).into(ivAlbumImage);
 
         tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -223,4 +223,10 @@ public class UserFragment extends Fragment {
         decorView.setSystemUiVisibility(uiOptions);
 
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        DetailTransition.liked = false;
+    }
 }

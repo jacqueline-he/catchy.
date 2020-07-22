@@ -18,6 +18,7 @@ import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -71,6 +72,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     song.setURI(like.getURI());
                     song.setArtist(like.getArtist());
                     song.setImageUrl(like.getImageUrl());
+
+                    new Thread(() -> {
+                        try {
+                            DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
+                        } catch (Exception e) {
+                            Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
+                        }
+                    }).start();
+
                     // pack something
                     intent.putExtra("song", song);
                     intent.putExtra("liked", true);

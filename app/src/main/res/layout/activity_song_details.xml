@@ -8,12 +8,6 @@
     android:id="@+id/layout"
     tools:context=".activities.SongDetailsActivity">
 
-
-
-
-
-
-
     <ImageView
         android:id="@+id/ivAlbumImage"
         android:layout_width="360dp"
