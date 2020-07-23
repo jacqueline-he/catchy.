@@ -60,7 +60,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
             addRecommendedSongs();
         }
 
-        if (position == list.size() - 2) {
+        if (position == list.size() - 4) {
             queueSongs();
         }
         return SongFragment.newInstance(list.get(position), receiver);
@@ -168,11 +168,12 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
                     j = (int) (Math.random() * list.size());
                 }
 
-                seedArtists = list.get(i).id + "," + list.get(j).id;
-                Log.d("HomeFragmentAdapter", "Loaded: artists = " + seedArtists);
-
-                seedGenres = list.get(i).genres.get(0) + "," + list.get(j).genres.get(0);
-                Log.d("HomeFragmentAdapter", "Loaded: genres = " + seedGenres);
+                if (list.size() > 0) {      // avoids index out of bounds exception
+                    seedArtists = list.get(i).id + "," + list.get(j).id;
+                    Log.d("HomeFragmentAdapter", "Loaded: artists = " + seedArtists);
+                    seedGenres = list.get(i).genres.get(0) + "," + list.get(j).genres.get(0);
+                    Log.d("HomeFragmentAdapter", "Loaded: genres = " + seedGenres);
+                }
 
             }
         });
