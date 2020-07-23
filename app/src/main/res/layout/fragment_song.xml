@@ -62,7 +62,7 @@
         android:fontFamily="@font/lato"
         android:layout_weight="1"
         android:text="artist"
-        android:textColor="@color/light_gray"
+        android:textColor="#80fbfbfb"
         android:textSize="20dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

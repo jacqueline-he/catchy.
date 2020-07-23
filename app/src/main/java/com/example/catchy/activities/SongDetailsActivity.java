@@ -75,6 +75,7 @@ public class SongDetailsActivity extends AppCompatActivity {
         playing = (boolean) intent.getExtras().get("playing");
         from = intent.getStringExtra("from");
 
+        // TODO bug where song is paused in SongFrag before clicking in
         if (!playing) {
             receiver.playNew(this, song.getURI());
         }
