@@ -217,11 +217,6 @@ public class UserFragment extends Fragment {
             adapter.notifyItemRemoved(DetailTransition.pos);
         }
 
-        View decorView = ((MainActivity)getActivity()).getWindow().getDecorView();
-        // Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-
     }
 
     @Override

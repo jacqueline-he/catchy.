@@ -124,6 +124,12 @@ public class SearchFragment extends Fragment {
                 results.clear();
                 fetchSongs(query, 0);
                 scrollListener.resetState();
+
+                View decorView = getActivity().getWindow().getDecorView();
+// Hide the status bar.
+                int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+                decorView.setSystemUiVisibility(uiOptions);
+
             }
         });
 
