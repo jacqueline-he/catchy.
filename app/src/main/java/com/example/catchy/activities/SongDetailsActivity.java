@@ -120,6 +120,24 @@ public class SongDetailsActivity extends AppCompatActivity {
             }
         });
 
+        View view = findViewById(R.id.layout);
+        view.setOnTouchListener(new View.OnTouchListener() {
+            private GestureDetector gestureDetector = new GestureDetector(SongDetailsActivity.this, new GestureDetector.SimpleOnGestureListener() {
+                @Override // Like
+                public boolean onDoubleTap(MotionEvent e) {
+                    like();
+                    return super.onDoubleTap(e);
+                }
+            });
+
+
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                gestureDetector.onTouchEvent(event);
+                return true;
+            }
+        });
+
         setBackgroundColor();
     }
 
