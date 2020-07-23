@@ -83,7 +83,29 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             tvArtist.setText(song.getArtist());
             Glide.with(context).load(song.getImageUrl()).into(ivAlbumImage);
 
+            // TODO find way of grabbing entire itemview
             tvTitle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new Thread(() -> {
+                        try {
+                            DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
+                        } catch (Exception e) {
+                            Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
+                        }
+                    }).start();
+
+                    Intent intent = new Intent(context, SongDetailsActivity.class);
+                    // pack something
+                    intent.putExtra("song", song);
+                    intent.putExtra("liked", false); // TODO fix
+                    intent.putExtra("playing", false);
+                    intent.putExtra("from", "search");
+                    context.startActivity(intent);
+                }
+            });
+
+            ivAlbumImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     new Thread(() -> {

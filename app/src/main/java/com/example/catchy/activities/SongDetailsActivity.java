@@ -56,7 +56,6 @@ public class SongDetailsActivity extends AppCompatActivity {
         receiver = new SpotifyBroadcastReceiver();
         ivAlbumImage = findViewById(R.id.ivAlbumImage);
 
-        // TODO force title into one line
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setSelected(true);
 
