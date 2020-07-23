@@ -98,7 +98,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     Intent intent = new Intent(context, SongDetailsActivity.class);
                     // pack something
                     intent.putExtra("song", song);
-                    intent.putExtra("liked", false); // TODO fix
+                    intent.putExtra("liked", false);
                     intent.putExtra("playing", false);
                     intent.putExtra("from", "search");
                     context.startActivity(intent);
@@ -119,7 +119,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     Intent intent = new Intent(context, SongDetailsActivity.class);
                     // pack something
                     intent.putExtra("song", song);
-                    intent.putExtra("liked", false); // TODO fix
+                    intent.putExtra("liked", false); // TODO fix - like may be true
                     intent.putExtra("playing", false);
                     intent.putExtra("from", "search");
                     context.startActivity(intent);

@@ -6,6 +6,7 @@ import androidx.palette.graphics.Palette;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,6 +35,8 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+
+import co.revely.gradient.RevelyGradient;
 
 public class SongDetailsActivity extends AppCompatActivity {
     private ImageView ivAlbumImage;
@@ -162,9 +165,17 @@ public class SongDetailsActivity extends AppCompatActivity {
 
             // swatch.getRgb()
             if (swatch != null) {
-                ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+
+                int color = swatch.getRgb();
+                RevelyGradient
+                        .linear()
+                        .colors(new int[] {Color.parseColor("#212121"), color}).angle(90f).alpha(0.76f)
+                        .onBackgroundOf(findViewById(R.id.layout));
+
                 btnPlayPause.setColorFilter(swatch.getRgb());
             }
+
 
         }
 

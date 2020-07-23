@@ -125,7 +125,6 @@ public class SongFragment extends Fragment {
         tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO add detail implementation
                 enteringSongDetails = true;
                 Intent intent = new Intent(getContext(), SongDetailsActivity.class);
                 // pack something
