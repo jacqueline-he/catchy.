@@ -22,12 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="4dp"
         android:layout_marginStart="4dp"
-        android:textColor="@color/white"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/ivAlbumImage"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/ivAlbumImage"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtist" />
+        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        tools:text="title" />
 
     <TextView
         android:id="@+id/tvArtist"
@@ -37,10 +39,11 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:textColor="@color/white"
         android:layout_toEndOf="@+id/ivAlbumImage"
+        android:textColor="@color/light_gray"
         app:layout_constraintStart_toEndOf="@+id/ivAlbumImage"
-        tools:layout_editor_absoluteY="43dp" />
+        tools:layout_editor_absoluteY="43dp"
+        tools:text="artist" />
 
 
 </RelativeLayout>

@@ -124,15 +124,12 @@ public class SongDetailsActivity extends AppCompatActivity {
     }
 
     private void setBackgroundColor() {
-
 /*        try {
             URL url = new URL(song.getImageUrl());
             bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
         } catch(IOException e) {
             System.out.println(e);
         }*/
-
-
 
         if (DetailTransition.bitmap != null && !DetailTransition.bitmap.isRecycled()) {
             Palette palette = Palette.from(DetailTransition.bitmap).generate();

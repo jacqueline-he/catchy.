@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.catchy.EndlessRecyclerViewScrollListener;
 import com.example.catchy.R;
 import com.example.catchy.adapters.SearchAdapter;
 import com.example.catchy.models.Song;
@@ -47,6 +48,8 @@ public class SearchFragment extends Fragment {
     List<Song> results;
     String query;
     SpotifyBroadcastReceiver spotifyBroadcastReceiver;
+
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -98,6 +101,14 @@ public class SearchFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvResults.setLayoutManager(linearLayoutManager);
 
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                fetchSongs(query, page);
+            }
+        };
+        rvResults.addOnScrollListener(scrollListener);
+
         ibSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,6 +122,7 @@ public class SearchFragment extends Fragment {
 
                 results.clear();
                 fetchSongs(query, 0);
+                scrollListener.resetState();
             }
         });
 
