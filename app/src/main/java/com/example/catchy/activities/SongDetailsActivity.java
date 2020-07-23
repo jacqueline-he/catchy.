@@ -45,6 +45,8 @@ public class SongDetailsActivity extends AppCompatActivity {
     boolean playing;
     boolean liked;
     FloatingActionButton btnPlayPause;
+    FloatingActionButton btnRewind; // -5 seconds
+    FloatingActionButton btnForward; // +5 seconds
     String from;
 
     @Override
@@ -58,6 +60,9 @@ public class SongDetailsActivity extends AppCompatActivity {
         btnLike = findViewById(R.id.btnLike);
         btnPlayPause = findViewById(R.id.btnPlayPause);
         btnPlayPause.setTag(R.drawable.ic_pause128128);
+
+        btnRewind = findViewById(R.id.btnRewind);
+        btnForward = findViewById(R.id.btnForward);
 
         Intent intent = getIntent();
         song = (Song) intent.getExtras().get("song");
@@ -98,6 +103,20 @@ public class SongDetailsActivity extends AppCompatActivity {
                     btnPlayPause.setImageResource(R.drawable.ic_play128128);
                     btnPlayPause.setTag(R.drawable.ic_play128128);
                 }
+            }
+        });
+
+        btnRewind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // rewind 5 seconds
+                receiver.updatePlayer(SongDetailsActivity.this, -5000);
+            }
+        });
+
+        btnForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // fast-forward 5 seconds
+                receiver.updatePlayer(SongDetailsActivity.this, 5000);
             }
         });
 

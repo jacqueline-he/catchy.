@@ -3,17 +3,22 @@ package com.example.catchy.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import java.io.Serializable;
 
 import static android.app.Activity.RESULT_CANCELED;
 
 public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Serializable {
+    // Data keys
+    public static final String PLAYBACK_POS_KEY = "playbackPosition";
+
     // Action keys
     public static final String ACTION_PLAY = "action.PLAY";
     public static final String ACTION_INIT = "action.INIT";
     public static final String ACTION_PLAY_PAUSE = "action.PLAY_PAUSE";
     public static final String ACTION_PAUSE = "action.PAUSE";
+    public static final String ACTION_UPDATE = "action.UPDATE";
     public static final String ACTION_DISCONNECT = "action.DISCONNECT";
 
     // Result keys
@@ -58,6 +63,19 @@ public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Seria
         intent.setAction(ACTION);
         SpotifyIntentService.enqueueWork(context, SpotifyIntentService.class, PLAYER_JOB_ID, intent);
     }
+
+    /**
+     * Method to enqueue an update action into this service
+     * @param playbackPos the new playback position in the current song
+     */
+    public static void updatePlayer(Context context, long playbackPos) {
+        Intent intent = new Intent(context, SpotifyIntentService.class);
+        intent.putExtra(PLAYBACK_POS_KEY, playbackPos);
+        // Only enqueue the action in the service if the Spotify remote player is already connected
+        intent.setAction(ACTION_UPDATE);
+        SpotifyIntentService.enqueueWork(context, SpotifyIntentService.class, PLAYER_JOB_ID, intent);
+    }
+
 
     /**
      * Method to enqueue a play action into this service

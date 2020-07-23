@@ -36,6 +36,8 @@ import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_INIT;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PAUSE;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE;
+import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_UPDATE;
+import static com.example.catchy.service.SpotifyBroadcastReceiver.PLAYBACK_POS_KEY;
 import static com.spotify.protocol.types.Repeat.ONE;
 
 public class SpotifyIntentService extends JobIntentService {
@@ -108,6 +110,10 @@ public class SpotifyIntentService extends JobIntentService {
                 case ACTION_PAUSE:
                     pause();
                     break;
+                case ACTION_UPDATE:
+                    long seekPosition = intent.getLongExtra(PLAYBACK_POS_KEY, 5);
+                    seekTo(seekPosition);
+                    break;
                 case ACTION_DISCONNECT:
                     disconnect();
                     break;
@@ -147,6 +153,16 @@ public class SpotifyIntentService extends JobIntentService {
         if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
             mPlayerApi.play(newSongId);
             mPlayerApi.setRepeat(ONE);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(in);
+        }
+    }
+
+    private void seekTo(long progress) {
+        Log.d(TAG,"seekTo");
+        Intent in = new Intent(ACTION_UPDATE);
+        if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
+            mPlayerApi.seekToRelativePosition(progress)
+                    .setErrorCallback(error -> Log.e(TAG, "Cannot seek unless you have premium!", error));
             LocalBroadcastManager.getInstance(this).sendBroadcast(in);
         }
     }
