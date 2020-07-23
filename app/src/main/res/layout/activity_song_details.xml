@@ -46,7 +46,13 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="6dp"
         android:fontFamily="@font/lato"
+        android:singleLine="true"
         android:text="title"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollHorizontally="true"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold" />

@@ -71,6 +71,7 @@ public class SongFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_song, container, false);
         tvTitle = view.findViewById(R.id.tvTitle);
+        tvTitle.setSelected(true);
         tvArtist = view.findViewById(R.id.tvArtist);
         ivAlbumImage = view.findViewById(R.id.ivAlbumImage);
         btnLike = view.findViewById(R.id.btnLike);

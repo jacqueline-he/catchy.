@@ -55,7 +55,11 @@ public class SongDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_song_details);
         receiver = new SpotifyBroadcastReceiver();
         ivAlbumImage = findViewById(R.id.ivAlbumImage);
+
+        // TODO force title into one line
         tvTitle = findViewById(R.id.tvTitle);
+        tvTitle.setSelected(true);
+
         tvArtist = findViewById(R.id.tvArtist);
         btnLike = findViewById(R.id.btnLike);
         btnPlayPause = findViewById(R.id.btnPlayPause);
@@ -153,6 +157,9 @@ public class SongDetailsActivity extends AppCompatActivity {
             Palette palette = Palette.from(DetailTransition.bitmap).generate();
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();
             // int color = palette.getDarkMutedColor(0);
+            if (swatch == null) {
+                swatch = palette.getDominantSwatch();
+            }
 
             // swatch.getRgb()
             if (swatch != null) {
