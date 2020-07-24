@@ -191,6 +191,7 @@ public class SongFragment extends Fragment {
             like.setArtist(song.getArtist());
             like.setImageUrl(song.getImageUrl());
             like.setURI(song.getURI());
+            like.setDuration(song.getDuration());
             like.setLikedBy(ParseUser.getCurrentUser());
 
             like.saveInBackground(new SaveCallback() {

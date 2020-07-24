@@ -16,11 +16,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.catchy.DetailTransition;
 import com.example.catchy.R;
+import com.example.catchy.SongProgressBar;
 import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
@@ -35,6 +37,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import co.revely.gradient.RevelyGradient;
 
@@ -51,6 +54,12 @@ public class SongDetailsActivity extends AppCompatActivity {
     FloatingActionButton btnRewind; // -5 seconds
     FloatingActionButton btnForward; // +5 seconds
     String from;
+
+    SongProgressBar songProgressBar;
+
+    SeekBar seekbar;
+    TextView tvCurrPos;
+    TextView tvFullPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +78,10 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         btnRewind = findViewById(R.id.btnRewind);
         btnForward = findViewById(R.id.btnForward);
+
+        seekbar = findViewById(R.id.seekbar);
+        tvCurrPos = findViewById(R.id.tvCurrPos);
+        tvFullPos = findViewById(R.id.tvFullPos);
 
         Intent intent = getIntent();
         song = (Song) intent.getExtras().get("song");
@@ -105,10 +118,12 @@ public class SongDetailsActivity extends AppCompatActivity {
                 if ((Integer)btnPlayPause.getTag() == R.drawable.ic_play128128) {
                     btnPlayPause.setImageResource(R.drawable.ic_pause128128);
                     btnPlayPause.setTag(R.drawable.ic_pause128128);
+                    songProgressBar.pause();
                 }
                 else {
                     btnPlayPause.setImageResource(R.drawable.ic_play128128);
                     btnPlayPause.setTag(R.drawable.ic_play128128);
+                    songProgressBar.unpause();
                 }
             }
         });
@@ -146,6 +161,31 @@ public class SongDetailsActivity extends AppCompatActivity {
         });
 
         setBackgroundColor();
+        setSeekbar();
+    }
+
+    private void setSeekbar() {
+        seekbar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
+        songProgressBar = new SongProgressBar(seekbar, this);
+        songProgressBar.setMax(song.getDuration());
+
+        int minutes = (int) ((song.getDuration() / 1000)  / 60);
+        int seconds = (int)((song.getDuration() / 1000) % 60);
+        String time;
+        if (seconds < 10) {
+            time = minutes + ":0" + seconds;
+        }
+        else {
+            time = minutes + ":" + seconds;
+        }
+        tvFullPos.setText(time);
+
     }
 
     private void setBackgroundColor() {
@@ -215,6 +255,7 @@ public class SongDetailsActivity extends AppCompatActivity {
             like.setImageUrl(song.getImageUrl());
             like.setURI(song.getURI());
             like.setLikedBy(ParseUser.getCurrentUser());
+            like.setDuration(song.getDuration());
 
             like.saveInBackground(new SaveCallback() {
                 @Override

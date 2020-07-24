@@ -72,6 +72,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     song.setURI(like.getURI());
                     song.setArtist(like.getArtist());
                     song.setImageUrl(like.getImageUrl());
+                    song.setDuration(like.getDuration());
 
                     new Thread(() -> {
                         try {

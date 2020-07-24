@@ -111,6 +111,7 @@ public class HomeFragment extends Fragment{
                     song.setURI(track.uri);
                     song.setImageUrl(track.album.images.get(0).url);
                     song.setTitle(track.name);
+                    song.setDuration(track.duration_ms);
                     String artists = "";
                     List<ArtistSimple> artistList = track.artists;
                     for (int j = 0; j < artistList.size(); j++) {

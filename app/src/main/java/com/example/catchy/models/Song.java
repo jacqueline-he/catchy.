@@ -16,6 +16,7 @@ public class Song extends ParseObject {
     public static final String KEY_IMAGE_URL = "imageUrl";
     public static final String KEY_URI = "uri";
     public static final String KEY_SEEN = "seen";
+    public static final String KEY_DURATION = "duration";
 
     public Song() {super();}
 
@@ -46,6 +47,10 @@ public class Song extends ParseObject {
     public boolean getSeen() {return getBoolean(KEY_SEEN);};
 
     public void setSeen(boolean seen) {put(KEY_SEEN, seen);}
+
+    public long getDuration() {return getNumber("duration").longValue();}
+
+    public void setDuration(long duration) {put(KEY_DURATION, duration);}
 
 
 }

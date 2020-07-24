@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
+        android:layout_width="306dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cardview"
         android:layout_alignParentStart="true"
@@ -45,14 +45,14 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="6dp"
-        android:fontFamily="@font/lato"
-        android:singleLine="true"
-        android:text="title"
         android:ellipsize="marquee"
-        android:marqueeRepeatLimit ="marquee_forever"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:fontFamily="@font/lato"
+        android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="title"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold" />
@@ -79,17 +79,23 @@
 
     <TextView
         android:id="@+id/tvArtist"
-        android:layout_width="322dp"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
         android:layout_alignEnd="@+id/btnLike"
         android:layout_alignParentStart="true"
         android:layout_marginStart="28dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/lato"
+        android:layout_marginEnd="60dp"
         android:layout_weight="1"
+        android:fontFamily="@font/lato"
         android:text="artist"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         android:textColor="#80fbfbfb"
         android:textSize="20dp" />
 
@@ -172,21 +178,21 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/player_current_position"
+            android:id="@+id/tvCurrPos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="7dp"
-            android:text="1:16"
+            android:text="0:00"
             android:textColor="#80fbfbfb"
             android:textSize="12sp"
             tools:ignore="RtlSymmetry" />
 
         <TextView
-            android:id="@+id/complete_position"
+            android:id="@+id/tvFullPos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingEnd="5dp"
-            android:text="2:54"
+            android:text="3:00"
             android:layout_alignParentEnd="true"
             android:textColor="#80fbfbfb"
             android:textSize="12sp"

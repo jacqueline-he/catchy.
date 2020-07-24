@@ -11,6 +11,7 @@ public class Like extends ParseObject {
     public static final String KEY_IMAGE_URL = "imageUrl";
     public static final String KEY_LIKED_BY = "likedBy";
     public static final String KEY_URI = "uri";
+    public static final String KEY_DURATION = "duration";
 
     public Like() {super();}
 
@@ -37,4 +38,9 @@ public class Like extends ParseObject {
     public void setLikedBy(ParseUser user) {
         put(KEY_LIKED_BY, user);
     }
+
+    public long getDuration() {return getNumber("duration").longValue();}
+
+    public void setDuration(long duration) {put(KEY_DURATION, duration);}
+
 }

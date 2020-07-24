@@ -62,6 +62,12 @@
         android:fontFamily="@font/lato"
         android:layout_weight="1"
         android:text="artist"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         android:textColor="#80fbfbfb"
         android:textSize="20dp" />
 
