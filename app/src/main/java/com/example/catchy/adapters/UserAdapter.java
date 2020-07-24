@@ -85,7 +85,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     // pack something
                     intent.putExtra("song", song);
                     intent.putExtra("liked", true);
-                    intent.putExtra("playing", false);
                     intent.putExtra("from", "user");
 
                     DetailTransition.pos = getAdapterPosition();

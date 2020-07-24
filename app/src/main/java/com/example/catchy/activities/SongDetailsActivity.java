@@ -48,7 +48,6 @@ public class SongDetailsActivity extends AppCompatActivity {
     private FloatingActionButton btnLike;
     private Song song;
     SpotifyBroadcastReceiver receiver;
-    boolean playing;
     boolean liked;
     FloatingActionButton btnPlayPause;
     FloatingActionButton btnRewind; // -5 seconds
@@ -87,11 +86,10 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         song = (Song) intent.getExtras().get("song");
-        playing = (boolean) intent.getExtras().get("playing");
         from = intent.getStringExtra("from");
 
         // TODO bug where song is paused in SongFrag before clicking in
-        if (!playing) {
+        if (!from.equals("home")) {
             receiver.playNew(this, song.getURI());
         }
 
@@ -249,7 +247,7 @@ public class SongDetailsActivity extends AppCompatActivity {
         DetailTransition.liked = liked;
         DetailTransition.enteringSongDetails = false;
         DetailTransition.song = song;
-        if (!playing) {
+        if (!from.equals("home")) {
             receiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_PAUSE);
         }
 

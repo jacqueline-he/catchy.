@@ -19,8 +19,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/SongProgressBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/SongProgressBar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/activities/SongDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/activities/SongDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/adapters/SearchAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/adapters/SearchAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/adapters/UserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/adapters/UserAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/catchy/fragments/SongFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -409,12 +411,12 @@
     </state>
     <state x="493" y="275" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1792.1020@0.23.1792.1020" timestamp="1594941398096" />
     <state x="493" y="276" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1792.1024@0.23.1792.1024" timestamp="1594765158808" />
-    <state x="683" y="146" width="1109" height="725" key="find.popup" timestamp="1595563383033">
+    <state x="101" y="314" width="1109" height="726" key="find.popup" timestamp="1595631382415">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
     <state x="683" y="198" width="1109" height="743" key="find.popup/0.-1057.1920.1057/0.0.1792.1040@0.0.1792.1040" timestamp="1595221471904" />
     <state x="731" y="-855" width="1189" height="755" key="find.popup/0.-1057.1920.1057/0.23.1792.1017@0.-1057.1920.1057" timestamp="1595559091900" />
-    <state x="101" y="314" width="1109" height="726" key="find.popup/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1595562877383" />
+    <state x="101" y="314" width="1109" height="726" key="find.popup/0.-1057.1920.1057/0.23.1792.1017@0.23.1792.1017" timestamp="1595631382415" />
     <state x="683" y="146" width="1109" height="728" key="find.popup/0.-1057.1920.1057/0.23.1792.1020@0.23.1792.1020" timestamp="1595268672004" />
     <state x="683" y="146" width="1109" height="731" key="find.popup/0.-1057.1920.1057/0.23.1792.1024@0.23.1792.1024" timestamp="1595282176711" />
     <state x="440" y="546" width="695" height="489" key="find.popup/0.-1057.1920.1057/0.23.1792.1026@0.23.1792.1026" timestamp="1595303275941" />
@@ -475,7 +477,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/catchy/activities/SongDetailsActivity.java</url>
-          <line>217</line>
+          <line>215</line>
           <option name="timeStamp" value="96" />
         </line-breakpoint>
       </breakpoints>

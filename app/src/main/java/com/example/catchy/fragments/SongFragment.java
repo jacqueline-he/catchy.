@@ -130,7 +130,6 @@ public class SongFragment extends Fragment {
                 Intent intent = new Intent(getContext(), SongDetailsActivity.class);
                 // pack something
                 intent.putExtra("song", song);
-                intent.putExtra("playing", true);
                 intent.putExtra("liked", liked);
                 intent.putExtra("from", "home");
                 startActivity(intent);
