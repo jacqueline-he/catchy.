@@ -136,6 +136,7 @@ public class SongDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { // rewind 5 seconds
                 receiver.updatePlayer(SongDetailsActivity.this, -5000);
+                songProgressBar.skip(-5000);
             }
         });
 
@@ -143,6 +144,7 @@ public class SongDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { // fast-forward 5 seconds
                 receiver.updatePlayer(SongDetailsActivity.this, 5000);
+                songProgressBar.skip(5000);
             }
         });
 

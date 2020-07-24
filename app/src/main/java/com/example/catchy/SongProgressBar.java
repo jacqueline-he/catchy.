@@ -70,7 +70,10 @@ public class SongProgressBar {
         int minutes = (int) ((progress / 1000)  / 60);
         int seconds = (int)((progress / 1000) % 60);
         String time;
-        if (seconds < 10) {
+        if (minutes < 0 || seconds < 0) {
+            time = "0:00";
+        }
+        else if (seconds < 10) {
             time = minutes + ":0" + seconds;
         }
         else {
@@ -92,6 +95,12 @@ public class SongProgressBar {
     public void pause() {
         mHandler.removeCallbacks(mSeekRunnable);
         mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
+    }
+
+    public void skip(int duration) {
+        int newProgress = mSeekBar.getProgress() + duration;
+        update(newProgress);
+
     }
 
 }
