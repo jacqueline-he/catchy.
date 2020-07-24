@@ -72,6 +72,8 @@ public class SongDetailsActivity extends AppCompatActivity {
         tvTitle.setSelected(true);
 
         tvArtist = findViewById(R.id.tvArtist);
+        tvArtist.setSelected(true);
+
         btnLike = findViewById(R.id.btnLike);
         btnPlayPause = findViewById(R.id.btnPlayPause);
         btnPlayPause.setTag(R.drawable.ic_pause128128);

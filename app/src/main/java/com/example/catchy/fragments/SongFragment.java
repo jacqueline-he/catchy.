@@ -73,6 +73,7 @@ public class SongFragment extends Fragment {
         tvTitle = view.findViewById(R.id.tvTitle);
         tvTitle.setSelected(true);
         tvArtist = view.findViewById(R.id.tvArtist);
+        tvArtist.setSelected(true);
         ivAlbumImage = view.findViewById(R.id.ivAlbumImage);
         btnLike = view.findViewById(R.id.btnLike);
         DetailTransition.liked = false;
