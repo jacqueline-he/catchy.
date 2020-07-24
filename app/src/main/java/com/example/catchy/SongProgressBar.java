@@ -85,11 +85,11 @@ public class SongProgressBar {
         mSeekBar.setMax((int) duration);
     }
 
-    public void pause() {
+    public void unpause() {
         mHandler.removeCallbacks(mSeekRunnable);
     }
 
-    public void unpause() {
+    public void pause() {
         mHandler.removeCallbacks(mSeekRunnable);
         mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
     }

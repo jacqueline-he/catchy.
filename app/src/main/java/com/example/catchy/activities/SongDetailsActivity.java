@@ -101,6 +101,7 @@ public class SongDetailsActivity extends AppCompatActivity {
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
         }
 
+        // TODO marquee scroll doesn't work with seekbar
         tvTitle.setText(song.getTitle());
         tvArtist.setText(song.getArtist());
 
@@ -125,6 +126,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                 else {
                     btnPlayPause.setImageResource(R.drawable.ic_play128128);
                     btnPlayPause.setTag(R.drawable.ic_play128128);
+
                     songProgressBar.unpause();
                 }
             }
