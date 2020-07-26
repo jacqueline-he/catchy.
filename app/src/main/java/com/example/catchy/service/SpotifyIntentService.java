@@ -1,35 +1,18 @@
 package com.example.catchy.service;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.IBinder;
 import android.util.Log;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.JobIntentService;
-import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.catchy.R;
-import com.example.catchy.models.Song;
-import com.parse.ParseException;
-import com.parse.SaveCallback;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
-import com.spotify.android.appremote.api.ContentApi;
 import com.spotify.android.appremote.api.PlayerApi;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
-import com.spotify.protocol.client.CallResult;
-import com.spotify.protocol.types.ListItem;
-import com.spotify.protocol.types.ListItems;
-
-import java.security.KeyStore;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_DISCONNECT;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_INIT;

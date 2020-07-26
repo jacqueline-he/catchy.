@@ -3,8 +3,6 @@ package com.example.catchy;
 import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -41,7 +39,6 @@ public class SongProgressBar {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             long progress = seekBar.getProgress();
-
 
         }
     };
