@@ -90,6 +90,8 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         }
 
+        setSeekbar();
+
         liked = (boolean) intent.getExtras().get("liked");
         if (liked) {
             btnLike.setImageResource(R.drawable.ic_likes_filled);
@@ -113,14 +115,14 @@ public class SongDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 receiver.enqueueService(SongDetailsActivity.this, SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
-                if (paused) { // is playing
+                if (paused) { // not playing
                     btnPlayPause.setImageResource(R.drawable.ic_pause128128);
-                    songProgressBar.pause();
+                    songProgressBar.unpause();
                 }
                 else {
                     btnPlayPause.setImageResource(R.drawable.ic_play128128);
 
-                    songProgressBar.unpause();
+                    songProgressBar.pause();
                 }
                 paused = !paused;
             }
@@ -161,7 +163,7 @@ public class SongDetailsActivity extends AppCompatActivity {
         });
 
         setBackgroundColor();
-        setSeekbar();
+
     }
 
     private void setSeekbar() {
@@ -185,6 +187,9 @@ public class SongDetailsActivity extends AppCompatActivity {
             time = minutes + ":" + seconds;
         }
         tvFullPos.setText(time);
+        if (paused) {
+            songProgressBar.pause();
+        }
 
     }
 
