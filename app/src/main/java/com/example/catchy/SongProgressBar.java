@@ -86,11 +86,11 @@ public class SongProgressBar {
     // TODO pause / unpause doesn't work
     public void unpause() {
         mHandler.removeCallbacks(mSeekRunnable);
+        mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
     }
 
     public void pause() {
         mHandler.removeCallbacks(mSeekRunnable);
-        mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
     }
 
     public void skip(int duration) {

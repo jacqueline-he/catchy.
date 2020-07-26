@@ -45,7 +45,7 @@ public class SongDetailsActivity extends AppCompatActivity {
     String from;
     boolean paused = false;
     SongProgressBar songProgressBar;
-
+    long progress = 0;
     SeekBar seekbar;
     TextView tvCurrPos;
     TextView tvFullPos;
@@ -85,6 +85,8 @@ public class SongDetailsActivity extends AppCompatActivity {
             if (paused) { // set button icon to pause
                 btnPlayPause.setImageResource(R.drawable.ic_play128128);
             }
+            progress = intent.getLongExtra("progress", 0);
+            Log.d("SongDetailsActivity", "progress: " + progress);
 
         }
 
@@ -172,7 +174,7 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         songProgressBar = new SongProgressBar(seekbar, this);
         songProgressBar.setMax(song.getDuration());
-
+        songProgressBar.update(progress);
         int minutes = (int) ((song.getDuration() / 1000)  / 60);
         int seconds = (int)((song.getDuration() / 1000) % 60);
         String time;

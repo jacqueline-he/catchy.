@@ -160,21 +160,21 @@ public class SongFragment extends Fragment {
         });
 
         mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progress += LOOP_DURATION;
+                mHandler.postDelayed(this, LOOP_DURATION);
+            }
+        }, LOOP_DURATION);
+
+
 
 
         spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
 
         return view;
     }
-
-    Runnable mHandlerTask = new Runnable()
-    {
-        @Override
-        public void run() { // Start counting
-            progress += LOOP_DURATION;
-            mHandler.postDelayed(mHandlerTask, LOOP_DURATION);
-        }
-    };
 
     private void like() {
         if (!liked) {
