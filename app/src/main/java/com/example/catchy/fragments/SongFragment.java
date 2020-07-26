@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -36,9 +37,13 @@ public class SongFragment extends Fragment {
     private ImageView ivAlbumImage;
     private FloatingActionButton btnLike;
     private SpotifyBroadcastReceiver spotifyBroadcastReceiver;
+    private static final int LOOP_DURATION = 500;
     public static final String TAG = "SongFragment";
     boolean liked = false;
     boolean enteringSongDetails = false;
+    private Handler mHandler;
+    long progress = 0;
+    boolean paused = false;
 
     public SongFragment() {
         // Required empty public constructor
@@ -97,7 +102,13 @@ public class SongFragment extends Fragment {
 
                 @Override // Pause / resume
                 public boolean onSingleTapConfirmed(MotionEvent e) {
-                    spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
+                    if (paused) { // unpause
+                        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY);
+                    }
+                    else { // pause
+                        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PAUSE);
+                    }
+                    paused = !paused;
                     return super.onSingleTapConfirmed(e);
                 }
             });
@@ -130,6 +141,8 @@ public class SongFragment extends Fragment {
                 intent.putExtra("song", song);
                 intent.putExtra("liked", liked);
                 intent.putExtra("from", "home");
+                intent.putExtra("paused", paused); // SongFragment only
+                intent.putExtra("progress", progress); // SongFragment only
                 startActivity(intent);
             }
         });
@@ -146,11 +159,22 @@ public class SongFragment extends Fragment {
             }
         });
 
+        mHandler = new Handler();
+
 
         spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
 
         return view;
     }
+
+    Runnable mHandlerTask = new Runnable()
+    {
+        @Override
+        public void run() { // Start counting
+            progress += LOOP_DURATION;
+            mHandler.postDelayed(mHandlerTask, LOOP_DURATION);
+        }
+    };
 
     private void like() {
         if (!liked) {

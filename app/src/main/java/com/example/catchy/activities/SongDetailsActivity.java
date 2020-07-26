@@ -43,7 +43,7 @@ public class SongDetailsActivity extends AppCompatActivity {
     FloatingActionButton btnRewind; // -5 seconds
     FloatingActionButton btnForward; // +5 seconds
     String from;
-
+    boolean paused = false;
     SongProgressBar songProgressBar;
 
     SeekBar seekbar;
@@ -65,7 +65,6 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         btnLike = findViewById(R.id.btnLike);
         btnPlayPause = findViewById(R.id.btnPlayPause);
-        btnPlayPause.setTag(R.drawable.ic_pause128128);
 
         btnRewind = findViewById(R.id.btnRewind);
         btnForward = findViewById(R.id.btnForward);
@@ -78,9 +77,15 @@ public class SongDetailsActivity extends AppCompatActivity {
         song = (Song) intent.getExtras().get("song");
         from = intent.getStringExtra("from");
 
-        // TODO bug where song is paused in SongFrag before clicking in
         if (!from.equals("home")) {
             receiver.playNew(this, song.getURI());
+        }
+        else {
+            paused = intent.getBooleanExtra("paused", false);
+            if (paused) { // set button icon to pause
+                btnPlayPause.setImageResource(R.drawable.ic_play128128);
+            }
+
         }
 
         liked = (boolean) intent.getExtras().get("liked");
@@ -106,17 +111,16 @@ public class SongDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 receiver.enqueueService(SongDetailsActivity.this, SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
-                if ((Integer)btnPlayPause.getTag() == R.drawable.ic_play128128) {
+                if (paused) { // is playing
                     btnPlayPause.setImageResource(R.drawable.ic_pause128128);
-                    btnPlayPause.setTag(R.drawable.ic_pause128128);
                     songProgressBar.pause();
                 }
                 else {
                     btnPlayPause.setImageResource(R.drawable.ic_play128128);
-                    btnPlayPause.setTag(R.drawable.ic_play128128);
 
                     songProgressBar.unpause();
                 }
+                paused = !paused;
             }
         });
 
