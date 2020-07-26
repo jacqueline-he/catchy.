@@ -159,6 +159,7 @@ public class SongFragment extends Fragment {
             }
         });
 
+        // TODO pause mHandler when leaving fragment; update when resumed; restart to 0 if exceeds 30 sec
         mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override

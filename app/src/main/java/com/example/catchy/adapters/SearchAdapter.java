@@ -68,9 +68,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         private ImageView ivAlbumImage;
         private TextView tvTitle;
         private TextView tvArtist;
+        private View itemView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.itemView = itemView;
             ivAlbumImage = itemView.findViewById(R.id.ivAlbumImage);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvArtist = itemView.findViewById(R.id.tvArtist);
@@ -83,8 +85,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             tvArtist.setText(song.getArtist());
             Glide.with(context).load(song.getImageUrl()).into(ivAlbumImage);
 
-            // TODO find way of grabbing entire itemview
-            tvTitle.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     new Thread(() -> {
@@ -99,26 +100,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     // pack something
                     intent.putExtra("song", song);
                     intent.putExtra("liked", false);
-                    intent.putExtra("from", "search");
-                    context.startActivity(intent);
-                }
-            });
-
-            ivAlbumImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    new Thread(() -> {
-                        try {
-                            DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
-                        } catch (Exception e) {
-                            Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
-                        }
-                    }).start();
-
-                    Intent intent = new Intent(context, SongDetailsActivity.class);
-                    // pack something
-                    intent.putExtra("song", song);
-                    intent.putExtra("liked", false); // TODO fix - like may be true
                     intent.putExtra("from", "search");
                     context.startActivity(intent);
                 }
