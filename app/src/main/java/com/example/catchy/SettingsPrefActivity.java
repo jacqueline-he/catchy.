@@ -5,30 +5,29 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-import androidx.preference.DialogPreference;
-import androidx.preference.EditTextPreference;
-import androidx.preference.PreferenceFragmentCompat;
 
-import android.annotation.SuppressLint;
+import android.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.preference.EditTextPreference;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.widget.EditText;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
 
 import com.example.catchy.activities.LoginActivity;
-import com.example.catchy.activities.SettingsActivity;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.io.File;
 
@@ -78,7 +77,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     ParseUser.getCurrentUser().put("fullName", (String) newValue);
                     ParseUser.getCurrentUser().saveInBackground();
-                    return false;
+                    return true;
                 }
             });
 
@@ -93,7 +92,9 @@ public class SettingsPrefActivity extends AppCompatActivity {
             about.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    return false;
+                    AboutFragment dialog = new AboutFragment();
+                    dialog.show(getActivity().getFragmentManager(), "tag");
+                    return true;
                 }
             });
 
@@ -153,7 +154,6 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     // Bitmap taken = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                     // ivProfileImage.setImageBitmap(taken);
-                    // Log.d("TAG", "THIS!!!! " + photoFile.getAbsolutePath());
                     ParseFile file = new ParseFile(photoFile);
                     ParseUser.getCurrentUser().put("profilePic", file);
                     ParseUser.getCurrentUser().saveInBackground();
@@ -165,5 +165,25 @@ public class SettingsPrefActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public static class AboutFragment extends DialogFragment {
+        private TextView tvAbout;
+        // Constructor
+        public AboutFragment() {}
+
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.fragment_about, container, false);
+        }
+
+        @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+            tvAbout = view.findViewById(R.id.tvAbout);
+            tvAbout.setText("Made with love from California");
+            super.onViewCreated(view, savedInstanceState);
+        }
     }
 }

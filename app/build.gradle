@@ -77,4 +77,9 @@ dependencies {
     implementation 'com.takisoft.fix:preference-v7:25.3.0.0'
     def preference_version = "1.1.1"
     implementation "androidx.preference:preference:$preference_version"
+
+    implementation 'com.android.support:support-v4:30'
+    //noinspection GradleCompatible
+    compile 'com.android.support:support-v4:23.0.1'
+
 }
