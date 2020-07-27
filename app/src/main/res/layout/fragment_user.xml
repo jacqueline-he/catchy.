@@ -85,16 +85,6 @@
         android:textColor="@color/white"
         android:textStyle="normal" />
 
-    <Button
-        android:id="@+id/btnShufflePlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBio"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="12dp"
-        android:text="Shuffle Play" />
-
 
 
     <TextView
@@ -106,7 +96,6 @@
         android:layout_marginStart="19dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="50dp"
-        android:layout_toStartOf="@+id/btnShufflePlay"
         android:text="Liked Songs"
         android:textColor="@color/white"
         android:textSize="32dp"

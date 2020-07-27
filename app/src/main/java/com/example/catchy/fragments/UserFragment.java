@@ -54,7 +54,6 @@ public class UserFragment extends Fragment {
     private ImageView ivMore;
     private TextView tvFullName;
     private TextView tvLikedSongs;
-    private Button btnShufflePlay;
 
 
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -73,6 +72,7 @@ public class UserFragment extends Fragment {
         spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
         spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PAUSE);
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(spotifyBroadcastReceiver);
+        DetailTransition.liked = true;
     }
 
     @Override
@@ -89,7 +89,6 @@ public class UserFragment extends Fragment {
 
         tvFullName = view.findViewById(R.id.tvFullName);
         tvLikedSongs = view.findViewById(R.id.tvLikedSongs);
-        btnShufflePlay = view.findViewById(R.id.btnShufflePlay);
 
 
         return view;
@@ -177,7 +176,6 @@ public class UserFragment extends Fragment {
         });
     }
 
-    // TODO only resume when leaving from Song Details Activity
     @Override
     public void onResume() {
         super.onResume();
@@ -197,6 +195,5 @@ public class UserFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        DetailTransition.liked = false;
     }
 }
