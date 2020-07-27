@@ -11,4 +11,11 @@
         <item name="colorControlActivated">@color/neon_blue</item>
     </style>
 
+    <style name="SettingStyle">
+        <item name="android:textViewStyle">@style/PreferenceStyle</item>
+    </style>
+    <style name="PreferenceStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/light_gray</item>
+    </style>
+
 </resources>

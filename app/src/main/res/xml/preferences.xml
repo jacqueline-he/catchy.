@@ -2,16 +2,41 @@
     android:background="#B1B1B1"
     android:foreground="@drawable/ic_launcher_background">
 
-    <PreferenceCategory android:title="first section">
+    <PreferenceCategory android:title="Settings">
 
+        <EditTextPreference
+            android:dialogTitle="update name"
+            android:key="updatename"
+            android:summary="Tap to update user name"
+            android:title="Update Name" />
+
+        <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <EditTextPreference
             android:dialogTitle="update bio"
-            android:foregroundTint="#858585"
-            android:icon="@android:drawable/btn_star"
             android:key="updatebio"
-            android:summary="update bio"
-            android:title="update bio" />
+            android:summary="Tap to update user bio"
+            android:title="Update Bio" />
+
+        <PreferenceScreen android:layout="@layout/setting_divider_preference" />
+
+        <Preference android:title="Update Profile Picture"
+            android:key="updateprofilepic"
+            android:summary="Tap to update profile picture"/>
+
+        <PreferenceScreen android:layout="@layout/setting_divider_preference" />
+
+        <Preference android:title="About"
+            android:key="about"
+            android:summary="Tap to learn more"/>
+
+        <PreferenceScreen android:layout="@layout/setting_divider_preference" />
+
+        <Preference android:title="Log Out"
+            android:key="logout"
+            android:summary="Tap to log out"/>
+
+
 
     </PreferenceCategory>
 
