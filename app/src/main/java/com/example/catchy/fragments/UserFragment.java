@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.DetailTransition;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
+import com.example.catchy.SettingsPrefActivity;
 import com.example.catchy.activities.MainActivity;
 import com.example.catchy.R;
 import com.example.catchy.activities.SettingsActivity;
@@ -112,7 +113,7 @@ public class UserFragment extends Fragment {
         ivMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                Intent intent = new Intent(getActivity(), SettingsPrefActivity.class);
                 startActivity(intent);
             }
         });

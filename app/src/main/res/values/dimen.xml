@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <dimen name="preference_seekbar_padding_end">10dp</dimen>
+    <dimen name="preference_seekbar_value_width">20dp</dimen>
+</resources>

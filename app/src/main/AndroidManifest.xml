@@ -14,30 +14,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.SongDetailsActivity"
-            android:screenOrientation="portrait"
+        <activity android:name=".SettingsPrefActivity"></activity>
+        <activity
+            android:name=".activities.SongDetailsActivity"
             android:configChanges="orientation|keyboardHidden"
-            ></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AuthActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden" />
-        <activity android:name=".activities.SettingsActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"/>
-        <activity android:name=".activities.LoginActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden" >
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".service.SpotifyIntentService"
