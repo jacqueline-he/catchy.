@@ -1,19 +1,24 @@
 package com.example.catchy;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.preference.DialogPreference;
+import androidx.preference.EditTextPreference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.preference.Preference;
@@ -23,6 +28,7 @@ import com.example.catchy.activities.LoginActivity;
 import com.example.catchy.activities.SettingsActivity;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.io.File;
 
@@ -39,8 +45,8 @@ public class SettingsPrefActivity extends AppCompatActivity {
     }
 
     public static class SettingsFragment extends PreferenceFragment {
-        private Preference updateBio;
-        private Preference updateName;
+        private EditTextPreference updateBio;
+        private EditTextPreference updateName;
         private Preference updateProfilePic;
         private Preference logout;
         private Preference about;
@@ -58,9 +64,20 @@ public class SettingsPrefActivity extends AppCompatActivity {
             logout = findPreference("logout");
             about = findPreference("about");
 
-            updateBio.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            updateBio.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
-                public boolean onPreferenceClick(Preference preference) {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    ParseUser.getCurrentUser().put("bio", (String) newValue);
+                    ParseUser.getCurrentUser().saveInBackground();
+                    return false;
+                }
+            });
+
+            updateName.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    ParseUser.getCurrentUser().put("fullName", (String) newValue);
+                    ParseUser.getCurrentUser().saveInBackground();
                     return false;
                 }
             });
@@ -70,6 +87,13 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 public boolean onPreferenceClick(Preference preference) {
                     launchCamera();
                     return true;
+                }
+            });
+
+            about.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    return false;
                 }
             });
 
@@ -140,5 +164,6 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 }
             }
         }
+
     }
 }

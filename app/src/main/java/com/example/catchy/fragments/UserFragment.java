@@ -191,6 +191,14 @@ public class UserFragment extends Fragment {
             adapter.notifyItemRemoved(DetailTransition.pos);
         }
 
+        String name = currentUser.getString("fullName");
+        tvFullName.setText(name);
+
+        String bio = currentUser.getString("bio");
+
+        if (bio != null)
+            tvBio.setText(bio);
+
     }
 
     @Override
