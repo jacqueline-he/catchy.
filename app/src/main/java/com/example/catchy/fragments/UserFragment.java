@@ -50,10 +50,11 @@ public class UserFragment extends Fragment {
     private ParseUser currentUser;
     private TextView tvUsername;
     private TextView tvBio;
-    private EditText etBio;
-    private Button btnUpdate;
     private ImageView ivProfileImage;
     private ImageView ivMore;
+    private TextView tvFullName;
+    private TextView tvLikedSongs;
+    private Button btnShufflePlay;
 
 
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -84,9 +85,11 @@ public class UserFragment extends Fragment {
         tvUsername = view.findViewById(R.id.tvUsername);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         tvBio = view.findViewById(R.id.tvBio);
-        etBio = view.findViewById(R.id.etBio);
-        btnUpdate = view.findViewById(R.id.btnUpdate);
         ivMore = view.findViewById(R.id.ivMore);
+
+        tvFullName = view.findViewById(R.id.tvFullName);
+        tvLikedSongs = view.findViewById(R.id.tvLikedSongs);
+        btnShufflePlay = view.findViewById(R.id.btnShufflePlay);
 
 
         return view;
@@ -96,13 +99,15 @@ public class UserFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tvUsername.setText(currentUser.getUsername());
+        tvUsername.setText("@" + currentUser.getUsername());
+        String name = currentUser.getString("fullName");
+        tvFullName.setText(name);
+
+        Log.d("UserFragment", "name: " + name);
         String bio = currentUser.getString("bio");
 
         if (bio != null)
             tvBio.setText(bio);
-        else
-            tvBio.setText("[update bio here]");
 
 
         ivMore.setOnClickListener(new View.OnClickListener() {
@@ -113,37 +118,6 @@ public class UserFragment extends Fragment {
             }
         });
 
-        tvBio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tvBio.setVisibility(View.GONE);
-                etBio.setVisibility(View.VISIBLE);
-                btnUpdate.setVisibility(View.VISIBLE);
-            }
-        });
-
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newBio = etBio.getText().toString();
-
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                currentUser.put("bio", newBio);
-                currentUser.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            Log.d(TAG, "Updated bio successfully");
-                        }
-                    }
-                });
-                tvBio.setText(newBio);
-                tvBio.setVisibility(View.VISIBLE);
-                etBio.setVisibility(View.GONE);
-                btnUpdate.setVisibility(View.GONE);
-
-            }
-        });
 
         ParseFile profileImage = currentUser.getParseFile("profilePic");
         if (profileImage != null) {
@@ -203,6 +177,7 @@ public class UserFragment extends Fragment {
         });
     }
 
+    // TODO only resume when leaving from Song Details Activity
     @Override
     public void onResume() {
         super.onResume();

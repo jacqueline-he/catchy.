@@ -8,14 +8,14 @@
 
     <ImageView
         android:id="@+id/ivMore"
-        android:layout_width="30dp"
+        android:layout_width="78dp"
         android:layout_height="30dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="end"
-        android:layout_marginStart="216dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="7dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
         android:layout_toEndOf="@+id/tvUsername"
         android:clickable="true"
         android:focusable="true"
@@ -25,77 +25,92 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLikes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ivProfileImage"
+        android:layout_height="427dp"
+        android:layout_below="@+id/tvLikedSongs"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp" />
 
     <ImageView
         android:id="@+id/ivProfileImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="115dp"
+        android:layout_below="@+id/ivMore"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="28dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
-        android:textColor = "@color/white"
-        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="74dp"
         android:layout_toEndOf="@+id/ivProfileImage"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         tools:text="username" />
 
     <TextView
+        android:id="@+id/tvFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_above="@+id/tvBio"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginBottom="3dp"
+        android:layout_toEndOf="@+id/tvUsername"
+        android:textColor="@color/white"
+        tools:text="Full Name" />
+
+    <TextView
         android:id="@+id/tvBio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="71dp"
         android:layout_below="@+id/tvUsername"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="0dp"
-        android:textStyle="normal"
-        android:textColor="@color/white"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:text="[insert bio here]"
-        />
-
-    <EditText
-        android:id="@+id/etBio"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvUsername"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="0dp"
-        android:visibility = "gone"
         android:textColor="@color/white"
-        android:ems="1"
-        android:hint="Bio"
-        android:layout_toEndOf="@+id/ivProfileImage" />
+        android:textStyle="normal" />
 
     <Button
-        android:id="@+id/btnUpdate"
+        android:id="@+id/btnShufflePlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBio"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/etBio"
-        android:clickable="true"
-        android:layout_below="@+id/tvUsername"
-        android:layout_marginTop="-2dp"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/medium_red"
-        android:text="Update"
-        android:visibility = "gone"
-        android:focusable="true" />
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="12dp"
+        android:text="Shuffle Play" />
+
+
+
+    <TextView
+        android:id="@+id/tvLikedSongs"
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_toStartOf="@+id/btnShufflePlay"
+        android:text="Liked Songs"
+        android:textColor="@color/white"
+        android:textSize="32dp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
