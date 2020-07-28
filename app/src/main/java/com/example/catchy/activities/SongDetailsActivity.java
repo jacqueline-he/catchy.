@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.catchy.DetailTransition;
+import com.example.catchy.MarqueeTextView;
 import com.example.catchy.R;
 import com.example.catchy.SongProgressBar;
 import com.example.catchy.models.Like;
@@ -33,8 +35,8 @@ import co.revely.gradient.RevelyGradient;
 
 public class SongDetailsActivity extends AppCompatActivity {
     private ImageView ivAlbumImage;
-    private TextView tvTitle;
-    private TextView tvArtist;
+    private MarqueeTextView tvTitle;
+    private MarqueeTextView tvArtist;
     private FloatingActionButton btnLike;
     private Song song;
     SpotifyBroadcastReceiver receiver;
@@ -59,9 +61,23 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setSelected(true);
+        tvTitle.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right,
+                                       int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                // do nothing
+            }
+        });
 
         tvArtist = findViewById(R.id.tvArtist);
         tvArtist.setSelected(true);
+        tvArtist.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right,
+                                       int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                // do nothing
+            }
+        });
 
         btnLike = findViewById(R.id.btnLike);
         btnPlayPause = findViewById(R.id.btnPlayPause);
@@ -98,7 +114,6 @@ public class SongDetailsActivity extends AppCompatActivity {
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
         }
 
-        // TODO marquee scroll doesn't work with seekbar
         tvTitle.setText(song.getTitle());
         tvArtist.setText(song.getArtist());
 
