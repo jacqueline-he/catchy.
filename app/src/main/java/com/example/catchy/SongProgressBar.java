@@ -83,7 +83,6 @@ public class SongProgressBar {
         mSeekBar.setMax((int) duration);
     }
 
-    // TODO pause / unpause doesn't work
     public void unpause() {
         mHandler.removeCallbacks(mSeekRunnable);
         mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);

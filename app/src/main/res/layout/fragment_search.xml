@@ -18,7 +18,8 @@
         android:maxLines="1"
         android:ems="1"
         android:singleLine="true"
-        android:inputType="text|textMultiLine"
+        android:inputType="text"
+        android:imeOptions="actionSearch"
         android:hint="Search"
         android:textColorHint="@color/white"
         android:theme="@style/EditTextTheme" />

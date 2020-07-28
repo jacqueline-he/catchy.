@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.catchy.EndlessRecyclerViewScrollListener;
@@ -120,16 +123,29 @@ public class SearchFragment extends Fragment {
                 }
 
                 // clear search list
-                // TODO scroll to top
                 results.clear();
                 fetchSongs(query, 0);
                 scrollListener.resetState();
+            }
+        });
 
-                View decorView = getActivity().getWindow().getDecorView();
-// Hide the status bar.
-                int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-                decorView.setSystemUiVisibility(uiOptions);
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                boolean handled = false;
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    query = etSearch.getText().toString();
+                    if (query.isEmpty()) {
+                        Toast.makeText(getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    }
 
+                    // clear search list
+                    results.clear();
+                    fetchSongs(query, 0);
+                    scrollListener.resetState();
+                    handled = true;
+                }
+                return handled;
             }
         });
 
@@ -167,6 +183,7 @@ public class SearchFragment extends Fragment {
                     results.add(song);
                 }
                 searchAdapter.notifyDataSetChanged();
+                rvResults.smoothScrollToPosition(0);
             }
         });
     }
