@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SettingsPrefActivity"></activity>
+        <activity android:name=".activities.SettingsPrefActivity"></activity>
         <activity
             android:name=".activities.SongDetailsActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -23,10 +23,6 @@
             android:name=".activities.AuthActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.SettingsActivity"
-            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.LoginActivity"

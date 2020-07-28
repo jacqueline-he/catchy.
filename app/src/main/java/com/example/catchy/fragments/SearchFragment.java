@@ -41,7 +41,6 @@ import kaaes.spotify.webapi.android.models.Track;
 import kaaes.spotify.webapi.android.models.TracksPager;
 import retrofit.client.Response;
 
-// TODO modify enter button capability
 public class SearchFragment extends Fragment {
     public static final String TAG = "SearchFragment";
     SpotifyService spotify;

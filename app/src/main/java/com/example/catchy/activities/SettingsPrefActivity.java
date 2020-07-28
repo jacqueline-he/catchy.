@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +25,7 @@ import android.widget.Toast;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
 
+import com.example.catchy.R;
 import com.example.catchy.activities.LoginActivity;
 import com.parse.ParseFile;
 import com.parse.ParseUser;

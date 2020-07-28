@@ -14,8 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,10 +21,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.DetailTransition;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
-import com.example.catchy.SettingsPrefActivity;
-import com.example.catchy.activities.MainActivity;
+import com.example.catchy.activities.SettingsPrefActivity;
 import com.example.catchy.R;
-import com.example.catchy.activities.SettingsActivity;
 import com.example.catchy.adapters.UserAdapter;
 import com.example.catchy.models.Like;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
@@ -35,7 +31,6 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -184,7 +179,6 @@ public class UserFragment extends Fragment {
         ParseFile profileImage = currentUser.getParseFile("profilePic");
         if (profileImage != null) {
              Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
-            // Glide.with(this).load("/storage/emulated/0/Android/data/com.example.catchy/files/Pictures/SettingsActivity/photo.jpg").transform(new CircleCrop()).into(ivProfileImage);
         }
 
         if (!DetailTransition.liked) {
