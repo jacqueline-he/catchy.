@@ -84,7 +84,6 @@ public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Seria
     public static void playNew(Context context, String songId) {
         Intent intent = new Intent(context, SpotifyIntentService.class);
         intent.putExtra("songuri", songId);
-        // TODO check if connected
         intent.setAction(ACTION_PLAY);
 
         SpotifyIntentService.enqueueWork(context, SpotifyIntentService.class, PLAYER_JOB_ID, intent);

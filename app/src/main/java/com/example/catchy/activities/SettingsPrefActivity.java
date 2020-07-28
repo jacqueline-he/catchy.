@@ -73,7 +73,6 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     boolean selected = Boolean.parseBoolean(newValue.toString());
-                    // TODO add toast messages
                     if (selected) {
                         Toast.makeText(getActivity(), "Explicit filter turned on!", Toast.LENGTH_LONG).show();
                     }

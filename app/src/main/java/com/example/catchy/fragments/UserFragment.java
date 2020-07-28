@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.catchy.DetailTransition;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
 import com.example.catchy.activities.SettingsPrefActivity;
@@ -35,6 +36,8 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 
 public class UserFragment extends Fragment {
@@ -178,7 +181,7 @@ public class UserFragment extends Fragment {
         // reset profile pic
         ParseFile profileImage = currentUser.getParseFile("profilePic");
         if (profileImage != null) {
-             Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
+             Glide.with(this).load(profileImage.getUrl()).transform(new RoundedCornersTransformation(30, 2)).into(ivProfileImage);
         }
 
         if (!DetailTransition.liked) {
