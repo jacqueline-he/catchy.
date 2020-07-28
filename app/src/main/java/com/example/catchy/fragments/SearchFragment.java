@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.catchy.BitmapCache;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
 import com.example.catchy.R;
 import com.example.catchy.adapters.SearchAdapter;
@@ -99,6 +100,8 @@ public class SearchFragment extends Fragment {
         rvResults = view.findViewById(R.id.rvResults);
         results = new ArrayList<>();
         searchAdapter = new SearchAdapter(results, getContext());
+
+        BitmapCache.InitBitmapCache(); // for search adapter
 
         rvResults.setAdapter(searchAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

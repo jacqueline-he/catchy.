@@ -1,5 +1,7 @@
 package com.example.catchy.models;
 
+import android.graphics.Bitmap;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -12,6 +14,8 @@ public class Like extends ParseObject {
     public static final String KEY_LIKED_BY = "likedBy";
     public static final String KEY_URI = "uri";
     public static final String KEY_DURATION = "duration";
+
+    public Bitmap bitmap; // no need to pass on to Parse
 
     public Like() {super();}
 

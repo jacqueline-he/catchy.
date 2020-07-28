@@ -2,6 +2,8 @@ package com.example.catchy.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.catchy.BitmapCache;
 import com.example.catchy.DetailTransition;
+import com.example.catchy.ImageLoaderTask;
 import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Like;
@@ -63,6 +67,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 Glide.with(context).load(imgUrl).apply(new RequestOptions().override(100, 100)).into(ivLikedImage);
             Log.d("UserAdapter", "bound image");
 
+            int position = getAdapterPosition();
+            Bitmap bitmap = null;
+
+            bitmap = BitmapCache.getBitmapFromMemCache(position);
+            if (bitmap != null) {
+                like.bitmap = bitmap;
+            }
+            else {
+                new ImageLoaderTask(position, like.getImageUrl()).executeOnExecutor(
+                        AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
+            }
+
+
             ivLikedImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -74,14 +91,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     song.setImageUrl(like.getImageUrl());
                     song.setDuration(like.getDuration());
 
-                    new Thread(() -> {
+                    /*new Thread(() -> {
                         try {
                             DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
                         } catch (Exception e) {
                             Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
                         }
-                    }).start();
-
+                    }).start();*/
+                    DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position);
                     // pack something
                     intent.putExtra("song", song);
                     intent.putExtra("liked", true);

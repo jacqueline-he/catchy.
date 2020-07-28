@@ -2,6 +2,8 @@ package com.example.catchy.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.catchy.BitmapCache;
 import com.example.catchy.DetailTransition;
+import com.example.catchy.ImageLoaderTask;
 import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Song;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import static com.example.catchy.DetailTransition.song;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>{
     private List<Song> results;
@@ -77,25 +83,38 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvArtist = itemView.findViewById(R.id.tvArtist);
 
-
         }
+
 
         public void bind(Song song) {
             tvTitle.setText(song.getTitle());
             tvArtist.setText(song.getArtist());
             Glide.with(context).load(song.getImageUrl()).into(ivAlbumImage);
 
+
+            int position = getAdapterPosition();
+            Bitmap bitmap = null;
+
+            bitmap = BitmapCache.getBitmapFromMemCache(position);
+            if (bitmap != null) {
+                song.bitmap = bitmap;
+            }
+            else {
+                new ImageLoaderTask(position, song.getImageUrl()).executeOnExecutor(
+                        AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
+            }
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    new Thread(() -> {
+                    /*new Thread(() -> {
                         try {
                             DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
                         } catch (Exception e) {
                             Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
                         }
-                    }).start();
-
+                    }).start();*/
+                    DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position);
                     Intent intent = new Intent(context, SongDetailsActivity.class);
                     // pack something
                     intent.putExtra("song", song);

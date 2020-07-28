@@ -1,5 +1,6 @@
 package com.example.catchy.models;
 
+import android.graphics.Bitmap;
 import android.os.Parcelable;
 
 import com.parse.ParseClassName;
@@ -17,6 +18,7 @@ public class Song extends ParseObject {
     public static final String KEY_URI = "uri";
     public static final String KEY_SEEN = "seen";
     public static final String KEY_DURATION = "duration";
+    public Bitmap bitmap;
 
     public Song() {super();}
 

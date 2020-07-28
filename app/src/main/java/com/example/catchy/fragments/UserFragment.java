@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.catchy.BitmapCache;
 import com.example.catchy.DetailTransition;
 import com.example.catchy.EndlessRecyclerViewScrollListener;
 import com.example.catchy.activities.SettingsPrefActivity;
@@ -72,6 +73,7 @@ public class UserFragment extends Fragment {
         spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PAUSE);
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(spotifyBroadcastReceiver);
         DetailTransition.liked = true;
+        BitmapCache.InitBitmapCache();
     }
 
     @Override
@@ -181,7 +183,7 @@ public class UserFragment extends Fragment {
         // reset profile pic
         ParseFile profileImage = currentUser.getParseFile("profilePic");
         if (profileImage != null) {
-             Glide.with(this).load(profileImage.getUrl()).transform(new RoundedCornersTransformation(30, 2)).into(ivProfileImage);
+             Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
         }
 
         if (!DetailTransition.liked) {
