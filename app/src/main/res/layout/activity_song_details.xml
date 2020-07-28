@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.example.catchy.MarqueeTextView
+        <com.example.catchy.misc.MarqueeTextView
             android:id="@+id/tvTitle"
             android:layout_width="310dp"
             android:layout_height="30dp"
@@ -61,7 +61,7 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
-        <com.example.catchy.MarqueeTextView
+        <com.example.catchy.misc.MarqueeTextView
             android:id="@+id/tvArtist"
             android:layout_width="311dp"
             android:layout_height="30dp"

@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.misc;
 
 import android.content.Context;
 import android.graphics.Rect;

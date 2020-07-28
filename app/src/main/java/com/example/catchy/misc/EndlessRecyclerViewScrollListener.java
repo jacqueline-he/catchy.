@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.misc;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;

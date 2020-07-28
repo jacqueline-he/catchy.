@@ -19,10 +19,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.example.catchy.BitmapCache;
-import com.example.catchy.DetailTransition;
-import com.example.catchy.EndlessRecyclerViewScrollListener;
+import com.example.catchy.misc.BitmapCache;
+import com.example.catchy.misc.DetailTransition;
+import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
 import com.example.catchy.activities.SettingsPrefActivity;
 import com.example.catchy.R;
 import com.example.catchy.adapters.UserAdapter;
@@ -37,8 +36,6 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 
 public class UserFragment extends Fragment {

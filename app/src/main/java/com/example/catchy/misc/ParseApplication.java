@@ -1,7 +1,8 @@
-package com.example.catchy;
+package com.example.catchy.misc;
 
 import android.app.Application;
 
+import com.example.catchy.R;
 import com.example.catchy.models.Like;
 import com.example.catchy.models.Settings;
 import com.example.catchy.models.Song;

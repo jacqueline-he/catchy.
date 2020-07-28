@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.catchy.DetailTransition;
+import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Like;

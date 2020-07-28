@@ -1,4 +1,4 @@
-package com.example.catchy;
+package com.example.catchy.misc;
 
 import android.content.Context;
 import android.os.Handler;
@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 

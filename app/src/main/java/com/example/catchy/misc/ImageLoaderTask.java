@@ -1,9 +1,10 @@
-package com.example.catchy;
+package com.example.catchy.misc;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 
+import com.example.catchy.misc.BitmapCache;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
