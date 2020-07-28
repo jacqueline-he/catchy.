@@ -26,6 +26,13 @@
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
+        <SwitchPreference
+            android:key="explicitfilter"
+            android:title="Explicit Filter"
+            />
+
+        <PreferenceScreen android:layout="@layout/setting_divider_preference" />
+
         <Preference android:title="About"
             android:key="about"
             android:summary="Tap to learn more"/>

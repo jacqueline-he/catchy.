@@ -51,6 +51,7 @@ public class HomeFragment extends Fragment{
     private List<String> tracks;
     private List<String> artists;
     private List<String> genres;
+    boolean explicitFilter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -64,10 +65,13 @@ public class HomeFragment extends Fragment{
         homeFragmentAdapter = new HomeFragmentAdapter(this, arr, getContext(), spotifyBroadcastReceiver);
         context = getContext();
 
+        explicitFilter = ParseUser.getCurrentUser().getBoolean("explicitFilter");
+
 
         artists = new ArrayList<>();
         tracks = new ArrayList<>();
         genres = new ArrayList<>();
+
         // starter seeds
         artists.add("6qqNVTkY8uBg9cP3Jd7DAH");
         tracks.add("2X2J0BhxaLTmnxO4pPUhSd");
@@ -107,27 +111,32 @@ public class HomeFragment extends Fragment{
                 List<Track> tracks = recommendations.tracks;
                 for (int i = 0; i < tracks.size(); i++) {
                     Track track = tracks.get(i);
-                    Song song = new Song();
-                    song.setURI(track.uri);
-                    song.setImageUrl(track.album.images.get(0).url);
-                    song.setTitle(track.name);
-                    song.setDuration(track.duration_ms);
-                    String artists = "";
-                    List<ArtistSimple> artistList = track.artists;
-                    for (int j = 0; j < artistList.size(); j++) {
-                        artists += artistList.get(j).name + ", ";
+                    if (explicitFilter && track.explicit) {
+                        // skip over song - do nothing
                     }
-                    song.setArtist(artists.substring(0, artists.length() - 2));
-                    song.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e != null) {
-                                Log.e(TAG, "Error while saving rec", e);
-                                e.printStackTrace();
-                            }
-                            Log.i(TAG, "Rec save was successful!");
+                    else {
+                        Song song = new Song();
+                        song.setURI(track.uri);
+                        song.setImageUrl(track.album.images.get(0).url);
+                        song.setTitle(track.name);
+                        song.setDuration(track.duration_ms);
+                        String artists = "";
+                        List<ArtistSimple> artistList = track.artists;
+                        for (int j = 0; j < artistList.size(); j++) {
+                            artists += artistList.get(j).name + ", ";
                         }
-                    });
+                        song.setArtist(artists.substring(0, artists.length() - 2));
+                        song.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e != null) {
+                                    Log.e(TAG, "Error while saving rec", e);
+                                    e.printStackTrace();
+                                }
+                                Log.i(TAG, "Rec save was successful!");
+                            }
+                        });
+                    }
                 }
                 queueSongs();
             }

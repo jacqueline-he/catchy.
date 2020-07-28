@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
+import androidx.preference.SwitchPreference;
 
 import com.example.catchy.R;
 import com.example.catchy.activities.LoginActivity;
@@ -50,6 +51,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
         private Preference updateProfilePic;
         private Preference logout;
         private Preference about;
+        private SwitchPreference explicitFilter;
 
         private File photoFile;
         private String photoFileName = "photo.jpg";
@@ -63,13 +65,34 @@ public class SettingsPrefActivity extends AppCompatActivity {
             updateProfilePic = findPreference("updateprofilepic");
             logout = findPreference("logout");
             about = findPreference("about");
+            explicitFilter = findPreference("explicitfilter");
+
+            explicitFilter.setChecked(ParseUser.getCurrentUser().getBoolean("explicitFilter")); // sets switch based on user preferences
+
+            explicitFilter.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean selected = Boolean.parseBoolean(newValue.toString());
+                    // TODO add toast messages
+                    if (selected) {
+                        Toast.makeText(getActivity(), "Explicit filter turned on!", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(getActivity(), "Explicit filter turned off!", Toast.LENGTH_LONG).show();
+                    }
+                    // update selected
+                    ParseUser.getCurrentUser().put("explicitFilter", selected);
+                    ParseUser.getCurrentUser().saveInBackground();
+                    return true;
+                }
+            });
 
             updateBio.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     ParseUser.getCurrentUser().put("bio", (String) newValue);
                     ParseUser.getCurrentUser().saveInBackground();
-                    return false;
+                    return true;
                 }
             });
 
