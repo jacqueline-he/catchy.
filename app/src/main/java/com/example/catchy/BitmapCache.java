@@ -28,6 +28,10 @@ public class BitmapCache {
         }
     }
 
+    public static void clear() {
+        MemoryCache.evictAll();
+    }
+
     public static void addBitmapToMemoryCache(Integer key, Bitmap bitmap) {
         MemoryCache.put(key, bitmap);
     }

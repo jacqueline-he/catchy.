@@ -126,6 +126,7 @@ public class SearchFragment extends Fragment {
 
                 // clear search list
                 results.clear();
+                BitmapCache.clear();
                 fetchSongs(query, 0);
                 scrollListener.resetState();
             }
@@ -143,6 +144,7 @@ public class SearchFragment extends Fragment {
 
                     // clear search list
                     results.clear();
+                    BitmapCache.clear();
                     fetchSongs(query, 0);
                     scrollListener.resetState();
                     handled = true;

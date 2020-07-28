@@ -74,6 +74,7 @@ public class UserFragment extends Fragment {
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(spotifyBroadcastReceiver);
         DetailTransition.liked = true;
         BitmapCache.InitBitmapCache();
+        BitmapCache.clear(); // make sure it's empty
     }
 
     @Override
