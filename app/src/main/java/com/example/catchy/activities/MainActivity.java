@@ -17,6 +17,7 @@ import com.example.catchy.fragments.HomeFragment;
 import com.example.catchy.fragments.SearchFragment;
 import com.example.catchy.fragments.UserFragment;
 import com.example.catchy.models.Song;
+import com.example.catchy.models.User;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
@@ -26,6 +27,7 @@ import com.parse.ParseUser;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -89,6 +91,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+
+        new Thread(() -> {
+                        try {
+                            User.profileBitmap = Picasso.get().load(ParseUser.getCurrentUser().getParseFile("profilePic").getUrl()).get();
+                        } catch (Exception e) {
+                            Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
+                        }
+                    }).start();
     }
 
     @Override

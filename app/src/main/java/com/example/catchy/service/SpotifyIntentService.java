@@ -134,12 +134,7 @@ public class SpotifyIntentService extends JobIntentService {
             LocalBroadcastManager.getInstance(this).sendBroadcast(in);
             Log.d(TAG, "Playing new song");
         } else {
-            Log.d(TAG, "Can't play new song");
-            // try again
-            while (count != 10) {
-                playNewSong(newSongId);
-                count++;
-            }
+            playNewSong(newSongId);
         }
     }
 

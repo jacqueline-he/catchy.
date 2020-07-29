@@ -30,8 +30,10 @@ import androidx.preference.SwitchPreference;
 
 import com.example.catchy.R;
 import com.example.catchy.activities.LoginActivity;
+import com.example.catchy.models.User;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -163,7 +165,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
             // create Intent to take a picture and return control to the calling application
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             // Create a File reference for future access
-            photoFile = getPhotoFileUri(photoFileName);
+            photoFile = getPhotoFileUri(photoFileName + Math.random());
 
             // wrap File object into a content provider
             // required for API >= 24
@@ -204,6 +206,14 @@ public class SettingsPrefActivity extends AppCompatActivity {
                     ParseFile file = new ParseFile(photoFile);
                     ParseUser.getCurrentUser().put("profilePic", file);
                     ParseUser.getCurrentUser().saveInBackground();
+
+                    new Thread(() -> {
+                        try {
+                            User.profileBitmap = Picasso.get().load(photoFile.getAbsolutePath()).get();
+                        } catch (Exception e) {
+                            Log.e("SettingsPrefActivity", "couldn't get bitmap"+e);
+                        }
+                    }).start();
 
                     // Glide.with(this).load(photoFile.getAbsolutePath()).transform(new CircleCrop()).into(ivProfileImage);
                 } else { // Result was a failure

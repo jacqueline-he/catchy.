@@ -1,12 +1,14 @@
 package com.example.catchy.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +30,7 @@ import com.example.catchy.R;
 import com.example.catchy.adapters.UserAdapter;
 import com.example.catchy.models.Following;
 import com.example.catchy.models.Like;
+import com.example.catchy.models.User;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.FindCallback;
 import com.parse.Parse;
@@ -39,6 +43,8 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import co.revely.gradient.RevelyGradient;
 
 
 public class UserFragment extends Fragment {
@@ -61,6 +67,8 @@ public class UserFragment extends Fragment {
 
     private List<ParseUser> following;
     private List<ParseUser> followers;
+
+    private RelativeLayout layout;
 
     private EndlessRecyclerViewScrollListener scrollListener;
     protected List<Like> userLikes;
@@ -101,6 +109,8 @@ public class UserFragment extends Fragment {
         tvLikesCount = view.findViewById(R.id.tvLikesCount);
         tvFollowersCount = view.findViewById(R.id.tvFollowersCount);
         tvFollowingCount = view.findViewById(R.id.tvFollowingCount);
+
+        layout = view.findViewById(R.id.layout);
 
 
         return view;
@@ -157,8 +167,34 @@ public class UserFragment extends Fragment {
         };
         rvLikes.addOnScrollListener(scrollListener);
 
+        setBackgroundColor();
     }
 
+    private void setBackgroundColor() {
+        if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
+            Palette palette = Palette.from(User.profileBitmap).generate();
+            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            // int color = palette.getDarkMutedColor(0);
+            if (swatch == null) {
+                swatch = palette.getDominantSwatch();
+            }
+
+            // swatch.getRgb()
+            if (swatch != null) {
+                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+
+                int color = swatch.getRgb();
+                RevelyGradient
+                        .linear()
+                        .colors(new int[]{Color.parseColor("#212121"), color}).angle(180f).alpha(0.36f)
+                        .onBackgroundOf(layout);
+            }
+
+
+        }
+    }
+
+    // TODO test
     private void queryUserFollowing() {
         ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
         query.whereEqualTo("follower", ParseUser.getCurrentUser()); // everyone the user follows
@@ -174,10 +210,12 @@ public class UserFragment extends Fragment {
                 for (Following followingItem : objects) {
                     following.add(followingItem.getFollowing());
                 }
+                tvFollowingCount.setText(objects.size() + " following");
             }
         });
     }
 
+    // TODO test
     private void queryUserFollowers() {
         ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
         query.whereEqualTo("following", ParseUser.getCurrentUser()); // everyone who follows user
@@ -193,6 +231,7 @@ public class UserFragment extends Fragment {
                 for (Following followingItem : objects) {
                     followers.add(followingItem.getFollowing());
                 }
+                tvFollowersCount.setText(objects.size() + " followers");
             }
         });
     }
