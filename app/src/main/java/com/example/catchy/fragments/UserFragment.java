@@ -52,6 +52,9 @@ public class UserFragment extends Fragment {
     private TextView tvFullName;
     private TextView tvLikedSongs;
 
+    private TextView tvLikesCount;
+    private TextView tvFollowersCount;
+    private TextView tvFollowingCount;
 
     private EndlessRecyclerViewScrollListener scrollListener;
     protected List<Like> userLikes;
@@ -88,6 +91,10 @@ public class UserFragment extends Fragment {
 
         tvFullName = view.findViewById(R.id.tvFullName);
         tvLikedSongs = view.findViewById(R.id.tvLikedSongs);
+
+        tvLikesCount = view.findViewById(R.id.tvLikesCount);
+        tvFollowersCount = view.findViewById(R.id.tvFollowersCount);
+        tvFollowingCount = view.findViewById(R.id.tvFollowingCount);
 
 
         return view;
@@ -169,6 +176,13 @@ public class UserFragment extends Fragment {
                     Log.i(TAG, "Liked: " + like.getTitle());
                 }
                 userLikes.addAll(likes);
+                if (userLikes.size() == 1) {
+                    tvLikesCount.setText("1 like");
+                }
+                else {
+                    tvLikesCount.setText(userLikes.size() + " likes");
+                }
+
                 adapter.notifyDataSetChanged();
             }
         });

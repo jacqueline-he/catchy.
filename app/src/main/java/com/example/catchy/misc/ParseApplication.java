@@ -3,8 +3,8 @@ package com.example.catchy.misc;
 import android.app.Application;
 
 import com.example.catchy.R;
+import com.example.catchy.models.Following;
 import com.example.catchy.models.Like;
-import com.example.catchy.models.Settings;
 import com.example.catchy.models.Song;
 import com.example.catchy.models.User;
 import com.parse.Parse;
@@ -24,7 +24,7 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Song.class);
         ParseObject.registerSubclass(User.class);
         ParseObject.registerSubclass(Like.class);
-        ParseObject.registerSubclass(Settings.class);
+        ParseObject.registerSubclass(Following.class);
 
         // Use for troubleshooting -- remove this line for production
         Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
