@@ -1,10 +1,12 @@
 package com.example.catchy.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +22,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.spotify.sdk.android.authentication.AuthenticationClient;
+import com.spotify.sdk.android.authentication.AuthenticationRequest;
+import com.spotify.sdk.android.authentication.AuthenticationResponse;
 
 import java.util.List;
 
@@ -31,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     SpotifyBroadcastReceiver spotifyBroadcastReceiver;
     Fragment fragment;
 
+    // API stuff
+    private static final int REQUEST_CODE = 1337;
+    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private,user-top-read";
+
 
     public SpotifyBroadcastReceiver getReceiver() {
         return spotifyBroadcastReceiver;
@@ -41,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        boolean returning = getIntent().getBooleanExtra("returning", false);
+
+        // If the user is a returning user, we don't need to show the dialog option again. Otherwise, we can show it
+        authenticateSpotify(!returning);
 
 
         spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
@@ -101,11 +117,50 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        View decorView = getWindow().getDecorView();
-// Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        // Check if result comes from the correct activity
+        if (requestCode == REQUEST_CODE) {
+            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+
+            switch (response.getType()) {
+                // Response was successful and contains auth token
+                case TOKEN:
+                    ParseUser.getCurrentUser().put("token", response.getAccessToken());
+                    ParseUser.getCurrentUser().saveInBackground();
+                    Log.d(TAG, "Successfully got auth token");
+                    break;
+
+                // Auth flow returned an error
+                case ERROR:
+                    // Handle error response
+                    Log.d(TAG, "Error authenticating!");
+                    retryLogin();
+                    break;
+
+                // Most likely auth flow was cancelled
+                default:
+                    // Handle other cases
+                    Log.d(TAG, "Authentication flow cancelled");
+                    retryLogin();
+            }
+        }
+    }
+
+    private void retryLogin() {
+        ParseUser.logOut();
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+
+    private void authenticateSpotify(boolean dialog) {
+        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(getString(R.string.spotify_client_id), AuthenticationResponse.Type.TOKEN, "http://com.example.catchy./callback");
+        builder.setScopes(new String[]{SCOPES});
+        builder.setShowDialog(dialog);
+        AuthenticationRequest request = builder.build();
+        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
     }
 }

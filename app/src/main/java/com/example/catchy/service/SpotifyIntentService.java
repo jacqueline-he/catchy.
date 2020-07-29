@@ -13,6 +13,9 @@ import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.PlayerApi;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
+import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp;
+import com.spotify.android.appremote.api.error.NotLoggedInException;
+import com.spotify.android.appremote.api.error.UserNotAuthorizedException;
 
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_DISCONNECT;
 import static com.example.catchy.service.SpotifyBroadcastReceiver.ACTION_INIT;
@@ -57,10 +60,9 @@ public class SpotifyIntentService extends JobIntentService {
                             mIsSpotifyConnected = true;
                         }
 
-                        public void onFailure(Throwable throwable) {
-                            Log.e(TAG, throwable.getMessage(), throwable);
-
-                            // Something went wrong when attempting to connect! Handle errors here
+                        public void onFailure(Throwable error) {
+                            Log.e(TAG, error.getMessage(), error);
+                            mIsSpotifyConnected = false;
                         }
                     });
         }

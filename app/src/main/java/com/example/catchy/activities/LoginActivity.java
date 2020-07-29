@@ -63,9 +63,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goSpotifyAuth(boolean returning) {
-        Intent i = new Intent(this, AuthActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         i.putExtra("returning", returning);
-        Log.d(TAG, "spotifyauth");
+        Log.d(TAG, "Entering main activity");
         startActivity(i);
         finish();
     }
@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (e != null) {
                     Log.e(TAG, "Issue with login", e);
                     Toast.makeText(LoginActivity.this, "Issue with login", Toast.LENGTH_SHORT).show();
-                    //TODO: Better error handling
                     return;
                 }
                 goSpotifyAuth(false);

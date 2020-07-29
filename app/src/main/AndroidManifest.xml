@@ -20,11 +20,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.AuthActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:launchMode="singleInstance"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activities.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
