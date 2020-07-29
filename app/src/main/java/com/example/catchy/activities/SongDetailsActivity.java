@@ -101,6 +101,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                 btnPlayPause.setImageResource(R.drawable.ic_play128128);
             }
             progress = intent.getLongExtra("progress", 0);
+            progress %= (song.getDuration()); // TODO untested fix
             Log.d("SongDetailsActivity", "progress: " + progress);
 
         }
