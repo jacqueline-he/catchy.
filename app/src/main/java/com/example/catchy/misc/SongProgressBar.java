@@ -59,27 +59,24 @@ public class SongProgressBar {
     public void update(long progress) {
         if (mSeekBar.getProgress() == mSeekBar.getMax()) {
             mSeekBar.setProgress(0);
-        }
-        else {
+        } else {
             mSeekBar.setProgress((int) progress);
         }
 
         mHandler.removeCallbacks(mSeekRunnable);
         mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
 
-        int minutes = (int) ((progress / 1000)  / 60);
-        int seconds = (int)((progress / 1000) % 60);
+        int minutes = (int) ((progress / 1000) / 60);
+        int seconds = (int) ((progress / 1000) % 60);
         String time;
         if (minutes < 0 || seconds < 0) {
             time = "0:00";
-        }
-        else if (seconds < 10) {
+        } else if (seconds < 10) {
             time = minutes + ":0" + seconds;
-        }
-        else {
+        } else {
             time = minutes + ":" + seconds;
         }
-        TextView tvCurrPos = ((SongDetailsActivity)context).findViewById(R.id.tvCurrPos);
+        TextView tvCurrPos = ((SongDetailsActivity) context).findViewById(R.id.tvCurrPos);
         tvCurrPos.setText(time);
         Log.d("SongProgressBar", "progress: " + time);
     }

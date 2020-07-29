@@ -40,7 +40,7 @@ import java.util.List;
 
 public class UserFragment extends Fragment {
 
-    public static final String TAG="ProfileFragment";
+    public static final String TAG = "ProfileFragment";
     private RecyclerView rvLikes;
     protected UserAdapter adapter;
     private GridLayoutManager gridLayoutManager;
@@ -131,7 +131,6 @@ public class UserFragment extends Fragment {
         rvLikes.setLayoutManager(gridLayoutManager);
 
 
-
         scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
@@ -181,7 +180,7 @@ public class UserFragment extends Fragment {
         // reset profile pic
         ParseFile profileImage = currentUser.getParseFile("profilePic");
         if (profileImage != null) {
-             Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
+            Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
         }
 
         if (!DetailTransition.liked) {

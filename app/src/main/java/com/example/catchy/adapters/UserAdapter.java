@@ -72,8 +72,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             bitmap = BitmapCache.getBitmapFromMemCache(position);
             if (bitmap != null) {
                 like.bitmap = bitmap;
-            }
-            else {
+            } else {
                 new ImageLoaderTask(position, like.getImageUrl()).executeOnExecutor(
                         AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
             }

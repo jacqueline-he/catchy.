@@ -66,6 +66,7 @@ public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Seria
 
     /**
      * Method to enqueue an update action into this service
+     *
      * @param playbackPos the new playback position in the current song
      */
     public static void updatePlayer(Context context, long playbackPos) {
@@ -79,6 +80,7 @@ public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Seria
 
     /**
      * Method to enqueue a play action into this service
+     *
      * @param songId the Spotify ID of the new song
      */
     public static void playNew(Context context, String songId) {

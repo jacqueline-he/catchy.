@@ -40,7 +40,7 @@ import kaaes.spotify.webapi.android.models.Track;
 import retrofit.client.Response;
 
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment {
     public static final String TAG = "HomeFragment";
     HomeFragmentAdapter homeFragmentAdapter;
     ViewPager2 mViewPager;
@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         arr = new ArrayList<Song>();
-        spotifyBroadcastReceiver = ((MainActivity)getContext()).getReceiver();
+        spotifyBroadcastReceiver = ((MainActivity) getContext()).getReceiver();
         homeFragmentAdapter = new HomeFragmentAdapter(this, arr, getContext(), spotifyBroadcastReceiver);
         context = getContext();
 
@@ -89,9 +89,10 @@ public class HomeFragment extends Fragment{
 
         Random rand = new Random();
         // starter
-        String seedArtists = artists.get( rand.nextInt(artists.size()));
-        String seedGenres = genres.get( rand.nextInt(genres.size()));;
-        String seedTracks = tracks.get( rand.nextInt(tracks.size()));
+        String seedArtists = artists.get(rand.nextInt(artists.size()));
+        String seedGenres = genres.get(rand.nextInt(genres.size()));
+        ;
+        String seedTracks = tracks.get(rand.nextInt(tracks.size()));
 
         Map<String, Object> options = new HashMap<>();
         options.put("limit", 20);
@@ -113,8 +114,7 @@ public class HomeFragment extends Fragment{
                     Track track = tracks.get(i);
                     if (explicitFilter && track.explicit) {
                         // skip over song - do nothing
-                    }
-                    else {
+                    } else {
                         Song song = new Song();
                         song.setURI(track.uri);
                         song.setImageUrl(track.album.images.get(0).url);
@@ -166,8 +166,7 @@ public class HomeFragment extends Fragment{
                 }
                 if (posts.size() < 10) {
                     addRecommendedSongs();
-                }
-                else {
+                } else {
                     arr.addAll(posts);
                     homeFragmentAdapter.notifyDataSetChanged();
                     Log.i(TAG, "Adapter changed");
@@ -177,8 +176,6 @@ public class HomeFragment extends Fragment{
 
 
     }
-
-
 
 
     @Override

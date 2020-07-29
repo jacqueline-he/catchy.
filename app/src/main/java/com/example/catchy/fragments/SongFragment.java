@@ -3,6 +3,7 @@ package com.example.catchy.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -78,7 +79,7 @@ public class SongFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_song, container, false);
+        View view = inflater.inflate(R.layout.fragment_song, container, false);
         tvTitle = view.findViewById(R.id.tvTitle);
         tvTitle.setSelected(true);
         tvArtist = view.findViewById(R.id.tvArtist);
@@ -90,15 +91,13 @@ public class SongFragment extends Fragment {
         durationPref = ParseUser.getCurrentUser().getBoolean("durationPref"); // true  -> play full-length, false -> play 30-sec. snippet
 
 
-
         new Thread(() -> {
             try {
                 DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
             } catch (Exception e) {
-                Log.e("SongFragment", "couldn't get bitmap"+e);
+                Log.e("SongFragment", "couldn't get bitmap" + e);
             }
         }).start();
-
 
 
         // Double tap
@@ -114,8 +113,7 @@ public class SongFragment extends Fragment {
                 public boolean onSingleTapConfirmed(MotionEvent e) {
                     if (paused) { // unpause
                         spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY);
-                    }
-                    else { // pause
+                    } else { // pause
                         spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PAUSE);
                     }
                     paused = !paused;
@@ -166,8 +164,7 @@ public class SongFragment extends Fragment {
                     mHandler.postDelayed(this, LOOP_DURATION);
                 }
             };
-        }
-        else { // 30-sec. snippet
+        } else { // 30-sec. snippet
             mRunnable = new Runnable() {
                 @Override
                 public void run() {
@@ -175,8 +172,7 @@ public class SongFragment extends Fragment {
                         progress = 0;
                         spotifyBroadcastReceiver.updatePlayer(context, -30000);
                         mHandler.postDelayed(this, LOOP_DURATION);
-                    }
-                    else {
+                    } else {
                         progress += LOOP_DURATION;
                         mHandler.postDelayed(this, LOOP_DURATION);
                     }
@@ -209,8 +205,7 @@ public class SongFragment extends Fragment {
             btnLike.setImageResource(R.drawable.ic_likes_filled);
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
             liked = true;
-        }
-        else {
+        } else {
             btnLike.setImageResource(R.drawable.ic_likes);
             btnLike.clearColorFilter();
             liked = false;
@@ -220,18 +215,16 @@ public class SongFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        // if (fromDetails) {
-            enteringSongDetails = DetailTransition.enteringSongDetails; // should be false
-            liked = DetailTransition.liked; // should be true
-            if (liked) {
-                btnLike.setImageResource(R.drawable.ic_likes_filled);
-                btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
-            }
-            progress = DetailTransition.progress; // update from SongDetailsActivity
-            DetailTransition.progress = 0; // reset
-            mHandler.removeCallbacks(mRunnable);    // resume counting
-            mHandler.postDelayed(mRunnable, LOOP_DURATION);
-        // }
+        enteringSongDetails = DetailTransition.enteringSongDetails; // should be false
+        liked = DetailTransition.liked; // should be true
+        if (liked) {
+            btnLike.setImageResource(R.drawable.ic_likes_filled);
+            btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
+        }
+        progress = DetailTransition.progress; // update from SongDetailsActivity
+        DetailTransition.progress = 0; // reset
+        mHandler.removeCallbacks(mRunnable);    // resume counting
+        mHandler.postDelayed(mRunnable, LOOP_DURATION);
     }
 
     @Override
@@ -239,7 +232,7 @@ public class SongFragment extends Fragment {
         super.onPause();
         Log.d("SongFragment", "stopped " + song.getTitle() + ", like is " + liked);
         // update like
-        if (liked && ! enteringSongDetails) {
+        if (liked && !enteringSongDetails) {
             Like like = new Like();
             like.setTitle(song.getTitle());
             like.setArtist(song.getArtist());

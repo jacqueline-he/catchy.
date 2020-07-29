@@ -79,7 +79,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
         rvResults = view.findViewById(R.id.rvResults);
         etSearch = view.findViewById(R.id.etSearch);
         ibSearch = view.findViewById(R.id.ibSearch);

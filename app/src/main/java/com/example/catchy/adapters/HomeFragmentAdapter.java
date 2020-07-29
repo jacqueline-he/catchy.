@@ -142,8 +142,9 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
             public void success(Pager<Track> trackPager, Response response) {
                 List<Track> list = trackPager.items;
                 int i = (int) (Math.random() * list.size());
-                int j = (int) (Math.random() * list.size());;
-                while (i == j)  {
+                int j = (int) (Math.random() * list.size());
+                ;
+                while (i == j) {
                     j = (int) (Math.random() * list.size());
                 }
                 seedTracks = list.get(i).id + "," + list.get(j).id;
@@ -164,8 +165,9 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
             public void success(Pager<Artist> artistPager, Response response) {
                 List<Artist> list = artistPager.items;
                 int i = (int) (Math.random() * list.size());
-                int j = (int) (Math.random() * list.size());;
-                while (i == j)  {
+                int j = (int) (Math.random() * list.size());
+                ;
+                while (i == j) {
                     j = (int) (Math.random() * list.size());
                 }
 

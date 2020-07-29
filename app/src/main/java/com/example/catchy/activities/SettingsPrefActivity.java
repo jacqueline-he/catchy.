@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.app.DialogFragment;
+
 import androidx.fragment.app.FragmentActivity;
 import androidx.preference.EditTextPreference;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -34,7 +36,7 @@ import com.parse.ParseUser;
 import java.io.File;
 
 public class SettingsPrefActivity extends AppCompatActivity {
-    public static final String TAG="SettingsPrefActivity";
+    public static final String TAG = "SettingsPrefActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +79,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
                     boolean selected = Boolean.parseBoolean(newValue.toString());
                     if (selected) {
                         Toast.makeText(getActivity(), "Explicit filter turned on!", Toast.LENGTH_LONG).show();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getActivity(), "Explicit filter turned off!", Toast.LENGTH_LONG).show();
                     }
                     // update selected
@@ -95,8 +96,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
                     boolean selected = Boolean.parseBoolean(newValue.toString());
                     if (selected) {
                         Toast.makeText(getActivity(), "Play 30-second snippet in feed!", Toast.LENGTH_LONG).show();
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getActivity(), "Play full-length song in feed!", Toast.LENGTH_LONG).show();
                     }
                     // update selected
@@ -186,7 +186,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
             File mediaStorageDir = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
             // Create the storage directory if it does not exist
-            if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
+            if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
                 Log.d(TAG, "failed to create directory");
             }
 
@@ -216,8 +216,10 @@ public class SettingsPrefActivity extends AppCompatActivity {
 
     public static class AboutFragment extends DialogFragment {
         private TextView tvAbout;
+
         // Constructor
-        public AboutFragment() {}
+        public AboutFragment() {
+        }
 
 
         @Nullable

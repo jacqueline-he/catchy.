@@ -73,7 +73,7 @@ public class SpotifyIntentService extends JobIntentService {
     protected void onHandleWork(@NonNull Intent intent) {
         Log.d(TAG, "Handling work with intent: [" + intent + "]");
         if (intent.getAction() != null) {
-            switch(intent.getAction()) {
+            switch (intent.getAction()) {
                 case ACTION_INIT:
                     initialize();
                     break;
@@ -99,7 +99,7 @@ public class SpotifyIntentService extends JobIntentService {
     }
 
     private void pause() {
-        Log.d(TAG,"pause");
+        Log.d(TAG, "pause");
         Intent in = new Intent(ACTION_PAUSE);
         if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
             mPlayerApi.getPlayerState().setResultCallback(playerState -> {
@@ -110,7 +110,7 @@ public class SpotifyIntentService extends JobIntentService {
     }
 
     private void playPause() {
-        Log.d(TAG,"playPause");
+        Log.d(TAG, "playPause");
         Intent in = new Intent(ACTION_PLAY_PAUSE);
         if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
             mPlayerApi.getPlayerState().setResultCallback(playerState -> {
@@ -125,15 +125,14 @@ public class SpotifyIntentService extends JobIntentService {
     }
 
     private void playNewSong(String newSongId) {
-        Log.d(TAG,"playNewSong");
+        Log.d(TAG, "playNewSong");
         Intent in = new Intent(ACTION_PLAY);
         if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
             mPlayerApi.play(newSongId);
             mPlayerApi.setRepeat(ONE);
             LocalBroadcastManager.getInstance(this).sendBroadcast(in);
             Log.d(TAG, "Playing new song");
-        }
-        else {
+        } else {
             Log.d(TAG, "Can't play new song");
             // try again
             playNewSong(newSongId);
@@ -141,7 +140,7 @@ public class SpotifyIntentService extends JobIntentService {
     }
 
     private void seekTo(long progress) {
-        Log.d(TAG,"seekTo");
+        Log.d(TAG, "seekTo");
         Intent in = new Intent(ACTION_UPDATE);
         if (mPlayerApi != null && mSpotifyAppRemote.isConnected()) {
             mPlayerApi.seekToRelativePosition(progress)
@@ -154,7 +153,7 @@ public class SpotifyIntentService extends JobIntentService {
      * Initialize the service and notify the receiver of the current connection and playback states
      */
     private void initialize() {
-        Log.d(TAG,"initialize");
+        Log.d(TAG, "initialize");
         Intent in = new Intent(ACTION_INIT);
         if (mIsSpotifyConnected) {
             in.putExtra("RESULT", "RESULT_CONNECTED");
@@ -165,7 +164,7 @@ public class SpotifyIntentService extends JobIntentService {
     }
 
     private void disconnect() {
-        Log.d(TAG,"disconnect");
+        Log.d(TAG, "disconnect");
         Intent in = new Intent(ACTION_DISCONNECT);
         if (mIsSpotifyConnected) {
             mPlayerApi.pause();

@@ -28,6 +28,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
 import java.util.List;
 
 import co.revely.gradient.RevelyGradient;
@@ -94,8 +95,7 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         if (!from.equals("home")) {
             receiver.playNew(this, song.getURI());
-        }
-        else {
+        } else {
             paused = intent.getBooleanExtra("paused", false);
             if (paused) { // set button icon to pause
                 btnPlayPause.setImageResource(R.drawable.ic_play128128);
@@ -132,8 +132,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                 if (paused) { // not playing
                     btnPlayPause.setImageResource(R.drawable.ic_pause128128);
                     songProgressBar.unpause();
-                }
-                else {
+                } else {
                     btnPlayPause.setImageResource(R.drawable.ic_play128128);
 
                     songProgressBar.pause();
@@ -191,13 +190,12 @@ public class SongDetailsActivity extends AppCompatActivity {
         songProgressBar = new SongProgressBar(seekbar, this);
         songProgressBar.setMax(song.getDuration());
         songProgressBar.update(progress);
-        int minutes = (int) ((song.getDuration() / 1000)  / 60);
-        int seconds = (int)((song.getDuration() / 1000) % 60);
+        int minutes = (int) ((song.getDuration() / 1000) / 60);
+        int seconds = (int) ((song.getDuration() / 1000) % 60);
         String time;
         if (seconds < 10) {
             time = minutes + ":0" + seconds;
-        }
-        else {
+        } else {
             time = minutes + ":" + seconds;
         }
         tvFullPos.setText(time);
@@ -230,7 +228,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                 int color = swatch.getRgb();
                 RevelyGradient
                         .linear()
-                        .colors(new int[] {Color.parseColor("#212121"), color}).angle(90f).alpha(0.76f)
+                        .colors(new int[]{Color.parseColor("#212121"), color}).angle(90f).alpha(0.76f)
                         .onBackgroundOf(findViewById(R.id.layout));
 
                 btnPlayPause.setColorFilter(swatch.getRgb());
@@ -242,14 +240,12 @@ public class SongDetailsActivity extends AppCompatActivity {
     }
 
 
-
     private void like() {
         if (!liked) {
             btnLike.setImageResource(R.drawable.ic_likes_filled);
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
             liked = true;
-        }
-        else {
+        } else {
             btnLike.setImageResource(R.drawable.ic_likes);
             btnLike.clearColorFilter();
             liked = false;
@@ -287,8 +283,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                     Log.i("SongDetailsActivity", "Post save was successful!");
                 }
             });
-        }
-        else if (from.equals("user") && ! liked) {
+        } else if (from.equals("user") && !liked) {
             // Remove this song from likes
             ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
             query.include(Like.KEY_LIKED_BY);

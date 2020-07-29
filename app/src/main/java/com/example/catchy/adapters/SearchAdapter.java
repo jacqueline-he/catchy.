@@ -23,7 +23,7 @@ import com.example.catchy.models.Song;
 
 import java.util.List;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>{
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
     private List<Song> results;
     private Context context;
 
@@ -94,8 +94,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             bitmap = BitmapCache.getBitmapFromMemCache(position);
             if (bitmap != null) {
                 song.bitmap = bitmap;
-            }
-            else {
+            } else {
                 new ImageLoaderTask(position, song.getImageUrl()).executeOnExecutor(
                         AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
             }

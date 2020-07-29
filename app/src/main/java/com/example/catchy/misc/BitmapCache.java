@@ -12,7 +12,7 @@ public class BitmapCache {
         // OutOfMemory exception. Stored in kilobytes as LruCache takes an
         // int in its constructor
 
-        if (MemoryCache==null) {
+        if (MemoryCache == null) {
             final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
             // use 1/4th of the available memory for this memory cache.
 
