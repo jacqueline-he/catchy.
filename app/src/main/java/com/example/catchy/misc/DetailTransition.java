@@ -10,4 +10,5 @@ public class DetailTransition {
     public static Song song;
     public static int pos;
     public static Bitmap bitmap = null;
+    public static long progress;
 }

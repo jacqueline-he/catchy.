@@ -42,6 +42,7 @@ public class SongFragment extends Fragment {
     boolean liked = false;
     boolean enteringSongDetails = false;
     private Handler mHandler;
+    private Runnable mSeekRunnable;
     long progress = 0;
     boolean paused = false;
 
@@ -85,7 +86,7 @@ public class SongFragment extends Fragment {
             try {
                 DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
             } catch (Exception e) {
-                Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
+                Log.e("SongFragment", "couldn't get bitmap"+e);
             }
         }).start();
 
@@ -132,21 +133,6 @@ public class SongFragment extends Fragment {
         tvArtist.setText(song.getArtist());
         Glide.with(this).load(song.getImageUrl()).into(ivAlbumImage);
 
-        tvTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                enteringSongDetails = true;
-                Intent intent = new Intent(getContext(), SongDetailsActivity.class);
-                // pack something
-                intent.putExtra("song", song);
-                intent.putExtra("liked", liked);
-                intent.putExtra("from", "home");
-                intent.putExtra("paused", paused); // SongFragment only
-                intent.putExtra("progress", progress); // SongFragment only
-                startActivity(intent);
-            }
-        });
-
         song.setSeen(true);
         song.saveInBackground(new SaveCallback() {
             @Override
@@ -162,16 +148,30 @@ public class SongFragment extends Fragment {
         // TODO pause mHandler when leaving fragment; update when resumed; restart to 0 if exceeds 30 sec
         // TODO add toggle for play to completion or not
         mHandler = new Handler();
-        mHandler.postDelayed(new Runnable() {
+        mSeekRunnable = new Runnable() {
             @Override
             public void run() {
                 progress += LOOP_DURATION;
                 mHandler.postDelayed(this, LOOP_DURATION);
             }
-        }, LOOP_DURATION);
+        };
+        mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
 
-
-
+        tvTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enteringSongDetails = true; // pause
+                mHandler.removeCallbacks(mSeekRunnable);
+                Intent intent = new Intent(getContext(), SongDetailsActivity.class);
+                // pack something
+                intent.putExtra("song", song);
+                intent.putExtra("liked", liked);
+                intent.putExtra("from", "home");
+                intent.putExtra("paused", paused); // SongFragment only
+                intent.putExtra("progress", progress); // SongFragment only
+                startActivity(intent);
+            }
+        });
 
         spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
 
@@ -201,6 +201,9 @@ public class SongFragment extends Fragment {
                 btnLike.setImageResource(R.drawable.ic_likes_filled);
                 btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
             }
+            progress = DetailTransition.progress; // update from SongDetailsActivity
+            mHandler.removeCallbacks(mSeekRunnable);    // resume counting
+            mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
         // }
     }
 

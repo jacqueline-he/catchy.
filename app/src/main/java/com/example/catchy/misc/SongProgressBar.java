@@ -12,7 +12,7 @@ import com.example.catchy.service.SpotifyBroadcastReceiver;
 
 public class SongProgressBar {
     private static final int LOOP_DURATION = 500;
-    private SeekBar mSeekBar;
+    SeekBar mSeekBar;
     private Handler mHandler;
     SpotifyBroadcastReceiver receiver;
     Context context;
@@ -23,6 +23,10 @@ public class SongProgressBar {
         mHandler = new Handler();
         receiver = new SpotifyBroadcastReceiver();
         this.context = context;
+    }
+
+    public SeekBar getSeekBar() {
+        return mSeekBar;
     }
 
     private final SeekBar.OnSeekBarChangeListener mSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {

@@ -262,6 +262,7 @@ public class SongDetailsActivity extends AppCompatActivity {
         DetailTransition.liked = liked;
         DetailTransition.enteringSongDetails = false;
         DetailTransition.song = song;
+        DetailTransition.progress = songProgressBar.getSeekBar().getProgress();
         if (!from.equals("home")) {
             receiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_PAUSE);
         }
@@ -306,12 +307,4 @@ public class SongDetailsActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        View decorView = getWindow().getDecorView();
-// Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-    }
 }
