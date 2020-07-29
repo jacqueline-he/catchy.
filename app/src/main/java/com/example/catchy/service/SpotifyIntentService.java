@@ -68,14 +68,6 @@ public class SpotifyIntentService extends JobIntentService {
         }
     }
 
-    // play track
-
-    // pause track
-
-
-
-
-
 
     @Override
     protected void onHandleWork(@NonNull Intent intent) {
@@ -139,6 +131,12 @@ public class SpotifyIntentService extends JobIntentService {
             mPlayerApi.play(newSongId);
             mPlayerApi.setRepeat(ONE);
             LocalBroadcastManager.getInstance(this).sendBroadcast(in);
+            Log.d(TAG, "Playing new song");
+        }
+        else {
+            Log.d(TAG, "Can't play new song");
+            // try again
+            playNewSong(newSongId);
         }
     }
 

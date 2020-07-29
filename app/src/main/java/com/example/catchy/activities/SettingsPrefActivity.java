@@ -52,6 +52,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
         private Preference logout;
         private Preference about;
         private SwitchPreference explicitFilter;
+        private SwitchPreference durationPref;
 
         private File photoFile;
         private String photoFileName = "photo.jpg";
@@ -66,6 +67,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
             logout = findPreference("logout");
             about = findPreference("about");
             explicitFilter = findPreference("explicitfilter");
+            durationPref = findPreference("durationpref");
 
             explicitFilter.setChecked(ParseUser.getCurrentUser().getBoolean("explicitFilter")); // sets switch based on user preferences
 
@@ -81,6 +83,24 @@ public class SettingsPrefActivity extends AppCompatActivity {
                     }
                     // update selected
                     ParseUser.getCurrentUser().put("explicitFilter", selected);
+                    ParseUser.getCurrentUser().saveInBackground();
+                    return true;
+                }
+            });
+
+            durationPref.setChecked(ParseUser.getCurrentUser().getBoolean("durationPref")); // sets switch based on user preferences
+            durationPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean selected = Boolean.parseBoolean(newValue.toString());
+                    if (selected) {
+                        Toast.makeText(getActivity(), "Play 30-second snippet in feed!", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(getActivity(), "Play full-length song in feed!", Toast.LENGTH_LONG).show();
+                    }
+                    // update selected
+                    ParseUser.getCurrentUser().put("durationPref", selected);
                     ParseUser.getCurrentUser().saveInBackground();
                     return true;
                 }
@@ -127,8 +147,12 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 public boolean onPreferenceClick(Preference preference) {
 
                     ParseUser.logOut();
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     getActivity().finish();
+                    startActivity(intent);
+
                     return true;
                 }
             });

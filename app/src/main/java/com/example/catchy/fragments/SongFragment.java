@@ -1,5 +1,6 @@
 package com.example.catchy.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.catchy.activities.MainActivity;
 import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
@@ -42,9 +44,11 @@ public class SongFragment extends Fragment {
     boolean liked = false;
     boolean enteringSongDetails = false;
     private Handler mHandler;
-    private Runnable mSeekRunnable;
+    private Runnable mRunnable;
     long progress = 0;
     boolean paused = false;
+
+    boolean durationPref;
 
     public SongFragment() {
         // Required empty public constructor
@@ -66,6 +70,7 @@ public class SongFragment extends Fragment {
         if (getArguments() != null) {
             song = getArguments().getParcelable("song");
             spotifyBroadcastReceiver = (SpotifyBroadcastReceiver) getArguments().getSerializable("receiver");
+            DetailTransition.progress = 0;
         }
     }
 
@@ -81,6 +86,10 @@ public class SongFragment extends Fragment {
         ivAlbumImage = view.findViewById(R.id.ivAlbumImage);
         btnLike = view.findViewById(R.id.btnLike);
         DetailTransition.liked = false;
+
+        durationPref = ParseUser.getCurrentUser().getBoolean("durationPref"); // true  -> play full-length, false -> play 30-sec. snippet
+
+
 
         new Thread(() -> {
             try {
@@ -144,24 +153,43 @@ public class SongFragment extends Fragment {
                 Log.i(TAG, "Rec save was successful!");
             }
         });
+        Context context = getContext();
+        spotifyBroadcastReceiver.playNew(getActivity(), song.getURI());
 
-        // TODO pause mHandler when leaving fragment; update when resumed; restart to 0 if exceeds 30 sec
-        // TODO add toggle for play to completion or not
+
         mHandler = new Handler();
-        mSeekRunnable = new Runnable() {
-            @Override
-            public void run() {
-                progress += LOOP_DURATION;
-                mHandler.postDelayed(this, LOOP_DURATION);
-            }
-        };
-        mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
+        if (!durationPref) {
+            mRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    progress += LOOP_DURATION;
+                    mHandler.postDelayed(this, LOOP_DURATION);
+                }
+            };
+        }
+        else { // 30-sec. snippet
+            mRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    if (progress == 30000) {
+                        progress = 0;
+                        spotifyBroadcastReceiver.updatePlayer(context, -30000);
+                        mHandler.postDelayed(this, LOOP_DURATION);
+                    }
+                    else {
+                        progress += LOOP_DURATION;
+                        mHandler.postDelayed(this, LOOP_DURATION);
+                    }
+
+                }
+            };
+        }
 
         tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 enteringSongDetails = true; // pause
-                mHandler.removeCallbacks(mSeekRunnable);
+                mHandler.removeCallbacks(mRunnable);
                 Intent intent = new Intent(getContext(), SongDetailsActivity.class);
                 // pack something
                 intent.putExtra("song", song);
@@ -172,8 +200,6 @@ public class SongFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        spotifyBroadcastReceiver.playNew(getContext(), song.getURI());
 
         return view;
     }
@@ -202,8 +228,9 @@ public class SongFragment extends Fragment {
                 btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
             }
             progress = DetailTransition.progress; // update from SongDetailsActivity
-            mHandler.removeCallbacks(mSeekRunnable);    // resume counting
-            mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
+            DetailTransition.progress = 0; // reset
+            mHandler.removeCallbacks(mRunnable);    // resume counting
+            mHandler.postDelayed(mRunnable, LOOP_DURATION);
         // }
     }
 
@@ -232,5 +259,6 @@ public class SongFragment extends Fragment {
                 }
             });
         }
+        mHandler.removeCallbacks(mRunnable);
     }
 }

@@ -113,8 +113,10 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
+
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
