@@ -25,13 +25,16 @@ import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
 import com.example.catchy.activities.SettingsPrefActivity;
 import com.example.catchy.R;
 import com.example.catchy.adapters.UserAdapter;
+import com.example.catchy.models.Following;
 import com.example.catchy.models.Like;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,6 +58,9 @@ public class UserFragment extends Fragment {
     private TextView tvLikesCount;
     private TextView tvFollowersCount;
     private TextView tvFollowingCount;
+
+    private List<ParseUser> following;
+    private List<ParseUser> followers;
 
     private EndlessRecyclerViewScrollListener scrollListener;
     protected List<Like> userLikes;
@@ -137,6 +143,9 @@ public class UserFragment extends Fragment {
         rvLikes.setAdapter(adapter);
         rvLikes.setLayoutManager(gridLayoutManager);
 
+        queryUserFollowing();
+        queryUserFollowers();
+
 
         scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
             @Override
@@ -148,6 +157,44 @@ public class UserFragment extends Fragment {
         };
         rvLikes.addOnScrollListener(scrollListener);
 
+    }
+
+    private void queryUserFollowing() {
+        ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
+        query.whereEqualTo("follower", ParseUser.getCurrentUser()); // everyone the user follows
+        query.addDescendingOrder("createdAt");
+        query.findInBackground(new FindCallback<Following>() {
+            @Override
+            public void done(List<Following> objects, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting following", e);
+                    return;
+                }
+                Log.d(TAG, "Query following success!");
+                for (Following followingItem : objects) {
+                    following.add(followingItem.getFollowing());
+                }
+            }
+        });
+    }
+
+    private void queryUserFollowers() {
+        ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
+        query.whereEqualTo("following", ParseUser.getCurrentUser()); // everyone who follows user
+        query.addDescendingOrder("createdAt");
+        query.findInBackground(new FindCallback<Following>() {
+            @Override
+            public void done(List<Following> objects, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting following", e);
+                    return;
+                }
+                Log.d(TAG, "Query following success!");
+                for (Following followingItem : objects) {
+                    followers.add(followingItem.getFollowing());
+                }
+            }
+        });
     }
 
     private void queryUserLikes() {
@@ -210,6 +257,8 @@ public class UserFragment extends Fragment {
             tvBio.setText(bio);
 
     }
+
+
 
     @Override
     public void onStop() {

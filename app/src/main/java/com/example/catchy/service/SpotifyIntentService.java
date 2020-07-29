@@ -33,6 +33,7 @@ public class SpotifyIntentService extends JobIntentService {
     private static PlayerApi mPlayerApi;
     private static boolean mIsSpotifyConnected;
     public static final String ACTION = "com.example.catchy.service.SpotifyIntentService";
+    int count = 0;
 
 
     @Override
@@ -135,7 +136,10 @@ public class SpotifyIntentService extends JobIntentService {
         } else {
             Log.d(TAG, "Can't play new song");
             // try again
-            playNewSong(newSongId);
+            while (count != 10) {
+                playNewSong(newSongId);
+                count++;
+            }
         }
     }
 
