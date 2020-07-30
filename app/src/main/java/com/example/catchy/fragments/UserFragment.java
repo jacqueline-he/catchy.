@@ -194,13 +194,15 @@ public class UserFragment extends Fragment {
                 int color = swatch.getRgb();
                 RevelyGradient
                         .linear()
-                        .colors(new int[]{Color.parseColor("#212121"), color}).angle(180f).alpha(0.36f)
+                        .colors(new int[]{Color.parseColor("#212121"), color}).angle(135f).alpha(0.86f)
                         .onBackgroundOf(layout);
             }
 
 
         }
     }
+
+    // TODO not retrieving updated name, bio from Parse
 
     // TODO test
     private void queryUserFollowing() {

@@ -174,3 +174,5 @@ public class SpotifyIntentService extends JobIntentService {
     }
 
 }
+
+// TODO bring back auth activity

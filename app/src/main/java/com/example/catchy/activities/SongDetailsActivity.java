@@ -101,7 +101,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                 btnPlayPause.setImageResource(R.drawable.ic_play128128);
             }
             progress = intent.getLongExtra("progress", 0);
-            progress %= (song.getDuration()); // TODO untested fix
+            progress %= (song.getDuration());
             Log.d("SongDetailsActivity", "progress: " + progress);
 
         }
@@ -141,6 +141,8 @@ public class SongDetailsActivity extends AppCompatActivity {
                 paused = !paused;
             }
         });
+
+        //TODO close songprogresbar progress upon exit
 
         btnRewind.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,4 +305,9 @@ public class SongDetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        songProgressBar.pause();
+    }
 }
