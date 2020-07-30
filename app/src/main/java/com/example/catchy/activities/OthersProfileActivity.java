@@ -38,7 +38,7 @@ public class OthersProfileActivity extends AppCompatActivity {
     private RecyclerView rvLikes;
     protected UserAdapter adapter;
     private GridLayoutManager gridLayoutManager;
-    private ParseUser currentUser; // TODO bundle along
+    private ParseUser currentUser;
     private TextView tvUsername;
     private TextView tvBio;
     private ImageView ivProfileImage;

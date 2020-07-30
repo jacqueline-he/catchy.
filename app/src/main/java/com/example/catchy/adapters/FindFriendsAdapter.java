@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +25,7 @@ import java.util.List;
 public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.ViewHolder> {
     private List<ParseUser> results;
     private Context context;
+    boolean followed = false;
 
     public FindFriendsAdapter(List<ParseUser> results, Context context) {
         this.results = results;
@@ -53,6 +55,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
         private ImageView ivProfileImage;
         private TextView tvUsername;
         private TextView tvFullName;
+        private ImageView ivFollow;
 
         private View itemView;
 
@@ -61,6 +64,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             ivProfileImage = view.findViewById(R.id.ivProfileImage);
             tvUsername = view.findViewById(R.id.tvUsername);
             tvFullName = view.findViewById(R.id.tvFullName);
+            ivFollow = view.findViewById(R.id.ivFollow);
             itemView = view;
         }
 
@@ -81,6 +85,26 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
                 }
             });
 
+            ivFollow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    follow();
+                }
+            });
+
+        }
+        private void follow() {
+            if (!followed) {
+                ivFollow.setImageResource(R.drawable.ic_followed);
+                ivFollow.setColorFilter(ContextCompat.getColor(context, R.color.medium_green));
+                followed = true;
+            } else {
+                ivFollow.setImageResource(R.drawable.ic_follow);
+                ivFollow.clearColorFilter();
+                followed = false;
+            }
         }
     }
+
+
 }

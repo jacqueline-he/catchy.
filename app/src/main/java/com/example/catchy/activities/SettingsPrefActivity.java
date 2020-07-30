@@ -195,6 +195,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
             // Return the file target for the photo based on filename
             return new File(mediaStorageDir.getPath() + File.separator + fileName);
         }
+        // TODO add explicit icon from materials design
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
