@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.FindFriendsActivity"></activity>
+        <activity android:name=".activities.OthersProfileActivity"></activity>
+        <activity android:name=".activities.FollowingActivity" />
+        <activity android:name=".activities.FollowersActivity" />
+        <activity android:name=".activities.FindFriendsActivity" />
         <activity android:name=".activities.SettingsPrefActivity" />
         <activity
             android:name=".activities.SongDetailsActivity"

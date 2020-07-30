@@ -93,7 +93,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="18dp"
         android:layout_marginTop="4dp"
-        android:textColor="@color/white"
+        android:textColor="#80fbfbfb"
         tools:text="3 likes" />
 
     <TextView
@@ -107,7 +107,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="142dp"
         android:layout_toEndOf="@+id/tvLikesCount"
-        android:textColor="@color/white"
+        android:textColor="#80fbfbfb"
         tools:text="3 followers" />
 
     <TextView
@@ -118,7 +118,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="23dp"
-        android:textColor="@color/white"
+        android:textColor="#80fbfbfb"
         tools:text="3 following" />
 
     <TextView

@@ -23,6 +23,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.activities.FindFriendsActivity;
+import com.example.catchy.activities.FollowersActivity;
+import com.example.catchy.activities.FollowingActivity;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
@@ -34,12 +36,10 @@ import com.example.catchy.models.Like;
 import com.example.catchy.models.User;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -165,7 +165,21 @@ public class UserFragment extends Fragment {
         rvLikes.setLayoutManager(gridLayoutManager);
 
         queryUserFollowing();
+        tvFollowingCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), FollowingActivity.class);
+                startActivity(intent);
+            }
+        });
         queryUserFollowers();
+        tvFollowersCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), FollowersActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
