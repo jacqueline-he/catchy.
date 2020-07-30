@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.example.catchy.activities.FindFriendsActivity;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
@@ -58,6 +59,7 @@ public class UserFragment extends Fragment {
     private TextView tvBio;
     private ImageView ivProfileImage;
     private ImageView ivMore;
+    private ImageView ivFindFriends;
     private TextView tvFullName;
     private TextView tvLikedSongs;
 
@@ -102,6 +104,7 @@ public class UserFragment extends Fragment {
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         tvBio = view.findViewById(R.id.tvBio);
         ivMore = view.findViewById(R.id.ivMore);
+        ivFindFriends = view.findViewById(R.id.ivFindFriends);
 
         tvFullName = view.findViewById(R.id.tvFullName);
         tvLikedSongs = view.findViewById(R.id.tvLikedSongs);
@@ -129,6 +132,14 @@ public class UserFragment extends Fragment {
 
         if (bio != null)
             tvBio.setText(bio);
+
+        ivFindFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), FindFriendsActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         ivMore.setOnClickListener(new View.OnClickListener() {
