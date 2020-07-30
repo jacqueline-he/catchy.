@@ -16,7 +16,7 @@
         android:layout_gravity="end"
         android:layout_marginStart="106dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="3dp"
+        android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/tvUsername"
         android:clickable="true"
         android:focusable="true"
@@ -41,52 +41,20 @@
         android:layout_width="wrap_content"
         android:layout_height="115dp"
         android:layout_below="@+id/ivMore"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="74dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_below="@+id/ivProfileImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
         android:textColor="@color/white"
         android:textStyle="bold"
         tools:text="username" />
-
-    <TextView
-        android:id="@+id/tvFullName"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_above="@+id/tvBio"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginBottom="3dp"
-        android:layout_toEndOf="@+id/tvUsername"
-        android:textColor="@color/white"
-        tools:text="Full Name" />
-
-    <TextView
-        android:id="@+id/tvBio"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_below="@+id/tvUsername"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
-        android:text="[insert bio here]"
-        android:textColor="@color/white"
-        android:textStyle="normal" />
-
-
 
     <TextView
         android:id="@+id/tvLikedSongs"
@@ -94,8 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivProfileImage"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="50dp"
         android:text="Liked Songs"
         android:textColor="@color/white"
@@ -106,36 +74,65 @@
         android:id="@+id/tvLikesCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBio"
+        android:layout_below="@+id/tvUsername"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="4dp"
         android:textColor="@color/white"
         tools:text="3 likes" />
 
     <TextView
         android:id="@+id/tvFollowersCount"
-        android:layout_width="wrap_content"
+        android:layout_width="112dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBio"
+        android:layout_below="@+id/tvUsername"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="112dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="142dp"
         android:layout_toEndOf="@+id/tvLikesCount"
         android:textColor="@color/white"
-        tools:text="3 followers"/>
+        tools:text="3 followers" />
 
     <TextView
         android:id="@+id/tvFollowingCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBio"
+        android:layout_below="@+id/tvUsername"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="23dp"
         android:textColor="@color/white"
-        tools:text="3 following"/>
+        tools:text="3 following" />
 
+    <TextView
+        android:id="@+id/tvFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="65dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        tools:text="Full Name" />
+
+    <TextView
+        android:id="@+id/tvBio"
+        android:layout_width="132dp"
+        android:layout_height="31dp"
+        android:layout_below="@+id/tvFullName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-85dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="150dp"
+        android:text="[insert bio here]"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textStyle="normal" />
 
 </RelativeLayout>

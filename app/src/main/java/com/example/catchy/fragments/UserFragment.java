@@ -168,6 +168,14 @@ public class UserFragment extends Fragment {
         rvLikes.addOnScrollListener(scrollListener);
 
         setBackgroundColor();
+
+        ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BioDialogFragment dialog = BioDialogFragment.newInstance(name, bio);
+                dialog.show(getFragmentManager(), "tag");
+            }
+        });
     }
 
     private void setBackgroundColor() {
