@@ -198,7 +198,7 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 BioDialogFragment dialog = BioDialogFragment.newInstance(name, bio);
-                dialog.show(getFragmentManager(), "tag");
+                dialog.show(getFragmentManager(), "From UserFragment");
             }
         });
     }
@@ -331,8 +331,6 @@ public class UserFragment extends Fragment {
             tvBio.setText(bio);
 
     }
-
-
 
     @Override
     public void onStop() {

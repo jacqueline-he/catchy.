@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -22,6 +23,10 @@ import com.example.catchy.adapters.FindFriendsAdapter;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
 import com.example.catchy.models.User;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +37,8 @@ public class FindFriendsActivity extends AppCompatActivity {
     RecyclerView rvResults;
     EditText etSearch;
     ImageButton ibSearch;
-    List<User> results;
-    String query;
-
-    private EndlessRecyclerViewScrollListener scrollListener;
+    List<ParseUser> results;
+    String username;
 
 
     @Override
@@ -50,31 +53,28 @@ public class FindFriendsActivity extends AppCompatActivity {
         results = new ArrayList<>();
         adapter = new FindFriendsAdapter(results, this);
 
+        // TODO add endless recyclerview scroll
+
+        // TODO add follow button
+
+        // TODO remove self from searches
+
         rvResults.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvResults.setLayoutManager(linearLayoutManager);
 
-        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                fetchUsers(query, page);
-            }
-        };
-        rvResults.addOnScrollListener(scrollListener);
-
         ibSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                query = etSearch.getText().toString();
-                if (query.isEmpty()) {
+                username = etSearch.getText().toString();
+                if (username.isEmpty()) {
                     Toast.makeText(FindFriendsActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 // clear search list
                 results.clear();
-                fetchUsers(query, 0);
-                scrollListener.resetState();
+                fetchUsers(username);
             }
         });
 
@@ -83,15 +83,14 @@ public class FindFriendsActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 boolean handled = false;
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
-                    query = etSearch.getText().toString();
-                    if (query.isEmpty()) {
+                    username = etSearch.getText().toString();
+                    if (username.isEmpty()) {
                         Toast.makeText(FindFriendsActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
                     }
 
                     // clear search list
                     results.clear();
-                    fetchUsers(query, 0);
-                    scrollListener.resetState();
+                    fetchUsers(username);
                     handled = true;
                 }
                 return handled;
@@ -99,7 +98,23 @@ public class FindFriendsActivity extends AppCompatActivity {
         });
     }
 
-    private void fetchUsers(String query, int page) {
-
+    private void fetchUsers(String username) {
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereContains("username", username);
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e == null) {
+                    // The query was successful.
+                    for (ParseUser user : objects) {
+                        results.add(user);
+                    }
+                } else {
+                    // Something went wrong.
+                    Log.e(TAG, "Retrieving users failed!", e);
+                }
+                adapter.notifyDataSetChanged();
+                rvResults.smoothScrollToPosition(0);
+            }
+        });
     }
 }

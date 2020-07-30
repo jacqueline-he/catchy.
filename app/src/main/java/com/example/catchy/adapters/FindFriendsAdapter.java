@@ -17,14 +17,15 @@ import com.example.catchy.R;
 import com.example.catchy.activities.OthersProfileActivity;
 import com.example.catchy.models.User;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.util.List;
 
 public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.ViewHolder> {
-    private List<User> results;
+    private List<ParseUser> results;
     private Context context;
 
-    public FindFriendsAdapter(List<User> results, Context context) {
+    public FindFriendsAdapter(List<ParseUser> results, Context context) {
         this.results = results;
         this.context = context;
     }
@@ -39,7 +40,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        User user = results.get(position);
+        ParseUser user = results.get(position);
         holder.bind(user);
     }
 
@@ -63,8 +64,8 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             itemView = view;
         }
 
-        public void bind(User user) {
-            tvUsername.setText(user.getString("username"));
+        public void bind(ParseUser user) {
+            tvUsername.setText("@" + user.getString("username"));
             tvFullName.setText(user.getString("fullName"));
             ParseFile profileImage = user.getParseFile("profilePic");
             if (profileImage != null) {
@@ -75,6 +76,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, OthersProfileActivity.class);
+                    intent.putExtra("user", user);
                     context.startActivity(intent);
                 }
             });
