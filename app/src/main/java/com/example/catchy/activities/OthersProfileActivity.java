@@ -183,7 +183,28 @@ public class OthersProfileActivity extends AppCompatActivity {
     private void queryUserFollowers() {
         followers = new ArrayList<>();
         ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
-        query.whereEqualTo("followedBy", ParseUser.getCurrentUser()); // everyone the user follows
+        query.whereEqualTo("following", currentUser); // everyone the user follows
+        query.addDescendingOrder("createdAt");
+        query.findInBackground(new FindCallback<Following>() {
+            @Override
+            public void done(List<Following> objects, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting following", e);
+                    return;
+                }
+                Log.d(TAG, "Query following success!");
+                for (Following followingItem : objects) {
+                    followers.add(followingItem.getFollowedBy());
+                }
+                tvFollowersCount.setText(objects.size() + " followers");
+            }
+        });
+    }
+
+    private void queryUserFollowing() {
+        following = new ArrayList<>();
+        ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
+        query.whereEqualTo("followedBy", currentUser); // everyone who follows user
         query.addDescendingOrder("createdAt");
         query.findInBackground(new FindCallback<Following>() {
             @Override
@@ -197,27 +218,6 @@ public class OthersProfileActivity extends AppCompatActivity {
                     following.add(followingItem.getFollowing());
                 }
                 tvFollowingCount.setText(objects.size() + " following");
-            }
-        });
-    }
-
-    private void queryUserFollowing() {
-        following = new ArrayList<>();
-        ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
-        query.whereEqualTo("following", ParseUser.getCurrentUser()); // everyone who follows user
-        query.addDescendingOrder("createdAt");
-        query.findInBackground(new FindCallback<Following>() {
-            @Override
-            public void done(List<Following> objects, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Issue with getting following", e);
-                    return;
-                }
-                Log.d(TAG, "Query following success!");
-                for (Following followingItem : objects) {
-                    followers.add(followingItem.getFollowing());
-                }
-                tvFollowersCount.setText(objects.size() + " followers");
             }
         });
     }

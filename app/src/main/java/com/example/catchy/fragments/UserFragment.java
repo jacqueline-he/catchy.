@@ -280,7 +280,7 @@ public class UserFragment extends Fragment {
                     }
                     Log.d(TAG, "Query following success!");
                     for (Following followingItem : objects) {
-                        User.followers.add(followingItem.getFollowing());
+                        User.followers.add(followingItem.getFollowedBy());
                     }
                     tvFollowersCount.setText(User.followers.size() + " followers");
                 }
