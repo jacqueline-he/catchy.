@@ -4,15 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginTop="8dp"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivAlbumImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -22,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="12dp"
         android:layout_toEndOf="@+id/ivAlbumImage"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -37,10 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/ivAlbumImage"
-        android:textColor="@color/light_gray"
+        android:textColor="#80fbfbfb"
         app:layout_constraintStart_toEndOf="@+id/ivAlbumImage"
         tools:layout_editor_absoluteY="43dp"
         tools:text="artist" />

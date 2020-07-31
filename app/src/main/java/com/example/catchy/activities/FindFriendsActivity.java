@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +43,7 @@ public class FindFriendsActivity extends AppCompatActivity {
     FindFriendsAdapter adapter;
     RecyclerView rvResults;
     EditText etSearch;
-    ImageButton ibSearch;
+    ImageView ivSearch;
     List<ParseUser> results;
     String username;
     String ownName;
@@ -56,7 +57,7 @@ public class FindFriendsActivity extends AppCompatActivity {
 
         rvResults = findViewById(R.id.rvResults);
         etSearch = findViewById(R.id.etSearch);
-        ibSearch = findViewById(R.id.ibSearch);
+        ivSearch = findViewById(R.id.ivSearch);
 
         results = new ArrayList<>();
         adapter = new FindFriendsAdapter(results, this);
@@ -72,7 +73,7 @@ public class FindFriendsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvResults.setLayoutManager(linearLayoutManager);
 
-        ibSearch.setOnClickListener(new View.OnClickListener() {
+        ivSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 username = etSearch.getText().toString();

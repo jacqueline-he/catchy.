@@ -55,9 +55,6 @@ public class FollowingActivity extends AppCompatActivity {
         rvFollowing.setLayoutManager(layoutManager);
         rvFollowing.setAdapter(adapter);
 
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        itemDecoration.setDrawable(new ColorDrawable(getResources().getColor(R.color.dark_gray)));
-        rvFollowing.addItemDecoration(itemDecoration);
         adapter.notifyDataSetChanged();
 
         setBackgroundColor();

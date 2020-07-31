@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +54,7 @@ public class SearchFragment extends Fragment {
     SearchAdapter searchAdapter;
     RecyclerView rvResults;
     EditText etSearch;
-    ImageButton ibSearch;
+    ImageView ivSearch;
     List<Song> results;
     String query;
     SpotifyBroadcastReceiver spotifyBroadcastReceiver;
@@ -88,7 +89,7 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         rvResults = view.findViewById(R.id.rvResults);
         etSearch = view.findViewById(R.id.etSearch);
-        ibSearch = view.findViewById(R.id.ibSearch);
+        ivSearch = view.findViewById(R.id.ivSearch);
 
 
         // Get Spotify service
@@ -121,7 +122,7 @@ public class SearchFragment extends Fragment {
         };
         rvResults.addOnScrollListener(scrollListener);
 
-        ibSearch.setOnClickListener(new View.OnClickListener() {
+        ivSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 query = etSearch.getText().toString();

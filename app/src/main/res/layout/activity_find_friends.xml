@@ -10,21 +10,24 @@
 
     <EditText
         android:id="@+id/etSearch"
-        android:layout_width="336dp"
+        android:layout_width="342dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
         android:width="4dp"
-        android:maxLines="1"
         android:ems="1"
-        android:singleLine="true"
-        android:inputType="text"
-        android:imeOptions="actionSearch"
         android:hint="Search users"
-        android:textColorHint="@color/white"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1"
+        android:shadowColor="@color/light_gray"
+        android:backgroundTint="#80fbfbfb"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="#80fbfbfb"
         android:theme="@style/EditTextTheme" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvResults"
@@ -35,16 +38,17 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="8dp" />
 
-    <ImageButton
-        android:id="@+id/ibSearch"
+    <ImageView
+        android:id="@+id/ivSearch"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="26dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:clickable="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="18dp"
         android:layout_toEndOf="@+id/etSearch"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@null"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/ic_search"
-        android:tint="@color/white"
-        android:focusable="true" />
+        android:tint="#80fbfbfb" />
 </RelativeLayout>
