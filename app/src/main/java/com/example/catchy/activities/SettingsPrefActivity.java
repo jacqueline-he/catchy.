@@ -150,7 +150,6 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    // Clear user variables TODO this part doesn't work - only store following
                     ParseUser currentUser = ParseUser.getCurrentUser();
                     for (ParseUser user : User.following) {
                         Following following = new Following();

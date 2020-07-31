@@ -176,8 +176,9 @@ public class OthersProfileActivity extends AppCompatActivity {
     }
 
     private void queryUserFollowers() {
+        followers = new ArrayList<>();
         ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
-        query.whereEqualTo("follower", ParseUser.getCurrentUser()); // everyone the user follows
+        query.whereEqualTo("followedBy", ParseUser.getCurrentUser()); // everyone the user follows
         query.addDescendingOrder("createdAt");
         query.findInBackground(new FindCallback<Following>() {
             @Override
@@ -196,6 +197,7 @@ public class OthersProfileActivity extends AppCompatActivity {
     }
 
     private void queryUserFollowing() {
+        following = new ArrayList<>();
         ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
         query.whereEqualTo("following", ParseUser.getCurrentUser()); // everyone who follows user
         query.addDescendingOrder("createdAt");

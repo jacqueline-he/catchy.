@@ -226,7 +226,7 @@ public class UserFragment extends Fragment {
 
     // TODO not retrieving updated name, bio from Parse
 
-    // TODO IS manipulated
+    // Following IS changed
     private void queryUserFollowing() {
         if (User.following != null) {
             tvFollowingCount.setText(User.following.size() + " following");
@@ -256,7 +256,7 @@ public class UserFragment extends Fragment {
 
     }
 
-    // TODO isn't manipulated
+    // Followers are NOT changed
     private void queryUserFollowers() {
         if (User.followers != null) {
             tvFollowersCount.setText(User.followers.size() + " followers");

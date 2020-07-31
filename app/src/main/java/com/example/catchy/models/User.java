@@ -13,6 +13,5 @@ public class User extends ParseUser {
     public static Bitmap profileBitmap;
     public static List<ParseUser> followers;
     public static List<ParseUser> following;
-    // TODO grab current user's list of followers, following / clear upon logout
 
 }

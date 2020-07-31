@@ -21,6 +21,7 @@ import com.example.catchy.activities.OthersProfileActivity;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.ImageLoaderTask;
 import com.example.catchy.models.User;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
@@ -47,7 +48,11 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ParseUser user = results.get(position);
-        holder.bind(user);
+        try {
+            holder.bind(user);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -72,7 +77,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             itemView = view;
         }
 
-        public void bind(ParseUser user) {
+        public void bind(ParseUser user) throws ParseException {
             this.user = user;
             String username = user.getString("username");
             tvUsername.setText("@" + username);
@@ -95,9 +100,10 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             ivFollow.clearColorFilter();
             followed = false;
 
-
+            // TODO not working
             for (int i = 0; i < User.following.size(); i++) {
-                if (User.following.get(i).getUsername().equals(user.getUsername())) {
+                ParseUser followingUser = User.following.get(i);
+                if (followingUser.fetchIfNeeded().getUsername().equals(user.getUsername())) {
                     followed = true;
                     ivFollow.setImageResource(R.drawable.ic_followed);
                     ivFollow.setColorFilter(ContextCompat.getColor(context, R.color.medium_green));
