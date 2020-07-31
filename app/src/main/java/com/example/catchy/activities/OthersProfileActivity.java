@@ -155,6 +155,7 @@ public class OthersProfileActivity extends AppCompatActivity {
         });
     }
 
+    // TODO write unit tests
     // TODO change to user's own
     private void setBackgroundColor() {
         if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {

@@ -9,14 +9,18 @@ import androidx.core.content.FileProvider;
 import android.app.DialogFragment;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.palette.graphics.Palette;
 import androidx.preference.EditTextPreference;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,8 +44,11 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
+import co.revely.gradient.RevelyGradient;
+
 public class SettingsPrefActivity extends AppCompatActivity {
     public static final String TAG = "SettingsPrefActivity";
+    private androidx.constraintlayout.widget.ConstraintLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,31 @@ public class SettingsPrefActivity extends AppCompatActivity {
         setTheme(R.style.SettingStyle);
         getFragmentManager().beginTransaction()
                 .replace(R.id.fm_pref, new SettingsFragment()).commit();
+
+        layout = findViewById(R.id.layout);
+        setBackgroundColor();
+    }
+
+    private void setBackgroundColor() {
+        if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
+            Palette palette = Palette.from(User.profileBitmap).generate();
+            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            // int color = palette.getDarkMutedColor(0);
+            if (swatch == null) {
+                swatch = palette.getDominantSwatch();
+            }
+
+            // swatch.getRgb()
+            if (swatch != null) {
+                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+
+                int color = swatch.getRgb();
+                RevelyGradient
+                        .linear()
+                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.76f)
+                        .onBackgroundOf(layout);
+            }
+        }
     }
 
     public static class SettingsFragment extends PreferenceFragment {

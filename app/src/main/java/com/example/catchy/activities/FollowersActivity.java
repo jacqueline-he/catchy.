@@ -2,25 +2,32 @@ package com.example.catchy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.example.catchy.R;
 import com.example.catchy.adapters.FindFriendsAdapter;
+import com.example.catchy.models.User;
 import com.parse.ParseUser;
 
 import java.util.List;
+
+import co.revely.gradient.RevelyGradient;
 
 public class FollowersActivity extends AppCompatActivity {
 
     private List<ParseUser> followers;
     boolean currentUser;
     private FindFriendsAdapter adapter;
+    androidx.coordinatorlayout.widget.CoordinatorLayout layout;
     RecyclerView rvFollowers;
 
     @Override
@@ -39,13 +46,44 @@ public class FollowersActivity extends AppCompatActivity {
         rvFollowers = findViewById(R.id.rvFollowers);
         adapter = new FindFriendsAdapter(followers,FollowersActivity.this);
 
+        layout = findViewById(R.id.layout);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvFollowers.setLayoutManager(layoutManager);
         rvFollowers.setAdapter(adapter);
 
-        rvFollowers.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        itemDecoration.setDrawable(new ColorDrawable(getResources().getColor(R.color.light_gray)));
+        rvFollowers.addItemDecoration(itemDecoration);
         adapter.notifyDataSetChanged();
 
+        setBackgroundColor();
+    }
 
+    private void setBackgroundColor() {
+        if (currentUser) {
+                if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
+                    Palette palette = Palette.from(User.profileBitmap).generate();
+                    Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+                    // int color = palette.getDarkMutedColor(0);
+                    if (swatch == null) {
+                        swatch = palette.getDominantSwatch();
+                    }
+
+                    // swatch.getRgb()
+                    if (swatch != null) {
+                        // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+
+                        int color = swatch.getRgb();
+                        RevelyGradient
+                                .linear()
+                                .colors(new int[]{Color.parseColor("#000000"), color}).angle(160f).alpha(0.36f)
+                                .onBackgroundOf(layout);
+                    }
+
+
+                }
+
+        }
     }
 }

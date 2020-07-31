@@ -1,11 +1,13 @@
 package com.example.catchy.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
 import com.example.catchy.R;
 import com.example.catchy.adapters.SearchAdapter;
 import com.example.catchy.models.Song;
+import com.example.catchy.models.User;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.ParseUser;
 
@@ -33,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import co.revely.gradient.RevelyGradient;
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyCallback;
 import kaaes.spotify.webapi.android.SpotifyError;
@@ -52,6 +57,7 @@ public class SearchFragment extends Fragment {
     List<Song> results;
     String query;
     SpotifyBroadcastReceiver spotifyBroadcastReceiver;
+    RelativeLayout layout;
 
     private EndlessRecyclerViewScrollListener scrollListener;
 
@@ -153,7 +159,32 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        layout = view.findViewById(R.id.layout);
+        setBackgroundColor();
 
+
+    }
+
+    private void setBackgroundColor() {
+        if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
+            Palette palette = Palette.from(User.profileBitmap).generate();
+            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            // int color = palette.getDarkMutedColor(0);
+            if (swatch == null) {
+                swatch = palette.getDominantSwatch();
+            }
+
+            // swatch.getRgb()
+            if (swatch != null) {
+                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+
+                int color = swatch.getRgb();
+                RevelyGradient
+                        .linear()
+                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.76f)
+                        .onBackgroundOf(layout);
+            }
+        }
     }
 
     private void fetchSongs(String query, int offset) {

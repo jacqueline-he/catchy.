@@ -7,7 +7,6 @@
         <EditTextPreference
             android:dialogTitle="update name"
             android:key="updatename"
-            android:summary="Tap to update user name"
             android:title="Update Name" />
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
@@ -15,14 +14,12 @@
         <EditTextPreference
             android:dialogTitle="update bio"
             android:key="updatebio"
-            android:summary="Tap to update user bio"
             android:title="Update Bio" />
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <Preference android:title="Update Profile Picture"
-            android:key="updateprofilepic"
-            android:summary="Tap to update profile picture"/>
+            android:key="updateprofilepic"/>
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
@@ -41,14 +38,12 @@
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <Preference android:title="About"
-            android:key="about"
-            android:summary="Tap to learn more"/>
+            android:key="about" />
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <Preference android:title="Log Out"
-            android:key="logout"
-            android:summary="Tap to log out"/>
+            android:key="logout" />
 
 
 

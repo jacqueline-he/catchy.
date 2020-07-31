@@ -3,10 +3,12 @@ package com.example.catchy.activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import co.revely.gradient.RevelyGradient;
+
 public class FindFriendsActivity extends AppCompatActivity {
     public static final String TAG = "FindFriendsActivity";
     FindFriendsAdapter adapter;
@@ -41,6 +46,7 @@ public class FindFriendsActivity extends AppCompatActivity {
     List<ParseUser> results;
     String username;
     String ownName;
+    private RelativeLayout layout;
 
 
     @Override
@@ -59,6 +65,8 @@ public class FindFriendsActivity extends AppCompatActivity {
         // TODO add endless recyclerview scroll
 
         ownName = ParseUser.getCurrentUser().getUsername();
+
+        layout = findViewById(R.id.layout);
 
         rvResults.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -97,6 +105,29 @@ public class FindFriendsActivity extends AppCompatActivity {
                 return handled;
             }
         });
+        setBackgroundColor();
+    }
+
+    private void setBackgroundColor() {
+        if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
+            Palette palette = Palette.from(User.profileBitmap).generate();
+            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            // int color = palette.getDarkMutedColor(0);
+            if (swatch == null) {
+                swatch = palette.getDominantSwatch();
+            }
+
+            // swatch.getRgb()
+            if (swatch != null) {
+                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+
+                int color = swatch.getRgb();
+                RevelyGradient
+                        .linear()
+                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.76f)
+                        .onBackgroundOf(layout);
+            }
+        }
     }
 
     private void fetchUsers(String username) {
