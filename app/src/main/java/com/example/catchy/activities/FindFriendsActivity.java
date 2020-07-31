@@ -29,6 +29,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FindFriendsActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class FindFriendsActivity extends AppCompatActivity {
     ImageButton ibSearch;
     List<ParseUser> results;
     String username;
+    String ownName;
 
 
     @Override
@@ -53,11 +55,10 @@ public class FindFriendsActivity extends AppCompatActivity {
         results = new ArrayList<>();
         adapter = new FindFriendsAdapter(results, this);
 
+
         // TODO add endless recyclerview scroll
 
-        // TODO add follow button
-
-        // TODO remove self from searches
+        ownName = ParseUser.getCurrentUser().getUsername();
 
         rvResults.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -106,7 +107,9 @@ public class FindFriendsActivity extends AppCompatActivity {
                 if (e == null) {
                     // The query was successful.
                     for (ParseUser user : objects) {
-                        results.add(user);
+                        if (!user.getUsername().equals(ownName)){
+                            results.add(user);
+                        }
                     }
                 } else {
                     // Something went wrong.

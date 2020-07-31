@@ -93,7 +93,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
             bitmap = BitmapCache.getBitmapFromMemCache(position);
             if (bitmap != null) {
-                song.bitmap = bitmap;
+                song.bitmap = bitmap; // save bitmap to song
             } else {
                 new ImageLoaderTask(position, song.getImageUrl()).executeOnExecutor(
                         AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);

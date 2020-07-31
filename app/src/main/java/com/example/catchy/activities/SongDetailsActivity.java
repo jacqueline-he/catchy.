@@ -142,7 +142,6 @@ public class SongDetailsActivity extends AppCompatActivity {
             }
         });
 
-        //TODO close songprogresbar progress upon exit
 
         btnRewind.setOnClickListener(new View.OnClickListener() {
             @Override

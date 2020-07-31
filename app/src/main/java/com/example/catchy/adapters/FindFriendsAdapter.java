@@ -2,6 +2,8 @@ package com.example.catchy.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.R;
 import com.example.catchy.activities.OthersProfileActivity;
+import com.example.catchy.misc.BitmapCache;
+import com.example.catchy.misc.ImageLoaderTask;
 import com.example.catchy.models.User;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -69,7 +73,8 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
         }
 
         public void bind(ParseUser user) {
-            tvUsername.setText("@" + user.getString("username"));
+            String username = user.getString("username");
+            tvUsername.setText("@" + username);
             tvFullName.setText(user.getString("fullName"));
             ParseFile profileImage = user.getParseFile("profilePic");
             if (profileImage != null) {

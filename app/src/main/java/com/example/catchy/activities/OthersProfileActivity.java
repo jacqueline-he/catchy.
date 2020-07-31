@@ -1,10 +1,13 @@
 package com.example.catchy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +25,7 @@ import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
 import com.example.catchy.models.Following;
 import com.example.catchy.models.Like;
+import com.example.catchy.models.User;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -32,6 +36,8 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import co.revely.gradient.RevelyGradient;
 
 public class OthersProfileActivity extends AppCompatActivity {
     public static final String TAG = "ProfileFragment";
@@ -53,6 +59,7 @@ public class OthersProfileActivity extends AppCompatActivity {
     private List<ParseUser> followers;
 
     private RelativeLayout layout;
+    String username;
 
     private EndlessRecyclerViewScrollListener scrollListener;
     protected List<Like> userLikes;
@@ -82,7 +89,8 @@ public class OthersProfileActivity extends AppCompatActivity {
         tvFollowingCount = findViewById(R.id.tvFollowingCount);
         layout = findViewById(R.id.layout);
 
-        tvUsername.setText("@" + currentUser.getUsername());
+        username = currentUser.getUsername();
+        tvUsername.setText("@" + username);
         String name = currentUser.getString("fullName");
         tvFullName.setText(name);
         String bio = currentUser.getString("bio");
@@ -131,7 +139,7 @@ public class OthersProfileActivity extends AppCompatActivity {
         };
         rvLikes.addOnScrollListener(scrollListener);
 
-        // setBackgroundColor(); TODO
+        setBackgroundColor();
 
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +150,29 @@ public class OthersProfileActivity extends AppCompatActivity {
         });
     }
 
+    // TODO change to user's own
     private void setBackgroundColor() {
+        if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
+            Palette palette = Palette.from(User.profileBitmap).generate();
+            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            // int color = palette.getDarkMutedColor(0);
+            if (swatch == null) {
+                swatch = palette.getDominantSwatch();
+            }
+
+            // swatch.getRgb()
+            if (swatch != null) {
+                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+
+                int color = swatch.getRgb();
+                RevelyGradient
+                        .linear()
+                        .colors(new int[]{Color.parseColor("#212121"), color}).angle(0f).alpha(0.86f)
+                        .onBackgroundOf(layout);
+            }
+
+
+        }
     }
 
     private void queryUserFollowers() {
