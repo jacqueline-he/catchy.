@@ -30,7 +30,7 @@ import java.util.List;
 public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.ViewHolder> {
     private List<ParseUser> results;
     private Context context;
-    boolean followed = false;
+
 
     public FindFriendsAdapter(List<ParseUser> results, Context context) {
         this.results = results;
@@ -67,6 +67,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
         private ImageView ivFollow;
         private ParseUser user;
         private View itemView;
+        boolean followed = false;
 
         public ViewHolder(@NonNull View view) {
             super(view);
@@ -118,6 +119,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             });
 
         }
+        // TODO fix double-click error
         private void follow() {
             if (!followed) {
                 ivFollow.setImageResource(R.drawable.ic_followed);
@@ -127,7 +129,11 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             } else {
                 ivFollow.setImageResource(R.drawable.ic_follow);
                 ivFollow.clearColorFilter();
-                User.following.remove(user);
+                for (int i = 0; i < User.following.size(); i++) {
+                    if (User.following.get(i).getUsername().equals(user.getUsername())) {
+                        User.following.remove(i);
+                    }
+                }
                 followed = false;
             }
         }
