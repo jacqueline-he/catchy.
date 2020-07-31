@@ -50,7 +50,7 @@ import co.revely.gradient.RevelyGradient;
 
 public class UserFragment extends Fragment {
 
-    public static final String TAG = "ProfileFragment";
+    public static final String TAG = "UserFragment";
     private RecyclerView rvLikes;
     protected UserAdapter adapter;
     private GridLayoutManager gridLayoutManager;
@@ -229,7 +229,7 @@ public class UserFragment extends Fragment {
 
     // TODO not retrieving updated name, bio from Parse
 
-    // TODO test
+    // TODO IS manipulated
     private void queryUserFollowing() {
         if (User.following != null) {
             following = User.following;
@@ -251,14 +251,17 @@ public class UserFragment extends Fragment {
                     for (Following followingItem : objects) {
                         following.add(followingItem.getFollowing());
                         User.following.add(followingItem.getFollowing());
+                        // TODO followingItem.deleteInBackground(); // remove then reinsert later
                     }
-                    tvFollowingCount.setText(objects.size() + " following");
+                    tvFollowingCount.setText(User.following.size() + " following");
                 }
             });
         }
+
+
     }
 
-    // TODO test
+    // TODO isn't manipulated
     private void queryUserFollowers() {
         if (User.followers != null) {
             followers = User.followers;
@@ -281,10 +284,11 @@ public class UserFragment extends Fragment {
                         followers.add(followingItem.getFollowing());
                         User.followers.add(followingItem.getFollowing());
                     }
-                    tvFollowersCount.setText(objects.size() + " followers");
+                    tvFollowersCount.setText(User.followers.size() + " followers");
                 }
             });
         }
+
     }
 
     private void queryUserLikes() {

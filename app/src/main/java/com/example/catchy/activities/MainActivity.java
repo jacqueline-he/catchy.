@@ -16,6 +16,7 @@ import com.example.catchy.R;
 import com.example.catchy.fragments.HomeFragment;
 import com.example.catchy.fragments.SearchFragment;
 import com.example.catchy.fragments.UserFragment;
+import com.example.catchy.models.Following;
 import com.example.catchy.models.Song;
 import com.example.catchy.models.User;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
@@ -24,11 +25,13 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -96,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             User.profileBitmap = Picasso.get().load(ParseUser.getCurrentUser().getParseFile("profilePic").getUrl()).get();
                         } catch (Exception e) {
-                            Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
+                            Log.e(TAG, "couldn't get bitmap"+e);
                         }
                     }).start();
+
+
     }
 
     @Override
@@ -108,10 +113,24 @@ public class MainActivity extends AppCompatActivity {
         deleteSongs();
 
 
-        ParseUser.getCurrentUser().put("following", User.following);
-        ParseUser.getCurrentUser().put("followers", User.followers);
-        ParseUser.getCurrentUser().saveInBackground();
-
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        for (ParseUser user : User.following) {
+            Following following = new Following();
+            following.setFollowedBy(currentUser);
+            following.setFollowing(user);
+            following.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Log.e(TAG, "Error while saving relationship", e);
+                        e.printStackTrace();
+                    }
+                    Log.i(TAG, "Relationship save was successful!");
+                }
+            });
+        }
+        User.followers = null;
+        User.following = null;
 
     }
 

@@ -9,6 +9,11 @@ public class Following extends ParseObject {
     public static final String KEY_FOLLOWING = "following";
     public static final String KEY_FOLLOWED_BY = "followedBy";
 
+    // Ensure that your subclass has a public default constructor
+    public Following() {
+        super();
+    }
+
     public ParseUser getFollowing() { return getParseUser(KEY_FOLLOWING); }
 
     public void setFollowing(ParseUser user) { put(KEY_FOLLOWING, user);}

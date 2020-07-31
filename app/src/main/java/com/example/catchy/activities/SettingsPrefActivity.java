@@ -30,6 +30,7 @@ import androidx.preference.SwitchPreference;
 
 import com.example.catchy.R;
 import com.example.catchy.activities.LoginActivity;
+import com.example.catchy.models.Following;
 import com.example.catchy.models.User;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -149,24 +150,31 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    // Clear user variables
-                    ParseUser.getCurrentUser().put("following", User.following);
-                    ParseUser.getCurrentUser().put("followers", User.followers);
-                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            User.followers = null;
-                            User.following = null;
-                            ParseUser.logOut();
-                            Intent intent = new Intent(getContext(), LoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            getActivity().finish();
-                            startActivity(intent);
-                        }
-                    });
-
-
+                    // Clear user variables TODO this part doesn't work - only store following
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+                    for (ParseUser user : User.following) {
+                        Following following = new Following();
+                        following.setFollowedBy(currentUser);
+                        following.setFollowing(user);
+                        following.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e != null) {
+                                    Log.e(TAG, "Error while saving relationship", e);
+                                    e.printStackTrace();
+                                }
+                                Log.i(TAG, "Relationship save was successful!");
+                            }
+                        });
+                    }
+                    User.followers = null;
+                    User.following = null;
+                    ParseUser.logOut();
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    getActivity().finish();
+                    startActivity(intent);
                     return true;
                 }
             });
