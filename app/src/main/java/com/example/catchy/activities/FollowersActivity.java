@@ -47,6 +47,5 @@ public class FollowersActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
 
-
     }
 }

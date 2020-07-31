@@ -91,6 +91,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     Intent intent = new Intent(context, OthersProfileActivity.class);
                     intent.putExtra("user", user);
                     context.startActivity(intent);
@@ -101,7 +102,6 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             ivFollow.clearColorFilter();
             followed = false;
 
-            // TODO not working
             for (int i = 0; i < User.following.size(); i++) {
                 ParseUser followingUser = User.following.get(i);
                 if (followingUser.fetchIfNeeded().getUsername().equals(user.getUsername())) {

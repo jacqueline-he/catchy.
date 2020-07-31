@@ -264,7 +264,10 @@ public class UserFragment extends Fragment {
     // Followers are NOT changed
     private void queryUserFollowers() {
         if (User.followers != null) {
-            tvFollowersCount.setText(User.followers.size() + " followers");
+            if (User.followers.size() == 1)
+                tvFollowersCount.setText("1 follower");
+            else
+                tvFollowersCount.setText(User.followers.size() + " followers");
         }
         else {
             User.followers = new ArrayList<>();
@@ -282,7 +285,11 @@ public class UserFragment extends Fragment {
                     for (Following followingItem : objects) {
                         User.followers.add(followingItem.getFollowedBy());
                     }
-                    tvFollowersCount.setText(User.followers.size() + " followers");
+                    if (objects.size() == 1) {
+                        tvFollowersCount.setText("1 follower");
+                    }
+                    else
+                        tvFollowersCount.setText(objects.size() + " followers");
                 }
             });
         }

@@ -196,7 +196,12 @@ public class OthersProfileActivity extends AppCompatActivity {
                 for (Following followingItem : objects) {
                     followers.add(followingItem.getFollowedBy());
                 }
-                tvFollowersCount.setText(objects.size() + " followers");
+
+                if (objects.size() == 1) {
+                    tvFollowersCount.setText("1 follower");
+                }
+                else
+                    tvFollowersCount.setText(objects.size() + " followers");
             }
         });
     }
