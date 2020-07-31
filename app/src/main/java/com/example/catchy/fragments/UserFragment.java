@@ -12,6 +12,7 @@ import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -166,6 +167,8 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), FollowingActivity.class);
+                intent.putParcelableArrayListExtra("following", (ArrayList<? extends Parcelable>) User.following);
+                intent.putExtra("currentUser", true);
                 startActivity(intent);
             }
         });
@@ -174,6 +177,8 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), FollowersActivity.class);
+                intent.putParcelableArrayListExtra("followers", (ArrayList<? extends Parcelable>) User.followers);
+                intent.putExtra("currentUser", true);
                 startActivity(intent);
             }
         });

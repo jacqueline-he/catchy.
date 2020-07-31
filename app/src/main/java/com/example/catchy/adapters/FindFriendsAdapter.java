@@ -80,7 +80,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
 
         public void bind(ParseUser user) throws ParseException {
             this.user = user;
-            String username = user.getString("username");
+            String username = user.fetchIfNeeded().getUsername();
             tvUsername.setText("@" + username);
             tvFullName.setText(user.getString("fullName"));
             ParseFile profileImage = user.getParseFile("profilePic");
@@ -119,7 +119,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             });
 
         }
-        // TODO fix double-click error
+
         private void follow() {
             if (!followed) {
                 ivFollow.setImageResource(R.drawable.ic_followed);

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -116,6 +117,8 @@ public class OthersProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(OthersProfileActivity.this, FollowingActivity.class);
+                intent.putParcelableArrayListExtra("following", (ArrayList<? extends Parcelable>) following);
+                intent.putExtra("currentUser", false);
                 startActivity(intent);
             }
         });
@@ -124,6 +127,8 @@ public class OthersProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(OthersProfileActivity.this, FollowersActivity.class);
+                intent.putParcelableArrayListExtra("followers", (ArrayList<? extends Parcelable>) followers);
+                intent.putExtra("currentUser", false);
                 startActivity(intent);
             }
         });
