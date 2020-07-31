@@ -219,7 +219,7 @@ public class UserFragment extends Fragment {
                 int color = swatch.getRgb();
                 RevelyGradient
                         .linear()
-                        .colors(new int[]{Color.parseColor("#212121"), color}).angle(135f).alpha(0.86f)
+                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.86f)
                         .onBackgroundOf(layout);
             }
 
@@ -231,44 +231,60 @@ public class UserFragment extends Fragment {
 
     // TODO test
     private void queryUserFollowing() {
-        ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
-        query.whereEqualTo("follower", ParseUser.getCurrentUser()); // everyone the user follows
-        query.addDescendingOrder("createdAt");
-        query.findInBackground(new FindCallback<Following>() {
-            @Override
-            public void done(List<Following> objects, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Issue with getting following", e);
-                    return;
+        if (User.following != null) {
+            following = User.following;
+            tvFollowingCount.setText(following.size() + " following");
+        }
+        else {
+            User.following = new ArrayList<>();
+            ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
+            query.whereEqualTo("follower", ParseUser.getCurrentUser()); // everyone the user follows
+            query.addDescendingOrder("createdAt");
+            query.findInBackground(new FindCallback<Following>() {
+                @Override
+                public void done(List<Following> objects, ParseException e) {
+                    if (e != null) {
+                        Log.e(TAG, "Issue with getting following", e);
+                        return;
+                    }
+                    Log.d(TAG, "Query following success!");
+                    for (Following followingItem : objects) {
+                        following.add(followingItem.getFollowing());
+                        User.following.add(followingItem.getFollowing());
+                    }
+                    tvFollowingCount.setText(objects.size() + " following");
                 }
-                Log.d(TAG, "Query following success!");
-                for (Following followingItem : objects) {
-                    following.add(followingItem.getFollowing());
-                }
-                tvFollowingCount.setText(objects.size() + " following");
-            }
-        });
+            });
+        }
     }
 
     // TODO test
     private void queryUserFollowers() {
-        ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
-        query.whereEqualTo("following", ParseUser.getCurrentUser()); // everyone who follows user
-        query.addDescendingOrder("createdAt");
-        query.findInBackground(new FindCallback<Following>() {
-            @Override
-            public void done(List<Following> objects, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Issue with getting following", e);
-                    return;
+        if (User.followers != null) {
+            followers = User.followers;
+            tvFollowersCount.setText(followers.size() + " followers");
+        }
+        else {
+            User.followers = new ArrayList<>();
+            ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
+            query.whereEqualTo("following", ParseUser.getCurrentUser()); // everyone who follows user
+            query.addDescendingOrder("createdAt");
+            query.findInBackground(new FindCallback<Following>() {
+                @Override
+                public void done(List<Following> objects, ParseException e) {
+                    if (e != null) {
+                        Log.e(TAG, "Issue with getting following", e);
+                        return;
+                    }
+                    Log.d(TAG, "Query following success!");
+                    for (Following followingItem : objects) {
+                        followers.add(followingItem.getFollowing());
+                        User.followers.add(followingItem.getFollowing());
+                    }
+                    tvFollowersCount.setText(objects.size() + " followers");
                 }
-                Log.d(TAG, "Query following success!");
-                for (Following followingItem : objects) {
-                    followers.add(followingItem.getFollowing());
-                }
-                tvFollowersCount.setText(objects.size() + " followers");
-            }
-        });
+            });
+        }
     }
 
     private void queryUserLikes() {
@@ -330,10 +346,8 @@ public class UserFragment extends Fragment {
         if (bio != null)
             tvBio.setText(bio);
 
-    }
+        queryUserFollowers();
+        queryUserFollowing();
 
-    @Override
-    public void onStop() {
-        super.onStop();
     }
 }

@@ -167,7 +167,7 @@ public class OthersProfileActivity extends AppCompatActivity {
                 int color = swatch.getRgb();
                 RevelyGradient
                         .linear()
-                        .colors(new int[]{Color.parseColor("#212121"), color}).angle(0f).alpha(0.86f)
+                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.86f)
                         .onBackgroundOf(layout);
             }
 

@@ -60,7 +60,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
         private TextView tvUsername;
         private TextView tvFullName;
         private ImageView ivFollow;
-
+        private ParseUser user;
         private View itemView;
 
         public ViewHolder(@NonNull View view) {
@@ -73,6 +73,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
         }
 
         public void bind(ParseUser user) {
+            this.user = user;
             String username = user.getString("username");
             tvUsername.setText("@" + username);
             tvFullName.setText(user.getString("fullName"));
@@ -90,6 +91,19 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
                 }
             });
 
+            ivFollow.setImageResource(R.drawable.ic_follow);
+            ivFollow.clearColorFilter();
+            followed = false;
+
+
+            for (int i = 0; i < User.following.size(); i++) {
+                if (User.following.get(i).getUsername().equals(user.getUsername())) {
+                    followed = true;
+                    ivFollow.setImageResource(R.drawable.ic_followed);
+                    ivFollow.setColorFilter(ContextCompat.getColor(context, R.color.medium_green));
+                }
+            }
+
             ivFollow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -102,10 +116,12 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             if (!followed) {
                 ivFollow.setImageResource(R.drawable.ic_followed);
                 ivFollow.setColorFilter(ContextCompat.getColor(context, R.color.medium_green));
+                User.following.add(user);
                 followed = true;
             } else {
                 ivFollow.setImageResource(R.drawable.ic_follow);
                 ivFollow.clearColorFilter();
+                User.following.remove(user);
                 followed = false;
             }
         }

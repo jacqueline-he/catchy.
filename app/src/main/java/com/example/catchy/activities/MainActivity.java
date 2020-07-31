@@ -107,6 +107,12 @@ public class MainActivity extends AppCompatActivity {
         SpotifyBroadcastReceiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_DISCONNECT);
         deleteSongs();
 
+
+        ParseUser.getCurrentUser().put("following", User.following);
+        ParseUser.getCurrentUser().put("followers", User.followers);
+        ParseUser.getCurrentUser().saveInBackground();
+
+
     }
 
     private void deleteSongs() {
