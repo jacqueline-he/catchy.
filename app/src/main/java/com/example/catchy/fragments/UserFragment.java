@@ -67,9 +67,6 @@ public class UserFragment extends Fragment {
     private TextView tvFollowersCount;
     private TextView tvFollowingCount;
 
-    private List<ParseUser> following;
-    private List<ParseUser> followers;
-
     private RelativeLayout layout;
 
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -232,13 +229,12 @@ public class UserFragment extends Fragment {
     // TODO IS manipulated
     private void queryUserFollowing() {
         if (User.following != null) {
-            following = User.following;
-            tvFollowingCount.setText(following.size() + " following");
+            tvFollowingCount.setText(User.following.size() + " following");
         }
         else {
             User.following = new ArrayList<>();
             ParseQuery<Following> query = ParseQuery.getQuery(Following.class);
-            query.whereEqualTo("follower", ParseUser.getCurrentUser()); // everyone the user follows
+            query.whereEqualTo("followedBy", ParseUser.getCurrentUser()); // everyone the user follows
             query.addDescendingOrder("createdAt");
             query.findInBackground(new FindCallback<Following>() {
                 @Override
@@ -249,9 +245,8 @@ public class UserFragment extends Fragment {
                     }
                     Log.d(TAG, "Query following success!");
                     for (Following followingItem : objects) {
-                        following.add(followingItem.getFollowing());
                         User.following.add(followingItem.getFollowing());
-                        // TODO followingItem.deleteInBackground(); // remove then reinsert later
+                        followingItem.deleteInBackground(); // remove then reinsert later
                     }
                     tvFollowingCount.setText(User.following.size() + " following");
                 }
@@ -264,8 +259,7 @@ public class UserFragment extends Fragment {
     // TODO isn't manipulated
     private void queryUserFollowers() {
         if (User.followers != null) {
-            followers = User.followers;
-            tvFollowersCount.setText(followers.size() + " followers");
+            tvFollowersCount.setText(User.followers.size() + " followers");
         }
         else {
             User.followers = new ArrayList<>();
@@ -281,7 +275,6 @@ public class UserFragment extends Fragment {
                     }
                     Log.d(TAG, "Query following success!");
                     for (Following followingItem : objects) {
-                        followers.add(followingItem.getFollowing());
                         User.followers.add(followingItem.getFollowing());
                     }
                     tvFollowersCount.setText(User.followers.size() + " followers");
