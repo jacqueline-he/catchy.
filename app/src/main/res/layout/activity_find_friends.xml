@@ -50,5 +50,5 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_search"
-        android:tint="#80fbfbfb" />
+        android:tint="@color/light_gray" />
 </RelativeLayout>

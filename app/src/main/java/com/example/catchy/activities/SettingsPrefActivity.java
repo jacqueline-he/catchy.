@@ -62,6 +62,8 @@ public class SettingsPrefActivity extends AppCompatActivity {
         setBackgroundColor();
     }
 
+
+    // TODO change divider color
     private void setBackgroundColor() {
         if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
             Palette palette = Palette.from(User.profileBitmap).generate();

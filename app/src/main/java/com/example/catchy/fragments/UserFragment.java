@@ -221,7 +221,7 @@ public class UserFragment extends Fragment {
                 int color = swatch.getRgb();
                 RevelyGradient
                         .linear()
-                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.86f)
+                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.66f)
                         .onBackgroundOf(layout);
             }
 
