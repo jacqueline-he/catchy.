@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -147,6 +148,8 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 }
             });
 
+            // TODO customize toast appearance
+
             updateBio.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -253,7 +256,6 @@ public class SettingsPrefActivity extends AppCompatActivity {
             // Return the file target for the photo based on filename
             return new File(mediaStorageDir.getPath() + File.separator + fileName);
         }
-        // TODO add explicit icon from materials design
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -301,6 +303,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             tvAbout = view.findViewById(R.id.tvAbout);
             tvAbout.setText("Made with love from California");
+            // TODO fix about fragment
             super.onViewCreated(view, savedInstanceState);
         }
     }

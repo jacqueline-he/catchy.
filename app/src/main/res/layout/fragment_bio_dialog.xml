@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/biodialog"
-    android:layout_width="match_parent" android:layout_height="250dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
     android:layout_margin = "80dp"
     android:backgroundTint="@color/black"
     android:layout_gravity="center"
@@ -22,7 +22,7 @@
     <TextView
         android:id="@+id/tvBio"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tvFullName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"

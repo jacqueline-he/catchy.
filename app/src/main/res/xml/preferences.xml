@@ -5,27 +5,32 @@
     <PreferenceCategory android:id="@+id/settings">
 
         <EditTextPreference
-            android:dialogTitle="update name"
+            android:dialogTitle="Update name"
             android:key="updatename"
-            android:title="Update Name" />
+            android:title="Update Name"
+            android:icon="@drawable/ic_editname" />
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <EditTextPreference
-            android:dialogTitle="update bio"
+            android:dialogTitle="Update bio"
             android:key="updatebio"
-            android:title="Update Bio" />
+            android:title="Update Bio"
+            android:icon="@drawable/ic_bio"/>
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <Preference android:title="Update Profile Picture"
-            android:key="updateprofilepic"/>
+            android:key="updateprofilepic"
+            android:icon="@drawable/ic_camera"
+            />
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <SwitchPreference
             android:key="explicitfilter"
             android:title="Explicit Filter"
+            android:icon="@drawable/ic_explicit"
             />
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
@@ -33,17 +38,20 @@
         <SwitchPreference
             android:key="durationpref"
             android:title="Duration Preference"
+            android:icon="@drawable/ic_timer"
             />
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <Preference android:title="About"
-            android:key="about" />
+            android:key="about"
+            android:icon="@drawable/ic_info"/>
 
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <Preference android:title="Log Out"
-            android:key="logout" />
+            android:key="logout"
+            android:icon="@drawable/ic_logout"/>
 
 
 
