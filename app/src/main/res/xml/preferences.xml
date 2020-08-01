@@ -2,7 +2,7 @@
     android:background="#B1B1B1"
     android:foreground="@drawable/ic_launcher_background">
 
-    <PreferenceCategory android:title="Settings">
+    <PreferenceCategory android:id="@+id/settings">
 
         <EditTextPreference
             android:dialogTitle="update name"

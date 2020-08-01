@@ -33,6 +33,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +50,9 @@ public class FindFriendsActivity extends AppCompatActivity {
     String ownName;
     private RelativeLayout layout;
 
+    private EndlessRecyclerViewScrollListener scrollListener;
+    boolean infScroll = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +66,6 @@ public class FindFriendsActivity extends AppCompatActivity {
         results = new ArrayList<>();
         adapter = new FindFriendsAdapter(results, this);
 
-
-        // TODO add endless recyclerview scroll
-
         ownName = ParseUser.getCurrentUser().getUsername();
 
         layout = findViewById(R.id.layout);
@@ -72,6 +73,15 @@ public class FindFriendsActivity extends AppCompatActivity {
         rvResults.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvResults.setLayoutManager(linearLayoutManager);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                infScroll = true;
+                fetchUsers(username);
+            }
+        };
+        rvResults.addOnScrollListener(scrollListener);
 
         ivSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +95,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                 // clear search list
                 results.clear();
                 fetchUsers(username);
+                scrollListener.resetState();
             }
         });
 
@@ -101,6 +112,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                     // clear search list
                     results.clear();
                     fetchUsers(username);
+                    scrollListener.resetState();
                     handled = true;
                 }
                 return handled;
@@ -134,6 +146,15 @@ public class FindFriendsActivity extends AppCompatActivity {
     private void fetchUsers(String username) {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereContains("username", username);
+        query.setLimit(24);
+
+        if (infScroll && results.size() > 0) {
+            Date oldest = results.get(results.size() - 1).getCreatedAt();
+            Log.i(TAG, "Getting inf scroll posts");
+            query.whereLessThan("createdAt", oldest);
+            infScroll = false;
+        }
+        query.addDescendingOrder("createdAt");
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> objects, ParseException e) {
                 if (e == null) {

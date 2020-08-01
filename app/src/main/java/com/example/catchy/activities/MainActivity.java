@@ -114,23 +114,25 @@ public class MainActivity extends AppCompatActivity {
 
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-        for (ParseUser user : User.following) {
-            Following following = new Following();
-            following.setFollowedBy(currentUser);
-            following.setFollowing(user);
-            following.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e != null) {
-                        Log.e(TAG, "Error while saving relationship", e);
-                        e.printStackTrace();
+        if (User.following != null) {       // This is if UserFragment is never reached
+            for (ParseUser user : User.following) {
+                Following following = new Following();
+                following.setFollowedBy(currentUser);
+                following.setFollowing(user);
+                following.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e != null) {
+                            Log.e(TAG, "Error while saving relationship", e);
+                            e.printStackTrace();
+                        }
+                        Log.i(TAG, "Relationship save was successful!");
                     }
-                    Log.i(TAG, "Relationship save was successful!");
-                }
-            });
+                });
+            }
+            User.followers = null;
+            User.following = null;
         }
-        User.followers = null;
-        User.following = null;
 
     }
 

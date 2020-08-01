@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,8 @@ import co.revely.gradient.RevelyGradient;
 
 public class SettingsPrefActivity extends AppCompatActivity {
     public static final String TAG = "SettingsPrefActivity";
-    private androidx.constraintlayout.widget.ConstraintLayout layout;
+    private RelativeLayout layout;
+    private TextView tvSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +61,11 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 .replace(R.id.fm_pref, new SettingsFragment()).commit();
 
         layout = findViewById(R.id.layout);
+        tvSettings = findViewById(R.id.tvSettings);
         setBackgroundColor();
     }
 
 
-    // TODO change divider color
     private void setBackgroundColor() {
         if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
             Palette palette = Palette.from(User.profileBitmap).generate();
