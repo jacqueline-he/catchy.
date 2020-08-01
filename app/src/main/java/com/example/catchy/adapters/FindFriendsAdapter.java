@@ -85,7 +85,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             tvFullName.setText(user.getString("fullName"));
             ParseFile profileImage = user.getParseFile("profilePic");
             if (profileImage != null) {
-                Glide.with(context).load(profileImage.getUrl()).into(ivProfileImage);
+                Glide.with(context).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
             }
 
             itemView.setOnClickListener(new View.OnClickListener() {

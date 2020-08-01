@@ -74,7 +74,7 @@ public class FollowersActivity extends AppCompatActivity {
                         int color = swatch.getRgb();
                         RevelyGradient
                                 .linear()
-                                .colors(new int[]{Color.parseColor("#000000"), color}).angle(160f).alpha(0.36f)
+                                .colors(new int[]{Color.parseColor("#000000"), color}).angle(90f).alpha(0.46f)
                                 .onBackgroundOf(layout);
                     }
 

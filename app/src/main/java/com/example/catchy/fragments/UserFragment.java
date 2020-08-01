@@ -231,6 +231,8 @@ public class UserFragment extends Fragment {
 
     // TODO not retrieving updated name, bio from Parse
 
+    // TODO customize bio fragment
+
     // Following IS changed
     private void queryUserFollowing() {
         if (User.following != null) {
