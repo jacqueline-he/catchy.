@@ -13,5 +13,6 @@ public class User extends ParseUser {
     public static Bitmap profileBitmap;
     public static List<ParseUser> followers;
     public static List<ParseUser> following;
+    public static List<Following> followingItems; // from Parse
 
 }

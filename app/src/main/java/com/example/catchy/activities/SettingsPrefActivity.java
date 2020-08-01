@@ -187,6 +187,9 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     ParseUser currentUser = ParseUser.getCurrentUser();
+                    for (Following item : User.followingItems) {
+                        item.deleteInBackground();
+                    }
                     for (ParseUser user : User.following) {
                         Following following = new Following();
                         following.setFollowedBy(currentUser);

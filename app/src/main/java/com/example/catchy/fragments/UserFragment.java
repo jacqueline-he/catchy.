@@ -251,9 +251,10 @@ public class UserFragment extends Fragment {
                         return;
                     }
                     Log.d(TAG, "Query following success!");
+                    User.followingItems = objects;
                     for (Following followingItem : objects) {
                         User.following.add(followingItem.getFollowing());
-                        followingItem.deleteInBackground(); // remove then reinsert later
+                        // followingItem.deleteInBackground(); // remove then reinsert later
                     }
                     tvFollowingCount.setText(User.following.size() + " following");
                 }
