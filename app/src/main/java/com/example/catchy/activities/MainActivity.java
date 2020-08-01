@@ -113,12 +113,12 @@ public class MainActivity extends AppCompatActivity {
         deleteSongs();
 
 
-        for (Following item : User.followingItems) {
-            item.deleteInBackground();
-        }
-
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (User.following != null) {       // This is if UserFragment is never reached
+            for (Following item : User.followingItems) {
+                item.deleteInBackground();
+            }
+
             for (ParseUser user : User.following) {
                 Following following = new Following();
                 following.setFollowedBy(currentUser);
