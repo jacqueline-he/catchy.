@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.catchy.R;
+import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;

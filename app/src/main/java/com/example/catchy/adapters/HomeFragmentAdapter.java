@@ -199,12 +199,12 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
         query.addAscendingOrder("createdAt"); // next oldest songs
         query.findInBackground(new FindCallback<Song>() {
             @Override
-            public void done(List<Song> posts, ParseException e) {
+            public void done(List<Song> songs, ParseException e) {
                 if (e != null) {
                     Log.e("HomeFragmentAdapter", "Issue with getting posts", e);
                     return;
                 }
-                list.addAll(posts);
+                list.addAll(songs);
                 notifyDataSetChanged();
                 Log.i("HomeFragmentAdapter", "Adapter changed");
             }

@@ -14,5 +14,7 @@ public class User extends ParseUser {
     public static List<ParseUser> followers;
     public static List<ParseUser> following;
     public static List<Following> followingItems; // from Parse
+    public static Song firstSong;
+    public static boolean passedFirstSong = false;
 
 }

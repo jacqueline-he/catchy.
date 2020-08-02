@@ -9,6 +9,7 @@ import androidx.core.app.JobIntentService;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.catchy.R;
+import com.example.catchy.models.User;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.PlayerApi;
@@ -33,7 +34,8 @@ public class SpotifyIntentService extends JobIntentService {
     private static PlayerApi mPlayerApi;
     private static boolean mIsSpotifyConnected;
     public static final String ACTION = "com.example.catchy.service.SpotifyIntentService";
-    int count = 0;
+    private static boolean initPlayingNew = true;
+    private static int count = 0;
 
 
     @Override
@@ -59,6 +61,14 @@ public class SpotifyIntentService extends JobIntentService {
                             mSpotifyAppRemote = spotifyAppRemote;
                             mPlayerApi = mSpotifyAppRemote.getPlayerApi();
                             mIsSpotifyConnected = true;
+
+                            if (User.firstSong != null) {
+                                playNewSong(User.firstSong.getURI());
+                                User.firstSong = null;
+                            }
+                            else { // Parse not updating in time
+                                initPlayingNew = false;
+                            }
                         }
 
                         public void onFailure(Throwable error) {
@@ -134,7 +144,14 @@ public class SpotifyIntentService extends JobIntentService {
             LocalBroadcastManager.getInstance(this).sendBroadcast(in);
             Log.d(TAG, "Playing new song");
         } else {
-            playNewSong(newSongId);
+            Log.e(TAG, "Receiver init too slow");
+            if (! initPlayingNew && count < 10) {
+                count++;
+                playNewSong(newSongId);
+            }
+            else {
+                Log.e(TAG, "Parse / Receiver init too slow");
+            }
         }
     }
 
@@ -174,5 +191,3 @@ public class SpotifyIntentService extends JobIntentService {
     }
 
 }
-
-// TODO bring back auth activity

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,10 +54,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Context context = getApplicationContext();
+        new Thread(() -> {
+            try {
+                spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
+                spotifyBroadcastReceiver.initService(this);
+            } catch (Exception e) {
+                Log.e("MainActivity", "SpotifyBroadcastReceiver not initializing"+e);
+            }
+        }).start();
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         boolean returning = getIntent().getBooleanExtra("returning", false);
 
@@ -64,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
         authenticateSpotify(!returning);
 
 
-        spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
-        spotifyBroadcastReceiver.initService(this);
+
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -112,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
         SpotifyBroadcastReceiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_DISCONNECT);
         deleteSongs();
 
+        User.firstSong = null;
+        User.passedFirstSong = false;
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (User.following != null) {       // This is if UserFragment is never reached

@@ -348,6 +348,7 @@ public class UserFragment extends Fragment {
 
         if (!DetailTransition.liked) {
             adapter.notifyItemRemoved(DetailTransition.pos);
+            // TODO repeats
         }
 
         String name = currentUser.getString("fullName");

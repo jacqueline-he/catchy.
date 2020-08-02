@@ -23,6 +23,7 @@ import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
 import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
+import com.example.catchy.models.User;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.ParseException;
@@ -72,6 +73,11 @@ public class SongFragment extends Fragment {
             song = getArguments().getParcelable("song");
             spotifyBroadcastReceiver = (SpotifyBroadcastReceiver) getArguments().getSerializable("receiver");
             DetailTransition.progress = 0;
+
+            if (!User.passedFirstSong) {
+                User.firstSong = song;
+                User.passedFirstSong = true;
+            }
         }
     }
 
@@ -152,7 +158,7 @@ public class SongFragment extends Fragment {
             }
         });
         Context context = getContext();
-        spotifyBroadcastReceiver.playNew(getActivity(), song.getURI());
+        spotifyBroadcastReceiver.playNew(context, song.getURI());
 
 
         mHandler = new Handler();
