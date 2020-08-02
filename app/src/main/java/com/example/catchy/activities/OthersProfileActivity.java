@@ -199,8 +199,7 @@ public class OthersProfileActivity extends AppCompatActivity {
                 }
             }
 
-        }
-        else { // follow
+        } else { // follow
             followed = true;
             ivFollow.setImageResource(R.drawable.ic_followed);
             ivFollow.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.medium_green));
@@ -209,8 +208,7 @@ public class OthersProfileActivity extends AppCompatActivity {
 
         if (followers.size() == 1) {
             tvFollowersCount.setText("1 follower");
-        }
-        else
+        } else
             tvFollowersCount.setText(followers.size() + " followers");
     }
 
@@ -259,8 +257,7 @@ public class OthersProfileActivity extends AppCompatActivity {
 
                 if (objects.size() == 1) {
                     tvFollowersCount.setText("1 follower");
-                }
-                else
+                } else
                     tvFollowersCount.setText(objects.size() + " followers");
             }
         });
@@ -315,8 +312,7 @@ public class OthersProfileActivity extends AppCompatActivity {
                 userLikes.addAll(likes);
                 if (userLikes.size() == 1) {
                     tvLikesCount.setText("1 like");
-                }
-                else {
+                } else {
                     tvLikesCount.setText(userLikes.size() + " likes");
                 }
 

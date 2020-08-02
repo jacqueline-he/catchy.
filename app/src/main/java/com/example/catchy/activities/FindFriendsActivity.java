@@ -162,7 +162,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                 if (e == null) {
                     // The query was successful.
                     for (ParseUser user : objects) {
-                        if (!user.getUsername().equals(ownName)){
+                        if (!user.getUsername().equals(ownName)) {
                             results.add(user);
                         }
                     }

@@ -65,8 +65,7 @@ public class SpotifyIntentService extends JobIntentService {
                             if (User.firstSong != null) {
                                 playNewSong(User.firstSong.getURI());
                                 User.firstSong = null;
-                            }
-                            else { // Parse not updating in time
+                            } else { // Parse not updating in time
                                 initPlayingNew = false;
                             }
                         }
@@ -145,11 +144,10 @@ public class SpotifyIntentService extends JobIntentService {
             Log.d(TAG, "Playing new song");
         } else {
             Log.e(TAG, "Receiver init too slow");
-            if (! initPlayingNew && count < 10) {
+            if (!initPlayingNew && count < 10) {
                 count++;
                 playNewSong(newSongId);
-            }
-            else {
+            } else {
                 Log.e(TAG, "Parse / Receiver init too slow");
             }
         }
