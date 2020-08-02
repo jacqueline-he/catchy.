@@ -59,6 +59,9 @@ public class FindFriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
 
+        BitmapCache.InitBitmapCache(); // for adapter
+        BitmapCache.clear();
+
         rvResults = findViewById(R.id.rvResults);
         etSearch = findViewById(R.id.etSearch);
         ivSearch = findViewById(R.id.ivSearch);
@@ -169,6 +172,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged();
                 rvResults.smoothScrollToPosition(0);
+                BitmapCache.clear(); // make sure it's empty
             }
         });
     }

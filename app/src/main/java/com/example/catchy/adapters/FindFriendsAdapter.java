@@ -88,9 +88,25 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
                 Glide.with(context).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
             }
 
+            int position = getAdapterPosition();
+            Bitmap bitmap = null;
+            bitmap = BitmapCache.getBitmapFromMemCache(position);
+            if (bitmap != null && ! User.otherUserBitmaps.containsKey(user.getObjectId())) {
+                User.otherUserBitmaps.put(user.getObjectId(), bitmap);
+            } else {
+                new ImageLoaderTask(position, profileImage.getUrl()).executeOnExecutor(
+                        AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
+            }
+
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (! User.otherUserBitmaps.containsKey(user.getObjectId())) {
+                        Bitmap createdBitmap = BitmapCache.getBitmapFromMemCache(position);
+                        if (createdBitmap != null)
+                            User.otherUserBitmaps.put(user.getObjectId(), createdBitmap);
+                    }
 
                     Intent intent = new Intent(context, OthersProfileActivity.class);
                     intent.putExtra("user", user);
@@ -117,6 +133,8 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
                     follow();
                 }
             });
+
+
 
         }
 

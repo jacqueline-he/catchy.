@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class FollowersActivity extends AppCompatActivity {
 
     private List<ParseUser> followers;
     boolean currentUser;
+    ParseUser user;
     private FindFriendsAdapter adapter;
     androidx.coordinatorlayout.widget.CoordinatorLayout layout;
     RecyclerView rvFollowers;
@@ -38,13 +40,14 @@ public class FollowersActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         followers = intent.getExtras().getParcelableArrayList("followers");
+        user = intent.getExtras().getParcelable("user");
         currentUser = intent.getBooleanExtra("currentUser", false);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         rvFollowers = findViewById(R.id.rvFollowers);
-        adapter = new FindFriendsAdapter(followers,FollowersActivity.this);
+        adapter = new FindFriendsAdapter(followers, FollowersActivity.this);
 
         layout = findViewById(R.id.layout);
 
@@ -58,29 +61,34 @@ public class FollowersActivity extends AppCompatActivity {
     }
 
     private void setBackgroundColor() {
+        Bitmap bitmap;
         if (currentUser) {
-                if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
-                    Palette palette = Palette.from(User.profileBitmap).generate();
-                    Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-                    // int color = palette.getDarkMutedColor(0);
-                    if (swatch == null) {
-                        swatch = palette.getDominantSwatch();
-                    }
+            bitmap = User.profileBitmap;
+        } else
+            bitmap = User.otherUserBitmaps.get(user.getObjectId());
 
-                    // swatch.getRgb()
-                    if (swatch != null) {
-                        // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
+        if (bitmap != null && !bitmap.isRecycled()) {
+            Palette palette = Palette.from(bitmap).generate();
+            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            // int color = palette.getDarkMutedColor(0);
+            if (swatch == null) {
+                swatch = palette.getDominantSwatch();
+            }
 
-                        int color = swatch.getRgb();
-                        RevelyGradient
-                                .linear()
-                                .colors(new int[]{Color.parseColor("#000000"), color}).angle(90f).alpha(0.46f)
-                                .onBackgroundOf(layout);
-                    }
+            // swatch.getRgb()
+            if (swatch != null) {
+                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
 
+                int color = swatch.getRgb();
+                RevelyGradient
+                        .linear()
+                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(90f).alpha(0.46f)
+                        .onBackgroundOf(layout);
+            }
 
-                }
 
         }
+
+
     }
 }

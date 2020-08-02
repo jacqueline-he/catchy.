@@ -16,5 +16,6 @@ public class User extends ParseUser {
     public static List<Following> followingItems; // from Parse
     public static Song firstSong;
     public static boolean passedFirstSong = false;
-
+    public static HashMap<String, Bitmap> otherUserBitmaps = new HashMap<>();
+    public static Bitmap currentOtherUserBitmap;
 }

@@ -82,7 +82,6 @@ public class OthersProfileActivity extends AppCompatActivity {
         // GET USER
         Intent intent = getIntent();
         currentUser = (ParseUser) intent.getExtras().get("user");
-
         for (ParseUser user : User.followers) {
             try {
                 if (user.fetchIfNeeded().getUsername().equals(currentUser.getUsername())) {
@@ -140,6 +139,7 @@ public class OthersProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(OthersProfileActivity.this, FollowingActivity.class);
                 intent.putParcelableArrayListExtra("following", (ArrayList<? extends Parcelable>) following);
                 intent.putExtra("currentUser", false);
+                intent.putExtra("user", currentUser);
                 startActivity(intent);
             }
         });
@@ -150,6 +150,7 @@ public class OthersProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(OthersProfileActivity.this, FollowersActivity.class);
                 intent.putParcelableArrayListExtra("followers", (ArrayList<? extends Parcelable>) followers);
                 intent.putExtra("currentUser", false);
+                intent.putExtra("user", currentUser);
                 startActivity(intent);
             }
         });
@@ -214,10 +215,10 @@ public class OthersProfileActivity extends AppCompatActivity {
     }
 
     // TODO write unit tests
-    // TODO change to user's own
     private void setBackgroundColor() {
-        if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
-            Palette palette = Palette.from(User.profileBitmap).generate();
+        Bitmap bitmap = User.otherUserBitmaps.get(currentUser.getObjectId());
+        if (bitmap != null && !bitmap.isRecycled()) {
+            Palette palette = Palette.from(bitmap).generate();
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();
             // int color = palette.getDarkMutedColor(0);
             if (swatch == null) {
