@@ -149,7 +149,7 @@ public class FindFriendsActivity extends AppCompatActivity {
         query.setLimit(24);
 
         if (infScroll && results.size() > 0) {
-            Date oldest = results.get(results.size() - 1).getCreatedAt(); // TODO fix
+            Date oldest = results.get(0).getCreatedAt(); // TODO fix
             Log.i(TAG, "Getting inf scroll posts");
             query.whereLessThan("createdAt", oldest);
             infScroll = false;

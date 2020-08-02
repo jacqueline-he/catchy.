@@ -125,6 +125,11 @@ public class SongFragment extends Fragment {
                     paused = !paused;
                     return super.onSingleTapConfirmed(e);
                 }
+
+                @Override
+                public boolean onDown(MotionEvent e) {
+                    return true;
+                }
             });
 
 

@@ -1,6 +1,7 @@
 package com.example.catchy.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,6 +57,8 @@ public class OthersProfileActivity extends AppCompatActivity {
     private TextView tvFollowersCount;
     private TextView tvFollowingCount;
 
+    private ImageView ivFollow;
+
     private List<ParseUser> following;
     private List<ParseUser> followers;
 
@@ -65,6 +68,8 @@ public class OthersProfileActivity extends AppCompatActivity {
     private EndlessRecyclerViewScrollListener scrollListener;
     protected List<Like> userLikes;
     boolean infScroll = false;
+
+    boolean followed = false; // followed by user
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,16 @@ public class OthersProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         currentUser = (ParseUser) intent.getExtras().get("user");
 
+        for (ParseUser user : User.followers) {
+            try {
+                if (user.fetchIfNeeded().getUsername().equals(currentUser.getUsername())) {
+                    followed = true;
+                    break;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
 
 
         tvUsername = findViewById(R.id.tvUsername);
@@ -88,7 +103,13 @@ public class OthersProfileActivity extends AppCompatActivity {
         tvLikesCount = findViewById(R.id.tvLikesCount);
         tvFollowersCount = findViewById(R.id.tvFollowersCount);
         tvFollowingCount = findViewById(R.id.tvFollowingCount);
+        ivFollow = findViewById(R.id.ivFollow);
         layout = findViewById(R.id.layout);
+
+        if (followed) {
+            ivFollow.setImageResource(R.drawable.ic_followed);
+            ivFollow.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.medium_green));
+        }
 
         username = currentUser.getUsername();
         tvUsername.setText("@" + username);
@@ -153,6 +174,43 @@ public class OthersProfileActivity extends AppCompatActivity {
                 dialog.show(getSupportFragmentManager(), "From OthersProfileActivity");
             }
         });
+
+        ivFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                follow();
+            }
+        });
+    }
+
+    private void follow() {
+        if (followed) { // unfollow
+            ivFollow.setImageResource(R.drawable.ic_circle_follow);
+            ivFollow.clearColorFilter();
+            followed = false;
+            for (ParseUser user : followers) {
+                try {
+                    if (user.fetchIfNeeded().getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
+                        followers.remove(user);
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        else { // follow
+            followed = true;
+            ivFollow.setImageResource(R.drawable.ic_followed);
+            ivFollow.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.medium_green));
+            followers.add(ParseUser.getCurrentUser());
+        }
+
+        if (followers.size() == 1) {
+            tvFollowersCount.setText("1 follower");
+        }
+        else
+            tvFollowersCount.setText(followers.size() + " followers");
     }
 
     // TODO write unit tests

@@ -69,6 +69,7 @@
         android:layout_marginTop="4dp"
         android:textColor="@color/white"
         android:textStyle="bold"
+        android:textSize="18dp"
         tools:text="username" />
 
     <TextView
@@ -77,12 +78,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivProfileImage"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="50dp"
         android:text="Liked Songs"
         android:textColor="@color/white"
-        android:textSize="32dp"
+        android:textSize="24dp"
         android:textStyle="bold" />
 
     <TextView
