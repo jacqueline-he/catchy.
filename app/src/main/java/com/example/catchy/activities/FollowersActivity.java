@@ -16,6 +16,7 @@ import android.view.WindowManager;
 
 import com.example.catchy.R;
 import com.example.catchy.adapters.FindFriendsAdapter;
+import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.models.User;
 import com.parse.ParseUser;
 
@@ -37,6 +38,9 @@ public class FollowersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_followers);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        BitmapCache.InitBitmapCache(); // for adapter
+        BitmapCache.clear();
 
         Intent intent = getIntent();
         followers = intent.getExtras().getParcelableArrayList("followers");
