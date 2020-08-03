@@ -52,6 +52,7 @@ public class SongFragment extends Fragment {
     private Runnable mRunnable;
     long progress = 0;
     boolean paused = false;
+    Context context;
 
     boolean durationPref;
 
@@ -98,7 +99,7 @@ public class SongFragment extends Fragment {
         DetailTransition.liked = false;
 
         durationPref = ParseUser.getCurrentUser().getBoolean("durationPref"); // true  -> play full-length, false -> play 30-sec. snippet
-
+        context = getContext();
 
         new Thread(() -> {
             try {
@@ -165,7 +166,7 @@ public class SongFragment extends Fragment {
                 Log.i(TAG, "Rec save was successful!");
             }
         });
-        Context context = getContext();
+
         spotifyBroadcastReceiver.playNew(context, song.getURI());
 
 
@@ -207,9 +208,9 @@ public class SongFragment extends Fragment {
                 intent.putExtra("from", "home");
                 intent.putExtra("paused", paused); // SongFragment only
                 intent.putExtra("progress", progress); // SongFragment only
-                Pair<View, String> p1 = Pair.create((View)ivAlbumImage, "albumImg");
-                Pair<View, String> p2 = Pair.create((View)tvTitle, "tvTitle");
-                Pair<View, String> p3 = Pair.create((View)tvArtist, "tvArtist");
+                Pair<View, String> p1 = Pair.create((View) ivAlbumImage, "albumImg");
+                Pair<View, String> p2 = Pair.create((View) tvTitle, "tvTitle");
+                Pair<View, String> p3 = Pair.create((View) tvArtist, "tvArtist");
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation((Activity) context, p1, p2, p3);
                 startActivity(intent, options.toBundle());

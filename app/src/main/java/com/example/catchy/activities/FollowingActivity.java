@@ -65,7 +65,6 @@ public class FollowingActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         setBackgroundColor();
-        // TODO if no followers, input message to find more
     }
 
     private void setBackgroundColor() {
@@ -83,10 +82,7 @@ public class FollowingActivity extends AppCompatActivity {
                 swatch = palette.getDominantSwatch();
             }
 
-            // swatch.getRgb()
             if (swatch != null) {
-                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
-
                 int color = swatch.getRgb();
                 RevelyGradient
                         .linear()
