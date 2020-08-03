@@ -212,7 +212,6 @@ public class OthersProfileActivity extends AppCompatActivity {
             tvFollowersCount.setText(followers.size() + " followers");
     }
 
-    // TODO write unit tests
     private void setBackgroundColor() {
         Bitmap bitmap = User.otherUserBitmaps.get(currentUser.getObjectId());
         if (bitmap != null && !bitmap.isRecycled()) {

@@ -1,9 +1,11 @@
 package com.example.catchy.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -204,7 +206,9 @@ public class SongFragment extends Fragment {
                 intent.putExtra("from", "home");
                 intent.putExtra("paused", paused); // SongFragment only
                 intent.putExtra("progress", progress); // SongFragment only
-                startActivity(intent);
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation((Activity) context, (View)ivAlbumImage, "albumImg");
+                startActivity(intent, options.toBundle());
             }
         });
 

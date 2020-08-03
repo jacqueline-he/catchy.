@@ -20,6 +20,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:transitionName="albumImg"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             tools:src="@tools:sample/backgrounds/scenic" />

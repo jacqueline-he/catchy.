@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/dark_gray</item>
         <item name="colorAccent">@color/dark_gray</item>
+        <item name="android:windowContentTransitions">true</item>
+
     </style>
 
     <style name="EditTextTheme" parent="Theme.AppCompat.Light.NoActionBar">

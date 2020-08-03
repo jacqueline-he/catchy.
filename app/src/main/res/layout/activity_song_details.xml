@@ -30,6 +30,7 @@
         android:layout_height="360dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
+        android:transitionName="albumImg"
         tools:src="@tools:sample/avatars" />
 
     </androidx.cardview.widget.CardView>

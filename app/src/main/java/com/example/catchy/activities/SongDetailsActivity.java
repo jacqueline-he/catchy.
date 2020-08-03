@@ -3,11 +3,13 @@ package com.example.catchy.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.palette.graphics.Palette;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -300,8 +302,20 @@ public class SongDetailsActivity extends AppCompatActivity {
                     objects.get(0).deleteInBackground();
                 }
             });
-
+            supportFinishAfterTransition();
         }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                supportFinishAfterTransition();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -309,4 +323,6 @@ public class SongDetailsActivity extends AppCompatActivity {
         super.onPause();
         songProgressBar.pause();
     }
+
+
 }
