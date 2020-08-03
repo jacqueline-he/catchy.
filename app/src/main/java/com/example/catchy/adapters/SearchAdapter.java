@@ -91,11 +91,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             int position = getAdapterPosition();
             Bitmap bitmap = null;
 
-            bitmap = BitmapCache.getBitmapFromMemCache(position);
+            bitmap = BitmapCache.getBitmapFromMemCache(position, true); // searching songs
             if (bitmap != null) {
                 song.bitmap = bitmap; // save bitmap to song
             } else {
-                new ImageLoaderTask(position, song.getImageUrl()).executeOnExecutor(
+                new ImageLoaderTask(position, song.getImageUrl(), true).executeOnExecutor(
                         AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
             }
 
@@ -109,7 +109,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                             Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
                         }
                     }).start();*/
-                    DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position);
+                    DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position, true);
                     Intent intent = new Intent(context, SongDetailsActivity.class);
                     // pack something
                     intent.putExtra("song", song);

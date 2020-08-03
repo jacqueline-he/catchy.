@@ -42,8 +42,8 @@ public class FollowingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_following);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        BitmapCache.InitBitmapCache(); // for adapter
-        BitmapCache.clear();
+        BitmapCache.InitBitmapCache(false); // for adapter, for users
+        BitmapCache.clearUserCache();
 
         Intent intent = getIntent();
         following = intent.getExtras().getParcelableArrayList("following");

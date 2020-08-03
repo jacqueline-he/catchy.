@@ -44,7 +44,7 @@ import co.revely.gradient.RevelyGradient;
 public class OthersProfileActivity extends AppCompatActivity {
     public static final String TAG = "ProfileFragment";
     private RecyclerView rvLikes;
-    protected UserAdapter adapter;
+    private UserAdapter adapter;
     private GridLayoutManager gridLayoutManager;
     private ParseUser currentUser;
     private TextView tvUsername;
@@ -76,8 +76,8 @@ public class OthersProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_others_profile);
 
-        BitmapCache.InitBitmapCache();
-        BitmapCache.clear(); // make sure it's empty
+        BitmapCache.InitBitmapCache(true); // for other user's likes
+        BitmapCache.clearSongCache(); // make sure it's empty
 
         // GET USER
         Intent intent = getIntent();

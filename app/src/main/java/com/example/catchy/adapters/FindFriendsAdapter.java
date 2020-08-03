@@ -90,11 +90,11 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
 
             int position = getAdapterPosition();
             Bitmap bitmap = null;
-            bitmap = BitmapCache.getBitmapFromMemCache(position);
+            bitmap = BitmapCache.getBitmapFromMemCache(position, false);
             if (bitmap != null && !User.otherUserBitmaps.containsKey(user.getObjectId())) {
                 User.otherUserBitmaps.put(user.getObjectId(), bitmap);
             } else {
-                new ImageLoaderTask(position, profileImage.getUrl()).executeOnExecutor(
+                new ImageLoaderTask(position, profileImage.getUrl(), false).executeOnExecutor(
                         AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
             }
 
@@ -103,7 +103,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
                 @Override
                 public void onClick(View view) {
                     if (!User.otherUserBitmaps.containsKey(user.getObjectId())) {
-                        Bitmap createdBitmap = BitmapCache.getBitmapFromMemCache(position);
+                        Bitmap createdBitmap = BitmapCache.getBitmapFromMemCache(position, false);
                         if (createdBitmap != null)
                             User.otherUserBitmaps.put(user.getObjectId(), createdBitmap);
                     }

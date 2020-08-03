@@ -108,7 +108,7 @@ public class SearchFragment extends Fragment {
         results = new ArrayList<>();
         searchAdapter = new SearchAdapter(results, getContext());
 
-        BitmapCache.InitBitmapCache(); // for search adapter
+        BitmapCache.InitBitmapCache(true); // for search adapter; for songs
 
         rvResults.setAdapter(searchAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -133,7 +133,7 @@ public class SearchFragment extends Fragment {
 
                 // clear search list
                 results.clear();
-                BitmapCache.clear();
+                BitmapCache.clearSongCache();
                 fetchSongs(query, 0);
                 scrollListener.resetState();
             }
@@ -151,7 +151,7 @@ public class SearchFragment extends Fragment {
 
                     // clear search list
                     results.clear();
-                    BitmapCache.clear();
+                    BitmapCache.clearSongCache();
                     fetchSongs(query, 0);
                     scrollListener.resetState();
                     handled = true;

@@ -39,8 +39,8 @@ public class FollowersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_followers);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        BitmapCache.InitBitmapCache(); // for adapter
-        BitmapCache.clear();
+        BitmapCache.InitBitmapCache(false); // for adapter, for users
+        BitmapCache.clearUserCache();
 
         Intent intent = getIntent();
         followers = intent.getExtras().getParcelableArrayList("followers");

@@ -12,10 +12,12 @@ import java.io.IOException;
 public class ImageLoaderTask extends AsyncTask<Integer, String, Bitmap> {
     int m_position;
     String m_photoPath;
+    boolean song;
 
-    public ImageLoaderTask(int position, String photoPath) {
+    public ImageLoaderTask(int position, String photoPath, boolean song) {
         m_position = position;
         m_photoPath = photoPath;
+        this.song = song;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class ImageLoaderTask extends AsyncTask<Integer, String, Bitmap> {
     //set photoView and holder
     protected void onPostExecute(Bitmap bitmap) {
         if (bitmap != null) {
-            BitmapCache.addBitmapToMemoryCache(m_position, bitmap);
+            BitmapCache.addBitmapToMemoryCache(m_position, bitmap, song);
 
             // to do: set imageView
         }

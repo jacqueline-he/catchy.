@@ -41,6 +41,7 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -87,8 +88,8 @@ public class UserFragment extends Fragment {
         spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PAUSE);
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(spotifyBroadcastReceiver);
         DetailTransition.liked = true;
-        BitmapCache.InitBitmapCache();
-        BitmapCache.clear(); // make sure it's empty
+        BitmapCache.InitBitmapCache(true); // new cache for likes
+        BitmapCache.clearSongCache(); // make sure it's empty
     }
 
     @Override
@@ -216,7 +217,6 @@ public class UserFragment extends Fragment {
 
             // swatch.getRgb()
             if (swatch != null) {
-                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
 
                 int color = swatch.getRgb();
                 RevelyGradient
@@ -224,8 +224,15 @@ public class UserFragment extends Fragment {
                         .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.66f)
                         .onBackgroundOf(layout);
             }
-
-
+        }
+        else { // try again
+            new Thread(() -> {
+                try {
+                    User.profileBitmap = Picasso.get().load(ParseUser.getCurrentUser().getParseFile("profilePic").getUrl()).get();
+                } catch (Exception e) {
+                    Log.e(TAG, "couldn't get bitmap"+e);
+                }
+            }).start();
         }
     }
 

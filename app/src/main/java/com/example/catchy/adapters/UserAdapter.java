@@ -69,11 +69,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             int position = getAdapterPosition();
             Bitmap bitmap = null;
 
-            bitmap = BitmapCache.getBitmapFromMemCache(position);
+            bitmap = BitmapCache.getBitmapFromMemCache(position, true);
             if (bitmap != null) {
                 like.bitmap = bitmap;
             } else {
-                new ImageLoaderTask(position, like.getImageUrl()).executeOnExecutor(
+                new ImageLoaderTask(position, like.getImageUrl(), true).executeOnExecutor(
                         AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
             }
 
@@ -89,14 +89,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     song.setImageUrl(like.getImageUrl());
                     song.setDuration(like.getDuration());
 
-                    /*new Thread(() -> {
-                        try {
-                            DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
-                        } catch (Exception e) {
-                            Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
-                        }
-                    }).start();*/
-                    DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position);
+                    DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position, true);
                     // pack something
                     intent.putExtra("song", song);
                     intent.putExtra("liked", true);

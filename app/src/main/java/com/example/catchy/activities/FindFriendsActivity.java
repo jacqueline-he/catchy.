@@ -59,8 +59,8 @@ public class FindFriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friends);
 
-        BitmapCache.InitBitmapCache(); // for adapter
-        BitmapCache.clear();
+        BitmapCache.InitBitmapCache(false); // for adapter; for users
+        BitmapCache.clearUserCache();
 
         rvResults = findViewById(R.id.rvResults);
         etSearch = findViewById(R.id.etSearch);
@@ -157,6 +157,7 @@ public class FindFriendsActivity extends AppCompatActivity {
             query.whereLessThan("createdAt", oldest);
             infScroll = false;
         }
+        query.orderByAscending("username");
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> objects, ParseException e) {
                 if (e == null) {
@@ -172,7 +173,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged();
                 rvResults.smoothScrollToPosition(0);
-                BitmapCache.clear(); // make sure it's empty
+                BitmapCache.clearUserCache(); // make sure it's empty
             }
         });
     }
