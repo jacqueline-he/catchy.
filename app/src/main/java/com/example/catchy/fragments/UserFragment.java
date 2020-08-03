@@ -358,6 +358,11 @@ public class UserFragment extends Fragment {
             // TODO repeats
         }
 
+        if (User.profPicChanged) {
+            setBackgroundColor();
+            User.profPicChanged = false;
+        }
+
         String name = currentUser.getString("fullName");
         tvFullName.setText(name);
 

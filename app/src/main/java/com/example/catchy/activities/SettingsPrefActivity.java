@@ -99,7 +99,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
         private SwitchPreference durationPref;
 
         private File photoFile;
-        private String photoFileName = "photo.jpg";
+        private String photoFileName;
         public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
 
         @Override
@@ -223,10 +223,11 @@ public class SettingsPrefActivity extends AppCompatActivity {
         }
 
         private void launchCamera() {
+            photoFileName = "photo" + Math.random() + ".jpg";
             // create Intent to take a picture and return control to the calling application
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             // Create a File reference for future access
-            photoFile = getPhotoFileUri(photoFileName + Math.random());
+            photoFile = getPhotoFileUri(photoFileName);
 
             // wrap File object into a content provider
             // required for API >= 24
@@ -270,11 +271,15 @@ public class SettingsPrefActivity extends AppCompatActivity {
 
                     new Thread(() -> {
                         try {
-                            User.profileBitmap = Picasso.get().load(photoFile.getAbsolutePath()).get();
+                            Log.d("SettingsPrefActivity", "getting bitmap from new profile pic");
+                            User.profileBitmap = Picasso.get().load(photoFile).get();
+                            Log.d("SettingsPrefActivity", "successfully retrieved bitmap");
                         } catch (Exception e) {
                             Log.e("SettingsPrefActivity", "couldn't get bitmap"+e);
                         }
                     }).start();
+
+                    User.profPicChanged = true;
 
                     // Glide.with(this).load(photoFile.getAbsolutePath()).transform(new CircleCrop()).into(ivProfileImage);
                 } else { // Result was a failure
