@@ -28,13 +28,13 @@
         android:layout_below="@+id/ivDisc"
         android:layout_alignParentStart="true"
         android:layout_marginTop="18dp"
-        android:fontFamily="@font/lato"
-        android:textStyle="bold"
         android:layout_weight="1"
+        android:fontFamily="@font/lato"
         android:gravity="center_horizontal"
         android:text="catchy."
         android:textColor="@color/neon_blue"
-        android:textSize="36dp" />
+        android:textSize="36dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/etUsername"
@@ -47,7 +47,8 @@
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="username"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -60,36 +61,71 @@
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPassword"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:layout_weight="1"
-        android:text="Login" />
+        android:background="@drawable/btn_login_effect"
+        android:text="Login"
+        android:textColor="@drawable/btn_login_text_color" />
 
     <Button
         android:id="@+id/btnSignup"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="-3dp"
-        android:layout_marginTop="18dp"
-        android:layout_weight="1"
-        android:text="Sign up" />
-
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="120dp"
-        android:layout_height="90dp"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="12dp"
-        app:srcCompat="@drawable/ic_logo" />
+        android:layout_marginTop="17dp"
+        android:layout_weight="1"
+        android:background="@drawable/btn_signup_effect"
+        android:text="Sign up"
+        android:textColor="@drawable/btn_signup_text_color" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llSpotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvPoweredBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#DDDDDD"
+            android:text="Powered by "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_conversion_absoluteHeight="19dp"
+            tools:layout_conversion_absoluteWidth="78dp" />
+
+        <ImageView
+            android:id="@+id/ivSpotifyLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPoweredBy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvPoweredBy"
+            app:layout_constraintTop_toTopOf="@+id/tvPoweredBy"
+            app:srcCompat="@drawable/ic_logo"
+            tools:layout_conversion_absoluteHeight="100dp"
+            tools:layout_conversion_absoluteWidth="334dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>
