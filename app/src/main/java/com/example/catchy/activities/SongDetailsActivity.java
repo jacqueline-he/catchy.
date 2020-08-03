@@ -210,13 +210,6 @@ public class SongDetailsActivity extends AppCompatActivity {
     }
 
     private void setBackgroundColor() {
-/*        try {
-            URL url = new URL(song.getImageUrl());
-            bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-        } catch(IOException e) {
-            System.out.println(e);
-        }*/
-
         if (DetailTransition.bitmap != null && !DetailTransition.bitmap.isRecycled()) {
             Palette palette = Palette.from(DetailTransition.bitmap).generate();
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();
@@ -237,8 +230,12 @@ public class SongDetailsActivity extends AppCompatActivity {
 
                 btnPlayPause.setColorFilter(swatch.getRgb());
             }
-
-
+        }
+        else {
+            RevelyGradient
+                    .linear()
+                    .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(90f).alpha(0.76f)
+                    .onBackgroundOf(findViewById(R.id.layout));
         }
 
     }

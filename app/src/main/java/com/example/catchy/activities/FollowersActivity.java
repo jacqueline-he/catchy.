@@ -92,6 +92,12 @@ public class FollowersActivity extends AppCompatActivity {
 
 
         }
+        else {
+            RevelyGradient
+                    .linear()
+                    .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(90f).alpha(0.46f)
+                    .onBackgroundOf(layout);
+        }
 
 
     }

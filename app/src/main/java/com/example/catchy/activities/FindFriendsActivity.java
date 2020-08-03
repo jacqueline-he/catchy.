@@ -147,6 +147,12 @@ public class FindFriendsActivity extends AppCompatActivity {
                         .onBackgroundOf(layout);
             }
         }
+        else {
+            RevelyGradient
+                    .linear()
+                    .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(270f).alpha(0.76f)
+                    .onBackgroundOf(layout);
+        }
     }
 
     private void fetchUsers(String username) {
