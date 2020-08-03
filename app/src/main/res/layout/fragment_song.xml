@@ -47,6 +47,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:scrollHorizontally="true"
+        android:transitionName="tvTitle"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -66,6 +67,7 @@
         android:ellipsize="marquee"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:transitionName="tvArtist"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"

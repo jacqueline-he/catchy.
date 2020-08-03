@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -206,8 +207,11 @@ public class SongFragment extends Fragment {
                 intent.putExtra("from", "home");
                 intent.putExtra("paused", paused); // SongFragment only
                 intent.putExtra("progress", progress); // SongFragment only
+                Pair<View, String> p1 = Pair.create((View)ivAlbumImage, "albumImg");
+                Pair<View, String> p2 = Pair.create((View)tvTitle, "tvTitle");
+                Pair<View, String> p3 = Pair.create((View)tvArtist, "tvArtist");
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((Activity) context, (View)ivAlbumImage, "albumImg");
+                        makeSceneTransitionAnimation((Activity) context, p1, p2, p3);
                 startActivity(intent, options.toBundle());
             }
         });
