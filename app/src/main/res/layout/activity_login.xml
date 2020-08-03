@@ -1,54 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
     android:orientation="vertical"
     tools:context=".activities.LoginActivity">
 
 
+    <ImageView
+        android:id="@+id/ivDisc"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/blue_disc" />
+
+    <TextView
+        android:id="@+id/tvCatchy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivDisc"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/lato"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="catchy."
+        android:textColor="@color/neon_blue"
+        android:textSize="36dp" />
+
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
-        android:layout_marginTop="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_below="@+id/tvCatchy"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="56dp"
         android:layout_weight="1"
         android:backgroundTint="@color/white"
-        android:textColor="@color/white"
-        android:width="4dp"
-        android:hint="username" />
+        android:ems="10"
+        android:hint="username"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/white"
-        android:ems="10"
+        android:layout_below="@+id/etUsername"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="password"
         android:inputType="textPassword"
-        android:hint="password" />
+        android:textColor="@color/white" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/etPassword"
+        android:layout_marginTop="28dp"
         android:layout_weight="1"
-        android:layout_marginTop="20dp"
-        android:text="Login"/>
+        android:text="Login" />
 
     <Button
         android:id="@+id/btnSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="18dp"
         android:layout_weight="1"
-        android:layout_marginTop="1dp"
-        android:text="Sign up"/>
+        android:text="Sign up" />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        app:srcCompat="@drawable/ic_logo" />
 
 
-
-
-</LinearLayout>
+</RelativeLayout>
