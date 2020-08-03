@@ -209,6 +209,7 @@ public class OthersProfileActivity extends AppCompatActivity {
                 }
             }
            // TODO test - if you follow another user and return to findfriendsadapter, change not reflected
+            // TODO from following activity, if you unfollow someone the change isn't persisted
 
         } else { // follow
             followed = true;

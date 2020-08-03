@@ -77,6 +77,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                         AsyncTask.THREAD_POOL_EXECUTOR, (Integer[]) null);
             }
 
+            Log.d("UserAdapter", "like title " + like.getTitle());
+
 
             ivLikedImage.setOnClickListener(new View.OnClickListener() {
                 @Override

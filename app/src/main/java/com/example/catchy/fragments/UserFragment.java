@@ -240,6 +240,7 @@ public class UserFragment extends Fragment {
 
     // TODO customize bio fragment
 
+    // TODO transparent buttons
     // Following IS changed
     private void queryUserFollowing() {
         if (User.following != null) {
@@ -354,8 +355,8 @@ public class UserFragment extends Fragment {
         }
 
         if (!DetailTransition.liked) {
+            userLikes.remove(DetailTransition.pos);
             adapter.notifyItemRemoved(DetailTransition.pos);
-            // TODO repeats
         }
 
         if (User.profPicChanged) {
