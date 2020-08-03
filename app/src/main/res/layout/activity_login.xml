@@ -38,39 +38,40 @@
 
     <EditText
         android:id="@+id/etUsername"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvCatchy"
-        android:layout_alignParentStart="true"
         android:layout_marginTop="56dp"
         android:layout_weight="1"
-        android:backgroundTint="@color/white"
+        android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="username"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="#DDDDDD" />
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etUsername"
         android:layout_marginTop="16dp"
         android:layout_weight="1"
-        android:backgroundTint="@color/white"
+        android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="#DDDDDD" />
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="200dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPassword"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="120dp"
         android:layout_weight="1"
         android:background="@drawable/btn_login_effect"
         android:text="Login"
@@ -78,7 +79,7 @@
 
     <Button
         android:id="@+id/btnSignup"
-        android:layout_width="200dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
         android:layout_centerHorizontal="true"
