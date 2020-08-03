@@ -49,6 +49,7 @@ public class FindFriendsActivity extends AppCompatActivity {
     String username;
     String ownName;
     private RelativeLayout layout;
+    private int page;
 
     private EndlessRecyclerViewScrollListener scrollListener;
     boolean infScroll = false;
@@ -80,8 +81,10 @@ public class FindFriendsActivity extends AppCompatActivity {
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                infScroll = true;
-                fetchUsers(username);
+                if (results.size() > (page * 24)) {
+                    infScroll = true;
+                    fetchUsers(username);
+                }
             }
         };
         rvResults.addOnScrollListener(scrollListener);
@@ -151,7 +154,7 @@ public class FindFriendsActivity extends AppCompatActivity {
         query.whereContains("username", username);
         query.setLimit(24);
 
-        if (infScroll && results.size() > 0) {
+        if (infScroll && results.size() > (page * 24)) {
             query.setSkip(results.size());
             infScroll = false;
         }
@@ -172,6 +175,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 rvResults.smoothScrollToPosition(0);
                 BitmapCache.clearUserCache(); // make sure it's empty
+                page++;
             }
         });
     }

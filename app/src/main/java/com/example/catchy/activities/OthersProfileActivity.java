@@ -82,7 +82,7 @@ public class OthersProfileActivity extends AppCompatActivity {
         // GET USER
         Intent intent = getIntent();
         currentUser = (ParseUser) intent.getExtras().get("user");
-        for (ParseUser user : User.followers) {
+        for (ParseUser user : User.following) {
             try {
                 if (user.fetchIfNeeded().getUsername().equals(currentUser.getUsername())) {
                     followed = true;
@@ -192,18 +192,30 @@ public class OthersProfileActivity extends AppCompatActivity {
             for (ParseUser user : followers) {
                 try {
                     if (user.fetchIfNeeded().getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
-                        followers.remove(user);
+                        followers.remove(user); // on other user's side
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
 
+            for (ParseUser user : User.following) {
+                try {
+                    if (user.fetchIfNeeded().getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
+                        User.following.remove(user); // on current user's side
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+           // TODO test - if you follow another user and return to findfriendsadapter, change not reflected
+
         } else { // follow
             followed = true;
             ivFollow.setImageResource(R.drawable.ic_followed);
             ivFollow.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.medium_green));
-            followers.add(ParseUser.getCurrentUser());
+            followers.add(ParseUser.getCurrentUser()); // on other user's side
+            User.following.add(currentUser); // on current user's side
         }
 
         if (followers.size() == 1) {
@@ -217,15 +229,11 @@ public class OthersProfileActivity extends AppCompatActivity {
         if (bitmap != null && !bitmap.isRecycled()) {
             Palette palette = Palette.from(bitmap).generate();
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-            // int color = palette.getDarkMutedColor(0);
             if (swatch == null) {
                 swatch = palette.getDominantSwatch();
             }
 
-            // swatch.getRgb()
             if (swatch != null) {
-                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
-
                 int color = swatch.getRgb();
                 RevelyGradient
                         .linear()
