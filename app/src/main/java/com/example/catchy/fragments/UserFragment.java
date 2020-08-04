@@ -376,5 +376,8 @@ public class UserFragment extends Fragment {
         queryUserFollowers();
         queryUserFollowing();
 
+        BitmapCache.clearSongCache(); // make sure it's empty
+        adapter.notifyDataSetChanged();
+
     }
 }
