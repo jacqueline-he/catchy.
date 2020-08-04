@@ -115,6 +115,10 @@ public class SongDetailsActivity extends AppCompatActivity {
             btnLike.setImageResource(R.drawable.ic_likes_filled);
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
         }
+        else {
+            btnLike.setImageResource(R.drawable.ic_likes);
+            btnLike.clearColorFilter();
+        }
 
         tvTitle.setText(song.getTitle());
         tvArtist.setText(song.getArtist());

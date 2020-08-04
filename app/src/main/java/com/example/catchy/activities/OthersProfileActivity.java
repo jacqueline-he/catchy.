@@ -127,7 +127,7 @@ public class OthersProfileActivity extends AppCompatActivity {
         rvLikes = findViewById(R.id.rvLikes);
         userLikes = new ArrayList<>();
         queryUserLikes();
-        adapter = new UserAdapter(this, userLikes);
+        adapter = new UserAdapter(this, userLikes, false);
         gridLayoutManager = new GridLayoutManager(this, 3);
         rvLikes.setAdapter(adapter);
         rvLikes.setLayoutManager(gridLayoutManager);

@@ -158,7 +158,7 @@ public class UserFragment extends Fragment {
         rvLikes = view.findViewById(R.id.rvLikes);
         userLikes = new ArrayList<>();
         queryUserLikes();
-        adapter = new UserAdapter(getContext(), userLikes);
+        adapter = new UserAdapter(getContext(), userLikes, true);
         gridLayoutManager = new GridLayoutManager(getContext(), 3);
         rvLikes.setAdapter(adapter);
         rvLikes.setLayoutManager(gridLayoutManager);

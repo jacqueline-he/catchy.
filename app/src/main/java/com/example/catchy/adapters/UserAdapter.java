@@ -28,10 +28,12 @@ import java.util.List;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private Context context;
     private List<Like> likes;
+    private boolean currentUser;
 
-    public UserAdapter(Context context, List<Like> likes) {
+    public UserAdapter(Context context, List<Like> likes, boolean currentUser) {
         this.context = context;
         this.likes = likes;
+        this.currentUser = currentUser;
     }
 
     @NonNull
@@ -94,7 +96,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position, true);
                     // pack something
                     intent.putExtra("song", song);
-                    intent.putExtra("liked", true);
+                    if (currentUser)
+                        intent.putExtra("liked", true);
+                    else
+                        intent.putExtra("liked", false);
                     intent.putExtra("from", "user");
 
                     DetailTransition.pos = getAdapterPosition();
