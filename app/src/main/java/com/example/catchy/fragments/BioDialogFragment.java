@@ -78,7 +78,6 @@ public class BioDialogFragment extends DialogFragment {
         tvBio.setText(bio);
         Glide.with(this).load(imgUrl).into(ivProfileImage);
         super.onViewCreated(view, savedInstanceState);
-        // TODO build generate playlist functionality w/ button here
     }
 
 }

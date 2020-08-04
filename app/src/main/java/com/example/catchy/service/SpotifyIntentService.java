@@ -73,6 +73,20 @@ public class SpotifyIntentService extends JobIntentService {
                         public void onFailure(Throwable error) {
                             Log.e(TAG, error.getMessage(), error);
                             mIsSpotifyConnected = false;
+                            Intent in = new Intent();
+                            if (error instanceof NotLoggedInException) {
+                                Log.e(TAG, "User is not logged in to Spotify.");
+                                in.putExtra("RESULT", "RESULT_OPEN_SPOTIFY");
+                                LocalBroadcastManager.getInstance(context).sendBroadcast(in);
+                            }
+                            else if (error instanceof  UserNotAuthorizedException) {
+                                Log.e(TAG, "User is not authorized.", error);
+                            }
+                            else if (error instanceof CouldNotFindSpotifyApp) {
+                                Log.e(TAG, "User does not have Spotify app installed on device.");
+                                in.putExtra("RESULT", "RESULT_INSTALL_SPOTIFY");
+                                LocalBroadcastManager.getInstance(context).sendBroadcast(in);
+                            }
                         }
                     });
         }
