@@ -102,11 +102,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (e == null) {
                     Toast.makeText(LoginActivity.this, "Successfully signed up", Toast.LENGTH_SHORT).show();
                     goMainActivity();
+                    goSpotifyAuth(false);
                 } else {
                     Toast.makeText(LoginActivity.this, "Issue with sign up", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
                 }
-                goSpotifyAuth(false);
+
             }
         });
     }

@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
             User.followers = null;
             User.following = null;
         }
+        finish();
 
     }
 
