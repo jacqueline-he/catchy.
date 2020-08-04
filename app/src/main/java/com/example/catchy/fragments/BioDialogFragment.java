@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.catchy.R;
 import com.example.catchy.models.User;
 import com.parse.ParseUser;
@@ -27,9 +29,11 @@ import co.revely.gradient.RevelyGradient;
 public class BioDialogFragment extends DialogFragment {
     private TextView tvFullName;
     private TextView tvBio;
+    private ImageView ivProfileImage;
 
     private String fullName;
     private String bio;
+    private String imgUrl;
 
     private RelativeLayout layout;
 
@@ -37,11 +41,12 @@ public class BioDialogFragment extends DialogFragment {
         // Required empty public constructor
     }
 
-    public static BioDialogFragment newInstance(String fullName, String bio) {
+    public static BioDialogFragment newInstance(String fullName, String bio, String imgUrl) {
         BioDialogFragment fragment = new BioDialogFragment();
         Bundle args = new Bundle();
         args.putString("fullName", fullName);
         args.putString("bio", bio);
+        args.putString("imgUrl", imgUrl);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,6 +57,7 @@ public class BioDialogFragment extends DialogFragment {
         if (getArguments() != null) {
             this.fullName = getArguments().getString("fullName");
             this.bio = getArguments().getString("bio");
+            this.imgUrl = getArguments().getString("imgUrl");
         }
     }
 
@@ -66,45 +72,13 @@ public class BioDialogFragment extends DialogFragment {
         tvFullName = view.findViewById(R.id.tvFullName);
         tvBio = view.findViewById(R.id.tvBio);
         layout = view.findViewById(R.id.biodialog);
+        ivProfileImage = view.findViewById(R.id.ivProfileImage);
 
         tvFullName.setText(fullName);
         tvBio.setText(bio);
+        Glide.with(this).load(imgUrl).into(ivProfileImage);
         super.onViewCreated(view, savedInstanceState);
-
-        setBackgroundColor();
+        // TODO build generate playlist functionality w/ button here
     }
 
-    private void setBackgroundColor() {
-        if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
-            Palette palette = Palette.from(User.profileBitmap).generate();
-            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-            // int color = palette.getDarkMutedColor(0);
-            if (swatch == null) {
-                swatch = palette.getDominantSwatch();
-            }
-
-            // swatch.getRgb()
-            if (swatch != null) {
-
-                int color = swatch.getRgb();
-                RevelyGradient
-                        .linear()
-                        .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.66f)
-                        .onBackgroundOf(layout);
-            }
-        }
-        else { // try again
-            new Thread(() -> {
-                try {
-                    User.profileBitmap = Picasso.get().load(ParseUser.getCurrentUser().getParseFile("profilePic").getUrl()).get();
-                } catch (Exception e) {
-                    Log.e("BioDialogFragment", "couldn't get bitmap"+e);
-                }
-            }).start();
-            RevelyGradient
-                    .linear()
-                    .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(270f).alpha(0.66f)
-                    .onBackgroundOf(layout);
-        }
-    }
 }

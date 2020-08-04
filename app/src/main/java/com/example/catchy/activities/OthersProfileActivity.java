@@ -171,7 +171,7 @@ public class OthersProfileActivity extends AppCompatActivity {
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BioDialogFragment dialog = BioDialogFragment.newInstance(name, bio);
+                BioDialogFragment dialog = BioDialogFragment.newInstance(name, bio, profileImage.getUrl());
                 dialog.show(getSupportFragmentManager(), "From OthersProfileActivity");
             }
         });

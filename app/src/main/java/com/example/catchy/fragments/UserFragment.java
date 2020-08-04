@@ -200,7 +200,7 @@ public class UserFragment extends Fragment {
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BioDialogFragment dialog = BioDialogFragment.newInstance(name, bio);
+                BioDialogFragment dialog = BioDialogFragment.newInstance(name, bio, profileImage.getUrl());
                 dialog.show(getFragmentManager(), "From UserFragment");
             }
         });
@@ -241,8 +241,6 @@ public class UserFragment extends Fragment {
     }
 
     // TODO not retrieving updated name, bio from Parse
-
-    // TODO customize bio fragment
 
     // Following IS changed
     private void queryUserFollowing() {

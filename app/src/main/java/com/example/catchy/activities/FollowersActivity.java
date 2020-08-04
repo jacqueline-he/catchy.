@@ -82,8 +82,6 @@ public class FollowersActivity extends AppCompatActivity {
 
             // swatch.getRgb()
             if (swatch != null) {
-                // ((RelativeLayout) findViewById(R.id.layout)).setBackgroundColor(swatch.getRgb());
-
                 int color = swatch.getRgb();
                 RevelyGradient
                         .linear()
