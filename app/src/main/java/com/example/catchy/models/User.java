@@ -18,4 +18,5 @@ public class User extends ParseUser {
     public static boolean passedFirstSong = false;
     public static HashMap<String, Bitmap> otherUserBitmaps = new HashMap<>();
     public static boolean profPicChanged;
+    public static int otherUserPos = -1;
 }

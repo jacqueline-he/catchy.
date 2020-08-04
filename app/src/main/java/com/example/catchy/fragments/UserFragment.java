@@ -244,7 +244,6 @@ public class UserFragment extends Fragment {
 
     // TODO customize bio fragment
 
-    // TODO transparent buttons
     // Following IS changed
     private void queryUserFollowing() {
         if (User.following != null) {

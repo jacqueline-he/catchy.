@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.example.catchy.R;
@@ -100,5 +101,16 @@ public class FollowersActivity extends AppCompatActivity {
         }
 
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("FollowersActivity", "Back here");
+        if (User.otherUserPos != -1) {
+            adapter.notifyItemChanged(User.otherUserPos);
+            User.otherUserPos = -1;
+        }
     }
 }

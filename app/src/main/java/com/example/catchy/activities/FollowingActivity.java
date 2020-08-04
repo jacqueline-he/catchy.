@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.WindowManager;
 
@@ -102,5 +103,15 @@ public class FollowingActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("FollowingActivity", "Back here");
+        if (User.otherUserPos != -1) {
+            adapter.notifyItemChanged(User.otherUserPos);
+            User.otherUserPos = -1;
+        }
     }
 }

@@ -185,4 +185,14 @@ public class FindFriendsActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "Back here");
+        if (User.otherUserPos != -1) {
+            adapter.notifyItemChanged(User.otherUserPos);
+            User.otherUserPos = -1;
+        }
+    }
 }

@@ -16,7 +16,7 @@
         android:textAlignment="center"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:text="FullName" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_below="@+id/tvFullName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="15dp"
         tools:text="this is a sample bio" />
 

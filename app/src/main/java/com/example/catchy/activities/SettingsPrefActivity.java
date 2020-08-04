@@ -313,7 +313,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             tvAbout = view.findViewById(R.id.tvAbout);
-            tvAbout.setText("Made with love from California");
+            tvAbout.setText("Special thanks to Durdur for creating icon");
             // TODO fix about fragment
             super.onViewCreated(view, savedInstanceState);
         }

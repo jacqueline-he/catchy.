@@ -110,29 +110,38 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
 
                     Intent intent = new Intent(context, OthersProfileActivity.class);
                     intent.putExtra("user", user);
+                    User.otherUserPos = getAdapterPosition();
                     context.startActivity(intent);
                 }
             });
 
-            ivFollow.setImageResource(R.drawable.ic_follow);
-            ivFollow.clearColorFilter();
-            followed = false;
-
-            for (int i = 0; i < User.following.size(); i++) {
-                ParseUser followingUser = User.following.get(i);
-                if (followingUser.fetchIfNeeded().getUsername().equals(user.getUsername())) {
-                    followed = true;
-                    ivFollow.setImageResource(R.drawable.ic_followed);
-                    ivFollow.setColorFilter(ContextCompat.getColor(context, R.color.medium_green));
-                }
+            if (user.getUsername().equals(ParseUser.getCurrentUser())) {
+                ivFollow.setVisibility(View.GONE);
             }
+            else {
 
-            ivFollow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    follow();
+                ivFollow.setImageResource(R.drawable.ic_follow);
+                ivFollow.clearColorFilter();
+                followed = false;
+
+                if (User.following != null) {
+                    for (int i = 0; i < User.following.size(); i++) {
+                        ParseUser followingUser = User.following.get(i);
+                        if (followingUser.fetchIfNeeded().getUsername().equals(user.getUsername())) {
+                            followed = true;
+                            ivFollow.setImageResource(R.drawable.ic_followed);
+                            ivFollow.setColorFilter(ContextCompat.getColor(context, R.color.medium_green));
+                        }
+                    }
                 }
-            });
+
+                ivFollow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        follow();
+                    }
+                });
+            }
 
 
         }

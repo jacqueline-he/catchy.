@@ -105,7 +105,7 @@ public class OthersProfileActivity extends AppCompatActivity {
         ivFollow = findViewById(R.id.ivFollow);
         layout = findViewById(R.id.layout);
 
-        if (followed) {
+        if (followed) { // user following
             ivFollow.setImageResource(R.drawable.ic_followed);
             ivFollow.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.medium_green));
         }
@@ -189,27 +189,28 @@ public class OthersProfileActivity extends AppCompatActivity {
             ivFollow.setImageResource(R.drawable.ic_circle_follow);
             ivFollow.clearColorFilter();
             followed = false;
-            for (ParseUser user : followers) {
+
+            for (int i = 0; i < followers.size(); i++) {
+                ParseUser user = followers.get(i);
                 try {
                     if (user.fetchIfNeeded().getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
-                        followers.remove(user); // on other user's side
+                        followers.remove(i); // on other user's side - remove me
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
 
-            for (ParseUser user : User.following) {
+            for (int i = 0; i < User.following.size(); i++) {
+                ParseUser thisUser = User.following.get(i);
                 try {
-                    if (user.fetchIfNeeded().getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
-                        User.following.remove(user); // on current user's side
+                    if (thisUser.getUsername().equals(currentUser.fetchIfNeeded().getUsername())) {
+                        User.following.remove(i); // on my side - remove this user
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
-           // TODO test - if you follow another user and return to findfriendsadapter, change not reflected
-            // TODO from following activity, if you unfollow someone the change isn't persisted
 
         } else { // follow
             followed = true;
@@ -269,10 +270,26 @@ public class OthersProfileActivity extends AppCompatActivity {
                     followers.add(followingItem.getFollowedBy());
                 }
 
-                if (objects.size() == 1) {
+                if (followed && ! followers.contains(ParseUser.getCurrentUser())) {
+                    boolean userPresent = false;
+                    for (ParseUser user : followers) {
+                        try {
+                            if (user.fetchIfNeeded().getUsername().equals(ParseUser.getCurrentUser().fetchIfNeeded().getUsername())) {
+                                userPresent = true;
+                            }
+                        } catch (ParseException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+
+                    if (!userPresent)
+                        followers.add(ParseUser.getCurrentUser()); // This is for new development that hasn't been saved to Parse
+                }
+
+                if (followers.size() == 1) {
                     tvFollowersCount.setText("1 follower");
                 } else
-                    tvFollowersCount.setText(objects.size() + " followers");
+                    tvFollowersCount.setText(followers.size() + " followers");
             }
         });
     }
