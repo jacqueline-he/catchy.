@@ -74,6 +74,8 @@ public class FindFriendsActivity extends AppCompatActivity {
 
         layout = findViewById(R.id.layout);
 
+        setTheme(R.style.CustomDialogTheme);
+
         rvResults.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvResults.setLayoutManager(linearLayoutManager);
@@ -94,7 +96,12 @@ public class FindFriendsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 username = etSearch.getText().toString();
                 if (username.isEmpty()) {
-                    Toast.makeText(FindFriendsActivity.this, "Search cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(FindFriendsActivity.this, "Search cannot be empty", Toast.LENGTH_SHORT);
+                    View toastView = toast.getView();
+
+                    TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                    text.setTextColor(getResources().getColor(R.color.white));
+                    toast.show();
                     return;
                 }
 
@@ -112,7 +119,11 @@ public class FindFriendsActivity extends AppCompatActivity {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
                     username = etSearch.getText().toString();
                     if (username.isEmpty()) {
-                        Toast.makeText(FindFriendsActivity.this, "Search cannot be empty", Toast.LENGTH_SHORT).show();
+                        Toast toast = Toast.makeText(FindFriendsActivity.this, "Search cannot be empty", Toast.LENGTH_SHORT);
+                        View toastView = toast.getView();
+                        TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                        text.setTextColor(getResources().getColor(R.color.white));
+                        toast.show();
                     }
 
                     // clear search list

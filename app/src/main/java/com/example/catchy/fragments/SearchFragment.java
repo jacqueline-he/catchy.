@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.catchy.activities.FindFriendsActivity;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
 import com.example.catchy.R;
@@ -96,6 +97,8 @@ public class SearchFragment extends Fragment {
         spotifyApi.setAccessToken(ParseUser.getCurrentUser().getString("token"));
         spotify = spotifyApi.getService();
 
+        getActivity().setTheme(R.style.CustomDialogTheme);
+
         return view;
     }
 
@@ -126,7 +129,12 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 query = etSearch.getText().toString();
                 if (query.isEmpty()) {
-                    Toast.makeText(getContext(), "Search cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(getActivity(), "Search cannot be empty", Toast.LENGTH_SHORT);
+                    View toastView = toast.getView();
+
+                    TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                    text.setTextColor(getResources().getColor(R.color.white));
+                    toast.show();
                     return;
                 }
 
@@ -145,7 +153,12 @@ public class SearchFragment extends Fragment {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
                     query = etSearch.getText().toString();
                     if (query.isEmpty()) {
-                        Toast.makeText(getContext(), "Search cannot be empty", Toast.LENGTH_SHORT).show();
+                        Toast toast = Toast.makeText(getActivity(), "Search cannot be empty", Toast.LENGTH_SHORT);
+                        View toastView = toast.getView();
+
+                        TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                        text.setTextColor(getResources().getColor(R.color.white));
+                        toast.show();
                     }
 
                     // clear search list

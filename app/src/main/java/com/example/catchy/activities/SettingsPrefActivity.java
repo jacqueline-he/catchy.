@@ -127,11 +127,17 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     boolean selected = Boolean.parseBoolean(newValue.toString());
+                    Toast toast;
                     if (selected) {
-                        Toast.makeText(getActivity(), "Explicit filter turned on!", Toast.LENGTH_LONG).show();
+                        toast = Toast.makeText(getActivity(), "Explicit filter turned on!", Toast.LENGTH_LONG);
                     } else {
-                        Toast.makeText(getActivity(), "Explicit filter turned off!", Toast.LENGTH_LONG).show();
+                        toast = Toast.makeText(getActivity(), "Explicit filter turned off!", Toast.LENGTH_LONG);
                     }
+                    View view = toast.getView();
+
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(getResources().getColor(R.color.white));
+                    toast.show();
                     // update selected
                     ParseUser.getCurrentUser().put("explicitFilter", selected);
                     ParseUser.getCurrentUser().saveInBackground();
@@ -144,19 +150,24 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     boolean selected = Boolean.parseBoolean(newValue.toString());
+                    Toast toast;
                     if (selected) {
-                        Toast.makeText(getActivity(), "Play 30-second snippet in feed!", Toast.LENGTH_LONG).show();
+                        toast = Toast.makeText(getActivity(), "Play 30-second snippet in feed!", Toast.LENGTH_LONG);
                     } else {
-                        Toast.makeText(getActivity(), "Play full-length song in feed!", Toast.LENGTH_LONG).show();
+                        toast = Toast.makeText(getActivity(), "Play full-length song in feed!", Toast.LENGTH_LONG);
                     }
+                    View view = toast.getView();
+
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(getResources().getColor(R.color.white));
+                    toast.show();
+
                     // update selected
                     ParseUser.getCurrentUser().put("durationPref", selected);
                     ParseUser.getCurrentUser().saveInBackground();
                     return true;
                 }
             });
-
-            // TODO customize toast appearance
 
             updateBio.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="13dp"
         android:width="4dp"
         android:background="@drawable/edit_text_background"
         android:backgroundTint="#80fbfbfb"

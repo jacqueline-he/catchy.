@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             goSpotifyAuth(true);
         }
 
+        setTheme(R.style.CustomDialogTheme);
 
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
@@ -100,11 +102,20 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
-                    Toast.makeText(LoginActivity.this, "Successfully signed up", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(LoginActivity.this, "Successfully signed up!", Toast.LENGTH_SHORT);
+                    View toastView = toast.getView();
+
+                    TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                    text.setTextColor(getResources().getColor(R.color.white));
+                    toast.show();
                     goMainActivity();
                     goSpotifyAuth(false);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Issue with sign up", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(LoginActivity.this, "Issue with sign up!", Toast.LENGTH_SHORT);
+                    View toastView = toast.getView();
+                    TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                    text.setTextColor(getResources().getColor(R.color.white));
+                    toast.show();
                 }
 
             }
@@ -118,11 +129,19 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
                     Log.e(TAG, "Issue with login", e);
-                    Toast.makeText(LoginActivity.this, "Issue with login", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(LoginActivity.this, "Issue with login!", Toast.LENGTH_SHORT);
+                    View toastView = toast.getView();
+                    TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                    text.setTextColor(getResources().getColor(R.color.white));
+                    toast.show();
                     return;
                 }
                 goSpotifyAuth(false);
-                Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(LoginActivity.this, "Successfully logged in!", Toast.LENGTH_SHORT);
+                View toastView = toast.getView();
+                TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                text.setTextColor(getResources().getColor(R.color.white));
+                toast.show();
             }
         });
     }
