@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/black</item>
@@ -20,6 +20,16 @@
     </style>
     <style name="PreferenceStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/light_gray</item>
+    </style>
+
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/light_gray</item>
+        <item name="colorPrimaryDark">@color/light_gray</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:editTextColor">@color/light_gray</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:titleTextColor" tools:ignore="NewApi">@color/white</item>
+        <item name="android:backgroundTint">@color/bg_gray</item>
     </style>
 
 </resources>

@@ -66,7 +66,7 @@ public class SearchFragment extends Fragment {
         // Required empty public constructor
     }
 
-    // TODO move search icon inwards
+    // TODO move search icon inwards; edit_text_background
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
         return fragment;

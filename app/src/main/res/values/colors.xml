@@ -11,4 +11,5 @@
     <color name="medium_red">#ffe0245e</color>
     <color name="medium_green">#00A123</color>
     <color name="transparent">#00000000</color>
+    <color name="bg_gray">#1B1B1B</color>
 </resources>

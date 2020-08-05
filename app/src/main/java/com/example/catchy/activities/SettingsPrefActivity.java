@@ -117,6 +117,8 @@ public class SettingsPrefActivity extends AppCompatActivity {
             explicitFilter = findPreference("explicitfilter");
             durationPref = findPreference("durationpref");
 
+
+
             explicitFilter.setChecked(ParseUser.getCurrentUser().getBoolean("explicitFilter")); // sets switch based on user preferences
 
             explicitFilter.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -224,6 +226,12 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 }
             });
 
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            getActivity().setTheme(R.style.CustomDialogTheme);
         }
 
         private void launchCamera() {

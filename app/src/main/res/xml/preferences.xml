@@ -5,7 +5,7 @@
     <PreferenceCategory android:id="@+id/settings">
 
         <EditTextPreference
-            android:dialogTitle="Update name"
+            android:dialogTitle="Update Name"
             android:key="updatename"
             android:title="Update Name"
             android:icon="@drawable/ic_editname" />
@@ -13,7 +13,7 @@
         <PreferenceScreen android:layout="@layout/setting_divider_preference" />
 
         <EditTextPreference
-            android:dialogTitle="Update bio"
+            android:dialogTitle="Update Bio"
             android:key="updatebio"
             android:title="Update Bio"
             android:icon="@drawable/ic_bio"/>
