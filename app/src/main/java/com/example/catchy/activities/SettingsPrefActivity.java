@@ -161,6 +161,8 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     ParseUser.getCurrentUser().put("bio", (String) newValue);
                     ParseUser.getCurrentUser().saveInBackground();
+                    User.bioChanged = true;
+                    User.changedBio = (String) newValue;
                     return true;
                 }
             });
@@ -170,6 +172,8 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     ParseUser.getCurrentUser().put("fullName", (String) newValue);
                     ParseUser.getCurrentUser().saveInBackground();
+                    User.nameChanged = true;
+                    User.changedName = (String) newValue;
                     return true;
                 }
             });

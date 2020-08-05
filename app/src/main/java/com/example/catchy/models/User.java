@@ -19,4 +19,8 @@ public class User extends ParseUser {
     public static HashMap<String, Bitmap> otherUserBitmaps = new HashMap<>();
     public static boolean profPicChanged;
     public static int otherUserPos = -1;
+    public static boolean nameChanged = false;
+    public static String changedName;
+    public static boolean bioChanged = false;
+    public static String changedBio;
 }

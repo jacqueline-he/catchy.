@@ -71,6 +71,9 @@ public class UserFragment extends Fragment {
 
     private RelativeLayout layout;
 
+    String name;
+    String bio;
+
     private EndlessRecyclerViewScrollListener scrollListener;
     protected List<Like> userLikes;
     boolean infScroll = false;
@@ -123,11 +126,11 @@ public class UserFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         tvUsername.setText("@" + currentUser.getUsername());
-        String name = currentUser.getString("fullName");
+        name = currentUser.getString("fullName");
         tvFullName.setText(name);
 
         Log.d("UserFragment", "name: " + name);
-        String bio = currentUser.getString("bio");
+        bio = currentUser.getString("bio");
 
         if (bio != null)
             tvBio.setText(bio);
@@ -239,8 +242,6 @@ public class UserFragment extends Fragment {
                     .onBackgroundOf(layout);
         }
     }
-
-    // TODO not retrieving updated name, bio from Parse
 
     // Following IS changed
     private void queryUserFollowing() {
@@ -365,13 +366,15 @@ public class UserFragment extends Fragment {
             User.profPicChanged = false;
         }
 
-        String name = currentUser.getString("fullName");
-        tvFullName.setText(name);
+        if (User.bioChanged) {
+            bio = User.changedBio;
+            User.bioChanged = false;
+        }
 
-        String bio = currentUser.getString("bio");
-
-        if (bio != null)
-            tvBio.setText(bio);
+        if (User.nameChanged) {
+            name = User.changedName;
+            User.nameChanged = false;
+        }
 
         queryUserFollowers();
         queryUserFollowing();
