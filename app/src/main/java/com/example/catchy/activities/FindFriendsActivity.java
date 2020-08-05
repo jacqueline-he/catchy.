@@ -94,7 +94,7 @@ public class FindFriendsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 username = etSearch.getText().toString();
                 if (username.isEmpty()) {
-                    Toast.makeText(FindFriendsActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FindFriendsActivity.this, "Search cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -112,7 +112,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
                     username = etSearch.getText().toString();
                     if (username.isEmpty()) {
-                        Toast.makeText(FindFriendsActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FindFriendsActivity.this, "Search cannot be empty", Toast.LENGTH_SHORT).show();
                     }
 
                     // clear search list

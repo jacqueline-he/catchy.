@@ -126,7 +126,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View view) {
                 query = etSearch.getText().toString();
                 if (query.isEmpty()) {
-                    Toast.makeText(getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Search cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -145,7 +145,7 @@ public class SearchFragment extends Fragment {
                 if (i == EditorInfo.IME_ACTION_SEARCH) {
                     query = etSearch.getText().toString();
                     if (query.isEmpty()) {
-                        Toast.makeText(getContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Search cannot be empty", Toast.LENGTH_SHORT).show();
                     }
 
                     // clear search list

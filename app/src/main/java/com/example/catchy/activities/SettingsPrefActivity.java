@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
 
+import com.bumptech.glide.Glide;
 import com.example.catchy.R;
 import com.example.catchy.activities.LoginActivity;
 import com.example.catchy.models.Following;
@@ -308,6 +310,9 @@ public class SettingsPrefActivity extends AppCompatActivity {
 
     public static class AboutFragment extends DialogFragment {
         private TextView tvAbout;
+        private TextView tvDesc;
+        private ImageView ivLogo;
+        private RelativeLayout bioDialog;
 
         // Constructor
         public AboutFragment() {
@@ -323,8 +328,18 @@ public class SettingsPrefActivity extends AppCompatActivity {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             tvAbout = view.findViewById(R.id.tvAbout);
-            tvAbout.setText("Special thanks to Durdur for creating icon");
-            // TODO fix about fragment
+            tvDesc = view.findViewById(R.id.tvDesc);
+            ivLogo = view.findViewById(R.id.ivLogo);
+            bioDialog = view.findViewById(R.id.biodialog);
+
+            Glide.with(this)
+                    .load(R.drawable.blue_disc)
+                    .into(ivLogo);
+
+            RevelyGradient
+                    .linear()
+                    .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(270f).alpha(0.13f)
+                    .onBackgroundOf(bioDialog);
             super.onViewCreated(view, savedInstanceState);
         }
     }

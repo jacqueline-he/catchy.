@@ -2,17 +2,53 @@
 <!-- fragment_edit_name.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/edit_name"
-    android:layout_margin="40dp"
+    android:id="@+id/biodialog"
     android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_margin = "60dp"
     android:background="#1B1B1B"
     android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/blue_disc" />
+
+
     <TextView
         android:id="@+id/tvAbout"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="248dp"
+        android:layout_height="31dp"
+        android:layout_below="@+id/ivLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="about catchy."
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="25dp" />
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvAbout"
+        android:layout_centerHorizontal="true"
+        android:layout_margin = "8dp"
+        android:textColor="#C8C8C8"
+        android:textSize="15dp"
+        android:text="catchy. is a Spotify-powered song recommendation app designed and created by Jacqueline He. Logo
+design credits go to Catherine He. Made with ❤ from California. " />
+
+
+
+
 </RelativeLayout>
