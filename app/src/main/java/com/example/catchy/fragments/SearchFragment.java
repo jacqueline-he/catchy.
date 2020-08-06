@@ -159,7 +159,6 @@ public class SearchFragment extends Fragment {
                     if (query.isEmpty()) {
                         Toast toast = Toast.makeText(getActivity(), "Search cannot be empty", Toast.LENGTH_SHORT);
                         View toastView = toast.getView();
-
                         TextView text = (TextView) toastView.findViewById(android.R.id.message);
                         text.setTextColor(getResources().getColor(R.color.white));
                         toast.show();

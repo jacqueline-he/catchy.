@@ -76,7 +76,7 @@ public class SongProgressBar {
         } else {
             time = minutes + ":" + seconds;
         }
-        TextView tvCurrPos = ((SongDetailsActivity) context).findViewById(R.id.tvCurrPos);
+        TextView tvCurrPos = ((SongDetailsActivity) context).getBinding().tvCurrPos;
         tvCurrPos.setText(time);
         Log.d("SongProgressBar", "progress: " + time);
     }

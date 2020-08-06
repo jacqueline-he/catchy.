@@ -118,7 +118,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
                 }
             });
 
-            if (user.getUsername().equals(ParseUser.getCurrentUser())) {
+            if (user.getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
                 ivFollow.setVisibility(View.GONE);
             }
             else {

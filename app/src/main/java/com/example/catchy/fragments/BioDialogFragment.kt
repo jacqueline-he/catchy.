@@ -10,12 +10,16 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.catchy.R
+import com.example.catchy.databinding.FragmentBioDialogBinding
 
 class BioDialogFragment : DialogFragment() {
     private var fullName: String? = null
     private var bio: String? = null
     private var imgUrl: String? = null
     private var layout: RelativeLayout? = null
+    private var _binding: FragmentBioDialogBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -26,14 +30,15 @@ class BioDialogFragment : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_bio_dialog, container, false)
+        _binding = FragmentBioDialogBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val tvFullName : TextView = view.findViewById(R.id.tvFullName) as TextView
-        val tvBio : TextView = view.findViewById(R.id.tvBio) as TextView
-        layout = view.findViewById(R.id.biodialog) as RelativeLayout
-        val ivProfileImage : ImageView = view.findViewById(R.id.ivProfileImage) as ImageView
+        val tvFullName : TextView = binding.tvFullName
+        val tvBio : TextView = binding.tvBio
+        layout = binding.biodialog
+        val ivProfileImage : ImageView = binding.ivProfileImage
         tvFullName.text = fullName
         tvBio.text = bio
         Glide.with(this).load(imgUrl).into(ivProfileImage)
@@ -51,5 +56,10 @@ class BioDialogFragment : DialogFragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

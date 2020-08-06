@@ -58,6 +58,7 @@ public class SongDetailsActivity extends AppCompatActivity {
     TextView tvCurrPos;
     TextView tvFullPos;
     RelativeLayout layout;
+    ActivitySongDetailsBinding binding;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -66,7 +67,7 @@ public class SongDetailsActivity extends AppCompatActivity {
         receiver = new SpotifyBroadcastReceiver();
 
 
-        ActivitySongDetailsBinding binding = ActivitySongDetailsBinding.inflate(getLayoutInflater());
+        binding = ActivitySongDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         tvTitle = binding.tvTitle;
@@ -198,6 +199,10 @@ public class SongDetailsActivity extends AppCompatActivity {
 
         setBackgroundColor();
 
+    }
+
+    public ActivitySongDetailsBinding getBinding() {
+        return binding;
     }
 
     private void setSeekbar() {
