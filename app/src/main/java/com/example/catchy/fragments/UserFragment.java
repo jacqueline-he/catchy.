@@ -71,6 +71,8 @@ public class UserFragment extends Fragment {
     private TextView tvFollowersCount;
     private TextView tvFollowingCount;
 
+    private String imgUrl;
+
     private RelativeLayout layout;
 
     private FragmentUserBinding binding;
@@ -203,10 +205,11 @@ public class UserFragment extends Fragment {
 
         setBackgroundColor();
 
+        imgUrl = profileImage.getUrl();
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BioDialogFragment dialog = BioDialogFragment.newInstance(name, bio, profileImage.getUrl());
+                BioDialogFragment dialog = BioDialogFragment.newInstance(name, bio, imgUrl);
                 dialog.show(getFragmentManager(), "From UserFragment");
             }
         });
@@ -354,6 +357,7 @@ public class UserFragment extends Fragment {
         ParseFile profileImage = currentUser.getParseFile("profilePic");
         if (profileImage != null) {
             Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
+            imgUrl = profileImage.getUrl(); // updated url for bio fragment
         }
 
         if (!DetailTransition.liked) {
