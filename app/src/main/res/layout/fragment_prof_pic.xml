@@ -3,34 +3,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
-    android:layout_width="300dp" android:layout_height="300dp"
-    android:layout_margin = "60dp"
-    android:background="#1B1B1B"
+    android:layout_width="200dp" android:layout_height="wrap_content"
+    android:background="#BCBCBC"
     android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <Button
         android:id="@+id/btnTakePicture"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
         android:clickable="true"
         android:text="Take Picture"
+        android:background="#1B1B1B"
         android:textColor="@color/white"
         android:focusable="true" />
 
     <Button
         android:id="@+id/btnUpload"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnTakePicture"
-        android:layout_alignParentStart="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="1dp"
+        android:background="#1B1B1B"
         android:clickable="true"
         android:text="Upload from Gallery"
         android:textColor="@color/white"
