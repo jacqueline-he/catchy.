@@ -14,6 +14,7 @@ import androidx.preference.EditTextPreference;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -168,6 +169,14 @@ public class SettingsPrefActivity extends AppCompatActivity {
                 }
             });
 
+            updateBio.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    ((EditTextPreference)preference).setText(null);
+                    return false;
+                }
+            });
+
             updateBio.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -176,6 +185,14 @@ public class SettingsPrefActivity extends AppCompatActivity {
                     User.bioChanged = true;
                     User.changedBio = (String) newValue;
                     return true;
+                }
+            });
+
+            updateName.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    ((EditTextPreference)preference).setText(null);
+                    return false;
                 }
             });
 
