@@ -1,7 +1,10 @@
 package com.example.catchy.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.app.DialogFragment;
@@ -13,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -26,7 +30,10 @@ import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class ProfPicFragment extends DialogFragment {
@@ -38,6 +45,9 @@ public class ProfPicFragment extends DialogFragment {
     private String photoFileName;
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     public static final String TAG = "ProfPicFragment";
+
+    // PICK_PHOTO_CODE is a constant integer
+    public final static int PICK_PHOTO_CODE = 1046;
 
 
     public ProfPicFragment() {
@@ -57,6 +67,8 @@ public class ProfPicFragment extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        getActivity().setTheme(R.style.CustomDialogTheme);
+
         btnTakePicture = binding.btnTakePicture;
         btnUpload = binding.btnUpload;
 
@@ -70,7 +82,7 @@ public class ProfPicFragment extends DialogFragment {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                onPickPhoto(view);
             }
         });
     }
@@ -93,9 +105,41 @@ public class ProfPicFragment extends DialogFragment {
         // So as long as the result is not null, it's safe to use the intent.
         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
             // Start the image capture intent to take photo
-            User.photoFile = photoFile;
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
+    }
+
+    // Trigger gallery selection for a photo
+    public void onPickPhoto(View view) {
+        photoFileName = "photo" + Math.random() + ".jpg";
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            startActivityForResult(intent, PICK_PHOTO_CODE);
+        }
+    }
+
+    public Bitmap loadFromUri(Uri photoUri) {
+        Bitmap image = null;
+        try {
+            // check version of Android on device
+            if(Build.VERSION.SDK_INT > 27){
+                // on newer versions of Android, use the new decodeBitmap method
+                ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(), photoUri);
+                image = ImageDecoder.decodeBitmap(source).copy(Bitmap.Config.RGBA_F16, true);
+            } else {
+                // support older versions of Android by using getBitmap
+                image = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), photoUri);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 
     private File getPhotoFileUri(String fileName) {
@@ -121,7 +165,6 @@ public class ProfPicFragment extends DialogFragment {
             if (resultCode == getActivity().RESULT_OK) {
                 // Bitmap taken = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // ivProfileImage.setImageBitmap(taken);
-                File photoFile = User.photoFile;
                 ParseFile file = new ParseFile(photoFile);
                 ParseUser.getCurrentUser().put("profilePic", file);
                 ParseUser.getCurrentUser().saveInBackground();
@@ -140,9 +183,52 @@ public class ProfPicFragment extends DialogFragment {
                 dismiss();
                 // Glide.with(this).load(photoFile.getAbsolutePath()).transform(new CircleCrop()).into(ivProfileImage);
             } else { // Result was a failure
-                Toast.makeText(getActivity(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(getActivity(), "Picture not taken!", Toast.LENGTH_SHORT);
+                View toastView = toast.getView();
+
+                TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                text.setTextColor(getResources().getColor(R.color.white));
+                toast.show();
             }
         }
+        else if ((data != null) && requestCode == PICK_PHOTO_CODE) {
+            Uri photoUri = data.getData();
+
+            // Load the image located at photoUri into selectedImage
+            Bitmap selectedImage = loadFromUri(photoUri);
+
+            try {
+                ParseFile file = new ParseFile(convertBitmapToFile(selectedImage));
+                ParseUser.getCurrentUser().put("profilePic", file);
+                ParseUser.getCurrentUser().saveInBackground();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            User.profileBitmap = selectedImage;
+
+
+            User.profPicChanged = true;
+            dismiss();
+        }
+    }
+
+    private File convertBitmapToFile(Bitmap selectedImage) throws IOException {
+        File f = new File(getActivity().getCacheDir(), photoFileName);
+        f.createNewFile();
+
+       //Convert bitmap to byte array
+        Bitmap bitmap = selectedImage;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+        byte[] bitmapdata = bos.toByteArray();
+
+//write the bytes in file
+        FileOutputStream fos = new FileOutputStream(f);
+        fos.write(bitmapdata);
+        fos.flush();
+        fos.close();
+        return f;
     }
 
 }

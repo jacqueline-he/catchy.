@@ -24,5 +24,4 @@ public class User extends ParseUser {
     public static String changedName;
     public static boolean bioChanged = false;
     public static String changedBio;
-    public static File photoFile;
 }

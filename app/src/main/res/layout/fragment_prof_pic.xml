@@ -19,7 +19,7 @@
         android:layout_marginTop="12dp"
         android:clickable="true"
         android:text="Take Picture"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:focusable="true" />
 
     <Button
@@ -33,7 +33,7 @@
         android:layout_marginTop="38dp"
         android:clickable="true"
         android:text="Upload from Gallery"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:focusable="true" />
 
 
