@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fragment_edit_name.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="300dp" android:layout_height="300dp"
+    android:layout_margin = "60dp"
+    android:background="#1B1B1B"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <Button
+        android:id="@+id/btnTakePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:text="Take Picture"
+        android:textColor="@color/black"
+        android:focusable="true" />
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnTakePicture"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="38dp"
+        android:clickable="true"
+        android:text="Upload from Gallery"
+        android:textColor="@color/black"
+        android:focusable="true" />
+
+
+</RelativeLayout>

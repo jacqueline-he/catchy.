@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.parse.ParseClassName;
 import com.parse.ParseUser;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,4 +24,5 @@ public class User extends ParseUser {
     public static String changedName;
     public static boolean bioChanged = false;
     public static String changedBio;
+    public static File photoFile;
 }

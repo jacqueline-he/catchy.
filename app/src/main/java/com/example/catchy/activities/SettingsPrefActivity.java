@@ -40,6 +40,7 @@ import com.example.catchy.R;
 import com.example.catchy.activities.LoginActivity;
 import com.example.catchy.databinding.ActivitySettingsPrefBinding;
 import com.example.catchy.databinding.FragmentAboutBinding;
+import com.example.catchy.fragments.ProfPicFragment;
 import com.example.catchy.models.Following;
 import com.example.catchy.models.User;
 import com.parse.ParseException;
@@ -106,10 +107,6 @@ public class SettingsPrefActivity extends AppCompatActivity {
         private Preference about;
         private SwitchPreference explicitFilter;
         private SwitchPreference durationPref;
-
-        private File photoFile;
-        private String photoFileName;
-        public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -196,7 +193,9 @@ public class SettingsPrefActivity extends AppCompatActivity {
             updateProfilePic.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    launchCamera();
+                    // launchCamera();
+                    ProfPicFragment dialog = new ProfPicFragment();
+                    dialog.show(getActivity().getFragmentManager(), "tag");
                     return true;
                 }
             });
@@ -252,73 +251,6 @@ public class SettingsPrefActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             getActivity().setTheme(R.style.CustomDialogTheme);
         }
-
-        private void launchCamera() {
-            photoFileName = "photo" + Math.random() + ".jpg";
-            // create Intent to take a picture and return control to the calling application
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            // Create a File reference for future access
-            photoFile = getPhotoFileUri(photoFileName);
-
-            // wrap File object into a content provider
-            // required for API >= 24
-            // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-            Uri fileProvider = FileProvider.getUriForFile(getActivity(), "com.example.catchy", photoFile);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
-
-            // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-            // So as long as the result is not null, it's safe to use the intent.
-            if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                // Start the image capture intent to take photo
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-            }
-        }
-
-        private File getPhotoFileUri(String fileName) {
-            // Get safe storage directory for photos
-            // Use `getExternalFilesDir` on Context to access package-specific directories.
-            // This way, we don't need to request external read/write runtime permissions.
-            File mediaStorageDir = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
-
-            // Create the storage directory if it does not exist
-            if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
-                Log.d(TAG, "failed to create directory");
-            }
-
-            // Return the file target for the photo based on filename
-            return new File(mediaStorageDir.getPath() + File.separator + fileName);
-        }
-
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-                if (resultCode == RESULT_OK) {
-                    // Bitmap taken = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                    // ivProfileImage.setImageBitmap(taken);
-                    ParseFile file = new ParseFile(photoFile);
-                    ParseUser.getCurrentUser().put("profilePic", file);
-                    ParseUser.getCurrentUser().saveInBackground();
-
-                    new Thread(() -> {
-                        try {
-                            Log.d("SettingsPrefActivity", "getting bitmap from new profile pic");
-                            User.profileBitmap = Picasso.get().load(photoFile).get();
-                            Log.d("SettingsPrefActivity", "successfully retrieved bitmap");
-                        } catch (Exception e) {
-                            Log.e("SettingsPrefActivity", "couldn't get bitmap" + e);
-                        }
-                    }).start();
-
-                    User.profPicChanged = true;
-
-                    // Glide.with(this).load(photoFile.getAbsolutePath()).transform(new CircleCrop()).into(ivProfileImage);
-                } else { // Result was a failure
-                    Toast.makeText(getActivity(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-
     }
 
     public static class AboutFragment extends DialogFragment {
