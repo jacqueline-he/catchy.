@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.catchy.R;
 import com.example.catchy.adapters.FindFriendsAdapter;
+import com.example.catchy.databinding.ActivityFindFriendsBinding;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
 import com.example.catchy.models.User;
@@ -58,21 +59,24 @@ public class FindFriendsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_friends);
 
         BitmapCache.InitBitmapCache(false); // for adapter; for users
         BitmapCache.clearUserCache();
 
-        rvResults = findViewById(R.id.rvResults);
-        etSearch = findViewById(R.id.etSearch);
-        ivSearch = findViewById(R.id.ivSearch);
+        ActivityFindFriendsBinding binding = ActivityFindFriendsBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        rvResults = binding.rvResults;
+        etSearch = binding.etSearch;
+        ivSearch = binding.ivSearch;
 
         results = new ArrayList<>();
         adapter = new FindFriendsAdapter(results, this);
 
         ownName = ParseUser.getCurrentUser().getUsername();
 
-        layout = findViewById(R.id.layout);
+        layout = binding.layout;
 
         setTheme(R.style.CustomDialogTheme);
 

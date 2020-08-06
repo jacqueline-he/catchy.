@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.catchy.R;
+import com.example.catchy.databinding.ActivityLoginBinding;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -38,21 +39,23 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
 
         if (ParseUser.getCurrentUser() != null) {
             goSpotifyAuth(true);
         }
 
+        ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
         setTheme(R.style.CustomDialogTheme);
 
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnSignup = findViewById(R.id.btnSignup);
-        ivDisc = findViewById(R.id.ivDisc);
-        layout = findViewById(R.id.layout);
+        etUsername = binding.etUsername;
+        etPassword = binding.etPassword;
+        btnLogin = binding.btnLogin;
+        btnSignup = binding.btnSignup;
+        ivDisc = binding.ivDisc;
+        layout = binding.layout;
 
         Glide.with(this)
                 .load(R.drawable.blue_disc)

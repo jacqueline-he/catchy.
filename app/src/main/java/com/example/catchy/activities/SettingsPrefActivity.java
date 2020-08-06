@@ -38,6 +38,8 @@ import androidx.preference.SwitchPreference;
 import com.bumptech.glide.Glide;
 import com.example.catchy.R;
 import com.example.catchy.activities.LoginActivity;
+import com.example.catchy.databinding.ActivitySettingsPrefBinding;
+import com.example.catchy.databinding.FragmentAboutBinding;
 import com.example.catchy.models.Following;
 import com.example.catchy.models.User;
 import com.parse.ParseException;
@@ -58,13 +60,16 @@ public class SettingsPrefActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings_pref);
         setTheme(R.style.SettingStyle);
         getFragmentManager().beginTransaction()
                 .replace(R.id.fm_pref, new SettingsFragment()).commit();
 
-        layout = findViewById(R.id.layout);
-        tvSettings = findViewById(R.id.tvSettings);
+        ActivitySettingsPrefBinding binding = ActivitySettingsPrefBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        layout = binding.layout;
+        tvSettings = binding.tvSettings;
         setBackgroundColor();
     }
 
@@ -323,7 +328,8 @@ public class SettingsPrefActivity extends AppCompatActivity {
         private TextView tvAbout;
         private TextView tvDesc;
         private ImageView ivLogo;
-        private RelativeLayout bioDialog;
+        private RelativeLayout layout;
+        private FragmentAboutBinding binding;
 
         // Constructor
         public AboutFragment() {
@@ -333,15 +339,17 @@ public class SettingsPrefActivity extends AppCompatActivity {
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.fragment_about, container, false);
+            binding = FragmentAboutBinding.inflate(inflater, container, false);
+            View view = binding.getRoot();
+            return view;
         }
 
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-            tvAbout = view.findViewById(R.id.tvAbout);
-            tvDesc = view.findViewById(R.id.tvDesc);
-            ivLogo = view.findViewById(R.id.ivLogo);
-            bioDialog = view.findViewById(R.id.biodialog);
+            tvAbout = binding.tvAbout;
+            tvDesc = binding.tvDesc;
+            ivLogo = binding.ivLogo;
+            layout = binding.layout;
 
             Glide.with(this)
                     .load(R.drawable.blue_disc)
@@ -350,7 +358,7 @@ public class SettingsPrefActivity extends AppCompatActivity {
             RevelyGradient
                     .linear()
                     .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(270f).alpha(0.13f)
-                    .onBackgroundOf(bioDialog);
+                    .onBackgroundOf(layout);
             super.onViewCreated(view, savedInstanceState);
         }
     }

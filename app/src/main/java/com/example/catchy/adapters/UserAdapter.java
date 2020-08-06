@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.catchy.databinding.ItemLikedSongBinding;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.misc.ImageLoaderTask;
@@ -29,6 +30,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private Context context;
     private List<Like> likes;
     private boolean currentUser;
+    private ItemLikedSongBinding binding;
 
     public UserAdapter(Context context, List<Like> likes, boolean currentUser) {
         this.context = context;
@@ -39,7 +41,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @NonNull
     @Override
     public UserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_liked_song, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        binding = ItemLikedSongBinding.inflate(inflater, parent, false);
+        View view = binding.getRoot();
         return new UserAdapter.ViewHolder(view);
     }
 
@@ -59,7 +63,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivLikedImage = itemView.findViewById(R.id.ivLikedImage);
+            ivLikedImage = binding.ivLikedImage;
         }
 
         public void bind(Like like) {

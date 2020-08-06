@@ -25,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.catchy.activities.FindFriendsActivity;
+import com.example.catchy.databinding.FragmentAboutBinding;
+import com.example.catchy.databinding.FragmentSearchBinding;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
 import com.example.catchy.R;
@@ -60,6 +62,7 @@ public class SearchFragment extends Fragment {
     String query;
     SpotifyBroadcastReceiver spotifyBroadcastReceiver;
     RelativeLayout layout;
+    FragmentSearchBinding binding;
 
     private EndlessRecyclerViewScrollListener scrollListener;
 
@@ -86,10 +89,8 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
-        rvResults = view.findViewById(R.id.rvResults);
-        etSearch = view.findViewById(R.id.etSearch);
-        ivSearch = view.findViewById(R.id.ivSearch);
+        binding = FragmentSearchBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
 
         // Get Spotify service
@@ -106,7 +107,10 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        rvResults = view.findViewById(R.id.rvResults);
+        rvResults = binding.rvResults;
+        etSearch = binding.etSearch;
+        ivSearch = binding.ivSearch;
+
         results = new ArrayList<>();
         searchAdapter = new SearchAdapter(results, getContext());
 
@@ -172,7 +176,7 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        layout = view.findViewById(R.id.layout);
+        layout = binding.layout;
         setBackgroundColor();
 
 

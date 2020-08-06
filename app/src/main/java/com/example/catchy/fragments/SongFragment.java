@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
@@ -21,6 +23,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.catchy.activities.MainActivity;
+import com.example.catchy.databinding.FragmentSearchBinding;
+import com.example.catchy.databinding.FragmentSongBinding;
 import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.R;
 import com.example.catchy.activities.SongDetailsActivity;
@@ -53,6 +57,7 @@ public class SongFragment extends Fragment {
     long progress = 0;
     boolean paused = false;
     Context context;
+    private FragmentSongBinding binding;
 
     boolean durationPref;
 
@@ -88,14 +93,20 @@ public class SongFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_song, container, false);
-        tvTitle = view.findViewById(R.id.tvTitle);
+        binding = FragmentSongBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        tvTitle = binding.tvTitle;
         tvTitle.setSelected(true);
-        tvArtist = view.findViewById(R.id.tvArtist);
+        tvArtist = binding.tvArtist;
         tvArtist.setSelected(true);
-        ivAlbumImage = view.findViewById(R.id.ivAlbumImage);
-        btnLike = view.findViewById(R.id.btnLike);
+        ivAlbumImage = binding.ivAlbumImage;
+        btnLike = binding.btnLike;
         DetailTransition.liked = false;
 
         durationPref = ParseUser.getCurrentUser().getBoolean("durationPref"); // true  -> play full-length, false -> play 30-sec. snippet
@@ -217,7 +228,6 @@ public class SongFragment extends Fragment {
             }
         });
 
-        return view;
     }
 
     private void like() {

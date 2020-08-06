@@ -13,10 +13,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.example.catchy.R;
 import com.example.catchy.adapters.FindFriendsAdapter;
+import com.example.catchy.databinding.ActivityFollowersBinding;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.models.User;
 import com.parse.ParseUser;
@@ -37,8 +39,11 @@ public class FollowersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_followers);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        ActivityFollowersBinding binding = ActivityFollowersBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         BitmapCache.InitBitmapCache(false); // for adapter, for users
         BitmapCache.clearUserCache();
@@ -48,13 +53,13 @@ public class FollowersActivity extends AppCompatActivity {
         user = intent.getExtras().getParcelable("user");
         currentUser = intent.getBooleanExtra("currentUser", false);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
 
-        rvFollowers = findViewById(R.id.rvFollowers);
+        rvFollowers = binding.rvFollowers;
         adapter = new FindFriendsAdapter(followers, FollowersActivity.this);
 
-        layout = findViewById(R.id.layout);
+        layout = binding.layout;
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvFollowers.setLayoutManager(layoutManager);

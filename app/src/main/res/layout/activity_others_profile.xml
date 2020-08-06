@@ -60,22 +60,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvUsername"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="4dp"
         android:textColor="#80fbfbfb"
         tools:text="3 likes" />
 
     <TextView
         android:id="@+id/tvFollowersCount"
-        android:layout_width="112dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvUsername"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="99dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="142dp"
-        android:layout_toEndOf="@+id/tvLikesCount"
+        android:layout_below="@+id/tvUsername"
+        android:layout_centerHorizontal="true"
         android:textColor="#80fbfbfb"
         tools:text="3 followers" />
 
@@ -86,7 +82,7 @@
         android:layout_below="@+id/tvUsername"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="23dp"
+        android:layout_marginEnd="22dp"
         android:textColor="#80fbfbfb"
         tools:text="3 following" />
 

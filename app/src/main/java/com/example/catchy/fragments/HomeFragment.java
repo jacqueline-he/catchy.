@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import com.example.catchy.adapters.HomeFragmentAdapter;
 import com.example.catchy.activities.MainActivity;
 import com.example.catchy.R;
+import com.example.catchy.databinding.FragmentHomeBinding;
+import com.example.catchy.databinding.FragmentSearchBinding;
 import com.example.catchy.models.Song;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.parse.FindCallback;
@@ -52,6 +54,7 @@ public class HomeFragment extends Fragment {
     private List<String> artists;
     private List<String> genres;
     boolean explicitFilter;
+    private FragmentHomeBinding binding;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -177,21 +180,23 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mViewPager = view.findViewById(R.id.viewpager);
-        mViewPager.setAdapter(homeFragmentAdapter);
-        mViewPager.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
-        homeFragmentAdapter.notifyDataSetChanged();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mViewPager = binding.viewpager;
+        mViewPager.setAdapter(homeFragmentAdapter);
+        mViewPager.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+        homeFragmentAdapter.notifyDataSetChanged();
     }
 
     private void populatePlaylist() throws ParseException {

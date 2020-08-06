@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.catchy.databinding.ItemResultBinding;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.misc.ImageLoaderTask;
@@ -26,6 +27,7 @@ import java.util.List;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
     private List<Song> results;
     private Context context;
+    private ItemResultBinding binding;
 
 
     public SearchAdapter(List<Song> results, Context context) {
@@ -37,7 +39,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @Override
     public SearchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_result, parent, false);
+        binding = ItemResultBinding.inflate(inflater, parent, false);
+        View view = binding.getRoot();
         return new ViewHolder(view);
     }
 
@@ -75,9 +78,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
-            ivAlbumImage = itemView.findViewById(R.id.ivAlbumImage);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvArtist = itemView.findViewById(R.id.tvArtist);
+            ivAlbumImage = binding.ivAlbumImage;
+            tvTitle = binding.tvTitle;
+            tvArtist = binding.tvArtist;
 
         }
 

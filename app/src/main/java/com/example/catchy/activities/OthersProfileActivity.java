@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.R;
 import com.example.catchy.adapters.UserAdapter;
+import com.example.catchy.databinding.ActivityOthersProfileBinding;
 import com.example.catchy.fragments.BioDialogFragment;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.DetailTransition;
@@ -74,7 +75,10 @@ public class OthersProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_others_profile);
+
+        ActivityOthersProfileBinding binding = ActivityOthersProfileBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         BitmapCache.InitBitmapCache(true); // for other user's likes
         BitmapCache.clearSongCache(); // make sure it's empty
@@ -94,16 +98,16 @@ public class OthersProfileActivity extends AppCompatActivity {
         }
 
 
-        tvUsername = findViewById(R.id.tvUsername);
-        ivProfileImage = findViewById(R.id.ivProfileImage);
-        tvBio = findViewById(R.id.tvBio);
-        tvFullName = findViewById(R.id.tvFullName);
-        tvLikedSongs = findViewById(R.id.tvLikedSongs);
-        tvLikesCount = findViewById(R.id.tvLikesCount);
-        tvFollowersCount = findViewById(R.id.tvFollowersCount);
-        tvFollowingCount = findViewById(R.id.tvFollowingCount);
-        ivFollow = findViewById(R.id.ivFollow);
-        layout = findViewById(R.id.layout);
+        tvUsername = binding.tvUsername;
+        ivProfileImage = binding.ivProfileImage;
+        tvBio = binding.tvBio;
+        tvFullName = binding.tvFullName;
+        tvLikedSongs = binding.tvLikedSongs;
+        tvLikesCount = binding.tvLikesCount;
+        tvFollowersCount = binding.tvFollowersCount;
+        tvFollowingCount = binding.tvFollowingCount;
+        ivFollow = binding.ivFollow;
+        layout = binding.layout;
 
         if (followed) { // user following
             ivFollow.setImageResource(R.drawable.ic_followed);
@@ -124,7 +128,7 @@ public class OthersProfileActivity extends AppCompatActivity {
             Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
         }
 
-        rvLikes = findViewById(R.id.rvLikes);
+        rvLikes = binding.rvLikes;
         userLikes = new ArrayList<>();
         queryUserLikes();
         adapter = new UserAdapter(this, userLikes, false);

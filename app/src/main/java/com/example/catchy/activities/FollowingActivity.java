@@ -15,10 +15,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.example.catchy.R;
 import com.example.catchy.adapters.FindFriendsAdapter;
+import com.example.catchy.databinding.ActivityFollowingBinding;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.models.Following;
 import com.example.catchy.models.User;
@@ -40,8 +42,11 @@ public class FollowingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_following);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        ActivityFollowingBinding binding = ActivityFollowingBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         BitmapCache.InitBitmapCache(false); // for adapter, for users
         BitmapCache.clearUserCache();
@@ -51,13 +56,13 @@ public class FollowingActivity extends AppCompatActivity {
         user = intent.getExtras().getParcelable("user");
         currentUser = intent.getBooleanExtra("currentUser", false);
 
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
 
-        rvFollowing = findViewById(R.id.rvFollowing);
+        rvFollowing = binding.rvFollowing;
         adapter = new FindFriendsAdapter(following, FollowingActivity.this);
 
-        layout = findViewById(R.id.layout);
+        layout = binding.layout;
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvFollowing.setLayoutManager(layoutManager);
@@ -92,8 +97,6 @@ public class FollowingActivity extends AppCompatActivity {
 
 
             }
-
-
         }
         else {
             RevelyGradient

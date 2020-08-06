@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.R;
 import com.example.catchy.activities.OthersProfileActivity;
+import com.example.catchy.databinding.ItemUserResultBinding;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.ImageLoaderTask;
 import com.example.catchy.models.User;
@@ -30,6 +31,7 @@ import java.util.List;
 public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.ViewHolder> {
     private List<ParseUser> results;
     private Context context;
+    private ItemUserResultBinding binding;
 
 
     public FindFriendsAdapter(List<ParseUser> results, Context context) {
@@ -41,7 +43,8 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
     @Override
     public FindFriendsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_user_result, parent, false);
+        binding = ItemUserResultBinding.inflate(inflater, parent, false);
+        View view = binding.getRoot();
         return new FindFriendsAdapter.ViewHolder(view);
     }
 
@@ -71,10 +74,10 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            ivProfileImage = view.findViewById(R.id.ivProfileImage);
-            tvUsername = view.findViewById(R.id.tvUsername);
-            tvFullName = view.findViewById(R.id.tvFullName);
-            ivFollow = view.findViewById(R.id.ivFollow);
+            ivProfileImage = binding.ivProfileImage;
+            tvUsername = binding.tvUsername;
+            tvFullName = binding.tvFullName;
+            ivFollow = binding.ivFollow;
             itemView = view;
         }
 

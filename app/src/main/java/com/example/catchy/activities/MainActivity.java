@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.catchy.R;
+import com.example.catchy.databinding.ActivityMainBinding;
 import com.example.catchy.fragments.HomeFragment;
 import com.example.catchy.fragments.SearchFragment;
 import com.example.catchy.fragments.UserFragment;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // setContentView(R.layout.activity_main);
+
         Context context = getApplicationContext();
         new Thread(() -> {
             try {
@@ -65,8 +69,10 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
 
         boolean returning = getIntent().getBooleanExtra("returning", false);
 
@@ -74,10 +80,7 @@ public class MainActivity extends AppCompatActivity {
         authenticateSpotify(!returning);
 
 
-
-
-
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView = binding.bottomNavigation;
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

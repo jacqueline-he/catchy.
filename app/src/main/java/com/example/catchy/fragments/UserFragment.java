@@ -26,6 +26,8 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.example.catchy.activities.FindFriendsActivity;
 import com.example.catchy.activities.FollowersActivity;
 import com.example.catchy.activities.FollowingActivity;
+import com.example.catchy.databinding.FragmentSearchBinding;
+import com.example.catchy.databinding.FragmentUserBinding;
 import com.example.catchy.misc.BitmapCache;
 import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.misc.EndlessRecyclerViewScrollListener;
@@ -71,6 +73,8 @@ public class UserFragment extends Fragment {
 
     private RelativeLayout layout;
 
+    private FragmentUserBinding binding;
+
     String name;
     String bio;
 
@@ -98,32 +102,31 @@ public class UserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user, container, false);
-        // Inflate the layout for this fragment
-        ivMore = view.findViewById(R.id.ivMore);
-        currentUser = ParseUser.getCurrentUser();
-        tvUsername = view.findViewById(R.id.tvUsername);
-        ivProfileImage = view.findViewById(R.id.ivProfileImage);
-        tvBio = view.findViewById(R.id.tvBio);
-        ivMore = view.findViewById(R.id.ivMore);
-        ivFindFriends = view.findViewById(R.id.ivFindFriends);
-
-        tvFullName = view.findViewById(R.id.tvFullName);
-        tvLikedSongs = view.findViewById(R.id.tvLikedSongs);
-
-        tvLikesCount = view.findViewById(R.id.tvLikesCount);
-        tvFollowersCount = view.findViewById(R.id.tvFollowersCount);
-        tvFollowingCount = view.findViewById(R.id.tvFollowingCount);
-
-        layout = view.findViewById(R.id.layout);
-
-
+        binding = FragmentUserBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        currentUser = ParseUser.getCurrentUser();
+
+        ivMore = binding.ivMore;
+        tvUsername = binding.tvUsername;
+        ivProfileImage = binding.ivProfileImage;
+        tvBio = binding.tvBio;
+
+        ivFindFriends = binding.ivFindFriends;
+
+        tvFullName = binding.tvFullName;
+        tvLikedSongs = binding.tvLikedSongs;
+
+        tvLikesCount = binding.tvLikesCount;
+        tvFollowersCount = binding.tvFollowersCount;
+        tvFollowingCount = binding.tvFollowingCount;
+
+        layout = binding.layout;
 
         tvUsername.setText("@" + currentUser.getUsername());
         name = currentUser.getString("fullName");
@@ -158,7 +161,7 @@ public class UserFragment extends Fragment {
             Glide.with(this).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
         }
 
-        rvLikes = view.findViewById(R.id.rvLikes);
+        rvLikes = binding.rvLikes;
         userLikes = new ArrayList<>();
         queryUserLikes();
         adapter = new UserAdapter(getContext(), userLikes, true);

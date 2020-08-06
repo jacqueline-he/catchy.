@@ -3,6 +3,7 @@ package com.example.catchy.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.palette.graphics.Palette;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,10 +14,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.catchy.databinding.ActivitySettingsPrefBinding;
+import com.example.catchy.databinding.ActivitySongDetailsBinding;
 import com.example.catchy.misc.DetailTransition;
 import com.example.catchy.misc.MarqueeTextView;
 import com.example.catchy.R;
@@ -53,15 +57,19 @@ public class SongDetailsActivity extends AppCompatActivity {
     SeekBar seekbar;
     TextView tvCurrPos;
     TextView tvFullPos;
+    RelativeLayout layout;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_song_details);
         receiver = new SpotifyBroadcastReceiver();
-        ivAlbumImage = findViewById(R.id.ivAlbumImage);
 
-        tvTitle = findViewById(R.id.tvTitle);
+
+        ActivitySongDetailsBinding binding = ActivitySongDetailsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        tvTitle = binding.tvTitle;
         tvTitle.setSelected(true);
         tvTitle.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -71,7 +79,7 @@ public class SongDetailsActivity extends AppCompatActivity {
             }
         });
 
-        tvArtist = findViewById(R.id.tvArtist);
+        tvArtist = binding.tvArtist;
         tvArtist.setSelected(true);
         tvArtist.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -81,15 +89,19 @@ public class SongDetailsActivity extends AppCompatActivity {
             }
         });
 
-        btnLike = findViewById(R.id.btnLike);
-        btnPlayPause = findViewById(R.id.btnPlayPause);
+        ivAlbumImage = binding.ivAlbumImage;
 
-        btnRewind = findViewById(R.id.btnRewind);
-        btnForward = findViewById(R.id.btnForward);
+        btnLike = binding.btnLike;
+        btnPlayPause = binding.btnPlayPause;
 
-        seekbar = findViewById(R.id.seekbar);
-        tvCurrPos = findViewById(R.id.tvCurrPos);
-        tvFullPos = findViewById(R.id.tvFullPos);
+        btnRewind = binding.btnRewind;
+        btnForward = binding.btnForward;
+
+        seekbar = binding.seekbar;
+        tvCurrPos = binding.tvCurrPos;
+        tvFullPos = binding.tvFullPos;
+
+        layout = binding.layout;
 
         Intent intent = getIntent();
         song = (Song) intent.getExtras().get("song");
@@ -165,7 +177,8 @@ public class SongDetailsActivity extends AppCompatActivity {
             }
         });
 
-        View view = findViewById(R.id.layout);
+        View view = binding.layout;
+
         view.setOnTouchListener(new View.OnTouchListener() {
             private GestureDetector gestureDetector = new GestureDetector(SongDetailsActivity.this, new GestureDetector.SimpleOnGestureListener() {
                 @Override // Like
@@ -228,7 +241,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                 RevelyGradient
                         .linear()
                         .colors(new int[]{Color.parseColor("#212121"), color}).angle(90f).alpha(0.76f)
-                        .onBackgroundOf(findViewById(R.id.layout));
+                        .onBackgroundOf(layout);
 
                 btnPlayPause.setColorFilter(swatch.getRgb());
             }
@@ -237,7 +250,7 @@ public class SongDetailsActivity extends AppCompatActivity {
             RevelyGradient
                     .linear()
                     .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(90f).alpha(0.76f)
-                    .onBackgroundOf(findViewById(R.id.layout));
+                    .onBackgroundOf(layout);
         }
 
     }

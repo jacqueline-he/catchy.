@@ -2,7 +2,7 @@
 <!-- fragment_edit_name.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/biodialog"
+    android:id="@+id/layout"
     android:layout_width="wrap_content" android:layout_height="wrap_content"
     android:layout_margin = "60dp"
     android:background="#1B1B1B"
@@ -46,7 +46,7 @@
         android:textColor="#C8C8C8"
         android:textSize="15dp"
         android:text="catchy. is a Spotify-powered song recommendation app designed and created by Jacqueline He. Logo
-design credits go to Catherine He. Made with ❤ from California. " />
+design credits belong to Catherine He. Made with ❤ from California. " />
 
 
 
