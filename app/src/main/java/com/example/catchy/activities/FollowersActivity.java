@@ -79,7 +79,7 @@ public class FollowersActivity extends AppCompatActivity {
 
         if (bitmap != null && !bitmap.isRecycled()) {
             Palette palette = Palette.from(bitmap).generate();
-            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            Palette.Swatch swatch = palette.getLightVibrantSwatch();
             if (swatch == null) {
                 swatch = palette.getDominantSwatch();
             }

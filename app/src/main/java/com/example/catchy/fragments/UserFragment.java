@@ -218,7 +218,7 @@ public class UserFragment extends Fragment {
     private void setBackgroundColor() {
         if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
             Palette palette = Palette.from(User.profileBitmap).generate();
-            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            Palette.Swatch swatch = palette.getLightVibrantSwatch();
             if (swatch == null) {
                 swatch = palette.getDominantSwatch();
             }

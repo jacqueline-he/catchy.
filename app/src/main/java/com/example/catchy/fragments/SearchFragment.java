@@ -184,7 +184,7 @@ public class SearchFragment extends Fragment {
     private void setBackgroundColor() {
         if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
             Palette palette = Palette.from(User.profileBitmap).generate();
-            Palette.Swatch swatch = palette.getDarkVibrantSwatch();
+            Palette.Swatch swatch = palette.getLightVibrantSwatch();
             // int color = palette.getDarkMutedColor(0);
             if (swatch == null) {
                 swatch = palette.getDominantSwatch();
