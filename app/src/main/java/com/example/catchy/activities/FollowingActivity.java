@@ -83,7 +83,6 @@ public class FollowingActivity extends AppCompatActivity {
         if (bitmap != null && !bitmap.isRecycled()) {
             Palette palette = Palette.from(bitmap).generate();
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-            // int color = palette.getDarkMutedColor(0);
             if (swatch == null) {
                 swatch = palette.getDominantSwatch();
             }
@@ -97,8 +96,7 @@ public class FollowingActivity extends AppCompatActivity {
 
 
             }
-        }
-        else {
+        } else {
             RevelyGradient
                     .linear()
                     .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(90f).alpha(0.46f)

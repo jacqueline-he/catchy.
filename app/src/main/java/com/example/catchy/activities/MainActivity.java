@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 spotifyBroadcastReceiver = new SpotifyBroadcastReceiver();
                 spotifyBroadcastReceiver.initService(this);
             } catch (Exception e) {
-                Log.e("MainActivity", "SpotifyBroadcastReceiver not initializing"+e);
+                Log.e("MainActivity", "SpotifyBroadcastReceiver not initializing" + e);
             }
         }).start();
 
@@ -108,12 +108,12 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
 
         new Thread(() -> {
-                        try {
-                            User.profileBitmap = Picasso.get().load(ParseUser.getCurrentUser().getParseFile("profilePic").getUrl()).get();
-                        } catch (Exception e) {
-                            Log.e(TAG, "couldn't get bitmap"+e);
-                        }
-                    }).start();
+            try {
+                User.profileBitmap = Picasso.get().load(ParseUser.getCurrentUser().getParseFile("profilePic").getUrl()).get();
+            } catch (Exception e) {
+                Log.e(TAG, "couldn't get bitmap" + e);
+            }
+        }).start();
 
 
     }

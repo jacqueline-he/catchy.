@@ -248,8 +248,7 @@ public class OthersProfileActivity extends AppCompatActivity {
             }
 
 
-        }
-        else {
+        } else {
             RevelyGradient
                     .linear()
                     .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(270f).alpha(0.66f)
@@ -274,7 +273,7 @@ public class OthersProfileActivity extends AppCompatActivity {
                     followers.add(followingItem.getFollowedBy());
                 }
 
-                if (followed && ! followers.contains(ParseUser.getCurrentUser())) {
+                if (followed && !followers.contains(ParseUser.getCurrentUser())) {
                     boolean userPresent = false;
                     for (ParseUser user : followers) {
                         try {

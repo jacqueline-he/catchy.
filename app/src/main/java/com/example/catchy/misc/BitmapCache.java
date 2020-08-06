@@ -28,8 +28,7 @@ public class BitmapCache {
                     }
                 };
             }
-        }
-        else {
+        } else {
             if (UserMemoryCache == null) {
                 final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
                 // use 1/4th of the available memory for this memory cache.

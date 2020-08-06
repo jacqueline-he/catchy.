@@ -127,8 +127,7 @@ public class SongDetailsActivity extends AppCompatActivity {
         if (liked) {
             btnLike.setImageResource(R.drawable.ic_likes_filled);
             btnLike.setColorFilter(getResources().getColor(R.color.medium_red));
-        }
-        else {
+        } else {
             btnLike.setImageResource(R.drawable.ic_likes);
             btnLike.clearColorFilter();
         }
@@ -235,12 +234,11 @@ public class SongDetailsActivity extends AppCompatActivity {
         if (DetailTransition.bitmap != null && !DetailTransition.bitmap.isRecycled()) {
             Palette palette = Palette.from(DetailTransition.bitmap).generate();
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-            // int color = palette.getDarkMutedColor(0);
+
             if (swatch == null) {
                 swatch = palette.getDominantSwatch();
             }
 
-            // swatch.getRgb()
             if (swatch != null) {
                 int color = swatch.getRgb();
                 RevelyGradient
@@ -250,8 +248,7 @@ public class SongDetailsActivity extends AppCompatActivity {
 
                 btnPlayPause.setColorFilter(swatch.getRgb());
             }
-        }
-        else {
+        } else {
             RevelyGradient
                     .linear()
                     .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(90f).alpha(0.76f)

@@ -146,12 +146,10 @@ public class FindFriendsActivity extends AppCompatActivity {
         if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
             Palette palette = Palette.from(User.profileBitmap).generate();
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-            // int color = palette.getDarkMutedColor(0);
             if (swatch == null) {
                 swatch = palette.getDominantSwatch();
             }
 
-            // swatch.getRgb()
             if (swatch != null) {
                 int color = swatch.getRgb();
                 RevelyGradient
@@ -159,8 +157,7 @@ public class FindFriendsActivity extends AppCompatActivity {
                         .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.76f)
                         .onBackgroundOf(layout);
             }
-        }
-        else {
+        } else {
             RevelyGradient
                     .linear()
                     .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(270f).alpha(0.76f)

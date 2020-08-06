@@ -120,8 +120,7 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
 
             if (user.getUsername().equals(ParseUser.getCurrentUser().getUsername())) {
                 ivFollow.setVisibility(View.GONE);
-            }
-            else {
+            } else {
 
                 ivFollow.setImageResource(R.drawable.ic_follow);
                 ivFollow.clearColorFilter();

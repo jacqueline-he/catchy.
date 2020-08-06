@@ -88,13 +88,10 @@ public class HomeFragment extends Fragment {
     private void addRecommendedSongs() {
         SpotifyApi spotifyApi = new SpotifyApi();
         spotifyApi.setAccessToken(ParseUser.getCurrentUser().getString("token"));
-        // Map<String, Object> options = songRecommendation.getOptions();
 
         Random rand = new Random();
-        // starter
         String seedArtists = artists.get(rand.nextInt(artists.size()));
         String seedGenres = genres.get(rand.nextInt(genres.size()));
-        ;
         String seedTracks = tracks.get(rand.nextInt(tracks.size()));
 
         Map<String, Object> options = new HashMap<>();
@@ -222,24 +219,4 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
-/*    @Override
-    public void onPause() {
-        super.onPause();
-        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
-        LocalBroadcastManager.getInstance(context).unregisterReceiver(spotifyBroadcastReceiver);
-        Log.d("HomeFragment", "Paused");
-    } */
-
-/*
-    @Override
-    public void onResume() {
-        super.onResume();
-        // Register for the particular broadcast based on ACTION string
-        IntentFilter filter = new IntentFilter(SpotifyIntentService.ACTION);
-        spotifyBroadcastReceiver.enqueueService(getContext(), SpotifyBroadcastReceiver.ACTION_PLAY_PAUSE);
-        LocalBroadcastManager.getInstance(context).registerReceiver(spotifyBroadcastReceiver, filter);
-        // or `registerReceiver(testReceiver, filter)` for a normal broadcast
-    }
-    */
 }

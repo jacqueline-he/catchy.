@@ -216,12 +216,10 @@ public class UserFragment extends Fragment {
         if (User.profileBitmap != null && !User.profileBitmap.isRecycled()) {
             Palette palette = Palette.from(User.profileBitmap).generate();
             Palette.Swatch swatch = palette.getDarkVibrantSwatch();
-            // int color = palette.getDarkMutedColor(0);
             if (swatch == null) {
                 swatch = palette.getDominantSwatch();
             }
 
-            // swatch.getRgb()
             if (swatch != null) {
 
                 int color = swatch.getRgb();
@@ -267,7 +265,6 @@ public class UserFragment extends Fragment {
                     User.followingItems = objects;
                     for (Following followingItem : objects) {
                         User.following.add(followingItem.getFollowing());
-                        // followingItem.deleteInBackground(); // remove then reinsert later
                     }
                     tvFollowingCount.setText(User.following.size() + " following");
                 }

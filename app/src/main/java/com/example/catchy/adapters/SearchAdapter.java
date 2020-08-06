@@ -105,13 +105,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*new Thread(() -> {
-                        try {
-                            DetailTransition.bitmap = Picasso.get().load(song.getImageUrl()).get();
-                        } catch (Exception e) {
-                            Log.e("SongDetailsActivity", "couldn't get bitmap"+e);
-                        }
-                    }).start();*/
                     DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position, true);
                     Intent intent = new Intent(context, SongDetailsActivity.class);
                     // pack something

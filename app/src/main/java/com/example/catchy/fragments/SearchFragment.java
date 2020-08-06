@@ -198,8 +198,7 @@ public class SearchFragment extends Fragment {
                         .colors(new int[]{Color.parseColor("#000000"), color}).angle(270f).alpha(0.76f)
                         .onBackgroundOf(layout);
             }
-        }
-        else {
+        } else {
             RevelyGradient
                     .linear()
                     .colors(new int[]{Color.parseColor("#000000"), Color.parseColor("#00EDFF")}).angle(270f).alpha(0.76f)

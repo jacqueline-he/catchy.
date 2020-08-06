@@ -35,10 +35,10 @@ class BioDialogFragment : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val tvFullName : TextView = binding.tvFullName
-        val tvBio : TextView = binding.tvBio
+        val tvFullName: TextView = binding.tvFullName
+        val tvBio: TextView = binding.tvBio
         layout = binding.biodialog
-        val ivProfileImage : ImageView = binding.ivProfileImage
+        val ivProfileImage: ImageView = binding.ivProfileImage
         tvFullName.text = fullName
         tvBio.text = bio
         Glide.with(this).load(imgUrl).into(ivProfileImage)

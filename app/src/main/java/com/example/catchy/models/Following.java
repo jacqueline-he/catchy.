@@ -14,11 +14,19 @@ public class Following extends ParseObject {
         super();
     }
 
-    public ParseUser getFollowing() { return getParseUser(KEY_FOLLOWING); }
+    public ParseUser getFollowing() {
+        return getParseUser(KEY_FOLLOWING);
+    }
 
-    public void setFollowing(ParseUser user) { put(KEY_FOLLOWING, user);}
+    public void setFollowing(ParseUser user) {
+        put(KEY_FOLLOWING, user);
+    }
 
-    public ParseUser getFollowedBy() { return getParseUser(KEY_FOLLOWED_BY); }
+    public ParseUser getFollowedBy() {
+        return getParseUser(KEY_FOLLOWED_BY);
+    }
 
-    public void setFollowedBy(ParseUser user) { put(KEY_FOLLOWED_BY, user); }
+    public void setFollowedBy(ParseUser user) {
+        put(KEY_FOLLOWED_BY, user);
+    }
 }

@@ -43,11 +43,9 @@ public class SpotifyBroadcastReceiver extends BroadcastReceiver implements Seria
             mIsSpotifyConnected = true;
         } else if (resultCode == RESULT_DISCONNECTED) {
             mIsSpotifyConnected = false;
-        }
-        else if (resultCode == RESULT_OPEN_SPOTIFY) {
+        } else if (resultCode == RESULT_OPEN_SPOTIFY) {
             openSpotify();
-        }
-        else if (resultCode == RESULT_INSTALL_SPOTIFY) {
+        } else if (resultCode == RESULT_INSTALL_SPOTIFY) {
             installSpotify();
         }
     }
