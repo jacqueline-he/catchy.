@@ -90,6 +90,9 @@ public class FindFriendsAdapter extends RecyclerView.Adapter<FindFriendsAdapter.
             if (profileImage != null) {
                 Glide.with(context).load(profileImage.getUrl()).transform(new CircleCrop()).into(ivProfileImage);
             }
+            else {
+                Glide.with(context).load(context.getResources().getIdentifier("ppic.jpg", "drawable", context.getPackageName())).transform(new CircleCrop()).into(ivProfileImage);
+            }
 
             int position = getAdapterPosition();
             Bitmap bitmap = null;
