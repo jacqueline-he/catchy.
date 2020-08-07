@@ -3,7 +3,6 @@ catchy.
 
 ## Table of Contents
 1. [Description](#Description)
-1. [Product Spec](#Product-Spec)
 1. [Login Page](#Login-Page)
 1. [Home Feed](#Home-Feed)
 1. [Details Page](#Details-Page)
@@ -27,6 +26,8 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
   <img src="/imgs/loginpage-2.gif" width="250" height="540" /> 
 </p>
 
+Product Spec: 
+- [x] User can log in or sign up  
 
 ## Home Feed
 
@@ -35,6 +36,13 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
   <img src="/imgs/homefeed-2.gif" width="250" height="540" /> 
 </p>
 
+Product Spec:
+- [x] Profiles constructed for each song
+- [x] Tiktok-like mechanism that allows users to swipe for new song profiles 
+- [x] Infinite refresh as songs are continuously loaded from Spotify / Parse
+- [x] Users can double-tap to like / unlike songs
+- [x] Users can single-tap to pause / resume playing
+- [x] Song plays on loop
 
 
 ## Details Page
@@ -45,9 +53,19 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
   <img src="/imgs/detailspage-3.png" width="250" height="540" />
 </p>
 
+Product Spec:
+- [x] Additional playback features such as fast-forwarding, rewinding, pausing / resuming
+- [x] Users can double-tap to like / unlike songs
+- [x] Background color changes dynamically based on album art (bitmap loading with LRU cache)
+
 ## Search Page
 
 <img src='imgs/searchpage.gif' title='Search Page' width='250' height="540" alt='Search Page' />
+
+Product Spec:
+- [x] User can search for new songs via track title or artist title
+- [x] User can tap search result to view song details
+- [x] Search function has infinite load 
 
 ## Profile Page
 
@@ -56,9 +74,20 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
   <img src="/imgs/profilepage.gif" width="250" height="540" />  
 </p>
 
+Product Spec:
+- [x] Each user has an individual profile page, full name, and bio
+- [x] User can tap profile image to access full name and bio
+- [x] User profile displays list of favorite songs
+- [x] User can view following / follower lists
+
 ## Find Friends
 
 <img src='imgs/findfriends.gif' title='Find Friends' width='250' height="540" alt='Find Friends' />
+
+Product Spec:
+- [x] User can tap search result to view other users' profile pages
+- [x] Search function has infinite load 
+- [x] Current user can follow / unfollow other users from search results
 
 
 ## Settings
@@ -68,14 +97,24 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
   <img src="/imgs/settings-3.gif" width="250" height="540" /> 
 </p>
 
+Product Spec:
+- [x] User can set new full name or bio
+- [x] User can change profile picture by taking a picture through the native camera app or uploading
+an existing one from the photo gallery
+- [x] User can toggle between having explicit content filtered out from song recommendations or not
+- [x] User can toggle between listening to a 30-second snippet of a song in the home feed or its full duration
+- [x] User can view about page
+
 
 
 ## Video Walkthrough
 
+TBD.
+
 ## Credits
 
 3rd party libraries, icons, and graphics used:
-* **catchy.** logo design by Catherine He 
+* [**catchy.** logo design by Catherine He](https://github.com/catherinexhe) 
 * [Material Design Icons](https://material.io/resources/icons/?style=baseline)
 * [Revely Gradient](https://github.com/revely-inc/co.revely.gradient)
 * [Spotify Android SDK](https://github.com/spotify/android-sdk)
