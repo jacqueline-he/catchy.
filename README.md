@@ -18,22 +18,23 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 
 ### Login Page
 
-<img src='imgs/loginpage.gif' title='Login Page' width='400' alt='Login Page' />
+<img src='imgs/loginpage.gif' title='Login Page' width='300' alt='Login Page' />
 
 ### Home Feed
 
-<img src='imgs/homefeed.gif' title='Home Feed' width='400' alt='Home Feed' />
+<img src='imgs/homefeed.gif' title='Home Feed' width='300' alt='Home Feed' />
 
 ### Details Page
 
 <p float="left">
-  <img src="/imgs/detailspage-1.png" width="300" />
-  <img src="/imgs/detailspage-2.png" width="300" /> 
-  <img src="/imgs/detailspage-3.png" width="300" />
+  <img src="/imgs/detailspage-1.png" width="250" height="540" />
+  <img src="/imgs/detailspage-2.png" width="250" height="540" /> 
+  <img src="/imgs/detailspage-3.png" width="250" height="540" />
 </p>
 
 ### Search Page
 
+<img src='imgs/searchpage.gif' title='Search Page' width='300' alt='Search Page' />
 
 ### Profile Page
 
