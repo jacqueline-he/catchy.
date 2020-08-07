@@ -1,4 +1,4 @@
-catchy. - README 
+catchy.
 ===
 
 ## Table of Contents
@@ -10,7 +10,7 @@ catchy. - README
 ## Description
 
 **catchy.** is a Spotify-powered, music recommendation app that helps users find their new favorite songs. Users can swipe through
-different song profiles, search for tracks, save liked songs, follow other users, and more. 🎶
+different song profiles, search for tracks, save liked songs, follow other users, and more. 
 
 Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ). 
 
