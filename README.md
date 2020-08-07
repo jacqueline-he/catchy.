@@ -4,6 +4,13 @@ catchy.
 ## Table of Contents
 1. [Description](#Description)
 1. [Product Spec](#Product-Spec)
+1. [Login Page](#Login-Page)
+1. [Home Feed](#Home-Feed)
+1. [Details Page](#Details-Page)
+1. [Search Page](#Search-Page)
+1. [Profile Page](#Profile-Page)
+1. [Find Friends](#Find-Friends)
+1. [Settings](#Settings)
 1. [Video Walkthrough](#Video-Walkthrough)
 2. [Credits](#Credits)
 
@@ -14,16 +21,14 @@ different song profiles, search for tracks, save liked songs, follow other users
 
 Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ). 
 
-## Product Spec
-
-### Login Page
+## Login Page
 <p float="left">
   <img src='imgs/loginpage-1.gif' title='Login Page' width='250' height="540" alt='Login Page' />
   <img src="/imgs/loginpage-2.gif" width="250" height="540" /> 
 </p>
 
 
-### Home Feed
+## Home Feed
 
 <p float="left">
   <img src='imgs/homefeed-1.gif' title='Home Feed' width='250' height="540" alt='Home Feed' />
@@ -32,7 +37,7 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 
 
 
-### Details Page
+## Details Page
 
 <p float="left">
   <img src="/imgs/detailspage-1.png" width="250" height="540" />
@@ -40,20 +45,20 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
   <img src="/imgs/detailspage-3.png" width="250" height="540" />
 </p>
 
-### Search Page
+## Search Page
 
 <img src='imgs/searchpage.gif' title='Search Page' width='250' height="540" alt='Search Page' />
 
-### Profile Page
+## Profile Page
 
 <img src='imgs/profilepage.gif' title='Profile Page' width='250' height="540" alt='Profile Page' />
 
-### Find Friends
+## Find Friends
 
 <img src='imgs/findfriends.gif' title='Find Friends' width='250' height="540" alt='Find Friends' />
 
 
-### Settings
+## Settings
 <img src="/imgs/settings.png" title='Settings' width="250" height="540" />
 
 
