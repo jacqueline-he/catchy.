@@ -51,7 +51,10 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 
 ## Profile Page
 
-<img src='imgs/profilepage.gif' title='Profile Page' width='250' height="540" alt='Profile Page' />
+<p float="left">
+  <img src="/imgs/profilepage.png" title='Profile Page' width="250" height="540" />
+  <img src="/imgs/profilepage.gif" width="250" height="540" />  
+</p>
 
 ## Find Friends
 
@@ -59,7 +62,12 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 
 
 ## Settings
-<img src="/imgs/settings.png" title='Settings' width="250" height="540" />
+<p float="left">
+  <img src="/imgs/settings.png" title='Settings' width="250" height="540" />
+  <img src="/imgs/settings-2.gif" width="250" height="540" /> 
+  <img src="/imgs/settings-3.gif" width="250" height="540" /> 
+</p>
+
 
 
 ## Video Walkthrough
