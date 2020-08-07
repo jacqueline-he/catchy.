@@ -39,6 +39,7 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
     SpotifyBroadcastReceiver receiver;
     Context context;
 
+    // default
     String seedArtists = "4NHQUGzhtTLFvgF5SZesLK";
     String seedGenres = "pop,k-pop";
     String seedTracks = "0c6xIDDpzE81m2q797ordA";
@@ -174,8 +175,13 @@ public class HomeFragmentAdapter extends FragmentStateAdapter {
                 if (list.size() > 0) {      // avoids index out of bounds exception
                     seedArtists = list.get(i).id + "," + list.get(j).id;
                     Log.d("HomeFragmentAdapter", "Loaded: artists = " + seedArtists);
-                    seedGenres = list.get(i).genres.get(0) + "," + list.get(j).genres.get(0);
-                    Log.d("HomeFragmentAdapter", "Loaded: genres = " + seedGenres);
+                    if (list.get(i).genres.size() > 0) {
+                        seedGenres = list.get(i).genres.get(0) + "," + list.get(j).genres.get(0);
+                        Log.d("HomeFragmentAdapter", "Loaded: genres = " + seedGenres);
+                    }
+                    else {
+                        seedGenres = "pop,k-pop"; // default
+                    }
                 }
 
             }

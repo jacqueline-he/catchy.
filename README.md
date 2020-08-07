@@ -18,7 +18,17 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 
 ### Login Page
 
+<img src='imgs/loginpage.gif' title='Login Page' width='400' alt='Login Page' />
+
 ### Home Feed
+
+### Details Page
+
+<p float="left">
+  <img src="/img/detailspage-1.png" width="300" />
+  <img src="/img/detailspage-2.png" width="300" /> 
+  <img src="/img/detailspage-3.png" width="300" />
+</p>
 
 ### Search Page
 
