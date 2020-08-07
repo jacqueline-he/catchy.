@@ -364,6 +364,12 @@ public class UserFragment extends Fragment {
             userLikes.remove(DetailTransition.pos);
             adapter.notifyItemRemoved(DetailTransition.pos);
             DetailTransition.leavingSongDetails = false;
+
+            if (userLikes.size() == 1) {
+                tvLikesCount.setText("1 like");
+            } else {
+                tvLikesCount.setText(userLikes.size() + " likes");
+            }
         }
 
         if (User.profPicChanged) {
