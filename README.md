@@ -17,12 +17,20 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 ## Product Spec
 
 ### Login Page
+<p float="left">
+  <img src='imgs/loginpage-1.gif' title='Login Page' width='250' height="540" alt='Login Page' />
+  <img src="/imgs/loginpage-2.gif" width="250" height="540" /> 
+</p>
 
-<img src='imgs/loginpage.gif' title='Login Page' width='250' alt='Login Page' />
 
 ### Home Feed
 
-<img src='imgs/homefeed.gif' title='Home Feed' width='250' alt='Home Feed' />
+<p float="left">
+  <img src='imgs/homefeed-1.gif' title='Home Feed' width='250' height="540" alt='Home Feed' />
+  <img src="/imgs/homefeed-2.gif" width="250" height="540" /> 
+</p>
+
+
 
 ### Details Page
 
