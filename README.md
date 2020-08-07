@@ -15,7 +15,7 @@ catchy.
 
 ## Description
 
-**catchy.** is a Spotify-powered, music recommendation app that helps users find their new favorite songs. Users can swipe through
+**catchy.** is a Spotify-powered music recommendation app that helps users find their new favorite songs. Users can swipe through
 different song profiles, search for tracks, save liked songs, follow other users, and more. 
 
 Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ). 
@@ -27,7 +27,8 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 </p>
 
 Product Spec: 
-- [x] User can log in or sign up  
+- [x] User can log in or sign up 
+- [x] Error handling if user isn't logged into or hasn't installed Spotify
 
 ## Home Feed
 
@@ -42,7 +43,9 @@ Product Spec:
 - [x] Infinite refresh as songs are continuously loaded from Spotify / Parse
 - [x] Users can double-tap to like / unlike songs
 - [x] Users can single-tap to pause / resume playing
-- [x] Song plays on loop
+- [x] Users can tap on song title to reach its details page through an 
+animated shared element activity transition
+- [x] Song profile plays on loop
 
 
 ## Details Page
@@ -65,7 +68,8 @@ Product Spec:
 Product Spec:
 - [x] User can search for new songs via track title or artist title
 - [x] User can tap search result to view song details
-- [x] Search function has infinite load 
+- [x] Search function has infinite load
+- [x] Background color changes dynamically based on current user's profile picture 
 
 ## Profile Page
 
@@ -75,10 +79,11 @@ Product Spec:
 </p>
 
 Product Spec:
-- [x] Each user has an individual profile page, full name, and bio
+- [x] Each user has an individual profile picture, full name, and bio
 - [x] User can tap profile image to access full name and bio
 - [x] User profile displays list of favorite songs
 - [x] User can view following / follower lists
+- [x] Background color changes dynamically based on user's profile picture
 
 ## Find Friends
 
@@ -88,6 +93,7 @@ Product Spec:
 - [x] User can tap search result to view other users' profile pages
 - [x] Search function has infinite load 
 - [x] Current user can follow / unfollow other users from search results
+- [x] Background color changes dynamically based on current user's profile picture
 
 
 ## Settings
@@ -103,7 +109,8 @@ Product Spec:
 an existing one from the photo gallery
 - [x] User can toggle between having explicit content filtered out from song recommendations or not
 - [x] User can toggle between listening to a 30-second snippet of a song in the home feed or its full duration
-- [x] User can view about page
+- [x] User can view about popup page
+- [x] Background color changes dynamically based on current user's profile picture
 
 
 
