@@ -18,11 +18,11 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 
 ### Login Page
 
-<img src='imgs/loginpage.gif' title='Login Page' width='300' alt='Login Page' />
+<img src='imgs/loginpage.gif' title='Login Page' width='250' alt='Login Page' />
 
 ### Home Feed
 
-<img src='imgs/homefeed.gif' title='Home Feed' width='300' alt='Home Feed' />
+<img src='imgs/homefeed.gif' title='Home Feed' width='250' alt='Home Feed' />
 
 ### Details Page
 
@@ -34,20 +34,27 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 
 ### Search Page
 
-<img src='imgs/searchpage.gif' title='Search Page' width='300' alt='Search Page' />
+<img src='imgs/searchpage.gif' title='Search Page' width='250' height="540" alt='Search Page' />
 
 ### Profile Page
 
+<img src='imgs/profilepage.gif' title='Profile Page' width='250' height="540" alt='Profile Page' />
+
 ### Find Friends
 
+<img src='imgs/findfriends.gif' title='Find Friends' width='250' height="540" alt='Find Friends' />
+
+
 ### Settings
+<img src="/imgs/settings.png" title='Settings' width="250" height="540" />
+
 
 ## Video Walkthrough
 
 ## Credits
 
 3rd party libraries, icons, and graphics used:
-* **catchy.** icon design by Catherine He 
+* **catchy.** logo design by Catherine He 
 * [Material Design Icons](https://material.io/resources/icons/?style=baseline)
 * [Revely Gradient](https://github.com/revely-inc/co.revely.gradient)
 * [Spotify Android SDK](https://github.com/spotify/android-sdk)
