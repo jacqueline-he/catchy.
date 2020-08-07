@@ -22,15 +22,18 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
 
 ### Home Feed
 
+<img src='imgs/homefeed.gif' title='Home Feed' width='400' alt='Home Feed' />
+
 ### Details Page
 
 <p float="left">
-  <img src="/img/detailspage-1.png" width="300" />
-  <img src="/img/detailspage-2.png" width="300" /> 
-  <img src="/img/detailspage-3.png" width="300" />
+  <img src="/imgs/detailspage-1.png" width="300" />
+  <img src="/imgs/detailspage-2.png" width="300" /> 
+  <img src="/imgs/detailspage-3.png" width="300" />
 </p>
 
 ### Search Page
+
 
 ### Profile Page
 
