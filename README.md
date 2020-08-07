@@ -18,6 +18,18 @@ Initial draft design here: [https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ]
 
 ## Product Spec
 
+### Login Page
+
+### Home Feed
+
+### Search Page
+
+### Profile Page
+
+### Find Friends
+
+### Settings
+
 ## Video Walkthrough
 
 ## Credits
@@ -32,5 +44,6 @@ Initial draft design here: [https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ]
 * [Picasso](https://github.com/square/picasso)
 * [Android FadingEdgeLayout](https://github.com/bosphere/Android-FadingEdgeLayout)
 * [Parse SDK for Android](https://github.com/parse-community/Parse-SDK-Android)
+* [Parceler](https://github.com/johncarl81/parceler)
 
 
