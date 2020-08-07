@@ -360,9 +360,10 @@ public class UserFragment extends Fragment {
             imgUrl = profileImage.getUrl(); // updated url for bio fragment
         }
 
-        if (!DetailTransition.liked) {
+        if (!DetailTransition.liked && DetailTransition.leavingSongDetails) {
             userLikes.remove(DetailTransition.pos);
             adapter.notifyItemRemoved(DetailTransition.pos);
+            DetailTransition.leavingSongDetails = false;
         }
 
         if (User.profPicChanged) {

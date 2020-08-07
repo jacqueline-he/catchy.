@@ -275,6 +275,7 @@ public class SongDetailsActivity extends AppCompatActivity {
         super.onBackPressed();
         DetailTransition.liked = liked;
         DetailTransition.enteringSongDetails = false;
+        DetailTransition.leavingSongDetails = true;
         DetailTransition.song = song;
         DetailTransition.progress = songProgressBar.getSeekBar().getProgress();
         if (!from.equals("home")) {
