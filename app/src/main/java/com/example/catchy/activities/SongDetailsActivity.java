@@ -27,6 +27,7 @@ import com.example.catchy.R;
 import com.example.catchy.misc.SongProgressBar;
 import com.example.catchy.models.Like;
 import com.example.catchy.models.Song;
+import com.example.catchy.models.User;
 import com.example.catchy.service.SpotifyBroadcastReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.FindCallback;
@@ -282,7 +283,7 @@ public class SongDetailsActivity extends AppCompatActivity {
             receiver.enqueueService(this, SpotifyBroadcastReceiver.ACTION_PAUSE);
         }
 
-        if (from.equals("search") && liked) {
+        if ((from.equals("search") || from.equals("otheruser")) && liked) {
             // Add song to likes
             Like like = new Like();
             like.setTitle(song.getTitle());
@@ -302,6 +303,8 @@ public class SongDetailsActivity extends AppCompatActivity {
                     Log.i("SongDetailsActivity", "Post save was successful!");
                 }
             });
+            User.otherLikes.add(like);
+            User.itemsAdded++;
         } else if (from.equals("user") && !liked) {
             // Remove this song from likes
             ParseQuery<Like> query = ParseQuery.getQuery(Like.class);

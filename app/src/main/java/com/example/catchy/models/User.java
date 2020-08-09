@@ -6,6 +6,7 @@ import com.parse.ParseClassName;
 import com.parse.ParseUser;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,4 +25,6 @@ public class User extends ParseUser {
     public static String changedName;
     public static boolean bioChanged = false;
     public static String changedBio;
+    public static int itemsAdded = 0;
+    public static List<Like> otherLikes = new ArrayList<>();
 }

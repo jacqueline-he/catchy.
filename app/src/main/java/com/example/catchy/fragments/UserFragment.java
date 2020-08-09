@@ -393,5 +393,16 @@ public class UserFragment extends Fragment {
         BitmapCache.clearSongCache(); // make sure it's empty
         adapter.notifyDataSetChanged();
 
+        if (User.itemsAdded > 0) {
+            for (Like like : User.otherLikes) {
+                userLikes.add(0, like);
+            }
+
+            User.otherLikes.clear(); // reset
+
+            adapter.notifyItemRangeInserted(0, User.itemsAdded);
+            User.itemsAdded = 0; // reset
+        }
+
     }
 }

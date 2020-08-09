@@ -100,11 +100,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     DetailTransition.bitmap = BitmapCache.getBitmapFromMemCache(position, true);
                     // pack something
                     intent.putExtra("song", song);
-                    if (currentUser)
+                    if (currentUser) {
                         intent.putExtra("liked", true);
-                    else
+                        intent.putExtra("from", "user");
+                    }
+                    else {
                         intent.putExtra("liked", false);
-                    intent.putExtra("from", "user");
+                        intent.putExtra("from", "otheruser");
+                    }
+
 
                     DetailTransition.pos = getAdapterPosition();
                     context.startActivity(intent);
