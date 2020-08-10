@@ -116,7 +116,7 @@ an existing one from the photo gallery
 
 ## Video Walkthrough
 
-<img src='imgs/demo.mp4' title='Find Friends' width='480' height="270" alt='Find Friends' />
+<img src='imgs/movie-demo.mov' title='Video Walkthrough' width='480' height="270" />
 
 ## Credits
 
