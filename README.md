@@ -26,7 +26,7 @@ Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ).
   <img src="/imgs/loginpage-2.gif" width="250" height="540" /> 
 </p>
 
-Product Spec: 
+### Product Spec: 
 - [x] User can log in or sign up 
 - [x] Error handling if user isn't logged into or hasn't installed Spotify
 
@@ -37,7 +37,7 @@ Product Spec:
   <img src="/imgs/homefeed-2.gif" width="250" height="540" /> 
 </p>
 
-Product Spec:
+### Product Spec:
 - [x] Profiles constructed for each song
 - [x] Tiktok-like mechanism that allows users to swipe for new song profiles 
 - [x] Infinite refresh as songs are continuously loaded from Spotify / Parse
@@ -56,7 +56,7 @@ animated shared element activity transition
   <img src="/imgs/detailspage-3.png" width="250" height="540" />
 </p>
 
-Product Spec:
+### Product Spec:
 - [x] Additional playback features such as fast-forwarding, rewinding, pausing / resuming
 - [x] Users can double-tap to like / unlike songs
 - [x] Background color changes dynamically based on album art (bitmap loading with LRU cache)
@@ -65,7 +65,7 @@ Product Spec:
 
 <img src='imgs/searchpage.gif' title='Search Page' width='250' height="540" alt='Search Page' />
 
-Product Spec:
+### Product Spec:
 - [x] User can search for new songs via track title or artist title
 - [x] User can tap search result to view song details
 - [x] Search function has infinite load
@@ -78,7 +78,7 @@ Product Spec:
   <img src="/imgs/profilepage.gif" width="250" height="540" />  
 </p>
 
-Product Spec:
+### Product Spec:
 - [x] Each user has an individual profile picture, full name, and bio
 - [x] User can tap profile image to access full name and bio
 - [x] User profile displays list of favorite songs
@@ -89,7 +89,7 @@ Product Spec:
 
 <img src='imgs/findfriends.gif' title='Find Friends' width='250' height="540" alt='Find Friends' />
 
-Product Spec:
+### Product Spec:
 - [x] User can tap search result to view other users' profile pages
 - [x] Search function has infinite load 
 - [x] Current user can follow / unfollow other users from search results
@@ -103,7 +103,7 @@ Product Spec:
   <img src="/imgs/settings-3.gif" width="250" height="540" /> 
 </p>
 
-Product Spec:
+### Product Spec:
 - [x] User can set new full name or bio
 - [x] User can change profile picture by taking a picture through the native camera app or uploading
 an existing one from the photo gallery
