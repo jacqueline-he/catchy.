@@ -160,13 +160,13 @@ public class MainActivity extends AppCompatActivity {
         query.whereEqualTo("seen", true);
         query.findInBackground(new FindCallback<Song>() {
             @Override
-            public void done(List<Song> posts, ParseException e) {
+            public void done(List<Song> songs, ParseException e) {
                 if (e != null) {
-                    Log.e("MainActivity", "Issue with getting posts", e);
+                    Log.e("MainActivity", "Issue with getting songs", e);
                     return;
                 }
-                for (int i = 0; i < posts.size(); i++) {
-                    posts.get(i).deleteInBackground();
+                for (int i = 0; i < songs.size(); i++) {
+                    songs.get(i).deleteInBackground();
                 }
             }
         });

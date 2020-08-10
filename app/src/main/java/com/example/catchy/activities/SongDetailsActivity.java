@@ -300,11 +300,14 @@ public class SongDetailsActivity extends AppCompatActivity {
                         Log.e("SongDetailsActivity", "Error while saving", e);
                         e.printStackTrace();
                     }
-                    Log.i("SongDetailsActivity", "Post save was successful!");
+                    Log.i("SongDetailsActivity", "Like save was successful!");
                 }
             });
-            User.otherLikes.add(like);
-            User.itemsAdded++;
+
+            if (from.equals("otheruser")) {
+                User.otherLikes.add(like);
+                User.itemsAdded++;
+            }
         } else if (from.equals("user") && !liked) {
             // Remove this song from likes
             ParseQuery<Like> query = ParseQuery.getQuery(Like.class);
@@ -314,7 +317,7 @@ public class SongDetailsActivity extends AppCompatActivity {
                 @Override
                 public void done(List<Like> objects, ParseException e) {
                     if (e != null) {
-                        Log.e("SongDetailsActivity", "Issue with getting post to remove", e);
+                        Log.e("SongDetailsActivity", "Issue with getting song to remove", e);
                         return;
                     }
                     objects.get(0).deleteInBackground();

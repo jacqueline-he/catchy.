@@ -278,7 +278,7 @@ public class SongFragment extends Fragment {
                         Log.e("SongFragment", "Error while saving", e);
                         e.printStackTrace();
                     }
-                    Log.i("SongFragment", "Post save was successful!");
+                    Log.i("SongFragment", "Like save was successful!");
                 }
             });
         }

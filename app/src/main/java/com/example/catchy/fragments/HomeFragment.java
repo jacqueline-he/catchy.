@@ -151,7 +151,7 @@ public class HomeFragment extends Fragment {
             Date newest = arr.get(arr.size() - 1).getCreatedAt();
             query.whereGreaterThan("createdAt", newest);
             query.whereEqualTo("seen", false);
-            Log.i(TAG, "Getting inf scroll posts");
+            Log.i(TAG, "Getting inf scroll songs");
         }
 
         query.setLimit(20);

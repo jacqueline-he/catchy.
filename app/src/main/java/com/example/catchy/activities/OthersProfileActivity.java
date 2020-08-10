@@ -164,7 +164,7 @@ public class OthersProfileActivity extends AppCompatActivity {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 infScroll = true;
-                Log.i(TAG, "Asking for inf scroll posts");
+                Log.i(TAG, "Asking for inf scroll users");
                 queryUserLikes();
             }
         };
@@ -324,7 +324,7 @@ public class OthersProfileActivity extends AppCompatActivity {
 
         if (infScroll && userLikes.size() > 0) {
             Date oldest = userLikes.get(userLikes.size() - 1).getCreatedAt();
-            Log.i(TAG, "Getting inf scroll posts");
+            Log.i(TAG, "Getting inf scroll likes");
             query.whereLessThan("createdAt", oldest);
             infScroll = false;
         }
@@ -337,7 +337,7 @@ public class OthersProfileActivity extends AppCompatActivity {
             @Override
             public void done(List<Like> likes, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
+                    Log.e(TAG, "Issue with getting likes", e);
                     return;
                 }
                 for (Like like : likes) {
