@@ -159,15 +159,15 @@ public class HomeFragment extends Fragment {
         query.whereEqualTo("seen", false);
         query.findInBackground(new FindCallback<Song>() {
             @Override
-            public void done(List<Song> posts, ParseException e) {
+            public void done(List<Song> songs, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
+                    Log.e(TAG, "Issue with getting songs", e);
                     return;
                 }
-                if (posts.size() < 10) {
+                if (songs.size() < 10) {
                     addRecommendedSongs();
                 } else {
-                    arr.addAll(posts);
+                    arr.addAll(songs);
                     homeFragmentAdapter.notifyDataSetChanged();
                     Log.i(TAG, "Adapter changed");
                 }
