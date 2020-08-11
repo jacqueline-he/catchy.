@@ -116,7 +116,7 @@ an existing one from the photo gallery
 
 ## Video Walkthrough
 
-<img src='imgs/movie-demo.mov' title='Video Walkthrough' width='480' height="270" />
+A video walkthrough of all the app features can be found [here](https://youtu.be/gf21rzDk0N8). 
 
 ## Credits
 
