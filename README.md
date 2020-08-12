@@ -18,7 +18,7 @@ catchy.
 **catchy.** is a Spotify-powered music recommendation app that helps users find their new favorite songs. Users can swipe through
 different song profiles, search for tracks, save liked songs, follow other users, and more. 
 
-Initial draft design [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ). 
+Initial draft design linked [here](https://hackmd.io/4D37lwvUQty_SWYcwjvHPQ). 
 
 ## Login Page
 <p float="left">
@@ -116,7 +116,7 @@ an existing one from the photo gallery
 
 ## Video Walkthrough
 
-A video walkthrough of all the app features can be found [here](https://youtu.be/gf21rzDk0N8). 
+A more comprehensive video walkthrough of all the app features can be found [here](https://youtu.be/gf21rzDk0N8). 
 
 ## Credits
 
