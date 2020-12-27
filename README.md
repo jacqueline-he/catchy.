@@ -10,7 +10,6 @@ catchy.
 1. [Profile Page](#Profile-Page)
 1. [Find Friends](#Find-Friends)
 1. [Settings](#Settings)
-1. [Video Walkthrough](#Video-Walkthrough)
 2. [Credits](#Credits)
 
 ## Description
@@ -112,11 +111,6 @@ an existing one from the photo gallery
 - [x] User can view about popup page
 - [x] Background color changes dynamically based on current user's profile picture
 
-
-
-## Video Walkthrough
-
-A more comprehensive video walkthrough of all the app features can be found [here](https://youtu.be/gf21rzDk0N8). 
 
 ## Credits
 
